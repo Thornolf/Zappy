@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../inc/list.h
+stdlib.h
+-
+unistd.h
+-
+
+../inc/map.h
+list.h
+../inc/list.h
+
+../inc/player.h
+list.h
+../inc/list.h
+unistd.h
+-
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c
+list.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c
+map.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c
+map.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c
+player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.h
+
