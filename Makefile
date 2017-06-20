@@ -18,13 +18,13 @@ CC		=	gcc
 
 RM		=	@/usr/bin/rm -vf
 
-CFLAGS		=	-W -Wall -Wextra -Werror
+CFLAGS		=	-W -Wall -Wextra -Werror -I./inc/
 
 ifeq			($(DEBUG), yes)
 CFLAGS		+=	-g -ggdb3
 endif			# !_DEBUG_
 
-all:			$(NAME_SERVER) $(NAME_AI)
+all:			$(NAME_SERVER)
 
 $(NAME_SERVER):		$(OBJ_SERVER)
 			$(CC) -o $(NAME_SERVER) $(OBJ_SERVER)
