@@ -13,10 +13,19 @@
 # include	"list.h"
 #include	<unistd.h>
 
+typedef enum	e_direction
+{
+  TOP = 0,
+  LEFT,
+  RIGHT,
+  BOTTOM
+}		t_direction;
+
 typedef struct	s_player
 {
   int		id;
   t_list	*stuff_list;
+  t_direction	direction;
 }		t_player;
 
 t_player	*create_player(void);

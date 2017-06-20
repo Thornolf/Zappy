@@ -19,8 +19,8 @@ CXXFLAGS	+=	-Werror -Wall -Wextra
 CXXFLAGS	+=	-Iinclude/
 
 SRCS		=	main.cpp \
-					ZappException.cpp \
-					zappy.cpp
+			ZappException.cpp \
+			zappy.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
