@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:32:00 2017 Pierre
-** Last update Wed Jun 21 14:48:48 2017 Pierre
+** Last update Wed Jun 21 15:20:05 2017 Pierre
 */
 
 #include <string.h>
@@ -39,24 +39,30 @@ void check_if_parsing_is_aux_petits_oignons(t_info *info)
 
 void free_struct(t_info *info)
 {
+  int i;
+
   free(info->cmds);
-  int i = 0;
-  while (info->clients[i])
+  i = 0;
+  if (info->clients)
   {
-    free(info->clients[i]);
-    i++;
+    while (info->clients[i])
+    {
+      free(info->clients[i]);
+      i++;
+    }
+    free(info->clients);
   }
-  free(info->clients);
 }
 
-void handle_parsing(t_info *info, int ac, char **av)
+int handle_parsing(t_info *info, int ac, char **av)
 {
   int i;
 
   if (av[1][0] != '-')
-    my_exit("Bad arguments.\n./zappy_server -help");
+    return (0);
   i = 1;
-  info->cmds = strdup("pxyncf");
+  if ((info->cmds = strdup("pxyncf")) == NULL)
+    return (-1);
   while (i < ac)
   {
     if (av[i][0] == '-')
@@ -67,11 +73,15 @@ void handle_parsing(t_info *info, int ac, char **av)
             i = simple_command(info, i, av[i], av[i + 1]);
           else
             i = long_command(info, i, av);
+          if (i <= 0)
+            return (i);
         }
         else
-          my_exit("Bad arguments.\n./zappy_server -help");
+          return (0);
       }
       else
-        my_exit("Bad arguments.\n./zappy_server -help");
+        return (0);
   }
+  //check_if_parsing_is_aux_petits_oignons(info);
+  return (1);
 }

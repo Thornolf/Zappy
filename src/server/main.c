@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue May 30 13:21:39 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 21 14:49:25 2017 Pierre
+** Last update Wed Jun 21 15:22:33 2017 Pierre
 */
 
 #include <time.h>
@@ -33,18 +33,28 @@ void print_usage()
 int	main(int ac, char **av)
 {
   t_info info;
+  int check;
 
+  info.cmds = NULL;
+  info.clients = NULL;
   if (ac == 2 && strcmp(av[1], "-help") == 0)
     print_usage();
   else if (ac < 13)
     my_exit("Not enough arguments.\n./zappy_server -help");
-  handle_parsing(&info, ac, av);
+  if ((check = handle_parsing(&info, ac, av)) == 1)
+    {
+      t_map	*map;
+      srand((unsigned int)time(NULL));
+      if (!(map = create_empty_map(42, 42)))
+        return (84);
+      fill_up_map_randomly(map);
+      delete_map(map);
+      return (0);
+    }
+  else if (check == 0)
+    printf("Bad arguments.\n./zappy_server -help\n");
+  else
+    printf("Memory error, launch failed\n");
   free_struct(&info);
-  t_map	*map;
-  srand((unsigned int)time(NULL));
-  if (!(map = create_empty_map(42, 42)))
-    return (84);
-  fill_up_map_randomly(map);
-  delete_map(map);
   return (0);
 }
