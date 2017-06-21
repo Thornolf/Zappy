@@ -32,5 +32,6 @@ typedef struct	s_map
 t_map	*create_empty_map(unsigned int, unsigned int);
 void	fill_up_map_randomly(t_map *);
 void	delete_map(t_map *);
+void	print_map(t_map *);
 
 #endif		/* !_MAP__H_ */

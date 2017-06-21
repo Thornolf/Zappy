@@ -42,6 +42,7 @@ int	main(int ac, char **av)
   if (!(map = create_empty_map(42, 42)))
     return (84);
   fill_up_map_randomly(map);
+  print_map(map);
   delete_map(map);
   return (0);
 }
