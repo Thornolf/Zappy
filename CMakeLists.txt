@@ -14,6 +14,7 @@ set(SOURCE_FILES_SERVER
         src/server/lib/list.c
         src/server/main.c
         src/server/map.c
+        src/server/stuff.c
         src/server/player.c)
 
 add_executable(server ${SOURCE_FILES_SERVER})

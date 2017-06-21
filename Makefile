@@ -18,7 +18,7 @@ CC		=	gcc
 
 RM		=	@/usr/bin/rm -vf
 
-CFLAGS		=	-W -Wall -Wextra -Werror -I./inc/
+CFLAGS		=	-W -Wall -Wextra -g -I./inc/
 
 ifeq			($(DEBUG), yes)
 CFLAGS		+=	-g -ggdb3

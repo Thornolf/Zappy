@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c" "/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/server.dir/src/server/main.c.o"
   "/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c" "/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/server.dir/src/server/map.c.o"
   "/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c" "/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/server.dir/src/server/player.c.o"
+  "/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c" "/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/server.dir/src/server/stuff.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

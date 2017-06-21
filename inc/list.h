@@ -8,8 +8,8 @@
 ** Last update Tue Jun 20 09:38:02 2017 Guillaume CAUCHOIS
 */
 
-#ifndef		_STUFF__H_
-# define	_STUFF__H_
+#ifndef		_LIST__H_
+# define	_LIST__H_
 # include	<stdlib.h>
 # include	<unistd.h>
 

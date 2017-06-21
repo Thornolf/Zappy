@@ -20,5 +20,6 @@ t_player	*create_player(void)
   player->id = id++;
   player->stuff_list = NULL;
   player->direction = BOTTOM;
+  return (player);
 }
 

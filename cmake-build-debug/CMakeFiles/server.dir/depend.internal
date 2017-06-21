@@ -7,12 +7,17 @@ CMakeFiles/server.dir/src/server/lib/list.c.o
 CMakeFiles/server.dir/src/server/main.c.o
  ../inc/list.h
  ../inc/map.h
+ ../inc/stuff.h
  /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c
 CMakeFiles/server.dir/src/server/map.c.o
  ../inc/list.h
  ../inc/map.h
+ ../inc/stuff.h
  /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c
 CMakeFiles/server.dir/src/server/player.c.o
  ../inc/list.h
  ../inc/player.h
  /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c
+CMakeFiles/server.dir/src/server/stuff.c.o
+ ../inc/stuff.h
+ /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c
