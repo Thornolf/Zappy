@@ -5,8 +5,12 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 12:07:01 2017 Thomas Fossaert
-** Last update Tue Jun 20 12:20:51 2017 Thomas Fossaert
+** Last update Wed Jun 21 09:52:22 2017 Thomas Fossaert
 */
+
+#ifndef   ZAPPYEXCEPTION_HPP_
+# define  ZAPPYEXCEPTION_HPP_
+
 
 #include <exception>
 #include <iostream>
@@ -20,3 +24,5 @@ public:
   virtual const char* what() const throw();
   virtual ~ZappException() throw() {};
 };
+
+#endif

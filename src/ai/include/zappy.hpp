@@ -5,14 +5,16 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:41:59 2017 Thomas Fossaert
-** Last update Tue Jun 20 12:31:23 2017 Thomas Fossaert
+** Last update Wed Jun 21 12:42:14 2017 Thomas Fossaert
 */
 
-#ifndef   MUSIC_HPP_
-# define  MUSIC_HPP_
+#ifndef   ZAPPY_HPP_
+# define  ZAPPY_HPP_
 
 # include <iostream>
 # include "ZappException.hpp"
+# include "Socket.hpp"
+# include "EventHandler.hpp"
 
 class Zappy
 {
@@ -28,6 +30,8 @@ class Zappy
       std::string _port;
       std::string _teamName;
       std::string _machineName;
+      Socket *_sock;
+      EventHandler *_event;
 };
 
 #endif
