@@ -30,31 +30,40 @@ void print_usage()
   printf("\tfreq\t   is the reciproal of time unit for execution of actions\n");
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
-  t_info info;
-  int check;
+  t_info	info;
+  int		check;
+  t_map		*map;
 
   info.cmds = NULL;
   info.clients = NULL;
   if (ac == 2 && strcmp(av[1], "-help") == 0)
     print_usage();
   else if (ac < 13)
-    my_exit("Not enough arguments.\n./zappy_server -help");
+  {
+    fprintf(stderr, "Not enough arguments.\n./zappy_server -help");
+    return (84);
+  }
   if ((check = handle_parsing(&info, ac, av)) == 1)
-    {
-      t_map	*map;
-      srand((unsigned int)time(NULL));
-      if (!(map = create_empty_map(42, 42)))
-        return (84);
-      fill_up_map_randomly(map);
-      print_map(map);
-      delete_map(map);
-    }
+  {
+    srand((unsigned int)time(NULL));
+    if (!(map = create_empty_map(info.width, info.height)))
+      return (84);
+    fill_up_map_randomly(map);
+    print_map(map);
+    delete_map(map);
+  }
   else if (check == 0)
-    printf("Bad arguments.\n./zappy_server -help\n");
+  {
+    fprintf(stderr, "Error: Bad arguments.\n./zappy_server -help\n");
+    return (84);
+  }
   else
-    printf("Memory error, launch failed\n");
-  free_struct(&info);
+  {
+    fprintf(stderr, "Error: Memory error, launch failed\n");
+    return (84);
+  }
+  free_server_informations(&info);
   return (0);
 }

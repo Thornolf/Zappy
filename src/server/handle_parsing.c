@@ -11,33 +11,7 @@
 #include <string.h>
 #include "funcs.h"
 
-void check_if_parsing_is_aux_petits_oignons(t_info *info)
-{
-  int i;
-
-  i = 0;
-  while (info->cmds[i])
-  {
-    if (info->cmds[i] != '0')
-      my_exit("Bad arguments.\n./zappy_server -help");
-    i++;
-  }
-  printf("-----\nport = %d\n", info->port);
-  printf("width = %d\n", info->width);
-  printf("height = %d\n", info->height);
-  printf("clientsNb = %d\n", info->clientsNb);
-  printf("freq = %d\n", info->freq);
-  i = 0;
-  printf("\nClients :\n");
-  while (info->clients[i])
-  {
-    printf("%s\n", info->clients[i]);
-    i++;
-  }
-  printf("-----\n");
-}
-
-void free_struct(t_info *info)
+void free_server_informations(t_info *info)
 {
   int i;
 
@@ -46,10 +20,7 @@ void free_struct(t_info *info)
   if (info->clients)
   {
     while (info->clients[i])
-    {
-      free(info->clients[i]);
-      i++;
-    }
+      free(info->clients[i++]);
     free(info->clients);
   }
 }
@@ -82,6 +53,5 @@ int handle_parsing(t_info *info, int ac, char **av)
       else
         return (0);
   }
-  //check_if_parsing_is_aux_petits_oignons(info);
   return (1);
 }

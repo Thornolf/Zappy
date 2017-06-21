@@ -10,7 +10,7 @@
 
 #include "funcs.h"
 
-int check_twice(t_info *info, int val, int i)
+int	check_twice(t_info *info, int val, int i)
 {
   if (info->cmds[i] == '0')
     return (0);
@@ -19,11 +19,11 @@ int check_twice(t_info *info, int val, int i)
   return (val);
 }
 
-int fill_simple_param(t_info *info, char param, int val)
+int	fill_simple_param(t_info *info, char param, int val)
 {
-  char *tmp;
-  int i;
-  int try;
+  char	*tmp;
+  int	i;
+  int	try;
 
   if ((tmp = strdup("pxyncf")) == NULL)
     return (-1);
@@ -47,7 +47,7 @@ int fill_simple_param(t_info *info, char param, int val)
   return (1);
 }
 
-int simple_command(t_info *info, int i, char *arg, char *val)
+int	simple_command(t_info *info, int i, char *arg, char *val)
 {
   if (!val || atoi(val) == 0)
     return (0);
@@ -56,10 +56,10 @@ int simple_command(t_info *info, int i, char *arg, char *val)
   return (i + 2);
 }
 
-int long_command(t_info *info, int i, char **av)
+int	long_command(t_info *info, int i, char **av)
 {
-  int len;
-  int y;
+  int	len;
+  int	y;
 
   if (!av[i + 1] || av[i + 1][0] == '-')
     return (0);
