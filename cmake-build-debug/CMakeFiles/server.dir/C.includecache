@@ -13,12 +13,22 @@ unistd.h
 -
 
 ../inc/map.h
+stuff.h
+../inc/stuff.h
 list.h
 ../inc/list.h
+stdio.h
+-
 
 ../inc/player.h
 list.h
 ../inc/list.h
+unistd.h
+-
+
+../inc/stuff.h
+stdlib.h
+-
 unistd.h
 -
 
@@ -27,6 +37,10 @@ list.h
 /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.h
 
 /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c
+time.h
+-
+stdio.h
+-
 map.h
 /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.h
 
@@ -37,4 +51,8 @@ map.h
 /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c
 player.h
 /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c
+stuff.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.h
 

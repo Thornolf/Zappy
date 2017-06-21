@@ -10,16 +10,27 @@
 
 #ifndef		_MAP__H_
 # define	_MAP__H_
+# include	"stuff.h"
 # include	"list.h"
+# include	<stdio.h>
 
 typedef struct	s_plot
 {
   t_list	*player_list;
-  t_list	*stuff_list;
+  t_stuff	*stuff_list;
 }		t_plot;
 
-typedef t_plot** t_map;
+typedef t_plot** t_map_data;
 
-t_map	create_empty_map(unsigned int, unsigned int);
+typedef struct	s_map
+{
+  t_map_data	data;
+  unsigned int	x;
+  unsigned int y;
+}		t_map;
+
+t_map	*create_empty_map(unsigned int, unsigned int);
+void	fill_up_map_randomly(t_map *);
+void	delete_map(t_map *);
 
 #endif		/* !_MAP__H_ */

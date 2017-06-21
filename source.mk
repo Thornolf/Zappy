@@ -13,7 +13,11 @@ SRC_DIR		=	./src/
 SRC_SERVER_DIR	=	$(SRC_DIR)server/
 SRC_AI_DIR	=	$(SRC_DIR)ai/
 
-SRC_SERVER	=	$(SRC_SERVER_DIR)main.c
+SRC_SERVER	=	$(SRC_SERVER_DIR)main.c		\
+			$(SRC_SERVER_DIR)map.c		\
+			$(SRC_SERVER_DIR)player.c	\
+			$(SRC_SERVER_DIR)stuff.c
+
 SRC_AI		=	$(SRC_AI_DIR)main.c
 
 OBJ_SERVER	=	$(SRC_SERVER:.c=.o)
