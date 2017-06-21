@@ -1,3 +1,13 @@
+/*
+** zappy.cpp for PSU_2016_zappy in /home/fossae_t/rendu2/PSU_2016_zappy/src/ai
+**
+** Made by Thomas Fossaert
+** Login   <fossae_t@epitech.net>
+**
+** Started on  Wed Jun 21 09:19:57 2017 Thomas Fossaert
+** Last update Wed Jun 21 14:00:07 2017 Thomas Fossaert
+*/
+
 #include "zappy.hpp"
 
 Zappy::Zappy(char **av)
@@ -35,4 +45,21 @@ Zappy& Zappy::operator=(Zappy const & other)
 
 void Zappy::init(void)
 {
+  _sock = new Socket();
+  _sock->recvMsg();
+  _sock->sendMsg((_teamName + "\n").c_str());
+  if (_sock->getLastMsg() == "ko\n")
+    throw ZappException("This team does not exist");
+  _sock->recvMsg();
+  _event = new EventHandler(_sock);
+  _event->launchScript();
+  /*while (42)
+    {
+      _sock->sendMsg("Forward\n");
+      _sock->recvMsg();
+      _sock->sendMsg("Look\n");
+      _sock->recvMsg();
+      _sock->sendMsg("Take food\n");
+      _sock->recvMsg();
+    }*/
 }

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:06:26 2017 Thomas Fossaert
-** Last update Tue Jun 20 13:52:27 2017 Thomas Fossaert
+** Last update Wed Jun 21 09:59:45 2017 Thomas Fossaert
 */
 
 #include <iostream>
@@ -24,7 +24,7 @@ int main(int ac, char **av)
     {
       try {
         Zappy *zapp = new Zappy(av);
-        (void)zapp;
+        zapp->init();
       }
       catch (std::exception const & e)
         {

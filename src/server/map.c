@@ -98,3 +98,29 @@ void	delete_map(t_map *map)
   map->data = NULL;
   free(map);
 }
+
+void	print_map(t_map *map)
+{
+  unsigned int	x;
+  unsigned int	y;
+  t_stuff	*stuff;
+
+  y = 0;
+  while (y != map->y)
+  {
+    x = 0;
+    while (x != map->x)
+    {
+      printf("MAP[%d][%d] =", y, x);
+      stuff = map->data[y][x].stuff_list;
+      while (stuff)
+      {
+	printf(" %d", stuff->stuff);
+	stuff = stuff->next;
+      }
+      printf("\n");
+      x++;
+    }
+    y++;
+  }
+}

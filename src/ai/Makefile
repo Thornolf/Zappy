@@ -10,7 +10,7 @@
 
 CXX		=	g++
 
-NAME		=	zappy_client
+NAME		=	zappy_ai
 
 RM		=	rm -f
 
@@ -20,6 +20,8 @@ CXXFLAGS	+=	-Iinclude/
 
 SRCS		=	main.cpp \
 			ZappException.cpp \
+			EventHandler.cpp \
+			Socket.cpp \
 			zappy.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
