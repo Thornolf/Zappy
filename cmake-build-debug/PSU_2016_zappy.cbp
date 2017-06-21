@@ -145,6 +145,9 @@
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

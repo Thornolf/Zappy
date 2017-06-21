@@ -6,13 +6,18 @@ CMakeFiles/server.dir/src/server/lib/list.c.o: ../src/server/lib/list.c
 
 CMakeFiles/server.dir/src/server/main.c.o: ../inc/list.h
 CMakeFiles/server.dir/src/server/main.c.o: ../inc/map.h
+CMakeFiles/server.dir/src/server/main.c.o: ../inc/stuff.h
 CMakeFiles/server.dir/src/server/main.c.o: ../src/server/main.c
 
 CMakeFiles/server.dir/src/server/map.c.o: ../inc/list.h
 CMakeFiles/server.dir/src/server/map.c.o: ../inc/map.h
+CMakeFiles/server.dir/src/server/map.c.o: ../inc/stuff.h
 CMakeFiles/server.dir/src/server/map.c.o: ../src/server/map.c
 
 CMakeFiles/server.dir/src/server/player.c.o: ../inc/list.h
 CMakeFiles/server.dir/src/server/player.c.o: ../inc/player.h
 CMakeFiles/server.dir/src/server/player.c.o: ../src/server/player.c
+
+CMakeFiles/server.dir/src/server/stuff.c.o: ../inc/stuff.h
+CMakeFiles/server.dir/src/server/stuff.c.o: ../src/server/stuff.c
 

@@ -271,6 +271,33 @@ src/server/player.c.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/player.c.s
 .PHONY : src/server/player.c.s
 
+src/server/stuff.o: src/server/stuff.c.o
+
+.PHONY : src/server/stuff.o
+
+# target to build an object file
+src/server/stuff.c.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/stuff.c.o
+.PHONY : src/server/stuff.c.o
+
+src/server/stuff.i: src/server/stuff.c.i
+
+.PHONY : src/server/stuff.i
+
+# target to preprocess a source file
+src/server/stuff.c.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/stuff.c.i
+.PHONY : src/server/stuff.c.i
+
+src/server/stuff.s: src/server/stuff.c.s
+
+.PHONY : src/server/stuff.s
+
+# target to generate assembly for a file
+src/server/stuff.c.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/stuff.c.s
+.PHONY : src/server/stuff.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -296,6 +323,9 @@ help:
 	@echo "... src/server/player.o"
 	@echo "... src/server/player.i"
 	@echo "... src/server/player.s"
+	@echo "... src/server/stuff.o"
+	@echo "... src/server/stuff.i"
+	@echo "... src/server/stuff.s"
 .PHONY : help
 
 

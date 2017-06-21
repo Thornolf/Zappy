@@ -107,4 +107,4 @@ dkms.conf
 
 ### CLION Template
 .idea/*
-cmake-build-debug/*
+cmake-build-debug/
