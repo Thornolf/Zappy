@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 12:42:22 2017 Pierre
+** Last update Thu Jun 22 14:48:25 2017 Pierre
 */
 
 #include	"player.h"
@@ -18,7 +18,7 @@ t_player	*create_player(void)
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->id = id++;
-  player->stuff_list = NULL;
+  player->inventory = init_inventory();
   player->direction = BOTTOM;
   return (player);
 }
@@ -57,11 +57,10 @@ t_list    *init_players_list()
   return (head);
 }
 
-void      add_player(t_list *head, t_list *stuff_list)
+void      add_player(t_list *head)
 {
   t_list *current;
 
-  (void) stuff_list;
   current = head;
   while (current->next != NULL)
     current = current->next;

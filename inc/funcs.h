@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:52:04 2017 Pierre
-** Last update Wed Jun 21 14:52:48 2017 Pierre
+** Last update Thu Jun 22 14:35:06 2017 Pierre
 */
 
 #ifndef		_FUNCS__H_
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "inventory.h"
 
 typedef struct s_info
 {
@@ -24,6 +25,7 @@ typedef struct s_info
   int		clientsNb;
   int		freq;
   char		**clients;
+  void (*add_elems_cmds[7])(t_inventory *inv);
 }		t_info;
 
 void		my_exit(char *str);

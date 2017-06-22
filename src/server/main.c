@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue May 30 13:21:39 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 12:47:00 2017 Pierre
+** Last update Thu Jun 22 18:50:50 2017 Pierre
 */
 
 #include <time.h>
@@ -30,6 +30,22 @@ void print_usage()
   printf("\tfreq\t   is the reciproal of time unit for execution of actions\n");
 }
 
+void init_elems_cmds(t_info *info)
+{
+  info->add_elems_cmds[0] = &(add_food);
+  info->add_elems_cmds[1] = &(add_linemate);
+  info->add_elems_cmds[2] = &(add_deraumere);
+  info->add_elems_cmds[3] = &(add_sibur);
+  info->add_elems_cmds[4] = &(add_mendiane);
+  info->add_elems_cmds[5] = &(add_phiras);
+  info->add_elems_cmds[6] = &(add_thystame);
+}
+
+void add_element_in_inventory(t_info *info, t_inventory *inv, t_stuff_type elem)
+{
+  (*info->add_elems_cmds[elem])(inv);
+}
+
 int		main(int ac, char **av)
 {
   t_info	info;
@@ -50,10 +66,8 @@ int		main(int ac, char **av)
       srand((unsigned int)time(NULL));
       if (!(map = create_empty_map(info.width, info.height)))
         return (84);
+      init_elems_cmds(&info);
       fill_up_map_randomly(map);
-      //map->data[0][0].player_list = init_players_list();
-      //add_player(map->data[0][0].player_list, NULL);
-      //print_players(map->data[0][0].player_list);
       print_map(map);
       delete_map(map);
     }
