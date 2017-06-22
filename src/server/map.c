@@ -8,7 +8,7 @@
 ** Last update Wed Jun 21 11:03:41 2017 Guillaume CAUCHOIS
 */
 
-#include "map.h"
+#include "server/map.h"
 
 t_map		*create_empty_map(unsigned int x, unsigned int y)
 {
@@ -68,6 +68,7 @@ void		fill_up_map_randomly(t_map *map)
     while (x != map->x)
     {
       i = 0;
+      map->data[y][x].player_list = NULL;
       map->data[y][x].stuff_list = NULL;
       nb_entities = rand() % (STUFF_MAX - STUFF_MIN);
       while (i < nb_entities)

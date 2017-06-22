@@ -5,10 +5,10 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Thu Jun 22 18:50:58 2017 Pierre
+** Last update Thu Jun 22 19:03:17 2017 Pierre
 */
 
-#include "inventory.h"
+#include "server/inventory.h"
 
 void add_phiras(t_inventory *inv)
 {

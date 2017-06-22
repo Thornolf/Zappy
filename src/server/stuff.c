@@ -5,10 +5,10 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 15:09:44 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 13:47:22 2017 Pierre
+** Last update Thu Jun 22 19:11:19 2017 Pierre
 */
 
-# include "stuff.h"
+# include "server/stuff.h"
 
 t_stuff		*create_stuff_node(t_stuff_type type, t_stuff *next)
 {

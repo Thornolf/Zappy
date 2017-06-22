@@ -9,7 +9,7 @@
 */
 
 #include <string.h>
-#include "funcs.h"
+#include "server/funcs.h"
 
 void free_server_informations(t_info *info)
 {

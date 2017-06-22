@@ -5,14 +5,13 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:31:54 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 13:48:12 2017 Pierre
+** Last update Thu Jun 22 18:57:36 2017 Pierre
 */
 
 #ifndef		_MAP__H_
 # define	_MAP__H_
 # include	"stuff.h"
-# include	"list.h"
-# include "player.h"
+# include        "server/list.h"
 # include	<stdio.h>
 
 typedef struct	s_plot

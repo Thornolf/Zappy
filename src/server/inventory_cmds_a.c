@@ -5,10 +5,10 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:32:52 2017 Pierre
-** Last update Thu Jun 22 14:35:38 2017 Pierre
+** Last update Thu Jun 22 19:03:17 2017 Pierre
 */
 
-#include "inventory.h"
+#include "server/inventory.h"
 
 void add_food(t_inventory *inv)
 {
