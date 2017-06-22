@@ -43,10 +43,10 @@ RM = /opt/clion/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy
+CMAKE_SOURCE_DIR = /home/guillobits/workspace/epitech/PSU_2016_zappy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug
+CMAKE_BINARY_DIR = /home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/server.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/server.dir/flags.make
 
 CMakeFiles/server.dir/src/server/lib/list.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server/lib/list.c.o: ../src/server/lib/list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/server.dir/src/server/lib/list.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/lib/list.c.o   -c /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/lib/list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/server.dir/src/server/lib/list.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/lib/list.c.o   -c /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c
 
 CMakeFiles/server.dir/src/server/lib/list.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/src/server/lib/list.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/lib/list.c > CMakeFiles/server.dir/src/server/lib/list.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c > CMakeFiles/server.dir/src/server/lib/list.c.i
 
 CMakeFiles/server.dir/src/server/lib/list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/src/server/lib/list.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/lib/list.c -o CMakeFiles/server.dir/src/server/lib/list.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c -o CMakeFiles/server.dir/src/server/lib/list.c.s
 
 CMakeFiles/server.dir/src/server/lib/list.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/server.dir/src/server/lib/list.c.o.provides.build: CMakeFiles/server.
 
 CMakeFiles/server.dir/src/server/main.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server/main.c.o: ../src/server/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/server.dir/src/server/main.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/main.c.o   -c /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/server.dir/src/server/main.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/main.c.o   -c /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c
 
 CMakeFiles/server.dir/src/server/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/src/server/main.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/main.c > CMakeFiles/server.dir/src/server/main.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c > CMakeFiles/server.dir/src/server/main.c.i
 
 CMakeFiles/server.dir/src/server/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/src/server/main.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/main.c -o CMakeFiles/server.dir/src/server/main.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c -o CMakeFiles/server.dir/src/server/main.c.s
 
 CMakeFiles/server.dir/src/server/main.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/server.dir/src/server/main.c.o.provides.build: CMakeFiles/server.dir/
 
 CMakeFiles/server.dir/src/server/map.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server/map.c.o: ../src/server/map.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/server.dir/src/server/map.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/map.c.o   -c /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/map.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/server.dir/src/server/map.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/map.c.o   -c /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c
 
 CMakeFiles/server.dir/src/server/map.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/src/server/map.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/map.c > CMakeFiles/server.dir/src/server/map.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c > CMakeFiles/server.dir/src/server/map.c.i
 
 CMakeFiles/server.dir/src/server/map.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/src/server/map.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/map.c -o CMakeFiles/server.dir/src/server/map.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c -o CMakeFiles/server.dir/src/server/map.c.s
 
 CMakeFiles/server.dir/src/server/map.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/server.dir/src/server/map.c.o.provides.build: CMakeFiles/server.dir/s
 
 CMakeFiles/server.dir/src/server/stuff.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server/stuff.c.o: ../src/server/stuff.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/server.dir/src/server/stuff.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/stuff.c.o   -c /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/stuff.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/server.dir/src/server/stuff.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/stuff.c.o   -c /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c
 
 CMakeFiles/server.dir/src/server/stuff.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/src/server/stuff.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/stuff.c > CMakeFiles/server.dir/src/server/stuff.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c > CMakeFiles/server.dir/src/server/stuff.c.i
 
 CMakeFiles/server.dir/src/server/stuff.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/src/server/stuff.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/stuff.c -o CMakeFiles/server.dir/src/server/stuff.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c -o CMakeFiles/server.dir/src/server/stuff.c.s
 
 CMakeFiles/server.dir/src/server/stuff.c.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/server.dir/src/server/stuff.c.o.provides.build: CMakeFiles/server.dir
 
 CMakeFiles/server.dir/src/server/player.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server/player.c.o: ../src/server/player.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/server.dir/src/server/player.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/player.c.o   -c /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/player.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/server.dir/src/server/player.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/src/server/player.c.o   -c /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c
 
 CMakeFiles/server.dir/src/server/player.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/src/server/player.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/player.c > CMakeFiles/server.dir/src/server/player.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c > CMakeFiles/server.dir/src/server/player.c.i
 
 CMakeFiles/server.dir/src/server/player.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/src/server/player.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/src/server/player.c -o CMakeFiles/server.dir/src/server/player.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c -o CMakeFiles/server.dir/src/server/player.c.s
 
 CMakeFiles/server.dir/src/server/player.c.o.requires:
 
@@ -195,7 +195,7 @@ server: CMakeFiles/server.dir/src/server/stuff.c.o
 server: CMakeFiles/server.dir/src/server/player.c.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -216,6 +216,6 @@ CMakeFiles/server.dir/clean:
 .PHONY : CMakeFiles/server.dir/clean
 
 CMakeFiles/server.dir/depend:
-	cd /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/guillobits/workspace/epitech/PSU_2016_zappy /home/guillobits/workspace/epitech/PSU_2016_zappy /home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug /home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug /home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/server.dir/depend
 

@@ -6,5 +6,5 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/inc 
+C_INCLUDES = -I/home/guillobits/workspace/epitech/PSU_2016_zappy/inc 
 

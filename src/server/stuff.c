@@ -8,7 +8,7 @@
 ** Last update Wed Jun 21 11:03:51 2017 Guillaume CAUCHOIS
 */
 
-# include "stuff.h"
+# include "server/stuff.h"
 
 t_stuff		*create_stuff_node(t_stuff_type type, t_stuff *next)
 {

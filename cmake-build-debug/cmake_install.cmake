@@ -1,4 +1,4 @@
-# Install script for directory: /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy
+# Install script for directory: /home/guillobits/workspace/epitech/PSU_2016_zappy
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
