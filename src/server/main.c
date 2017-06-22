@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue May 30 13:21:39 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 21 15:23:23 2017 Pierre
+** Last update Thu Jun 22 12:47:00 2017 Pierre
 */
 
 #include <time.h>
@@ -46,7 +46,6 @@ int		main(int ac, char **av)
     return (84);
   }
   if ((check = handle_parsing(&info, ac, av)) == 1)
-<<<<<<< Updated upstream
   {
     srand((unsigned int)time(NULL));
     if (!(map = create_empty_map(info.width, info.height)))
@@ -55,17 +54,6 @@ int		main(int ac, char **av)
     print_map(map);
     delete_map(map);
   }
-=======
-    {
-      t_map	*map;
-      srand((unsigned int)time(NULL));
-      if (!(map = create_empty_map(10, 10)))
-        return (84);
-      fill_up_map_randomly(map);
-      print_map(map);
-      delete_map(map);
-    }
->>>>>>> Stashed changes
   else if (check == 0)
   {
     fprintf(stderr, "Error: Bad arguments.\n./zappy_server -help\n");
