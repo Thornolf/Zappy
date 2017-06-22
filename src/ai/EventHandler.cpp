@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Wed Jun 21 14:53:02 2017 Thomas Fossaert
+** Last update Thu Jun 22 13:17:58 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -48,7 +48,23 @@ void EventHandler::launchScript()
 void EventHandler::parseInventory(const std::string & inventory)
 {
   std::string tmp = inventory;
-  tmp.erase(std::remove(tmp.begin(), tmp.end(), ' '), tmp.end());
+  tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
+  tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
+  tmp.erase(0, 1);
+  tmp.erase(tmp.size() - 1);
+  size_t pos = 0;
+  std::string 	token;
+  std::string delimiter = " ";
+  std::string delimiter2 = ",";
+  std::vector<std::string>	out;
+
+  while ((pos = tmp.find(delimiter)) != std::string::npos)
+    {
+        token = tmp.substr(0, pos);
+        std::cout << token << std::endl;
+        tmp.erase(0, pos + delimiter.length());
+    }
+  //_inventory.insert( std::pair<std::string, int>(to_string(cpt), atoi(tmp[i])));
 }
 
 void EventHandler::MoveUp()
