@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
+<<<<<<< Updated upstream
   <component name="masterDetails">
     <states>
       <state key="ScopeChooserConfigurable.UI">
@@ -16,4 +17,6 @@
       </state>
     </states>
   </component>
+=======
+>>>>>>> Stashed changes
 </project>
