@@ -8,7 +8,7 @@
 ** Last update Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
 */
 
-#include	"player.h"
+#include        "server/player.h"
 
 t_player	*create_player(void)
 {

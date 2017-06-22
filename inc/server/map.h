@@ -11,7 +11,7 @@
 #ifndef		_MAP__H_
 # define	_MAP__H_
 # include	"stuff.h"
-# include	"list.h"
+# include        "server/list.h"
 # include	<stdio.h>
 
 typedef struct	s_plot

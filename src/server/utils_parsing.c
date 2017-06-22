@@ -8,7 +8,7 @@
 ** Last update Wed Jun 21 15:20:18 2017 Pierre
 */
 
-#include "funcs.h"
+#include "server/funcs.h"
 
 int	check_twice(t_info *info, int val, int i)
 {

@@ -11,22 +11,11 @@
 #ifndef		_FUNCS__H_
 # define	_FUNCS__H_
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include "server/server.h"
 
-typedef struct s_info
-{
-  char		*cmds;
-  int		port;
-  unsigned int	width;
-  unsigned int	height;
-  int		clientsNb;
-  int		freq;
-  char		**clients;
-}		t_info;
-
-void		my_exit(char *str);
 int		handle_parsing(t_info *info, int ac, char **av);
 void		free_server_informations(t_info *info);
 int		existing_command(char *arg);

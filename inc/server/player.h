@@ -10,7 +10,7 @@
 
 #ifndef		_PLAYER__H_
 # define	_PLAYER__H_
-# include	"list.h"
+# include        "server/list.h"
 #include	<unistd.h>
 
 typedef enum	e_direction

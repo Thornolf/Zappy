@@ -8,7 +8,7 @@
 ** Last update Wed Jun 21 11:03:41 2017 Guillaume CAUCHOIS
 */
 
-#include "map.h"
+#include "server/map.h"
 
 t_map		*create_empty_map(unsigned int x, unsigned int y)
 {
