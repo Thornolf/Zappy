@@ -44,9 +44,12 @@ void		look_function(t_map *map, t_player *current, int level)
 
   level = level;
   plot = in_which_plot(map, current->id);
+
+  printf("\n");
   while (plot.stuff_list)
   {
     printf("%d ", plot.stuff_list->stuff);
     plot.stuff_list = plot.stuff_list->next;
   }
+
 }
