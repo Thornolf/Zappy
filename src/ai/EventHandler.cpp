@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Thu Jun 22 13:09:21 2017 Thomas Fossaert
+** Last update Thu Jun 22 13:47:30 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -49,11 +49,12 @@ void EventHandler::launchScript()
       _sock->recvMsg();
       _sock->sendMsg("Inventory\n");
       _sock->recvMsg();
+      parseInventory(_sock->getLastMsg());
       _sock->sendMsg("Broadcast MDR\n");
       _sock->recvMsg();
       _sock->sendMsg("Look\n");
       _sock->recvMsg();
-      parseTiles(_sock->getLastMsg());
+    //  parseTiles(_sock->getLastMsg());
       _sock->sendMsg("Take food\n");
       _sock->recvMsg();
 
@@ -63,7 +64,29 @@ void EventHandler::launchScript()
 void EventHandler::parseInventory(const std::string & inventory)
 {
   std::string tmp = inventory;
-  tmp.erase(std::remove(tmp.begin(), tmp.end(), ' '), tmp.end());
+  tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
+  tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
+  tmp.erase(std::remove(tmp.begin(), tmp.end(), ','), tmp.end());
+  tmp.erase(0, 1);
+  tmp.erase(tmp.size() - 1);
+  size_t pos = 0;
+  std::string 	token;
+  std::string   nb;
+  std::string delimiter = " ";
+
+  while ((pos = tmp.find(delimiter)) != std::string::npos)
+    {
+        token = tmp.substr(0, pos);
+        epur(token);
+        tmp.erase(0, pos + delimiter.length());
+        if ((pos = tmp.find(delimiter)) != std::string::npos)
+        {
+            nb = tmp.substr(0, pos);
+            epur(nb);
+            tmp.erase(0, pos + delimiter.length());
+        }
+        _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
+    }
 }
 
 void EventHandler::parseTiles(const std::string & tiles)
@@ -95,7 +118,7 @@ void EventHandler::parseTiles(const std::string & tiles)
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_invetory["linemate"] == _need["linemate"])
+  if (_inventory["linemate"] == _need["linemate"])
     return (true);
   return (false);
 }

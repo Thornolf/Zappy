@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Thu Jun 22 12:32:20 2017 Thomas Fossaert
+** Last update Thu Jun 22 13:43:52 2017 Adrien Warin
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -34,7 +34,7 @@ private:
 
     std::map<int,std::vector<std::string>> _tiles;
 
-    std::unordered_map<std::string,int> _invetory;
+    std::unordered_map<std::string,int> _inventory;
     std::unordered_map<std::string,int> _need;
 
     Direction _orientation;
