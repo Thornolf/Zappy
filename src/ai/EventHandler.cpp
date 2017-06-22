@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Thu Jun 22 14:10:39 2017 Adrien Warin
+** Last update Thu Jun 22 14:50:21 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -45,19 +45,20 @@ void EventHandler::launchScript()
 {
   while (42)
     {
-      _sock->sendMsg("Forward\n");
-      _sock->recvMsg();
-      _sock->sendMsg("Inventory\n");
-      _sock->recvMsg();
-      parseInventory(_sock->getLastMsg());
-      _sock->sendMsg("Broadcast MDR\n");
-      _sock->recvMsg();
-      _sock->sendMsg("Look\n");
-      _sock->recvMsg();
-    //  parseTiles(_sock->getLastMsg());
+      Inventory();
+      if (isAbleToIncant() == true)
+        Incantation();
+      else
+        {
+          MoveUp();
+          LookAround();
+          _sock->sendMsg("Take linemate\n");
+          _sock->recvMsg();
+        }
       _sock->sendMsg("Take food\n");
       _sock->recvMsg();
 
+      std::cout << _inventory["linemate"] << '\n';
     }
 }
 
@@ -146,12 +147,14 @@ void EventHandler::LookAround()
 {
   _sock->sendMsg("Look\n");
   _sock->recvMsg();
+  parseTiles(_sock->getLastMsg());
 }
 
 void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
+  parseInventory(_sock->getLastMsg());
 }
 
 void EventHandler::BroadcastText()
@@ -186,7 +189,7 @@ void EventHandler::SetObject()
 
 void EventHandler::Incantation()
 {
-  _sock->sendMsg("start incantation\n");
+  _sock->sendMsg("Incantation\n");
   _sock->recvMsg();
 }
 
