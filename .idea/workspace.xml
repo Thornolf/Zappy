@@ -12,6 +12,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="a2bd8465-5c09-46ab-9ddf-f0428c0b2872" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/inc/funcs.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/inc/list.h" afterPath="" />
@@ -27,9 +28,52 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/player.c" afterPath="$PROJECT_DIR$/src/server/player.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/stuff.c" afterPath="$PROJECT_DIR$/src/server/stuff.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/utils_parsing.c" afterPath="$PROJECT_DIR$/src/server/utils_parsing.c" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/map.c" afterPath="$PROJECT_DIR$/src/server/map.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/player.c" afterPath="$PROJECT_DIR$/src/server/player.c" />
+=======
+    <list default="true" id="b5acfef3-214c-4b83-84df-c22b43b734b6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/C.includecache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/DependInfo.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/build.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/cmake_clean.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/depend.internal" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/depend.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/flags.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/link.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir/progress.make" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/C.includecache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/depend.internal" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/server" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ai/ZappException.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ai/zappy.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ai/zappy_client" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_C.bin" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_C.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_CXX.bin" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_CXX.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ia.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ia.dir/DependInfo.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ia.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ia.dir/build.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ia.dir/flags.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ia.dir/flags.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/build.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/depend.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/flags.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/server.dir/flags.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/PSU_2016_zappy.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/PSU_2016_zappy.cbp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +82,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
+<<<<<<< Updated upstream
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/main.c">
@@ -114,6 +159,9 @@
         </entry>
       </file>
     </leaf>
+=======
+    <leaf />
+>>>>>>> Stashed changes
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -152,6 +200,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< Updated upstream
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -188,6 +237,8 @@
       </list>
     </option>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -195,9 +246,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="26" />
+    <option name="y" value="27" />
     <option name="width" value="1920" />
-    <option name="height" value="1054" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -257,6 +308,7 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< Updated upstream
             <PATH_ELEMENT>
               <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -326,7 +378,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.server">
+  <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CLion_Remote" factoryName="GDB Remote Debug" remoteCommand="" symbolFile="" sysroot="">
       <method />
     </configuration>
@@ -531,6 +583,7 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
+<<<<<<< Updated upstream
     <task active="true" id="Default" summary="Default task">
       <changelist id="a2bd8465-5c09-46ab-9ddf-f0428c0b2872" name="Default" comment="" />
       <created>1496147972654</created>
@@ -594,9 +647,6 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -665,7 +715,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main.c">
+=======
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt" />
+    <entry file="file://$PROJECT_DIR$/src/server/parse_flags.h">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
@@ -749,12 +804,17 @@
           <folding>
             <element signature="e#221#238#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="207">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/map.c">
+    <entry file="file://$PROJECT_DIR$/src/server/parse_flags.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="276">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
@@ -792,12 +852,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/player.c">
+=======
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">

@@ -68,6 +68,7 @@ void		fill_up_map_randomly(t_map *map)
     while (x != map->x)
     {
       i = 0;
+      map->data[y][x].player_list = NULL;
       map->data[y][x].stuff_list = NULL;
       nb_entities = rand() % (STUFF_MAX - STUFF_MIN);
       while (i < nb_entities)

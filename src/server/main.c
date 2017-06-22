@@ -10,7 +10,9 @@
 
 #include <time.h>
 #include <stdio.h>
-#include "server/funcs.h"
+#include "map.h"
+#include "functions.h"
+#include "funcs.h"
 #include "server/server.h"
 
 void	print_usage(void)

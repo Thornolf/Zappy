@@ -19,6 +19,7 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c		\
 			$(SRC_SERVER_DIR)map.c		\
 			$(SRC_SERVER_DIR)player.c	\
 			$(SRC_SERVER_DIR)stuff.c    \
+			$(SRC_SERVER_DIR)look_function.c \
 			$(SRC_SERVER_DIR)socket.c	\
 			$(SRC_SERVER_DIR)server.c	\
 			$(SRC_SERVER_DIR)client.c	\

@@ -1,4 +1,4 @@
-/opt/clion/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/guillobits/workspace/epitech/PSU_2016_zappy
+/opt/clion/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug
+-- Build files have been written to: /home/gratte_r/Rendu/Teck_2/PSU/Zappy/PSU_2016_zappy/cmake-build-debug

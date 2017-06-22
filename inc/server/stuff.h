@@ -17,7 +17,8 @@
 typedef enum	e_stuff_type
 {
   STUFF_MIN = 0,
-  LINEMATE = STUFF_MIN,
+  FOOD = STUFF_MIN,
+  LINEMATE,
   DERAUMERE,
   SIBUR,
   MENDIANE,
