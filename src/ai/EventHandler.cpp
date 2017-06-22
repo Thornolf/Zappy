@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Thu Jun 22 13:47:30 2017 Adrien Warin
+** Last update Thu Jun 22 14:10:39 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -74,6 +74,7 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string   nb;
   std::string delimiter = " ";
 
+  _inventory.erase(_inventory.begin(), _inventory.end());
   while ((pos = tmp.find(delimiter)) != std::string::npos)
     {
         token = tmp.substr(0, pos);
