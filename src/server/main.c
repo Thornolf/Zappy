@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue May 30 13:21:39 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 12:32:10 2017 Pierre
+** Last update Thu Jun 22 12:47:00 2017 Pierre
 */
 
 #include <time.h>
@@ -30,34 +30,43 @@ void print_usage()
   printf("\tfreq\t   is the reciproal of time unit for execution of actions\n");
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
-  t_info info;
-  int check;
+  t_info	info;
+  int		check;
+  t_map		*map;
 
   info.cmds = NULL;
   info.clients = NULL;
   if (ac == 2 && strcmp(av[1], "-help") == 0)
     print_usage();
   else if (ac < 13)
-    my_exit("Not enough arguments.\n./zappy_server -help");
+  {
+    fprintf(stderr, "Not enough arguments.\n./zappy_server -help");
+    return (84);
+  }
   if ((check = handle_parsing(&info, ac, av)) == 1)
     {
-      t_map	*map;
       srand((unsigned int)time(NULL));
-      if (!(map = create_empty_map(info.height, info.width)))
+      if (!(map = create_empty_map(info.width, info.height)))
         return (84);
       fill_up_map_randomly(map);
-      map->data[0][0].player_list = init_players_list();
-      add_player(map->data[0][0].player_list, NULL);
-      print_players(map->data[0][0].player_list);
-      //print_map(map);
+      //map->data[0][0].player_list = init_players_list();
+      //add_player(map->data[0][0].player_list, NULL);
+      //print_players(map->data[0][0].player_list);
+      print_map(map);
       delete_map(map);
     }
   else if (check == 0)
-    printf("Bad arguments.\n./zappy_server -help\n");
+  {
+    fprintf(stderr, "Error: Bad arguments.\n./zappy_server -help\n");
+    return (84);
+  }
   else
-    printf("Memory error, launch failed\n");
-  free_struct(&info);
+  {
+    fprintf(stderr, "Error: Memory error, launch failed\n");
+    return (84);
+  }
+  free_server_informations(&info);
   return (0);
 }
