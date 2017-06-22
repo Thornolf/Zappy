@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue May 30 13:21:39 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 21 15:23:23 2017 Pierre
+** Last update Thu Jun 22 12:32:10 2017 Pierre
 */
 
 #include <time.h>
@@ -45,10 +45,13 @@ int	main(int ac, char **av)
     {
       t_map	*map;
       srand((unsigned int)time(NULL));
-      if (!(map = create_empty_map(42, 42)))
+      if (!(map = create_empty_map(info.height, info.width)))
         return (84);
       fill_up_map_randomly(map);
-      print_map(map);
+      map->data[0][0].player_list = init_players_list();
+      add_player(map->data[0][0].player_list, NULL);
+      print_players(map->data[0][0].player_list);
+      //print_map(map);
       delete_map(map);
     }
   else if (check == 0)
