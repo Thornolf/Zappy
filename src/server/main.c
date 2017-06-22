@@ -11,6 +11,7 @@
 #include <time.h>
 #include <stdio.h>
 #include "map.h"
+#include "functions.h"
 #include "funcs.h"
 
 void my_exit(char *str)
@@ -46,17 +47,18 @@ int		main(int ac, char **av)
     return (84);
   }
   if ((check = handle_parsing(&info, ac, av)) == 1)
-    {
-      srand((unsigned int)time(NULL));
-      if (!(map = create_empty_map(info.width, info.height)))
-        return (84);
-      fill_up_map_randomly(map);
-      //map->data[0][0].player_list = init_players_list();
-      //add_player(map->data[0][0].player_list, NULL);
-      //print_players(map->data[0][0].player_list);
-      print_map(map);
-      delete_map(map);
-    }
+  {
+    srand((unsigned int)time(NULL));
+    if (!(map = create_empty_map(info.width, info.height)))
+      return (84);
+    fill_up_map_randomly(map);
+    map->data[7][3].player_list = init_players_list();
+    add_player(map->data[7][3].player_list, NULL);
+    print_players(map->data[7][3].player_list);
+    print_map(map);
+    look_function(map, map->data[7][3].player_list->data, 1);
+    delete_map(map);
+  }
   else if (check == 0)
   {
     fprintf(stderr, "Error: Bad arguments.\n./zappy_server -help\n");

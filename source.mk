@@ -18,7 +18,8 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c		\
 			$(SRC_SERVER_DIR)handle_parsing.c \
 			$(SRC_SERVER_DIR)map.c		\
 			$(SRC_SERVER_DIR)player.c	\
-			$(SRC_SERVER_DIR)stuff.c
+		    $(SRC_SERVER_DIR)stuff.c    \
+			$(SRC_SERVER_DIR)look_function.c
 
 SRC_AI		=	$(SRC_AI_DIR)main.c
 

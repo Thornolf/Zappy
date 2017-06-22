@@ -1,1 +1,0 @@
-/usr/bin/cc  -g   CMakeFiles/PSU_2016_zappy.dir/src/ai/main.c.o CMakeFiles/PSU_2016_zappy.dir/src/server/lib/list.c.o CMakeFiles/PSU_2016_zappy.dir/src/server/main.c.o CMakeFiles/PSU_2016_zappy.dir/src/server/map.c.o CMakeFiles/PSU_2016_zappy.dir/src/server/player.c.o  -o PSU_2016_zappy 
