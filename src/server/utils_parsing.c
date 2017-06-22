@@ -5,51 +5,64 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 17:11:51 2017 Pierre
-** Last update Tue Jun 20 17:13:18 2017 Pierre
+** Last update Wed Jun 21 15:20:18 2017 Pierre
 */
 
 #include "funcs.h"
 
-int check_twice(t_info *info, int val, int i)
+int	check_twice(t_info *info, int val, int i)
 {
   if (info->cmds[i] == '0')
-    my_exit("Bad arguments.\n./zappy_server -help");
+    return (0);
   else
     info->cmds[i] = '0';
   return (val);
 }
 
-void fill_simple_param(t_info *info, char param, int val)
+int	fill_simple_param(t_info *info, char param, int val)
 {
+  char	*tmp;
+  int	i;
+  int	try;
+
+  if ((tmp = strdup("pxyncf")) == NULL)
+    return (-1);
+  i = 0;
+  while (tmp[i] != param)
+    i++;
+  free(tmp);
+  try = check_twice(info, val, i);
+  if (try == 0)
+    return (0);
   if (param == 'p')
-    info->port = check_twice(info, val, 0);
+    info->port = try;
   else if (param == 'x')
-    info->width = check_twice(info, val, 1);
+    info->width = try;
   else if (param == 'y')
-    info->height = check_twice(info, val, 2);
-  else if (param == 'n')
-    info->cmds[3] = check_twice(info, val, 3);
+    info->height = try;
   else if (param == 'c')
-    info->clientsNb = check_twice(info, val, 4);
+    info->clientsNb = try;
   else if (param == 'f')
-    info->freq = check_twice(info, val, 5);
+    info->freq = try;
+  return (1);
 }
 
-int simple_command(t_info *info, int i, char *arg, char *val)
+int	simple_command(t_info *info, int i, char *arg, char *val)
 {
   if (!val || atoi(val) == 0)
-    my_exit("Bad arguments.\n./zappy_server -help");
-  fill_simple_param(info, arg[1], atoi(val));
+    return (0);
+  if ((fill_simple_param(info, arg[1], atoi(val))) == 0)
+    return (0);
   return (i + 2);
 }
 
-int long_command(t_info *info, int i, char **av)
+int	long_command(t_info *info, int i, char **av)
 {
-  int len;
-  int y;
+  int	len;
+  int	y;
 
   if (!av[i + 1] || av[i + 1][0] == '-')
-    my_exit("Bad arguments.\n./zappy_server -help");
+    return (0);
   info->clients = NULL;
   i++;
   len = i;
@@ -57,16 +70,18 @@ int long_command(t_info *info, int i, char **av)
     len++;
   }
   if ((info->clients = malloc(sizeof(char *) * ((len - i) + 1))) == NULL)
-    my_exit("Error : info->clients malloc failed\n");
+    return (-1);
   y = 0;
   while (i < len)
   {
-    info->clients[y] = strdup(av[i]);
+    if ((info->clients[y] = strdup(av[i])) == NULL)
+      return (-1);
     i++;
     y++;
   }
   info->clients[y] = NULL;
-  fill_simple_param(info, 'n', 0);
+  if ((check_twice(info, 1, 3)) == 0)
+    return (0);
   return (i);
 }
 
