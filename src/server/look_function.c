@@ -8,7 +8,7 @@
 ** Last update Wed Jun 21 15:53:00 2017 Robin GRATTEPANCHE
 */
 
-#include	"functions.h"
+#include        "server/functions.h"
 
 t_plot		in_which_plot(t_map *map, int id_player)
 {
