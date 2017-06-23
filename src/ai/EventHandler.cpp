@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 14:16:09 2017 Thomas Fossaert
+** Last update Fri Jun 23 16:55:53 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -25,13 +25,13 @@ EventHandler::EventHandler(Socket *sock)
     this->_event["Set object"] = std::bind(&EventHandler::SetObject, this);
     this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);*/
 
-    this->_need["nb_player"] = 1;
-    this->_need["linemate"] = 1;
-    this->_need["deraumere"] = 0;
-    this->_need["sibur"] = 0;
-    this->_need["mendiane"] = 0;
-    this->_need["phiras"] = 0;
-    this->_need["thystame"] = 0;
+    this->_need.insert( std::pair<std::string, int>("nb_joueur", 1));
+    this->_need.insert( std::pair<std::string, int>("linemate", 1));
+    this->_need.insert( std::pair<std::string, int>("deraumere", 0));
+    this->_need.insert( std::pair<std::string, int>("sibur", 0));
+    this->_need.insert( std::pair<std::string, int>("mendiane", 0));
+    this->_need.insert( std::pair<std::string, int>("phiras", 0));
+    this->_need.insert( std::pair<std::string, int>("thystame", 0));
 
     this->_level = 1;
 }
