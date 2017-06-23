@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 10:57:57 2017 Thomas Fossaert
+** Last update Fri Jun 23 14:16:09 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -33,7 +33,7 @@ EventHandler::EventHandler(Socket *sock)
     this->_need["phiras"] = 0;
     this->_need["thystame"] = 0;
 
-
+    this->_level = 1;
 }
 
 EventHandler::~EventHandler()
@@ -46,7 +46,16 @@ void EventHandler::launchScript()
   while (42)
     {
       if (_sock->getLastMsg() == "Elevation underway\n")
-        Incantation();
+        {
+          Incantation();
+          if (_sock->getLastMsg().find("Current level") != std::string::npos)
+            {
+              this->_level += 1;
+              this->_need["nb_player"] = 2;
+              this->_need["deraumere"] = 1;
+              this->_need["sibur"] = 1;
+            }
+        }
       else
         {
           if (isAbleToIncant() == true)
@@ -69,7 +78,7 @@ void EventHandler::launchScript()
             TakeObject("food");
           }
         }
-      //std::cout << _sock->getLastMsg() << '\n';
+      std::cout << this->_level << '\n';
     }
 }
 
@@ -131,7 +140,9 @@ void EventHandler::parseTiles(const std::string & tiles)
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_inventory["linemate"] == _need["linemate"])
+  if (_inventory["linemate"] == _need["linemate"] &&
+      _inventory["deraumere"] == _need["deraumere"] &&
+      _inventory["sibur"] == _need["sibur"])
     return (true);
   return (false);
 }
