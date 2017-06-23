@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 17:29:21 2017 Adrien Warin
+** Last update Fri Jun 23 17:41:41 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -98,9 +98,7 @@ void EventHandler::launchScript()
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
             {
               this->_level += 1;
-              this->_need["nb_player"] = 2;
-              this->_need["deraumere"] = 1;
-              this->_need["sibur"] = 1;
+             UpdateRequirement(this->_level);
             }
         }
       else
