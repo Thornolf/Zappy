@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 10:17:42 2017 Thomas Fossaert
+** Last update Fri Jun 23 10:57:57 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -45,19 +45,31 @@ void EventHandler::launchScript()
 {
   while (42)
     {
-      if (isAbleToIncant() == true)
-        {
-          SetObject("linemate");
-          Incantation();
-        }
+      if (_sock->getLastMsg() == "Elevation underway\n")
+        Incantation();
       else
         {
-          MoveUp();
-          LookAround();
-          TakeObject("linemate");
-          TakeObject("food");
+          if (isAbleToIncant() == true)
+          {
+            TakeObject("linemate");
+            TakeObject("deraumere");
+            TakeObject("sibur");
+            TakeObject("mendiane");
+            TakeObject("phiras");
+            TakeObject("thystame");
+
+            SetObject("linemate");
+            Incantation();
+          }
+        else
+          {
+            LookAround();
+            MoveUp();
+            TakeObject("linemate");
+            TakeObject("food");
+          }
         }
-      std::cout << _inventory["linemate"] << '\n';
+      //std::cout << _sock->getLastMsg() << '\n';
     }
 }
 
