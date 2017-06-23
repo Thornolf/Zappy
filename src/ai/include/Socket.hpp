@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:41:59 2017 Thomas Fossaert
-** Last update Wed Jun 21 14:32:02 2017 Thomas Fossaert
+** Last update Fri Jun 23 14:31:43 2017 Thomas Fossaert
 */
 
 #ifndef   _SOCKET_HPP_
@@ -26,7 +26,7 @@
 class Socket
 {
   public:
-    Socket();
+    Socket(const std::string&, const std::string&);
     Socket(Socket const & other);
     ~Socket();
     Socket& operator=(Socket const & other);

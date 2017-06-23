@@ -44,17 +44,20 @@ int		main(int ac, char **av)
     if (!(init_zappy_server(&info)))
     {
       fprintf(stderr, "Error: Cannot start the server due to bad configuration\n");
+      free_server_informations(&info);
       return (84);
     }
   }
   else if (check == 0)
   {
     fprintf(stderr, "Error: Bad arguments.\n./zappy_server -help\n");
+    free_server_informations(&info);
     return (84);
   }
   else
   {
     fprintf(stderr, "Error: Memory error, launch failed\n");
+    free_server_informations(&info);
     return (84);
   }
   free_server_informations(&info);

@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Thu Jun 22 13:43:52 2017 Adrien Warin
+** Last update Fri Jun 23 17:08:00 2017 Adrien Warin
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -31,14 +31,13 @@ class EventHandler
 {
 private:
     std::map<std::string, std::function<void(void)> >	_event;
-
     std::map<int,std::vector<std::string>> _tiles;
-
     std::unordered_map<std::string,int> _inventory;
     std::unordered_map<std::string,int> _need;
-
     Direction _orientation;
     Socket *_sock;
+
+    int _level;
 
 public:
     EventHandler (Socket *);
@@ -48,6 +47,7 @@ public:
     void parseInventory(const std::string &);
     void parseTiles(const std::string &);
     bool isAbleToIncant();
+    void changeNeed(int);
 
     void MoveUp();
     void TurnRight();
@@ -57,9 +57,11 @@ public:
     void BroadcastText();
     void Fork();
     void Eject();
-    void TakeObject();
-    void SetObject();
+    void TakeObject(const std::string &);
+    void SetObject(const std::string &);
     void Incantation();
+
+    void UpdateRequirement(int);
 
     void epur(std::string &s);
     std::vector<std::string> explode(const std::string&, const char&);

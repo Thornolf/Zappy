@@ -5,28 +5,30 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 15:47:29 2017 Pierre
+** Last update Fri Jun 23 18:43:34 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
 # define	_SERVER__H_
-# include	<stdbool.h>
-# include	"server/stuff.h"
-# include	"server/map.h"
-# include	"server/socket.h"
+# include <stdbool.h>
+# include "server/stuff.h"
+# include "server/map.h"
+# include "server/socket.h"
 # include "server/inventory.h"
 # include "server/player.h"
+# include "server/list.h"
 
 typedef			void(*fct_server)(void *);
 
 typedef struct		s_server
 {
   int			fd;
-  t_map *map;
   struct sockaddr_in	*sin;
   t_list		*clients;
   fct_server		server_read;
   fct_server		server_write;
+  t_map			*map;
+  t_list		*cmds;
 }			t_server;
 
 typedef struct	s_info

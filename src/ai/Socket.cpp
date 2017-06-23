@@ -5,15 +5,15 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Wed Jun 21 14:31:52 2017 Thomas Fossaert
+** Last update Fri Jun 23 14:57:10 2017 Thomas Fossaert
 */
 
 #include "Socket.hpp"
 
-Socket::Socket()
+Socket::Socket(const std::string& ip, const std::string& port)
 {
- this->_port = 4242;
- this->_ip = "127.0.0.1";
+ this->_port = std::stoi(port);
+ this->_ip = ip;
  pe = getprotobyname("TCP");
  if (!pe)
    throw ZappException("Error while retrieving proto");

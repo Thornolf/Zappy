@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Thu Jun 22 14:50:21 2017 Thomas Fossaert
+** Last update Fri Jun 23 17:41:41 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -13,7 +13,7 @@
 EventHandler::EventHandler(Socket *sock)
 {
     _sock = sock;
-    this->_event["Forward"] = std::bind(&EventHandler::MoveUp, this);
+    /*this->_event["Forward"] = std::bind(&EventHandler::MoveUp, this);
     this->_event["Right"] = std::bind(&EventHandler::TurnRight, this);
     this->_event["Left"] = std::bind(&EventHandler::TurnLeft, this);
     this->_event["Look"] = std::bind(&EventHandler::LookAround, this);
@@ -23,17 +23,17 @@ EventHandler::EventHandler(Socket *sock)
     this->_event["Eject"] = std::bind(&EventHandler::Eject, this);
     this->_event["Take object"] = std::bind(&EventHandler::TakeObject, this);
     this->_event["Set object"] = std::bind(&EventHandler::SetObject, this);
-    this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);
+    this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);*/
 
-    this->_need["nb_player"] = 1;
-    this->_need["linemate"] = 1;
-    this->_need["deraumere"] = 0;
-    this->_need["sibur"] = 0;
-    this->_need["mendiane"] = 0;
-    this->_need["phiras"] = 0;
-    this->_need["thystame"] = 0;
+    this->_need.insert( std::pair<std::string, int>("nb_joueur", 1));
+    this->_need.insert( std::pair<std::string, int>("linemate", 1));
+    this->_need.insert( std::pair<std::string, int>("deraumere", 0));
+    this->_need.insert( std::pair<std::string, int>("sibur", 0));
+    this->_need.insert( std::pair<std::string, int>("mendiane", 0));
+    this->_need.insert( std::pair<std::string, int>("phiras", 0));
+    this->_need.insert( std::pair<std::string, int>("thystame", 0));
 
-
+    this->_level = 1;
 }
 
 EventHandler::~EventHandler()
@@ -41,24 +41,89 @@ EventHandler::~EventHandler()
 
 }
 
+void EventHandler::UpdateRequirement(int newLvl)
+{
+    if (newLvl == 2)
+    {
+        this->_need.insert( std::pair<std::string, int>("nb_joueur", 2));
+        this->_need.insert( std::pair<std::string, int>("deraumere", 1));
+        this->_need.insert( std::pair<std::string, int>("sibur", 1));
+    }
+    else if (newLvl == 3)
+    {
+        this->_need.insert( std::pair<std::string, int>("linemate", 2));
+        this->_need.insert( std::pair<std::string, int>("deraumere", 0));
+        this->_need.insert( std::pair<std::string, int>("phiras", 2));
+    }
+    else if (newLvl == 4)
+    {
+        this->_need.insert( std::pair<std::string, int>("nb_joueur", 4));
+        this->_need.insert( std::pair<std::string, int>("linemate", 1));
+        this->_need.insert( std::pair<std::string, int>("deraumere", 1));
+        this->_need.insert( std::pair<std::string, int>("sibur", 2));
+        this->_need.insert( std::pair<std::string, int>("phiras", 1));
+    }
+    else if (newLvl == 5)
+    {
+        this->_need.insert( std::pair<std::string, int>("deraumere", 2));
+        this->_need.insert( std::pair<std::string, int>("sibur", 1));
+        this->_need.insert( std::pair<std::string, int>("mendiane", 3));
+        this->_need.insert( std::pair<std::string, int>("phiras", 0));
+
+    }
+    else if (newLvl == 6)
+    {
+        this->_need.insert( std::pair<std::string, int>("nb_joueur", 6));
+        this->_need.insert( std::pair<std::string, int>("sibur", 3));
+        this->_need.insert( std::pair<std::string, int>("mendiane", 0));
+        this->_need.insert( std::pair<std::string, int>("phiras", 1));
+    }
+    else if (newLvl == 7)
+    {
+        this->_need.insert( std::pair<std::string, int>("linemate", 2));
+        this->_need.insert( std::pair<std::string, int>("sibur", 2));
+        this->_need.insert( std::pair<std::string, int>("mendiane", 2));
+        this->_need.insert( std::pair<std::string, int>("phiras", 2));
+        this->_need.insert( std::pair<std::string, int>("thystame", 1));
+    }
+}
+
 void EventHandler::launchScript()
 {
   while (42)
     {
-      Inventory();
-      if (isAbleToIncant() == true)
-        Incantation();
+      if (_sock->getLastMsg() == "Elevation underway\n")
+        {
+          Incantation();
+          if (_sock->getLastMsg().find("Current level") != std::string::npos)
+            {
+              this->_level += 1;
+             UpdateRequirement(this->_level);
+            }
+        }
       else
         {
-          MoveUp();
-          LookAround();
-          _sock->sendMsg("Take linemate\n");
-          _sock->recvMsg();
-        }
-      _sock->sendMsg("Take food\n");
-      _sock->recvMsg();
+          if (isAbleToIncant() == true)
+          {
+            TakeObject("linemate");
+            TakeObject("deraumere");
+            TakeObject("sibur");
+            TakeObject("mendiane");
+            TakeObject("phiras");
+            TakeObject("thystame");
 
-      std::cout << _inventory["linemate"] << '\n';
+            SetObject("linemate");
+            Incantation();
+          }
+        else
+          {
+            LookAround();
+            MoveUp();
+            TakeObject("linemate");
+            TakeObject("food");
+          }
+        }
+      std::cout << this->_level << '\n';
     }
 }
 
@@ -120,7 +185,9 @@ void EventHandler::parseTiles(const std::string & tiles)
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_inventory["linemate"] == _need["linemate"])
+  if (_inventory["linemate"] == _need["linemate"] &&
+      _inventory["deraumere"] == _need["deraumere"] &&
+      _inventory["sibur"] == _need["sibur"])
     return (true);
   return (false);
 }
@@ -175,16 +242,18 @@ void EventHandler::Eject()
   _sock->recvMsg();
 }
 
-void EventHandler::TakeObject()
+void EventHandler::TakeObject(const std::string & item)
 {
-  _sock->sendMsg("Take\n");
+  _sock->sendMsg(("Take " + item + "\n").c_str());
   _sock->recvMsg();
+  Inventory();
 }
 
-void EventHandler::SetObject()
+void EventHandler::SetObject(const std::string & item)
 {
-  _sock->sendMsg("Set\n");
+  _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
+  Inventory();
 }
 
 void EventHandler::Incantation()

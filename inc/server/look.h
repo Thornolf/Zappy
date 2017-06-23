@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 10:15:39 2017 Pierre
-** Last update Fri Jun 23 14:45:29 2017 Pierre
+** Last update Fri Jun 23 18:43:47 2017 Pierre
 */
 
 #ifndef LOOK_H_
@@ -22,11 +22,6 @@ typedef struct	s_vision
   int x;
   struct s_vision	*next;
 }		t_vision;
-
-typedef struct s_print
-{
-
-}   t_print;
 
 void (*print_stuff_cmds[7])(void);
 

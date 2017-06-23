@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:19:57 2017 Thomas Fossaert
-** Last update Wed Jun 21 14:00:07 2017 Thomas Fossaert
+** Last update Fri Jun 23 14:37:55 2017 Thomas Fossaert
 */
 
 #include "zappy.hpp"
@@ -45,7 +45,7 @@ Zappy& Zappy::operator=(Zappy const & other)
 
 void Zappy::init(void)
 {
-  _sock = new Socket();
+  _sock = new Socket(_machineName, _port);
   _sock->recvMsg();
   _sock->sendMsg((_teamName + "\n").c_str());
   if (_sock->getLastMsg() == "ko\n")
