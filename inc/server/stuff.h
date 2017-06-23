@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 14:05:39 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 20 14:05:39 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 22 13:47:15 2017 Pierre
 */
 
 #ifndef		_STUFF__H_

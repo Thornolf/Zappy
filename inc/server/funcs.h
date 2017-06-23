@@ -5,16 +5,17 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:52:04 2017 Pierre
-** Last update Wed Jun 21 14:52:48 2017 Pierre
+** Last update Thu Jun 22 19:01:16 2017 Pierre
 */
 
 #ifndef		_FUNCS__H_
 # define	_FUNCS__H_
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 # include "server/server.h"
+#include "server/inventory.h"
 
 int		handle_parsing(t_info *info, int ac, char **av);
 void		free_server_informations(t_info *info);

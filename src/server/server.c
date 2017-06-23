@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 22 19:15:35 2017 Pierre
 */
 
 #include "server/server.h"
@@ -44,6 +44,7 @@ bool	init_zappy_server(t_info *info)
 
   if (!(map = create_empty_map(info->width, info->height)))
     return (84);
+  init_elems_cmds(info);
   fill_up_map_randomly(map);
   if ((s_conf.fd = open_socket(info->port)) == -1)
     return (false);
