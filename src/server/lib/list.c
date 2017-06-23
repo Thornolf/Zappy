@@ -47,3 +47,18 @@ void		remove_node(t_list *list, t_list *node, void(*fn_delete_node)(void *))
     cur = cur->next;
   }
 }
+
+void		remove_list(t_list *list, void(*remove_node)(void *))
+{
+  t_list	*cur;
+  t_list	*next;
+
+  cur = list;
+  while (cur)
+  {
+    next = cur->next;
+    remove_node(cur->data);
+    free(cur);
+    cur = next;
+  }
+}

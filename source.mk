@@ -26,7 +26,9 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c		\
 			$(SRC_SERVER_DIR)socket.c	\
 			$(SRC_SERVER_DIR)server.c	\
 			$(SRC_SERVER_DIR)client.c	\
-			$(SRC_SERVER_DIR)/lib/list.c
+			$(SRC_SERVER_DIR)command.c	\
+			$(SRC_SERVER_DIR)command_map.c	\
+			$(SRC_SERVER_DIR)lib/list.c
 
 SRC_AI		=	$(SRC_AI_DIR)main.c
 

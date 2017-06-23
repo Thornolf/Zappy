@@ -11,11 +11,12 @@
 #ifndef		_CLIENT__H_
 # define	_CLIENT__H_
 # define	BUFFER_CLIENT_SIZE (4096)
-# include	<unistd.h>
-# include	<stdlib.h>
-# include	<string.h>
-# include	"server/server.h"
-# include	"server/list.h"
+# include <sys/socket.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+# include "server/list.h"
+# include "server/socket.h"
 
 typedef			void*(*fct_client)(void *, void *);
 
@@ -26,6 +27,8 @@ typedef struct	s_client
   fct_client	fct_read;
   fct_client	fct_write;
 }		t_client;
+
+typedef struct s_server t_server;
 
 t_client	*init_client(t_server *);
 void		*client_read(void *, void *);
