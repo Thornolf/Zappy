@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Thu Jun 22 13:43:52 2017 Adrien Warin
+** Last update Fri Jun 23 10:02:28 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -57,8 +57,8 @@ public:
     void BroadcastText();
     void Fork();
     void Eject();
-    void TakeObject();
-    void SetObject();
+    void TakeObject(const std::string &);
+    void SetObject(const std::string &);
     void Incantation();
 
     void epur(std::string &s);

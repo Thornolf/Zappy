@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Thu Jun 22 14:50:21 2017 Thomas Fossaert
+** Last update Fri Jun 23 10:17:42 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -13,7 +13,7 @@
 EventHandler::EventHandler(Socket *sock)
 {
     _sock = sock;
-    this->_event["Forward"] = std::bind(&EventHandler::MoveUp, this);
+    /*this->_event["Forward"] = std::bind(&EventHandler::MoveUp, this);
     this->_event["Right"] = std::bind(&EventHandler::TurnRight, this);
     this->_event["Left"] = std::bind(&EventHandler::TurnLeft, this);
     this->_event["Look"] = std::bind(&EventHandler::LookAround, this);
@@ -23,7 +23,7 @@ EventHandler::EventHandler(Socket *sock)
     this->_event["Eject"] = std::bind(&EventHandler::Eject, this);
     this->_event["Take object"] = std::bind(&EventHandler::TakeObject, this);
     this->_event["Set object"] = std::bind(&EventHandler::SetObject, this);
-    this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);
+    this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);*/
 
     this->_need["nb_player"] = 1;
     this->_need["linemate"] = 1;
@@ -45,19 +45,18 @@ void EventHandler::launchScript()
 {
   while (42)
     {
-      Inventory();
       if (isAbleToIncant() == true)
-        Incantation();
+        {
+          SetObject("linemate");
+          Incantation();
+        }
       else
         {
           MoveUp();
           LookAround();
-          _sock->sendMsg("Take linemate\n");
-          _sock->recvMsg();
+          TakeObject("linemate");
+          TakeObject("food");
         }
-      _sock->sendMsg("Take food\n");
-      _sock->recvMsg();
-
       std::cout << _inventory["linemate"] << '\n';
     }
 }
@@ -175,16 +174,18 @@ void EventHandler::Eject()
   _sock->recvMsg();
 }
 
-void EventHandler::TakeObject()
+void EventHandler::TakeObject(const std::string & item)
 {
-  _sock->sendMsg("Take\n");
+  _sock->sendMsg(("Take " + item + "\n").c_str());
   _sock->recvMsg();
+  Inventory();
 }
 
-void EventHandler::SetObject()
+void EventHandler::SetObject(const std::string & item)
 {
-  _sock->sendMsg("Set\n");
+  _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
+  Inventory();
 }
 
 void EventHandler::Incantation()
