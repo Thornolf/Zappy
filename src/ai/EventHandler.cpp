@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 16:55:53 2017 Adrien Warin
+** Last update Fri Jun 23 17:29:21 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -39,6 +39,53 @@ EventHandler::EventHandler(Socket *sock)
 EventHandler::~EventHandler()
 {
 
+}
+
+void EventHandler::UpdateRequirement(int newLvl)
+{
+    if (newLvl == 2)
+    {
+        this->_need.insert( std::pair<std::string, int>("nb_joueur", 2));
+        this->_need.insert( std::pair<std::string, int>("deraumere", 1));
+        this->_need.insert( std::pair<std::string, int>("sibur", 1));
+    }
+    else if (newLvl == 3)
+    {
+        this->_need.insert( std::pair<std::string, int>("linemate", 2));
+        this->_need.insert( std::pair<std::string, int>("deraumere", 0));
+        this->_need.insert( std::pair<std::string, int>("phiras", 2));
+    }
+    else if (newLvl == 4)
+    {
+        this->_need.insert( std::pair<std::string, int>("nb_joueur", 4));
+        this->_need.insert( std::pair<std::string, int>("linemate", 1));
+        this->_need.insert( std::pair<std::string, int>("deraumere", 1));
+        this->_need.insert( std::pair<std::string, int>("sibur", 2));
+        this->_need.insert( std::pair<std::string, int>("phiras", 1));
+    }
+    else if (newLvl == 5)
+    {
+        this->_need.insert( std::pair<std::string, int>("deraumere", 2));
+        this->_need.insert( std::pair<std::string, int>("sibur", 1));
+        this->_need.insert( std::pair<std::string, int>("mendiane", 3));
+        this->_need.insert( std::pair<std::string, int>("phiras", 0));
+
+    }
+    else if (newLvl == 6)
+    {
+        this->_need.insert( std::pair<std::string, int>("nb_joueur", 6));
+        this->_need.insert( std::pair<std::string, int>("sibur", 3));
+        this->_need.insert( std::pair<std::string, int>("mendiane", 0));
+        this->_need.insert( std::pair<std::string, int>("phiras", 1));
+    }
+    else if (newLvl == 7)
+    {
+        this->_need.insert( std::pair<std::string, int>("linemate", 2));
+        this->_need.insert( std::pair<std::string, int>("sibur", 2));
+        this->_need.insert( std::pair<std::string, int>("mendiane", 2));
+        this->_need.insert( std::pair<std::string, int>("phiras", 2));
+        this->_need.insert( std::pair<std::string, int>("thystame", 1));
+    }
 }
 
 void EventHandler::launchScript()

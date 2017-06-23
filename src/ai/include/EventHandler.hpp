@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Fri Jun 23 11:32:20 2017 Thomas Fossaert
+** Last update Fri Jun 23 17:08:00 2017 Adrien Warin
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -60,6 +60,8 @@ public:
     void TakeObject(const std::string &);
     void SetObject(const std::string &);
     void Incantation();
+
+    void UpdateRequirement(int);
 
     void epur(std::string &s);
     std::vector<std::string> explode(const std::string&, const char&);
