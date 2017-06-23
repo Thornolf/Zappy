@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 19:16:02 2017 Pierre
+** Last update Fri Jun 23 15:47:29 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
@@ -15,12 +15,14 @@
 # include	"server/map.h"
 # include	"server/socket.h"
 # include "server/inventory.h"
+# include "server/player.h"
 
 typedef			void(*fct_server)(void *);
 
 typedef struct		s_server
 {
   int			fd;
+  t_map *map;
   struct sockaddr_in	*sin;
   t_list		*clients;
   fct_server		server_read;
@@ -43,6 +45,7 @@ bool	init_zappy_server(t_info *);
 bool	handle_io(fd_set *, fd_set *, t_server *);
 bool	handle_isset_sockets(t_server *, fd_set *, t_list *, int);
 int	get_fd_max(t_server *);
+void look(t_map *map, t_player *player);
 
 void init_elems_cmds(t_info *info);
 void add_element_in_inventory(t_info *info, t_inventory *inv, t_stuff_type elem);

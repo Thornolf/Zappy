@@ -5,12 +5,24 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 14:48:25 2017 Pierre
+** Last update Fri Jun 23 15:50:14 2017 Pierre
 */
 
 #include        "server/player.h"
 
-t_player	*create_player(void)
+int		my_rand(int min, int max)
+{
+  static int	first = 1;
+
+  if (first == 1)
+    {
+      srand(time(NULL));
+      first = 0;
+    }
+  return (rand() % (max - min) + min);
+}
+
+t_player	*create_player(int y, int x)
 {
   t_player	*player;
   static int	id = 0;
@@ -18,8 +30,11 @@ t_player	*create_player(void)
   if (!(player = malloc(sizeof(t_player))))
     return (NULL);
   player->id = id++;
+  player->lv = 1;
+  player->x = x;
+  player->y = y;
   player->inventory = init_inventory();
-  player->direction = BOTTOM;
+  player->direction = my_rand(0, 4);
   return (player);
 }
 
@@ -38,12 +53,14 @@ void      print_players(t_list *head)
     else if (player->direction == RIGHT)
       printf("la DROITE\n");
     else if (player->direction == BOTTOM)
-      printf("le devant\n");
+      printf("le BAS\n");
+    else if (player->direction == TOP)
+      printf("le HAUT\n");
     tmp = tmp->next;
   }
 }
 
-t_list    *init_players_list()
+t_list    *init_players_list(int y, int x)
 {
   t_list *head;
   t_player *player;
@@ -51,13 +68,13 @@ t_list    *init_players_list()
   head = NULL;
   if ((head = malloc(sizeof(t_list))) == NULL)
     return (NULL);
-  player = create_player();
+  player = create_player(y, x);
   head->data = player;
   head->next = NULL;
   return (head);
 }
 
-void      add_player(t_list *head)
+void      add_player(t_list *head, int y, int x)
 {
   t_list *current;
 
@@ -66,6 +83,6 @@ void      add_player(t_list *head)
     current = current->next;
   if ((current->next = malloc(sizeof(t_player))) == NULL)
     return ;
-  current->next->data = create_player();
+  current->next->data = create_player(y, x);
   current->next->next = NULL;
 }

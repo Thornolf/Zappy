@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 19:15:35 2017 Pierre
+** Last update Fri Jun 23 15:50:29 2017 Pierre
 */
 
 #include "server/server.h"
@@ -19,6 +19,8 @@ void	server_read(void *_server)
   t_server	*server;
   t_client	*client;
   t_list	*clientnode;
+  int x;
+  int y;
 
   server = _server;
   client = init_client(server);
@@ -28,6 +30,12 @@ void	server_read(void *_server)
     return;
   }
   server->clients = clientnode;
+  x = my_rand(0, server->map->width - 1);
+  y = my_rand(0, server->map->height - 1);
+  if (server->map->data[y][x].player_list == NULL)
+    server->map->data[y][x].player_list = init_players_list(y, x);
+  else
+    add_player(server->map->data[y][x].player_list, y, x);
 }
 
 void	server_write(void *server)
@@ -37,15 +45,19 @@ void	server_write(void *server)
 
 bool	init_zappy_server(t_info *info)
 {
-  t_map			*map;
   t_server		s_conf;
   fd_set		fd_read;
   fd_set		fd_write;
 
-  if (!(map = create_empty_map(info->width, info->height)))
+  if (!(s_conf.map = create_empty_map(info->width, info->height)))
     return (84);
   init_elems_cmds(info);
-  fill_up_map_randomly(map);
+  fill_up_map_randomly(s_conf.map);
+  //map->data[5][5].player_list = init_players_list();
+  //print_players(map->data[5][5].player_list);
+  //t_player *player = create_player();
+  //look(map, player);
+  //print_map(s_conf.map);
   if ((s_conf.fd = open_socket(info->port)) == -1)
     return (false);
   listen_socket(s_conf.fd);
@@ -88,7 +100,7 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
     {
       client = cur_client_node->data;
       if (FD_ISSET(client->fd, fd_read))
-	client->fct_read(server, cur_client_node);
+	       client->fct_read(server, cur_client_node);
       cur_client_node = cur_client_node->next;
     }
   }
