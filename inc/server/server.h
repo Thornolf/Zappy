@@ -10,11 +10,12 @@
 
 #ifndef		_SERVER__H_
 # define	_SERVER__H_
-# include	<stdbool.h>
-# include	"server/stuff.h"
-# include	"server/map.h"
-# include	"server/socket.h"
+# include <stdbool.h>
+# include "server/stuff.h"
+# include "server/map.h"
+# include "server/socket.h"
 # include "server/inventory.h"
+# include "server/list.h"
 
 typedef			void(*fct_server)(void *);
 
@@ -25,6 +26,8 @@ typedef struct		s_server
   t_list		*clients;
   fct_server		server_read;
   fct_server		server_write;
+  t_map			*map;
+  t_list		*cmds;
 }			t_server;
 
 typedef struct	s_info

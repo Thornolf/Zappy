@@ -9,6 +9,8 @@
 */
 
 #include "server/client.h"
+#include "server/server.h"
+#include "server/command.h"
 
 t_client	*init_client(t_server *server)
 {
@@ -42,11 +44,20 @@ void	*client_read(void *_server, void *_client_node)
   memset(client->buffer, 0, BUFFER_CLIENT_SIZE);
   if (recv(client->fd, client->buffer, BUFFER_CLIENT_SIZE, 0) < 0)
     return (client_node->next);
+  next = client_node->next;
   if (client->buffer[0] == 0)
   {
-    next = client_node->next;
     remove_node(server->clients, client_node, &delete_client);
     return (next);
+  }
+  else
+  {
+    printf("SEARCH CMD\n");
+    if (!(execute_command(server, client)))
+    {
+      printf("PAS TROUVE\n");
+      return (next);
+    }
   }
   return (client_node->next);
 }
@@ -58,10 +69,9 @@ void	*client_write(void *_server, void *_client_node)
   t_client	*client;
 
   server = _server;
-  client_node = _client_node;
-  client = client_node->data;
   (void)server;
   (void)client;
+  client_node = _client_node;
   return (client_node->next);
 }
 
