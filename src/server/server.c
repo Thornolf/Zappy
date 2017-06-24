@@ -28,6 +28,8 @@ void	server_read(void *_server)
     fprintf(stderr, "ERROR: A client try to connect but something went wrong...\n");
     return;
   }
+  send_socket(client->fd, "WELCOME\n");
+  command_msz(server, client);
   server->clients = clientnode;
 }
 

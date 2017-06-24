@@ -15,8 +15,10 @@
 # include	<sys/socket.h>
 # include	<netinet/in.h>
 
-int		open_socket(int);
-bool		listen_socket(int socket);
-void		set_time_out(struct timeval *);
+int	open_socket(int);
+bool	listen_socket(int socket);
+void	set_time_out(struct timeval *);
+void	send_socket(int , char *);
+
 
 #endif		/* !_SOCKET__H_! */
