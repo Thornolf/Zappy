@@ -20,6 +20,8 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c		\
 			$(SRC_SERVER_DIR)player.c	\
 			$(SRC_SERVER_DIR)look.c	\
 			$(SRC_SERVER_DIR)look_utils.c	\
+			$(SRC_SERVER_DIR)print_vision_a.c \
+			$(SRC_SERVER_DIR)print_vision_b.c \
 			$(SRC_SERVER_DIR)add_to_inventory.c \
 			$(SRC_SERVER_DIR)inventory_cmds_a.c \
 			$(SRC_SERVER_DIR)inventory_cmds_b.c \

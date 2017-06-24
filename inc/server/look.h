@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 10:15:39 2017 Pierre
-** Last update Fri Jun 23 18:43:47 2017 Pierre
+** Last update Sat Jun 24 12:52:31 2017 Pierre
 */
 
 #ifndef LOOK_H_
@@ -24,6 +24,8 @@ typedef struct	s_vision
 }		t_vision;
 
 void (*print_stuff_cmds[7])(void);
+
+void print_objects(t_map *map, t_vision *vision);
 
 void print_food(void);
 void print_linemate(void);

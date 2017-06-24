@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 15:50:14 2017 Pierre
+** Last update Fri Jun 23 18:47:19 2017 Pierre
 */
 
 #include        "server/player.h"
@@ -35,6 +35,7 @@ t_player	*create_player(int y, int x)
   player->y = y;
   player->inventory = init_inventory();
   player->direction = my_rand(0, 4);
+  printf("Player %d en [%d][%d], direction %d\n", player->id, y, x, player->direction);
   return (player);
 }
 

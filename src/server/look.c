@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Fri Jun 23 14:51:38 2017 Pierre
+** Last update Sat Jun 24 12:52:44 2017 Pierre
 */
 
 #include "server/server.h"
@@ -135,84 +135,6 @@ void      print_vision(t_vision *head)
   }
 }
 
-void print_food(void)
-{
-  printf("food");
-}
-
-void print_linemate(void)
-{
-  printf("linemate");
-}
-
-void print_deraumere(void)
-{
-  printf("deraumere");
-}
-
-void print_sibur(void)
-{
-  printf("sibur");
-}
-
-void print_mendiane(void)
-{
-  printf("mendiane");
-}
-
-void print_phiras(void)
-{
-  printf("phiras");
-}
-
-void print_thystame(void)
-{
-  printf("thystame");
-}
-
-void init_print_cmds()
-{
-  print_stuff_cmds[0] = print_food;
-  print_stuff_cmds[1] = print_linemate;
-  print_stuff_cmds[2] = print_deraumere;
-  print_stuff_cmds[3] = print_sibur;
-  print_stuff_cmds[4] = print_mendiane;
-  print_stuff_cmds[5] = print_phiras;
-  print_stuff_cmds[6] = print_thystame;
-}
-
-void print_objects(t_map *map, t_vision *vision)
-{
-  t_vision *tmp;
-  t_stuff *cell;
-  t_list *players;
-
-  init_print_cmds();
-  tmp = vision;
-  cell = NULL;
-  printf("[player");
-  while (tmp)
-  {
-    players = map->data[tmp->y][tmp->x].player_list;
-    while (players)
-    {
-      printf(" player");
-      players = players->next;
-    }
-    cell = map->data[tmp->y][tmp->x].stuff_list;
-    while (cell)
-    {
-      printf(" ");
-      (*print_stuff_cmds[cell->stuff])();
-      cell = cell->next;
-    }
-    if (tmp->next)
-      printf(",");
-    tmp = tmp->next;
-  }
-  printf("]\n");
-}
-
 void look(t_map *map, t_player *player)
 {
   t_vision *vision;
@@ -226,6 +148,6 @@ void look(t_map *map, t_player *player)
     vision = look_right(vision, map, player);
   else if (player->direction == LEFT)
     vision = look_left(vision, map, player);
-  print_vision(vision);
+  print_vision(vision); //Fonction temporaire pour checker les coordonnées
   print_objects(map, vision);
 }
