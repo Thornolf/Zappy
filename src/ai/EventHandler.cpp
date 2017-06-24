@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jun 24 14:52:32 2017 Thomas Fossaert
+** Last update Sat Jun 24 15:28:17 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -141,7 +141,13 @@ void EventHandler::launchScript()
             TakeObject("thystame");*/
             TakeEverything();
 
-            SetObject("linemate");
+            PutRock("linemate", this->_inventory["linemate"], this->_need["linemate"]);
+            PutRock("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
+            PutRock("sibur", this->_inventory["sibur"], this->_need["sibur"]);
+            PutRock("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            PutRock("phiras", this->_inventory["phiras"], this->_need["phiras"]);
+            PutRock("thystame", this->_inventory["thystame"], this->_need["thystame"]);
+            //SetObject("linemate");
             Incantation();
           }
         else
@@ -184,6 +190,21 @@ void EventHandler::parseInventory(const std::string & inventory)
         _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
     }
 }
+
+void EventHandler::PutRock(const std::string &objName, int inv, int requirement)
+{
+    int cpt = 0;
+
+    if (inv >= requirement)
+    {
+        while (cpt != requirement)
+        {
+            SetObject(objName);
+            cpt++;
+        }
+    }
+}
+
 
 void EventHandler::parseTiles(const std::string & tiles)
 {
