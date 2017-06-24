@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Sat Jun 24 15:19:12 2017 Adrien Warin
+** Last update Sat Jun 24 16:29:13 2017 Adrien Warin
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -65,7 +65,7 @@ public:
     void SetObject(const std::string &);
     void Incantation();
     void PutRock(const std::string &, int, int);
-
+    void TakeRequirement(const std::string &, int, int);
     void UpdateRequirement(int);
 
     void epur(std::string &s);

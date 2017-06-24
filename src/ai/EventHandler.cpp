@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jun 24 15:28:17 2017 Adrien Warin
+** Last update Sat Jun 24 16:32:47 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -73,7 +73,7 @@ void EventHandler::UpdateRequirement(int newLvl)
 {
     if (newLvl == 2)
     {
-        this->_need.insert( std::pair<std::string, int>("nb_joueur", 2));
+//        this->_need.insert( std::pair<std::string, int>("nb_joueur", 2));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 1));
     }
@@ -85,7 +85,7 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 4)
     {
-        this->_need.insert( std::pair<std::string, int>("nb_joueur", 4));
+//        this->_need.insert( std::pair<std::string, int>("nb_joueur", 4));
         this->_need.insert( std::pair<std::string, int>("linemate", 1));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 2));
@@ -101,7 +101,7 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 6)
     {
-        this->_need.insert( std::pair<std::string, int>("nb_joueur", 6));
+//        this->_need.insert( std::pair<std::string, int>("nb_joueur", 6));
         this->_need.insert( std::pair<std::string, int>("sibur", 3));
         this->_need.insert( std::pair<std::string, int>("mendiane", 0));
         this->_need.insert( std::pair<std::string, int>("phiras", 1));
@@ -154,8 +154,15 @@ void EventHandler::launchScript()
           {
             LookAround();
             MoveUp();
-            TakeObject("linemate");
-            TakeObject("food");
+            TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
+            TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
+            TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
+            TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
+            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
+            //TakeRequirement();
+            // TakeObject("linemate");
+            // TakeObject("food");
           }
         }
       //std::cout << this->_level << '\n';
@@ -176,6 +183,8 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string delimiter = " ";
 
   _inventory.erase(_inventory.begin(), _inventory.end());
+  if (tmp.find("dead") !=  std::string::npos)
+    return;
   while ((pos = tmp.find(delimiter)) != std::string::npos)
     {
         token = tmp.substr(0, pos);
@@ -187,6 +196,8 @@ void EventHandler::parseInventory(const std::string & inventory)
             epur(nb);
             tmp.erase(0, pos + delimiter.length());
         }
+        // if (nb.find("dead") ==  std::string::npos)
+        //if (stoi(nb))
         _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
     }
 }
@@ -205,6 +216,19 @@ void EventHandler::PutRock(const std::string &objName, int inv, int requirement)
     }
 }
 
+void EventHandler::TakeRequirement(const std::string &objName, int inv, int requirement)
+{
+    if (inv < requirement)
+        TakeObject(objName);
+    // for (auto it : _tiles[0])
+    //   {
+    //     if (it != "player")
+    //       {
+    //         if (_inventory[it] < _need[it])
+    //             TakeObject(it);
+    //       }
+    //   }
+}
 
 void EventHandler::parseTiles(const std::string & tiles)
 {
