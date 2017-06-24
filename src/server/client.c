@@ -52,10 +52,9 @@ void	*client_read(void *_server, void *_client_node)
   }
   else
   {
-    printf("SEARCH CMD\n");
     if (!(execute_command(server, client)))
     {
-      printf("PAS TROUVE\n");
+      send(client->fd, "suc\n", 4, 0);
       return (next);
     }
   }

@@ -30,6 +30,8 @@ void	server_read(void *_server)
     fprintf(stderr, "ERROR: A client try to connect but something went wrong...\n");
     return;
   }
+  send_socket(client->fd, "WELCOME\n");
+  command_msz(server, client);
   server->clients = clientnode;
   x = my_rand(0, server->map->width - 1);
   y = my_rand(0, server->map->height - 1);
