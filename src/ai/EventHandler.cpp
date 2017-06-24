@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 17:41:41 2017 Adrien Warin
+** Last update Sat Jun 24 14:52:32 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -39,6 +39,34 @@ EventHandler::EventHandler(Socket *sock)
 EventHandler::~EventHandler()
 {
 
+}
+
+bool EventHandler::ExistOnTile(const std::string & item, int tileNbr)
+{
+  int cpt = 0;
+
+  for (auto it : _tiles)
+    {
+      for (auto it2 : _tiles[cpt])
+        {
+          if (cpt == tileNbr && it2 == item)
+            return (true);
+        }
+      cpt++;
+    }
+  return (false);
+}
+
+void EventHandler::TakeEverything()
+{
+  for (auto it : _tiles[0])
+    {
+      if (it != "player")
+        {
+          std::cout << it << '\n';
+          TakeObject(it);
+        }
+    }
 }
 
 void EventHandler::UpdateRequirement(int newLvl)
@@ -105,12 +133,13 @@ void EventHandler::launchScript()
         {
           if (isAbleToIncant() == true)
           {
-            TakeObject("linemate");
+            /*TakeObject("linemate");
             TakeObject("deraumere");
             TakeObject("sibur");
             TakeObject("mendiane");
             TakeObject("phiras");
-            TakeObject("thystame");
+            TakeObject("thystame");*/
+            TakeEverything();
 
             SetObject("linemate");
             Incantation();
@@ -123,7 +152,7 @@ void EventHandler::launchScript()
             TakeObject("food");
           }
         }
-      std::cout << this->_level << '\n';
+      //std::cout << this->_level << '\n';
     }
 }
 
@@ -185,9 +214,9 @@ void EventHandler::parseTiles(const std::string & tiles)
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_inventory["linemate"] == _need["linemate"] &&
+  if (_inventory["linemate"] == _need["linemate"] /*&&
       _inventory["deraumere"] == _need["deraumere"] &&
-      _inventory["sibur"] == _need["sibur"])
+      _inventory["sibur"] == _need["sibur"]*/)
     return (true);
   return (false);
 }
@@ -244,9 +273,9 @@ void EventHandler::Eject()
 
 void EventHandler::TakeObject(const std::string & item)
 {
-  _sock->sendMsg(("Take " + item + "\n").c_str());
-  _sock->recvMsg();
-  Inventory();
+    _sock->sendMsg(("Take " + item + "\n").c_str());
+    _sock->recvMsg();
+    Inventory();
 }
 
 void EventHandler::SetObject(const std::string & item)

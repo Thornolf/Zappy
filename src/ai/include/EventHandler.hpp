@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Fri Jun 23 17:08:00 2017 Adrien Warin
+** Last update Sat Jun 24 13:43:55 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -42,6 +42,10 @@ private:
 public:
     EventHandler (Socket *);
     ~EventHandler ();
+
+
+    bool ExistOnTile(const std::string &, int tileNbr);
+    void TakeEverything();
 
     void launchScript();
     void parseInventory(const std::string &);

@@ -5,12 +5,12 @@
 ## Login   <fossae_t@epitech.net>
 ##
 ## Started on  Tue Jun 20 10:59:59 2017 Thomas Fossaert
-## Last update Tue Jun 20 10:59:59 2017 Thomas Fossaert
+## Last update Sat Jun 24 14:58:39 2017 Thomas Fossaert
 ##
 
 CXX		=	g++
 
-NAME		=	zappy_ai
+NAME		=	zappy_ia
 
 RM		=	rm -f
 
