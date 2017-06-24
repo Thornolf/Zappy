@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 13:00:06 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 13:00:06 2017 Guillaume CAUCHOIS
+** Last update Fri Jun 23 18:44:47 2017 Pierre
 */
 
 #include "server/map.h"
@@ -25,7 +25,7 @@ void	command_msz(t_server *server, t_client *client)
 
   if (!(str = malloc(sizeof(char) * 400)))
     return;
-  if (!(sprintf(str, "msz %d %d\r\n", server->map->x, server->map->y)))
+  if (!(sprintf(str, "msz %d %d\r\n", server->map->width, server->map->height)))
     return ;
   send(client->fd, str, strlen(str), 0);
   free(str);

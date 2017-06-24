@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:31:54 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 18:57:36 2017 Pierre
+** Last update Fri Jun 23 14:08:51 2017 Pierre
 */
 
 #ifndef		_MAP__H_
@@ -25,8 +25,8 @@ typedef t_plot** t_map_data;
 typedef struct	s_map
 {
   t_map_data	data;
-  unsigned int	x;
-  unsigned int y;
+  unsigned int width;
+  unsigned int height;
 }		t_map;
 
 t_map	*create_empty_map(unsigned int, unsigned int);

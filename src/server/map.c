@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:30:48 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 21 11:03:41 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 22 19:41:26 2017 Pierre
 */
 
 #include "server/map.h"
@@ -17,8 +17,8 @@ t_map		*create_empty_map(unsigned int x, unsigned int y)
 
   if (!(map = malloc(sizeof(t_map))))
     return (NULL);
-  map->x = x;
-  map->y = y;
+  map->width = x;
+  map->height = y;
   if (!(map->data = malloc(sizeof(t_plot *) * (y + 2))))
     return (NULL);
   i = 0;
@@ -45,7 +45,7 @@ void	put_stuff_in_map(t_map *map, unsigned int x, unsigned int y)
   t_stuff	*new_node;
   t_stuff	*list;
 
-  if (x > map->x || y > map->y)
+  if (x > map->width || y > map->height)
     return;
   list = map->data[y][x].stuff_list;
   if (!(new_node = create_stuff_node(generate_stuff_type_randomly(), NULL)))
@@ -62,10 +62,10 @@ void		fill_up_map_randomly(t_map *map)
   int		nb_entities;
 
   y = 0;
-  while (y != map->y)
+  while (y != map->height)
   {
     x = 0;
-    while (x != map->x)
+    while (x != map->width)
     {
       i = 0;
       map->data[y][x].player_list = NULL;
@@ -88,10 +88,10 @@ void	delete_map(t_map *map)
   unsigned int	x;
 
   y = 0;
-  while (y < map->y)
+  while (y < map->height)
   {
     x = 0;
-    while (x < map->x)
+    while (x < map->width)
       delete_stuff_list(map->data[y][x++].stuff_list);
     free(map->data[y++]);
   }
@@ -107,10 +107,10 @@ void	print_map(t_map *map)
   t_stuff	*stuff;
 
   y = 0;
-  while (y != map->y)
+  while (y != map->height)
   {
     x = 0;
-    while (x != map->x)
+    while (x != map->width)
     {
       printf("MAP[%d][%d] =", y, x);
       stuff = map->data[y][x].stuff_list;

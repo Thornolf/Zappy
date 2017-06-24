@@ -5,16 +5,17 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:35:50 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 19:10:40 2017 Pierre
+** Last update Fri Jun 23 15:49:10 2017 Pierre
 */
 
 #ifndef		_PLAYER__H_
 # define	_PLAYER__H_
 
-# include  "server/list.h"
+# include "server/list.h"
 # include "server/inventory.h"
 # include	<unistd.h>
 # include <stdio.h>
+# include <time.h>
 
 typedef enum	e_direction
 {
@@ -27,13 +28,17 @@ typedef enum	e_direction
 typedef struct	s_player
 {
   int		id;
+  int   x;
+  int   y;
+  int   lv;
   t_inventory	*inventory;
   t_direction	direction;
 }		t_player;
 
-t_player	*create_player(void);
-void      add_player(t_list *head);
+t_player	*create_player(int y, int x);
+void      add_player(t_list *head, int y, int x);
 void      print_players(t_list *head);
-t_list    *init_players_list();
+t_list    *init_players_list(int y, int x);
+int		my_rand(int min, int max);
 
 #endif		/* _PLAYER__H_ */

@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 19:15:35 2017 Pierre
+** Last update Fri Jun 23 18:43:04 2017 Pierre
 */
 
 #include "server/server.h"
@@ -20,6 +20,8 @@ void	server_read(void *_server)
   t_server	*server;
   t_client	*client;
   t_list	*clientnode;
+  int x;
+  int y;
 
   server = _server;
   client = init_client(server);
@@ -31,6 +33,12 @@ void	server_read(void *_server)
   send_socket(client->fd, "WELCOME\n");
   command_msz(server, client);
   server->clients = clientnode;
+  x = my_rand(0, server->map->width - 1);
+  y = my_rand(0, server->map->height - 1);
+  if (server->map->data[y][x].player_list == NULL)
+    server->map->data[y][x].player_list = init_players_list(y, x);
+  else
+    add_player(server->map->data[y][x].player_list, y, x);
 }
 
 void	server_write(void *_server)
@@ -95,7 +103,7 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
     {
       client = cur_client_node->data;
       if (FD_ISSET(client->fd, fd_read))
-	client->fct_read(server, cur_client_node);
+	       client->fct_read(server, cur_client_node);
       cur_client_node = cur_client_node->next;
     }
   }
