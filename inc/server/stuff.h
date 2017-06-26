@@ -1,41 +1,39 @@
 /*
-** stuff.h for PSU_2016_zappy
+** inventory.h for PSU_2016_zappy in /home/pierre/PSU_2016_zappy/inc
 **
-** Made by Guillaume CAUCHOIS
-** Login   <guillaume.cauchois@epitech.eu>
+** Made by Pierre
+** Login   <pierre@epitech.net>
 **
-** Started on  Tue Jun 20 14:05:39 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 14:06:40 2017 Pierre
+** Started on  Thu Jun 22 14:16:37 2017 Pierre
+** Last update Thu Jun 22 14:49:00 2017 Pierre
 */
 
 #ifndef		_STUFF__H_
 # define	_STUFF__H_
-# include <stdbool.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
+
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef enum	e_stuff_type
 {
   STUFF_MIN = 0,
   FOOD = STUFF_MIN,
-  LINEMATE,
-  DERAUMERE,
-  SIBUR,
-  MENDIANE,
-  PHIRAS,
-  THYSTAME,
+  LINEMATE = 1,
+  DERAUMERE = 2,
+  SIBUR = 3,
+  MENDIANE = 4,
+  PHIRAS = 5,
+  THYSTAME = 6,
   STUFF_MAX = THYSTAME
 }		t_stuff_type;
 
-typedef struct		s_stuff
+typedef struct	s_stuff
 {
-  t_stuff_type		stuff;
-  struct s_stuff	*next;
-}			t_stuff;
+  int		*quantities;
+}		t_stuff;
 
-t_stuff		*create_stuff_node(t_stuff_type, t_stuff *);
-bool		stuff_type_in_stuff_list(t_stuff_type, t_stuff *);
-void		delete_stuff_list(t_stuff *);
+void		add_quantity(t_stuff *, t_stuff_type);
+void		print_stuff(t_stuff *);
+t_stuff		*init_stuff(void);
 
 #endif		/* !_STUFF__H_! */

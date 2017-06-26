@@ -25,6 +25,7 @@ t_client	*init_client(t_server *server)
     return (NULL);
   client->fct_read = client_read;
   client->fct_write = client_write;
+  client->type = AI;
   if (!(client->buffer = malloc(sizeof(char) * BUFFER_CLIENT_SIZE)))
     return (NULL);
   return (client);
@@ -46,7 +47,7 @@ void	*client_read(void *_server, void *_client_node)
   next = client_node->next;
   if (client->buffer[0] == 0)
   {
-    remove_node(server->clients, client_node, &delete_client);
+    remove_node(&server->clients, client_node, &delete_client);
     return (next);
   }
   else

@@ -16,7 +16,7 @@ NAME_AI		=	zappy_ai
 
 CC		=	gcc
 
-RM		=	@/usr/bin/rm -vf
+RM		=	@rm -vf
 
 CFLAGS		=	-W -Wall -Wextra -g -I./inc/
 

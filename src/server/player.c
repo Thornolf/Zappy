@@ -5,10 +5,10 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Sun Jun 25 15:39:06 2017 Pierre
+** Last update Mon Jun 26 18:39:32 2017 Pierre
 */
 
-#include        "server/player.h"
+#include	"server/player.h"
 
 int		my_rand(int min, int max)
 {
@@ -34,16 +34,16 @@ t_player	*create_player(int fd, int y, int x)
   player->lv = 1;
   player->x = x;
   player->y = y;
-  player->inventory = init_inventory();
-  player->direction = my_rand(0, 4);
+  player->stuff = init_stuff();
+  player->direction = (t_direction)my_rand(DIRECTION_MIN, DIRECTION_MAX);
   printf("Player %d en [%d][%d], direction %d\n", player->id, y, x, player->direction);
   return (player);
 }
 
-void      print_players(t_list *head)
+void		print_players(t_list *head)
 {
-  t_list *tmp;
-  t_player *player;
+  t_list	*tmp;
+  t_player	*player;
 
   tmp = head;
   while (tmp)
@@ -64,8 +64,8 @@ void      print_players(t_list *head)
 
 t_list    *init_players_list(int fd, int y, int x)
 {
-  t_list *head;
-  t_player *player;
+  t_list	*head;
+  t_player	*player;
 
   head = NULL;
   if ((head = malloc(sizeof(t_list))) == NULL)
@@ -78,7 +78,7 @@ t_list    *init_players_list(int fd, int y, int x)
 
 void      add_player(t_list *head, int fd, int y, int x)
 {
-  t_list *current;
+  t_list	*current;
 
   current = head;
   while (current->next != NULL)

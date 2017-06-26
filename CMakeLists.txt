@@ -15,7 +15,8 @@ set(SOURCE_FILES_SERVER
         src/server/main.c
         src/server/map.c
         src/server/stuff.c
-        src/server/player.c)
+        src/server/player.c
+        src/server/stuff.c)
 
 add_executable(server ${SOURCE_FILES_SERVER})
 add_executable(ia ${SOURCE_FILES_IA})

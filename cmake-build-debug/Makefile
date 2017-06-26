@@ -136,33 +136,6 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-src/ia/main.o: src/ia/main.c.o
-
-.PHONY : src/ia/main.o
-
-# target to build an object file
-src/ia/main.c.o:
-	$(MAKE) -f CMakeFiles/ia.dir/build.make CMakeFiles/ia.dir/src/ia/main.c.o
-.PHONY : src/ia/main.c.o
-
-src/ia/main.i: src/ia/main.c.i
-
-.PHONY : src/ia/main.i
-
-# target to preprocess a source file
-src/ia/main.c.i:
-	$(MAKE) -f CMakeFiles/ia.dir/build.make CMakeFiles/ia.dir/src/ia/main.c.i
-.PHONY : src/ia/main.c.i
-
-src/ia/main.s: src/ia/main.c.s
-
-.PHONY : src/ia/main.s
-
-# target to generate assembly for a file
-src/ia/main.c.s:
-	$(MAKE) -f CMakeFiles/ia.dir/build.make CMakeFiles/ia.dir/src/ia/main.c.s
-.PHONY : src/ia/main.c.s
-
 src/server/lib/list.o: src/server/lib/list.c.o
 
 .PHONY : src/server/lib/list.o
@@ -308,9 +281,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... ia"
 	@echo "... server"
-	@echo "... src/ia/main.o"
-	@echo "... src/ia/main.i"
-	@echo "... src/ia/main.s"
 	@echo "... src/server/lib/list.o"
 	@echo "... src/server/lib/list.i"
 	@echo "... src/server/lib/list.s"
