@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "server/server.h"
-#include "server/inventory.h"
+#include "server/stuff.h"
 
 int		handle_parsing(t_info *info, int ac, char **av);
 void		free_server_informations(t_info *info);

@@ -22,17 +22,15 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c		\
 			$(SRC_SERVER_DIR)look_utils.c	\
 			$(SRC_SERVER_DIR)print_vision_a.c \
 			$(SRC_SERVER_DIR)print_vision_b.c \
-			$(SRC_SERVER_DIR)add_to_inventory.c \
-			$(SRC_SERVER_DIR)inventory_cmds_a.c \
-			$(SRC_SERVER_DIR)inventory_cmds_b.c \
-			$(SRC_SERVER_DIR)stuff.c    \
+			$(SRC_SERVER_DIR)stuff.c	\
 			$(SRC_SERVER_DIR)socket.c	\
 			$(SRC_SERVER_DIR)server.c	\
 			$(SRC_SERVER_DIR)client.c	\
 			$(SRC_SERVER_DIR)command.c	\
 			$(SRC_SERVER_DIR)command_map.c	\
 			$(SRC_SERVER_DIR)lib/list.c	\
-			$(SRC_SERVER_DIR)lib/send.c
+			$(SRC_SERVER_DIR)lib/send.c	\
+			$(SRC_SERVER_DIR)lib/string.c
 
 SRC_AI		=	$(SRC_AI_DIR)main.c
 

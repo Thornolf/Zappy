@@ -12,33 +12,35 @@
 # define	_PLAYER__H_
 
 # include "server/list.h"
-# include "server/inventory.h"
+# include "server/stuff.h"
 # include	<unistd.h>
 # include <stdio.h>
 # include <time.h>
 
 typedef enum	e_direction
 {
-  TOP = 0,
+  DIRECTION_MIN = 0,
+  TOP = DIRECTION_MIN,
   LEFT,
   RIGHT,
-  BOTTOM
+  BOTTOM,
+  DIRECTION_MAX = BOTTOM
 }		t_direction;
 
 typedef struct	s_player
 {
   int		id;
-  int   x;
-  int   y;
-  int   lv;
-  t_inventory	*inventory;
+  int		x;
+  int		y;
+  int		lv;
+  t_stuff	*stuff;
   t_direction	direction;
 }		t_player;
 
 t_player	*create_player(int y, int x);
-void      add_player(t_list *head, int y, int x);
-void      print_players(t_list *head);
-t_list    *init_players_list(int y, int x);
+void		add_player(t_list *head, int y, int x);
+void		print_players(t_list *head);
+t_list		*init_players_list(int y, int x);
 int		my_rand(int min, int max);
 
 #endif		/* _PLAYER__H_ */

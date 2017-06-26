@@ -56,7 +56,6 @@ bool	init_zappy_server(t_info *info)
     return (false);
   if (!(s_conf.map = create_empty_map(info->width, info->height)))
     return (false);
-  init_elems_cmds(info);
   fill_up_map_randomly(s_conf.map);
   listen_socket(s_conf.fd);
   s_conf.clients = NULL;

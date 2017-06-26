@@ -1,49 +1,48 @@
 /*
-** stuff.c for PSU_2016_zappy
+** inventory_cmds_b.c for PSU_2016_zappy in /home/pierre/PSU_2016_zappy/src/server
 **
-** Made by Guillaume CAUCHOIS
-** Login   <guillaume.cauchois@epitech.eu>
+** Made by Pierre
+** Login   <pierre@epitech.net>
 **
-** Started on  Tue Jun 20 15:09:44 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 14:06:30 2017 Pierre
+** Started on  Thu Jun 22 14:33:04 2017 Pierre
+** Last update Thu Jun 22 19:03:17 2017 Pierre
 */
 
-# include "server/stuff.h"
+#include "server/inventory.h"
 
-t_stuff		*create_stuff_node(t_stuff_type type, t_stuff *next)
+void add_phiras(t_inventory *inv)
 {
-  t_stuff	*node;
+  inv->phiras += 1;
+}
 
-  if (!(node = malloc(sizeof(t_stuff))))
+void add_thystame(t_inventory *inv)
+{
+  inv->thystame += 1;
+}
+
+t_inventory *init_inventory()
+{
+  t_inventory *inv;
+
+  if ((inv = malloc(sizeof(t_inventory))) == NULL)
     return (NULL);
-  node->stuff = type;
-  node->next = next;
-  return (node);
+  inv->food = 0;
+  inv->linemate = 0;
+  inv->deraumere = 0;
+  inv->sibur = 0;
+  inv->mendiane = 0;
+  inv->phiras = 0;
+  inv->thystame = 0;
+  return (inv);
 }
 
-bool		stuff_type_in_stuff_list(t_stuff_type type, t_stuff *list)
+void print_inventory(t_inventory *inv)
 {
-  t_stuff	*cur;
-
-  cur = list;
-  while (cur)
-    {
-      if (cur->stuff == type)
-	return (true);
-    }
-  return (false);
-}
-
-void		delete_stuff_list(t_stuff *list)
-{
-  t_stuff	*next;
-  t_stuff	*cur;
-
-  cur = list;
-  while (cur)
-    {
-      next = cur->next;
-      free(cur);
-      cur = next;
-    }
+  printf("[food %d, ", inv->food);
+  printf("linemate %d, ", inv->linemate);
+  printf("deraumere %d, ", inv->deraumere);
+  printf("sibur %d, ", inv->sibur);
+  printf("mendiane %d, ", inv->mendiane);
+  printf("phiras %d, ", inv->phiras);
+  printf("thystame %d]\n", inv->thystame);
 }

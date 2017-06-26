@@ -38,5 +38,7 @@ void		delete_command(void *);
  * Commands functions
  */
 void	command_msz(t_server *, t_client *);
+void	command_bct(t_server *, t_client *);
+void	command_mct(t_server *, t_client *);
 
 #endif		/* !_COMMAND__H_! */

@@ -14,7 +14,7 @@
 # include "server/stuff.h"
 # include "server/map.h"
 # include "server/socket.h"
-# include "server/inventory.h"
+# include "server/stuff.h"
 # include "server/player.h"
 # include "server/list.h"
 
@@ -40,7 +40,6 @@ typedef struct	s_info
   int		clientsNb;
   int		freq;
   char		**clients;
-  void (*add_elems_cmds[7])(t_inventory *inv);
 }		t_info;
 
 bool	init_zappy_server(t_info *);
@@ -50,6 +49,5 @@ int	get_fd_max(t_server *);
 void look(t_map *map, t_player *player);
 
 void init_elems_cmds(t_info *info);
-void add_element_in_inventory(t_info *info, t_inventory *inv, t_stuff_type elem);
 
 #endif		/* !_SERVER__H_! */

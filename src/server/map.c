@@ -14,18 +14,27 @@ t_map		*create_empty_map(unsigned int x, unsigned int y)
 {
   t_map		*map;
   unsigned int	i;
+  unsigned	j;
 
   if (!(map = malloc(sizeof(t_map))))
     return (NULL);
   map->width = x;
   map->height = y;
-  if (!(map->data = malloc(sizeof(t_plot *) * (y + 2))))
+  if (!(map->data = malloc(sizeof(t_plot *) * (y + 1))))
     return (NULL);
   i = 0;
   while (i < y)
   {
     if (!(map->data[i] = malloc(sizeof(t_plot) * (x + 1))))
       return (NULL);
+    j = 0;
+    while (j < x)
+    {
+      map->data[i][j].player_list = NULL;
+      if (!(map->data[i][j].stuff = init_stuff()))
+	return (NULL);
+      j++;
+    }
     i++;
   }
   map->data[i] = NULL;
@@ -34,24 +43,20 @@ t_map		*create_empty_map(unsigned int x, unsigned int y)
 
 t_stuff_type	generate_stuff_type_randomly(void)
 {
-  int	id;
+  int		id;
 
   while ((id = rand() % STUFF_MAX) < STUFF_MIN);
   return ((t_stuff_type)id);
 }
 
-void	put_stuff_in_map(t_map *map, unsigned int x, unsigned int y)
+void		put_stuff_in_map(t_map *map, unsigned int x, unsigned int y)
 {
-  t_stuff	*new_node;
-  t_stuff	*list;
+  t_stuff_type	type;
 
   if (x > map->width || y > map->height)
     return;
-  list = map->data[y][x].stuff_list;
-  if (!(new_node = create_stuff_node(generate_stuff_type_randomly(), NULL)))
-    return ;
-  new_node->next = list;
-  map->data[y][x].stuff_list = new_node;
+  type = generate_stuff_type_randomly();
+  add_quantity(map->data[y][x].stuff, type);
 }
 
 void		fill_up_map_randomly(t_map *map)
@@ -68,8 +73,6 @@ void		fill_up_map_randomly(t_map *map)
     while (x != map->width)
     {
       i = 0;
-      map->data[y][x].player_list = NULL;
-      map->data[y][x].stuff_list = NULL;
       nb_entities = rand() % (STUFF_MAX - STUFF_MIN);
       while (i < nb_entities)
       {
@@ -85,43 +88,11 @@ void		fill_up_map_randomly(t_map *map)
 void	delete_map(t_map *map)
 {
   unsigned int	y;
-  unsigned int	x;
 
   y = 0;
   while (y < map->height)
-  {
-    x = 0;
-    while (x < map->width)
-      delete_stuff_list(map->data[y][x++].stuff_list);
     free(map->data[y++]);
-  }
   free(map->data);
   map->data = NULL;
   free(map);
-}
-
-void	print_map(t_map *map)
-{
-  unsigned int	x;
-  unsigned int	y;
-  t_stuff	*stuff;
-
-  y = 0;
-  while (y != map->height)
-  {
-    x = 0;
-    while (x != map->width)
-    {
-      printf("MAP[%d][%d] =", y, x);
-      stuff = map->data[y][x].stuff_list;
-      while (stuff)
-      {
-	printf(" %d", stuff->stuff);
-	stuff = stuff->next;
-      }
-      printf("\n");
-      x++;
-    }
-    y++;
-  }
 }

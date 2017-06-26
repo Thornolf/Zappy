@@ -23,8 +23,6 @@ typedef struct	s_vision
   struct s_vision	*next;
 }		t_vision;
 
-void (*print_stuff_cmds[7])(void);
-
 void print_objects(t_map *map, t_vision *vision);
 
 void print_food(void);

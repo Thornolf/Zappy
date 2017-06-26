@@ -32,8 +32,18 @@ t_list		*init_cmd_callback(void)
     return (NULL);
   if (!(head = create_node(cmd, NULL)))
     return (NULL);
-  (void)father;
-  (void)son;
+  father = head;
+  if (!(cmd = create_command_node("bct", &command_bct)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("mct", &command_mct)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 

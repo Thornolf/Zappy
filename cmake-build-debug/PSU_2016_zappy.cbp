@@ -130,9 +130,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ia/main.c">
-			<Option target="ia"/>
-		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c">
 			<Option target="server"/>
 		</Unit>
