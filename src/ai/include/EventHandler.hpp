@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Sat Jun 24 16:29:13 2017 Adrien Warin
+** Last update Mon Jun 26 12:09:02 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -52,6 +52,7 @@ public:
     void parseTiles(const std::string &);
     bool isAbleToIncant();
     void changeNeed(int);
+    int countPlayerOnTile();
 
     void MoveUp();
     void TurnRight();

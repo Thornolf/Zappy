@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jun 24 16:32:47 2017 Adrien Warin
+** Last update Mon Jun 26 12:41:19 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -25,7 +25,7 @@ EventHandler::EventHandler(Socket *sock)
     this->_event["Set object"] = std::bind(&EventHandler::SetObject, this);
     this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);*/
 
-    this->_need.insert( std::pair<std::string, int>("nb_joueur", 1));
+    this->_need.insert( std::pair<std::string, int>("player", 1));
     this->_need.insert( std::pair<std::string, int>("linemate", 1));
     this->_need.insert( std::pair<std::string, int>("deraumere", 0));
     this->_need.insert( std::pair<std::string, int>("sibur", 0));
@@ -73,9 +73,11 @@ void EventHandler::UpdateRequirement(int newLvl)
 {
     if (newLvl == 2)
     {
-//        this->_need.insert( std::pair<std::string, int>("nb_joueur", 2));
+        /*this->_need.insert( std::pair<std::string, int>("player", 2));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
-        this->_need.insert( std::pair<std::string, int>("sibur", 1));
+        this->_need.insert( std::pair<std::string, int>("sibur", 1));*/
+        _need["deraumere"] = 1;
+        _need["sibur"] = 1;
     }
     else if (newLvl == 3)
     {
@@ -85,7 +87,7 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 4)
     {
-//        this->_need.insert( std::pair<std::string, int>("nb_joueur", 4));
+        this->_need.insert( std::pair<std::string, int>("player", 4));
         this->_need.insert( std::pair<std::string, int>("linemate", 1));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 2));
@@ -101,7 +103,7 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 6)
     {
-//        this->_need.insert( std::pair<std::string, int>("nb_joueur", 6));
+        this->_need.insert( std::pair<std::string, int>("player", 6));
         this->_need.insert( std::pair<std::string, int>("sibur", 3));
         this->_need.insert( std::pair<std::string, int>("mendiane", 0));
         this->_need.insert( std::pair<std::string, int>("phiras", 1));
@@ -120,13 +122,13 @@ void EventHandler::launchScript()
 {
   while (42)
     {
-      if (_sock->getLastMsg() == "Elevation underway\n")
+      if (_sock->getLastMsg() == "Elevation undersay\n")
         {
           Incantation();
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
             {
               this->_level += 1;
-             UpdateRequirement(this->_level);
+              UpdateRequirement(this->_level);
             }
         }
       else
@@ -160,12 +162,12 @@ void EventHandler::launchScript()
             TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
             TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
-            //TakeRequirement();
-            // TakeObject("linemate");
-            // TakeObject("food");
+            TakeObject("food");
           }
         }
-      //std::cout << this->_level << '\n';
+        std::cout << _need["linemate"] << '\n';
+        std::cout << _need["deraumere"] << '\n';
+        std::cout << _need["sibur"] << '\n';
     }
 }
 
@@ -182,6 +184,7 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string   nb;
   std::string delimiter = " ";
 
+  std::cout << "INVENTOY " << tmp << '\n';
   _inventory.erase(_inventory.begin(), _inventory.end());
   if (tmp.find("dead") !=  std::string::npos)
     return;
@@ -247,23 +250,31 @@ void EventHandler::parseTiles(const std::string & tiles)
       _tiles[i] = explode(it, ' ');
       i++;
     }
-  /*int cpt = 0;
-  for (auto it2 : _tiles)
-    {
-      std::cout << cpt << '\n';
-      for (auto it3 : _tiles[cpt])
-        std::cout << it3 << '\n';
-      cpt++;
-    }*/
 }
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_inventory["linemate"] == _need["linemate"] /*&&
+  if (_inventory["linemate"] == _need["linemate"] &&
       _inventory["deraumere"] == _need["deraumere"] &&
-      _inventory["sibur"] == _need["sibur"]*/)
+      _inventory["sibur"] == _need["sibur"] &&
+      _inventory["mendiane"] == _need["mendiane"] &&
+      _inventory["phiras"] == _need["phiras"] &&
+      _inventory["thystame"] == _need["thystame"] &&
+      countPlayerOnTile() == _need["player"])
     return (true);
   return (false);
+}
+
+int EventHandler::countPlayerOnTile()
+{
+  int i = 0;
+
+  for (auto it : _tiles[0])
+    {
+      if (it == "player")
+        i++;
+    }
+  return (i);
 }
 
 void EventHandler::MoveUp()
