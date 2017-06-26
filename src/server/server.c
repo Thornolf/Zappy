@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 18:43:04 2017 Pierre
+** Last update Sun Jun 25 15:39:01 2017 Pierre
 */
 
 #include "server/server.h"
@@ -36,9 +36,9 @@ void	server_read(void *_server)
   x = my_rand(0, server->map->width - 1);
   y = my_rand(0, server->map->height - 1);
   if (server->map->data[y][x].player_list == NULL)
-    server->map->data[y][x].player_list = init_players_list(y, x);
+    server->map->data[y][x].player_list = init_players_list(client->fd, y, x);
   else
-    add_player(server->map->data[y][x].player_list, y, x);
+    add_player(server->map->data[y][x].player_list, client->fd, y, x);
 }
 
 void	server_write(void *_server)
