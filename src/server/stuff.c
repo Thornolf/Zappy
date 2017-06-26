@@ -8,41 +8,33 @@
 ** Last update Thu Jun 22 19:03:17 2017 Pierre
 */
 
-#include "server/inventory.h"
+#include <string.h>
+#include "server/stuff.h"
 
-void add_phiras(t_inventory *inv)
+void		add_quantity(t_stuff *stuff, t_stuff_type type)
 {
-  inv->phiras += 1;
+  stuff->quantities[type] += 1;
 }
 
-void add_thystame(t_inventory *inv)
+t_stuff		*init_stuff(void)
 {
-  inv->thystame += 1;
-}
+  t_stuff	*stuff;
 
-t_inventory *init_inventory()
-{
-  t_inventory *inv;
-
-  if ((inv = malloc(sizeof(t_inventory))) == NULL)
+  if (!(stuff = malloc(sizeof(t_stuff))))
     return (NULL);
-  inv->food = 0;
-  inv->linemate = 0;
-  inv->deraumere = 0;
-  inv->sibur = 0;
-  inv->mendiane = 0;
-  inv->phiras = 0;
-  inv->thystame = 0;
-  return (inv);
+  if (!(stuff->quantities = malloc(sizeof(int) * (STUFF_MAX))))
+    return (NULL);
+  memset(stuff->quantities, 0, sizeof(int) * (STUFF_MAX));
+  return (stuff);
 }
 
-void print_inventory(t_inventory *inv)
+void		print_stuff(t_stuff *stuff)
 {
-  printf("[food %d, ", inv->food);
-  printf("linemate %d, ", inv->linemate);
-  printf("deraumere %d, ", inv->deraumere);
-  printf("sibur %d, ", inv->sibur);
-  printf("mendiane %d, ", inv->mendiane);
-  printf("phiras %d, ", inv->phiras);
-  printf("thystame %d]\n", inv->thystame);
+  printf("[food %d, ", stuff->quantities[FOOD]);
+  printf("linemate %d, ", stuff->quantities[LINEMATE]);
+  printf("deraumere %d, ", stuff->quantities[DERAUMERE]);
+  printf("sibur %d, ", stuff->quantities[SIBUR]);
+  printf("mendiane %d, ", stuff->quantities[MENDIANE]);
+  printf("phiras %d, ", stuff->quantities[PHIRAS]);
+  printf("thystame %d]\n", stuff->quantities[THYSTAME]);
 }
