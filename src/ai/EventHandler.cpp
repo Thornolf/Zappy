@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Mon Jun 26 12:41:19 2017 Thomas Fossaert
+** Last update Mon Jun 26 16:49:28 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -120,9 +120,12 @@ void EventHandler::UpdateRequirement(int newLvl)
 
 void EventHandler::launchScript()
 {
+  /*std::srand(std::time(0));
+  int random_variable;
+*/
   while (42)
     {
-      if (_sock->getLastMsg() == "Elevation undersay\n")
+      if (_sock->getLastMsg() == "Elevation underway\n")
         {
           Incantation();
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
@@ -135,12 +138,7 @@ void EventHandler::launchScript()
         {
           if (isAbleToIncant() == true)
           {
-            /*TakeObject("linemate");
-            TakeObject("deraumere");
-            TakeObject("sibur");
-            TakeObject("mendiane");
-            TakeObject("phiras");
-            TakeObject("thystame");*/
+            LookAround();
             TakeEverything();
 
             PutRock("linemate", this->_inventory["linemate"], this->_need["linemate"]);
@@ -156,6 +154,9 @@ void EventHandler::launchScript()
           {
             LookAround();
             MoveUp();
+            /*random_variable = std::rand();
+            if (random_variable % 5 == 0)
+              TurnRight();*/
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
@@ -254,12 +255,12 @@ void EventHandler::parseTiles(const std::string & tiles)
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_inventory["linemate"] == _need["linemate"] &&
-      _inventory["deraumere"] == _need["deraumere"] &&
-      _inventory["sibur"] == _need["sibur"] &&
-      _inventory["mendiane"] == _need["mendiane"] &&
-      _inventory["phiras"] == _need["phiras"] &&
-      _inventory["thystame"] == _need["thystame"] &&
+  if (_inventory["linemate"] >= _need["linemate"] &&
+      _inventory["deraumere"] >= _need["deraumere"] &&
+      _inventory["sibur"] >= _need["sibur"] &&
+      _inventory["mendiane"] >= _need["mendiane"] &&
+      _inventory["phiras"] >= _need["phiras"] &&
+      _inventory["thystame"] >= _need["thystame"] &&
       countPlayerOnTile() == _need["player"])
     return (true);
   return (false);
