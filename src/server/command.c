@@ -44,6 +44,12 @@ t_list		*init_cmd_callback(void)
   if (!(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("GRAPHIC", &command_graphic)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 

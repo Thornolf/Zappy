@@ -20,9 +20,16 @@
 
 typedef			void*(*fct_client)(void *, void *);
 
+typedef enum	e_client_type
+{
+  AI = 0,
+  GRAPHIC
+}		t_client_type;
+
 typedef struct	s_client
 {
   int		fd;
+  t_client_type	type;
   char		*buffer;
   fct_client	fct_read;
   fct_client	fct_write;
