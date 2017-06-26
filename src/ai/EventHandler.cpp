@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Fri Jun 23 17:41:41 2017 Adrien Warin
+** Last update Mon Jun 26 16:49:28 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -25,7 +25,7 @@ EventHandler::EventHandler(Socket *sock)
     this->_event["Set object"] = std::bind(&EventHandler::SetObject, this);
     this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);*/
 
-    this->_need.insert( std::pair<std::string, int>("nb_joueur", 1));
+    this->_need.insert( std::pair<std::string, int>("player", 1));
     this->_need.insert( std::pair<std::string, int>("linemate", 1));
     this->_need.insert( std::pair<std::string, int>("deraumere", 0));
     this->_need.insert( std::pair<std::string, int>("sibur", 0));
@@ -41,13 +41,43 @@ EventHandler::~EventHandler()
 
 }
 
+bool EventHandler::ExistOnTile(const std::string & item, int tileNbr)
+{
+  int cpt = 0;
+
+  for (auto it : _tiles)
+    {
+      for (auto it2 : _tiles[cpt])
+        {
+          if (cpt == tileNbr && it2 == item)
+            return (true);
+        }
+      cpt++;
+    }
+  return (false);
+}
+
+void EventHandler::TakeEverything()
+{
+  for (auto it : _tiles[0])
+    {
+      if (it != "player")
+        {
+          std::cout << it << '\n';
+          TakeObject(it);
+        }
+    }
+}
+
 void EventHandler::UpdateRequirement(int newLvl)
 {
     if (newLvl == 2)
     {
-        this->_need.insert( std::pair<std::string, int>("nb_joueur", 2));
+        /*this->_need.insert( std::pair<std::string, int>("player", 2));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
-        this->_need.insert( std::pair<std::string, int>("sibur", 1));
+        this->_need.insert( std::pair<std::string, int>("sibur", 1));*/
+        _need["deraumere"] = 1;
+        _need["sibur"] = 1;
     }
     else if (newLvl == 3)
     {
@@ -57,7 +87,7 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 4)
     {
-        this->_need.insert( std::pair<std::string, int>("nb_joueur", 4));
+        this->_need.insert( std::pair<std::string, int>("player", 4));
         this->_need.insert( std::pair<std::string, int>("linemate", 1));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 2));
@@ -73,7 +103,7 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 6)
     {
-        this->_need.insert( std::pair<std::string, int>("nb_joueur", 6));
+        this->_need.insert( std::pair<std::string, int>("player", 6));
         this->_need.insert( std::pair<std::string, int>("sibur", 3));
         this->_need.insert( std::pair<std::string, int>("mendiane", 0));
         this->_need.insert( std::pair<std::string, int>("phiras", 1));
@@ -90,6 +120,9 @@ void EventHandler::UpdateRequirement(int newLvl)
 
 void EventHandler::launchScript()
 {
+  /*std::srand(std::time(0));
+  int random_variable;
+*/
   while (42)
     {
       if (_sock->getLastMsg() == "Elevation underway\n")
@@ -98,32 +131,44 @@ void EventHandler::launchScript()
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
             {
               this->_level += 1;
-             UpdateRequirement(this->_level);
+              UpdateRequirement(this->_level);
             }
         }
       else
         {
           if (isAbleToIncant() == true)
           {
-            TakeObject("linemate");
-            TakeObject("deraumere");
-            TakeObject("sibur");
-            TakeObject("mendiane");
-            TakeObject("phiras");
-            TakeObject("thystame");
+            LookAround();
+            TakeEverything();
 
-            SetObject("linemate");
+            PutRock("linemate", this->_inventory["linemate"], this->_need["linemate"]);
+            PutRock("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
+            PutRock("sibur", this->_inventory["sibur"], this->_need["sibur"]);
+            PutRock("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            PutRock("phiras", this->_inventory["phiras"], this->_need["phiras"]);
+            PutRock("thystame", this->_inventory["thystame"], this->_need["thystame"]);
+            //SetObject("linemate");
             Incantation();
           }
         else
           {
             LookAround();
             MoveUp();
-            TakeObject("linemate");
+            /*random_variable = std::rand();
+            if (random_variable % 5 == 0)
+              TurnRight();*/
+            TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
+            TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
+            TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
+            TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
+            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             TakeObject("food");
           }
         }
-      std::cout << this->_level << '\n';
+        std::cout << _need["linemate"] << '\n';
+        std::cout << _need["deraumere"] << '\n';
+        std::cout << _need["sibur"] << '\n';
     }
 }
 
@@ -140,7 +185,10 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string   nb;
   std::string delimiter = " ";
 
+  std::cout << "INVENTOY " << tmp << '\n';
   _inventory.erase(_inventory.begin(), _inventory.end());
+  if (tmp.find("dead") !=  std::string::npos)
+    return;
   while ((pos = tmp.find(delimiter)) != std::string::npos)
     {
         token = tmp.substr(0, pos);
@@ -152,8 +200,38 @@ void EventHandler::parseInventory(const std::string & inventory)
             epur(nb);
             tmp.erase(0, pos + delimiter.length());
         }
+        // if (nb.find("dead") ==  std::string::npos)
+        //if (stoi(nb))
         _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
     }
+}
+
+void EventHandler::PutRock(const std::string &objName, int inv, int requirement)
+{
+    int cpt = 0;
+
+    if (inv >= requirement)
+    {
+        while (cpt != requirement)
+        {
+            SetObject(objName);
+            cpt++;
+        }
+    }
+}
+
+void EventHandler::TakeRequirement(const std::string &objName, int inv, int requirement)
+{
+    if (inv < requirement)
+        TakeObject(objName);
+    // for (auto it : _tiles[0])
+    //   {
+    //     if (it != "player")
+    //       {
+    //         if (_inventory[it] < _need[it])
+    //             TakeObject(it);
+    //       }
+    //   }
 }
 
 void EventHandler::parseTiles(const std::string & tiles)
@@ -173,23 +251,31 @@ void EventHandler::parseTiles(const std::string & tiles)
       _tiles[i] = explode(it, ' ');
       i++;
     }
-  /*int cpt = 0;
-  for (auto it2 : _tiles)
-    {
-      std::cout << cpt << '\n';
-      for (auto it3 : _tiles[cpt])
-        std::cout << it3 << '\n';
-      cpt++;
-    }*/
 }
 
 bool EventHandler::isAbleToIncant()
 {
-  if (_inventory["linemate"] == _need["linemate"] &&
-      _inventory["deraumere"] == _need["deraumere"] &&
-      _inventory["sibur"] == _need["sibur"])
+  if (_inventory["linemate"] >= _need["linemate"] &&
+      _inventory["deraumere"] >= _need["deraumere"] &&
+      _inventory["sibur"] >= _need["sibur"] &&
+      _inventory["mendiane"] >= _need["mendiane"] &&
+      _inventory["phiras"] >= _need["phiras"] &&
+      _inventory["thystame"] >= _need["thystame"] &&
+      countPlayerOnTile() == _need["player"])
     return (true);
   return (false);
+}
+
+int EventHandler::countPlayerOnTile()
+{
+  int i = 0;
+
+  for (auto it : _tiles[0])
+    {
+      if (it == "player")
+        i++;
+    }
+  return (i);
 }
 
 void EventHandler::MoveUp()
@@ -244,9 +330,9 @@ void EventHandler::Eject()
 
 void EventHandler::TakeObject(const std::string & item)
 {
-  _sock->sendMsg(("Take " + item + "\n").c_str());
-  _sock->recvMsg();
-  Inventory();
+    _sock->sendMsg(("Take " + item + "\n").c_str());
+    _sock->recvMsg();
+    Inventory();
 }
 
 void EventHandler::SetObject(const std::string & item)
