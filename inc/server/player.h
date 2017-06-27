@@ -41,7 +41,6 @@ typedef struct	s_player
   t_team	*team;
 }		t_player;
 
-t_player  *find_player(t_list *list, int fd);
 t_player	*create_player(int fd, int y, int x);
 void		add_player(t_list *head, int fd, int y, int x);
 void		print_players(t_list *head);

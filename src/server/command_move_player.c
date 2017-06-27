@@ -11,18 +11,19 @@
 #include "server/server.h"
 #include "server/command.h"
 
-void command_turn_left(t_server *server, t_client *client)
+void		command_turn_left(t_server *server, t_client *client)
 {
-  int new_dir;
-  t_player *player;
+  int		new_dir;
+  t_player	*player;
 
-  player = find_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   new_dir = player->direction;
   new_dir--;
   if (new_dir < 0)
     new_dir = LEFT;
   player->direction = new_dir;
-  printf("ok\n");
+  send_socket(client->fd, "ok\n");
 }
 
 void command_turn_right(t_server *server, t_client *client)
@@ -30,20 +31,22 @@ void command_turn_right(t_server *server, t_client *client)
   t_player *player;
   int new_dir;
 
-  player = find_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   new_dir = player->direction;
   new_dir++;
   if (new_dir > 3)
     new_dir = TOP;
   player->direction = new_dir;
-  printf("ok\n");
+  send_socket(client->fd, "ok\n");
 }
 
 void command_move_player(t_server *server, t_client *client)
 {
   t_player *player;
 
-  player = find_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   if (player->direction == TOP)
     player->y = check_y(server->map->height, player->y - 1);
   else if (player->direction == BOTTOM)
@@ -52,5 +55,5 @@ void command_move_player(t_server *server, t_client *client)
     player->x = check_x(server->map->width, player->x - 1);
   else if (player->direction == RIGHT)
     player->x = check_x(server->map->width, player->x + 1);
-  printf("ok\n");
+  send_socket(client->fd, "ok\n");
 }

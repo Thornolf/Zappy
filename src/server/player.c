@@ -23,22 +23,6 @@ int		my_rand(int min, int max)
   return (rand() % (max - min) + min);
 }
 
-t_player	*find_player(t_list *list, int fd)
-{
-  t_player *player;
-  t_list *tmp;
-
-  tmp = list;
-  while (tmp)
-  {
-    player = tmp->data;
-    if (player->fd == fd)
-      return (player);
-    tmp = tmp->next;
-  }
-  return (NULL);
-}
-
 t_player	*create_player(int fd, int y, int x)
 {
   t_player	*player;
