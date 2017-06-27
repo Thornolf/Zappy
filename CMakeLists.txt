@@ -31,7 +31,7 @@ set(SOURCE_FILES
         src/server/lib/string.c
         src/server/client.c
         src/server/command.c
-        src/server/command_client.c
+        src/server/connection_client.c
         src/server/command_map.c
         src/server/command_team.c
         src/server/handle_parsing.c

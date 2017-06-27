@@ -36,8 +36,8 @@ void		delete_command(void *);
 /**
  * Commands functions
  */
-void	command_graphic(t_server *, t_client *);
-bool	command_ia(t_server *server, t_client *client, char *);
+void	connection_graphic(t_server *, t_client *);
+bool	connection_ia(t_server *server, t_client *client, char *);
 
 void	command_msz(t_server *, t_client *);
 void	command_bct(t_server *, t_client *);

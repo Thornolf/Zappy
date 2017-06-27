@@ -33,10 +33,10 @@ void	server_read(void *_server)
   server->clients = client_node;
   x = my_rand(0, server->map->width - 1);
   y = my_rand(0, server->map->height - 1);
-  if (server->map->data[y][x].player_list == NULL)
-    server->map->data[y][x].player_list = init_players_list(client->fd, y, x);
+  if (server->players == NULL)
+    server->players = init_players_list(client->fd, y, x);
   else
-    add_player(server->map->data[y][x].player_list, client->fd, y, x);
+    add_player(server->players, client->fd, y, x);
 }
 
 void	server_write(void *_server)
@@ -61,8 +61,10 @@ bool	init_zappy_server(t_info *info)
     return (NULL);
   if (!(s_conf.cmds = init_cmd_callback()))
     return (false);
+  s_conf.players = NULL;
   s_conf.server_read = server_read;
   s_conf.server_write = server_write;
+  s_conf.team_size = info->clientsNb;
   if (!handle_io(&fd_read, &fd_write, &s_conf))
     return (false);
   remove_list(s_conf.cmds, &delete_command);
@@ -73,13 +75,11 @@ bool	init_zappy_server(t_info *info)
 
 bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
 {
-  struct timeval	tv;
   bool			go_on;
   int			fd_max;
   t_list		*cur_client_node;
   t_client		*client;
 
-  set_time_out(&tv);
   go_on = true;
   while (go_on)
   {
@@ -94,7 +94,7 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
       FD_SET(client->fd, fd_read);
       cur_client_node = cur_client_node->next;
     }
-    go_on = (select(fd_max + 1, fd_read, fd_write, NULL, &tv) != 0);
+    go_on = (select(fd_max + 1, fd_read, fd_write, NULL, NULL) != 0);
     if (FD_ISSET(server->fd, fd_read))
       server->server_read(server);
     cur_client_node = server->clients;

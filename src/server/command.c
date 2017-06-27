@@ -67,12 +67,12 @@ bool		execute_command(t_server *server, t_client *client)
   {
     if (strcmp(command_name, "GRAPHIC") == 0)
     {
-      command_graphic(server, client);
+      connection_graphic(server, client);
       return (true);
     }
     else
     {
-      if (command_ia(server, client, command_name))
+      if (connection_ia(server, client, command_name))
 	return (true);
     }
     return (false);

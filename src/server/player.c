@@ -8,7 +8,8 @@
 ** Last update Mon Jun 26 18:39:32 2017 Pierre
 */
 
-#include	"server/player.h"
+#include "server/player.h"
+#include "server/server.h"
 
 int		my_rand(int min, int max)
 {
@@ -35,7 +36,8 @@ t_player	*create_player(int fd, int y, int x)
   player->x = x;
   player->y = y;
   player->team = NULL;
-  player->stuff = init_stuff();
+  if (!(player->stuff = init_stuff()))
+    return (NULL);
   player->direction = (t_direction)my_rand(DIRECTION_MIN, DIRECTION_MAX);
   printf("Player %d en [%d][%d], direction %d\n", player->id, y, x, player->direction);
   return (player);
@@ -55,7 +57,7 @@ t_list		*init_players_list(int fd, int y, int x)
   return (head);
 }
 
-void      add_player(t_list *head, int fd, int y, int x)
+void		add_player(t_list *head, int fd, int y, int x)
 {
   t_list	*current;
 
@@ -66,4 +68,14 @@ void      add_player(t_list *head, int fd, int y, int x)
     return ;
   current->next->data = create_player(fd, y, x);
   current->next->next = NULL;
+}
+
+bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
+{
+  t_team	*team;
+
+  if (!(team = get_team_by_name(server->teams, team_name)))
+    return (false);
+  player->team = team;
+  return (true);
 }

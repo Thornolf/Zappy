@@ -10,7 +10,6 @@
 
 #ifndef		_PLAYER__H_
 # define	_PLAYER__H_
-
 # include "server/map.h"
 # include "server/list.h"
 # include "server/stuff.h"
@@ -18,6 +17,10 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <time.h>
+# include <stdbool.h>
+
+typedef struct s_server t_server;
+typedef struct s_team t_team;
 
 typedef enum	e_direction
 {
@@ -48,5 +51,6 @@ t_list		*init_players_list(int fd, int y, int x);
 void turn_right(t_map *map, t_player *player);
 void turn_left(t_map *map, t_player *player);
 int		my_rand(int min, int max);
+bool		assign_player_to_team(t_server *, t_player *, char *);
 
 #endif		/* _PLAYER__H_ */
