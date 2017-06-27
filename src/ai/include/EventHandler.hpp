@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Tue Jun 27 10:21:55 2017 Thomas Fossaert
+** Last update Tue Jun 27 12:02:01 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -27,6 +27,13 @@ enum class Direction : int
     LEFT
 };
 
+enum class State : int
+{
+    INCANTATION = 0,
+    READYFORINC,
+    NORMAL
+};
+
 class EventHandler
 {
 private:
@@ -36,6 +43,7 @@ private:
     std::unordered_map<std::string,int> _need;
     Direction _orientation;
     Socket *_sock;
+    State _currentState;
 
     int _level;
 

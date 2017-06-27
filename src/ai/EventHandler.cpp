@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Tue Jun 27 10:49:36 2017 Thomas Fossaert
+** Last update Tue Jun 27 12:32:43 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -33,8 +33,8 @@ EventHandler::EventHandler(Socket *sock)
     this->_need.insert( std::pair<std::string, int>("mendiane", 0));
     this->_need.insert( std::pair<std::string, int>("phiras", 0));
     this->_need.insert( std::pair<std::string, int>("thystame", 0));
-
     this->_level = 1;
+    _currentState = State::NORMAL;
 }
 
 EventHandler::~EventHandler()
@@ -77,6 +77,7 @@ void EventHandler::UpdateRequirement(int newLvl)
         /*this->_need.insert( std::pair<std::string, int>("player", 2));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 1));*/
+      _need["player"] = 2;
       _need["deraumere"] = 1;
       _need["sibur"] = 1;
     }
@@ -126,7 +127,7 @@ void EventHandler::launchScript()
 
   while (42)
     {
-      if (_sock->getLastMsg() == "Elevation underway\n")
+      if (_currentState == State::INCANTATION)
         {
           Incantation();
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
@@ -134,15 +135,16 @@ void EventHandler::launchScript()
               this->_level += 1;
               UpdateRequirement(this->_level);
               Inventory();
+              _currentState = State::NORMAL;
             }
+          else if (_sock->getLastMsg().find("ko") != std::string::npos)
+            _currentState = State::NORMAL;
+
         }
-      else
-        {
-          if (isAbleToIncant() == true)
+        else if (_currentState == State::READYFORINC)
           {
             LookAround();
             TakeEverything();
-
             PutRock("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             PutRock("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             PutRock("sibur", this->_inventory["sibur"], this->_need["sibur"]);
@@ -151,8 +153,9 @@ void EventHandler::launchScript()
             PutRock("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             //SetObject("linemate");
             Incantation();
+            _currentState = State::INCANTATION;
           }
-        else
+        else if (_currentState == State::NORMAL)
           {
             LookAround();
             MoveUp();
@@ -166,8 +169,9 @@ void EventHandler::launchScript()
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
             TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             TakeObject("food");
+            if (isAbleToIncant() == true)
+              _currentState = State::READYFORINC;
           }
-        }
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Linemate: " << _inventory["linemate"] << '\n';
         std::cout << "deraumere: " << _inventory["deraumere"] << '\n';
