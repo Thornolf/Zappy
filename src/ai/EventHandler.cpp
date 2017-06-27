@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Mon Jun 26 16:49:28 2017 Thomas Fossaert
+** Last update Tue Jun 27 09:50:11 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -177,33 +177,66 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string tmp = inventory;
   tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
   tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
-  tmp.erase(std::remove(tmp.begin(), tmp.end(), ','), tmp.end());
+  // tmp.erase(std::remove(tmp.begin(), tmp.end(), ','), tmp.end());
   tmp.erase(0, 1);
   tmp.erase(tmp.size() - 1);
+  std::vector<std::string> my_vec;
+  std::string delimiter = " ";
   size_t pos = 0;
   std::string 	token;
   std::string   nb;
-  std::string delimiter = " ";
 
-  std::cout << "INVENTOY " << tmp << '\n';
-  _inventory.erase(_inventory.begin(), _inventory.end());
-  if (tmp.find("dead") !=  std::string::npos)
-    return;
-  while ((pos = tmp.find(delimiter)) != std::string::npos)
+  my_vec = explode(tmp, ',');
+  for(std::vector<std::string>::iterator it = my_vec.begin(); it != my_vec.end(); ++it)
     {
-        token = tmp.substr(0, pos);
-        epur(token);
-        tmp.erase(0, pos + delimiter.length());
-        if ((pos = tmp.find(delimiter)) != std::string::npos)
+    //    std::cout << "ICI: "<< *it << std::endl;
+        epur(*it);
+        token = *it;
+        if ((pos = token.find(delimiter)) != std::string::npos)
         {
-            nb = tmp.substr(0, pos);
-            epur(nb);
+            token = tmp.substr(0, pos);
             tmp.erase(0, pos + delimiter.length());
+            if ((pos = tmp.find(delimiter)) != std::string::npos)
+            {
+                nb = tmp.substr(0, pos);
+                tmp.erase(0, pos + delimiter.length());
+            }
+            std::cout << "Token: " << token << " et nb = " << nb << std::endl;
+            //_inventory.insert(std::pair<std::string, int>(token, stoi(nb)));
+            _inventory[token] = stoi(nb);
+            std::cout << "LINEMATE " << _inventory["linemate"] << '\n';
         }
-        // if (nb.find("dead") ==  std::string::npos)
-        //if (stoi(nb))
-        _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
     }
+  // tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
+  // tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
+  // tmp.erase(std::remove(tmp.begin(), tmp.end(), ','), tmp.end());
+  // tmp.erase(0, 1);
+  // tmp.erase(tmp.size() - 1);
+  // size_t pos = 0;
+  // std::string 	token;
+  // std::string   nb;
+  // std::string delimiter = " ";
+  //
+  // std::cout << "INVENTOY " << tmp << '\n';
+  // _inventory.erase(_inventory.begin(), _inventory.end());
+  // if (tmp.find("dead") !=  std::string::npos)
+  //   return;
+  // while ((pos = tmp.find(delimiter)) != std::string::npos)
+  //   {
+  //       token = tmp.substr(0, pos);
+  //       epur(token);
+  //       tmp.erase(0, pos + delimiter.length());
+  //       if ((pos = tmp.find(delimiter)) != std::string::npos)
+  //       {
+  //           nb = tmp.substr(0, pos);
+  //           epur(nb);
+  //           tmp.erase(0, pos + delimiter.length());
+  //       }
+  //       // if (nb.find("dead") ==  std::string::npos)
+  //       //if (stoi(nb)
+  //       std::cout << "nb = " << nb << std::endl;
+  //       _inventory[token] = stoi(nb);
+  //   }
 }
 
 void EventHandler::PutRock(const std::string &objName, int inv, int requirement)
