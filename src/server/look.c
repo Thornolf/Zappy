@@ -135,7 +135,7 @@ void      print_vision(t_vision *head)
   }
 }
 
-void look(t_map *map, t_player *player)
+void	look(t_list *list_player, t_map *map, t_player *player)
 {
   t_vision *vision;
 
@@ -148,6 +148,6 @@ void look(t_map *map, t_player *player)
     vision = look_right(vision, map, player);
   else if (player->direction == LEFT)
     vision = look_left(vision, map, player);
-  print_vision(vision); //Fonction temporaire pour checker les coordonnées
-  print_objects(map, vision);
+  print_vision(vision);
+  print_objects(list_player, vision);
 }

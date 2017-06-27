@@ -5,16 +5,18 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sun Jun 25 15:16:16 2017 Pierre
-** Last update Tue Jun 27 13:40:53 2017 Pierre
+** Last update Tue Jun 27 14:34:18 2017 Pierre
 */
 
 #include "server/server.h"
+#include "server/command.h"
 
-void turn_left(t_server *server, t_player *player)
+void command_turn_left(t_server *server, t_client *client)
 {
   int new_dir;
+  t_player *player;
 
-  (void) server;
+  player = find_player(server->players, client->fd);
   new_dir = player->direction;
   new_dir--;
   if (new_dir < 0)
@@ -23,11 +25,12 @@ void turn_left(t_server *server, t_player *player)
   printf("ok\n");
 }
 
-void turn_right(t_server *server, t_player *player)
+void command_turn_right(t_server *server, t_client *client)
 {
+  t_player *player;
   int new_dir;
 
-  (void) server;
+  player = find_player(server->players, client->fd);
   new_dir = player->direction;
   new_dir++;
   if (new_dir > 3)
@@ -36,8 +39,11 @@ void turn_right(t_server *server, t_player *player)
   printf("ok\n");
 }
 
-void move_player(t_server *server, t_player *player)
+void command_move_player(t_server *server, t_client *client)
 {
+  t_player *player;
+
+  player = find_player(server->players, client->fd);
   if (player->direction == TOP)
     player->y = check_y(server->map->height, player->y - 1);
   else if (player->direction == BOTTOM)

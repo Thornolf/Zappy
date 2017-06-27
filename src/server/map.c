@@ -30,7 +30,6 @@ t_map		*create_empty_map(unsigned int x, unsigned int y)
     j = 0;
     while (j < x)
     {
-      map->data[i][j].player_list = NULL;
       if (!(map->data[i][j].stuff = init_stuff()))
 	return (NULL);
       j++;
