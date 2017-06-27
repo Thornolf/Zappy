@@ -11,8 +11,20 @@
 #include "server/command.h"
 #include "server/socket.h"
 
-void	command_tna(t_server *server, t_client *client)
+void		command_tna(t_server *server, t_client *client)
 {
+  t_list	*cur_node;
+  t_team	*team;
+
+  cur_node = server->teams;
   (void)server;
-  send_socket(client->fd, "tna \n");
+  send_socket(client->fd, "tna");
+  while (cur_node)
+  {
+    team = cur_node->data;
+    send_socket(client->fd, " ");
+    send_socket(client->fd, team->name);
+    cur_node = cur_node->next;
+  }
+  send_socket(client->fd, "\n");
 }
