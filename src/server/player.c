@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Mon Jun 26 18:39:32 2017 Pierre
+** Last update Tue Jun 27 14:24:41 2017 Pierre
 */
 
 #include "server/player.h"
@@ -21,6 +21,22 @@ int		my_rand(int min, int max)
       first = 0;
     }
   return (rand() % (max - min) + min);
+}
+
+t_player	*find_player(t_list *list, int fd)
+{
+  t_player *player;
+  t_list *tmp;
+
+  tmp = list;
+  while (tmp)
+  {
+    player = tmp->data;
+    if (player->fd == fd)
+      return (player);
+    tmp = tmp->next;
+  }
+  return (NULL);
 }
 
 t_player	*create_player(int fd, int y, int x)

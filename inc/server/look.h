@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 10:15:39 2017 Pierre
-** Last update Sat Jun 24 12:52:31 2017 Pierre
+** Last update Tue Jun 27 14:27:20 2017 Pierre
 */
 
 #ifndef LOOK_H_
@@ -36,8 +36,6 @@ void	print_thystame(void);
 
 t_vision	*init_vision(int, int);
 void		add_case_vision(t_vision *, int, int);
-int		check_x(int, int);
-int		check_y(int, int);
 
 void		look(t_list *, t_map *, t_player *);
 

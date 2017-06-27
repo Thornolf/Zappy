@@ -5,11 +5,12 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:35:50 2017 Guillaume CAUCHOIS
-** Last update Mon Jun 26 18:39:53 2017 Pierre
+** Last update Tue Jun 27 14:28:08 2017 Pierre
 */
 
 #ifndef		_PLAYER__H_
 # define	_PLAYER__H_
+
 # include "server/map.h"
 # include "server/list.h"
 # include "server/stuff.h"
@@ -17,10 +18,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <time.h>
-# include <stdbool.h>
-
-typedef struct s_server t_server;
-typedef struct s_team t_team;
 
 typedef enum	e_direction
 {
@@ -44,14 +41,15 @@ typedef struct	s_player
   t_team	*team;
 }		t_player;
 
+t_player  *find_player(t_list *list, int fd);
 t_player	*create_player(int fd, int y, int x);
 void		add_player(t_list *head, int fd, int y, int x);
 void		print_players(t_list *head);
 t_list		*init_players_list(int fd, int y, int x);
-void turn_right(t_map *map, t_player *player);
-void turn_left(t_map *map, t_player *player);
+bool		assign_player_to_team(t_server *server, t_player *player, char *team_name);
 int		my_rand(int min, int max);
-bool		assign_player_to_team(t_server *, t_player *, char *);
 t_player	*get_player(t_list *, int);
+int		check_x(int, int);
+int		check_y(int, int);
 
 #endif		/* _PLAYER__H_ */
