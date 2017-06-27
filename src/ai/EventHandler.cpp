@@ -5,10 +5,11 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Mon Jun 26 16:49:28 2017 Thomas Fossaert
+** Last update Tue Jun 27 09:42:17 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
+#include <ctime>
 
 EventHandler::EventHandler(Socket *sock)
 {
@@ -76,14 +77,14 @@ void EventHandler::UpdateRequirement(int newLvl)
         /*this->_need.insert( std::pair<std::string, int>("player", 2));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 1));*/
-        _need["deraumere"] = 1;
-        _need["sibur"] = 1;
+      _need["deraumere"] = 1;
+      _need["sibur"] = 1;
     }
     else if (newLvl == 3)
     {
-        this->_need.insert( std::pair<std::string, int>("linemate", 2));
-        this->_need.insert( std::pair<std::string, int>("deraumere", 0));
-        this->_need.insert( std::pair<std::string, int>("phiras", 2));
+      _need["linemate"] = 2;
+      _need["deraumere"] = 0;
+      _need["phiras"] = 2;
     }
     else if (newLvl == 4)
     {
@@ -120,9 +121,9 @@ void EventHandler::UpdateRequirement(int newLvl)
 
 void EventHandler::launchScript()
 {
-  /*std::srand(std::time(0));
+  std::srand(std::time(0));
   int random_variable;
-*/
+
   while (42)
     {
       if (_sock->getLastMsg() == "Elevation underway\n")
@@ -154,9 +155,9 @@ void EventHandler::launchScript()
           {
             LookAround();
             MoveUp();
-            /*random_variable = std::rand();
+            random_variable = std::rand();
             if (random_variable % 5 == 0)
-              TurnRight();*/
+              TurnRight();
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
@@ -202,7 +203,8 @@ void EventHandler::parseInventory(const std::string & inventory)
         }
         // if (nb.find("dead") ==  std::string::npos)
         //if (stoi(nb))
-        _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
+        _inventory[token] = stoi(nb);
+        //_inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
     }
 }
 
