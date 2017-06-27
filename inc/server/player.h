@@ -52,5 +52,6 @@ void turn_right(t_map *map, t_player *player);
 void turn_left(t_map *map, t_player *player);
 int		my_rand(int min, int max);
 bool		assign_player_to_team(t_server *, t_player *, char *);
+t_player	*get_player(t_list *, int);
 
 #endif		/* _PLAYER__H_ */

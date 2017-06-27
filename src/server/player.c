@@ -70,6 +70,23 @@ void		add_player(t_list *head, int fd, int y, int x)
   current->next->next = NULL;
 }
 
+t_player	*get_player(t_list *player_list, int fd)
+{
+  t_list	*cur;
+  t_player	*player;
+
+  player = NULL;
+  cur = player_list;
+  while (cur)
+  {
+    player = cur->data;
+    if (player->fd == fd)
+      return (player);
+    cur = cur->next;
+  }
+  return (NULL);
+}
+
 bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
 {
   t_team	*team;
