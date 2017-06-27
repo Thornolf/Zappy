@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Tue Jun 27 10:01:20 2017 Thomas Fossaert
+** Last update Tue Jun 27 10:49:36 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -133,6 +133,7 @@ void EventHandler::launchScript()
             {
               this->_level += 1;
               UpdateRequirement(this->_level);
+              Inventory();
             }
         }
       else
@@ -167,9 +168,15 @@ void EventHandler::launchScript()
             TakeObject("food");
           }
         }
-        std::cout << _need["linemate"] << '\n';
+        std::cout << "FOOD: " << _inventory["food"] << '\n';
+        std::cout << "Linemate: " << _inventory["linemate"] << '\n';
+        std::cout << "deraumere: " << _inventory["deraumere"] << '\n';
+        std::cout << "sibur: " << _inventory["sibur"] << '\n';
+        std::cout << "phiras: " << _inventory["phiras"] << '\n';
+
+        /*std::cout << _need["linemate"] << '\n';
         std::cout << _need["deraumere"] << '\n';
-        std::cout << _need["sibur"] << '\n';
+        std::cout << _need["sibur"] << '\n';*/
     }
 }
 
@@ -200,10 +207,8 @@ void EventHandler::parseInventory(const std::string & inventory)
                 nb = tmp.substr(0, pos);
                 tmp.erase(0, pos + delimiter.length());
             }
-            std::cout << "Token: " << token << " et nb = " << nb << std::endl;
-            //_inventory.insert(std::pair<std::string, int>(token, stoi(nb)));
-            _inventory[token] = stoi(nb);
-            std::cout << "LINEMATE " << _inventory["linemate"] << '\n';
+            if (has_any_digits(nb) == true)
+              _inventory[token] = stoi(nb);
         }
     }
 }
@@ -309,7 +314,11 @@ void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  parseInventory(_sock->getLastMsg());
+  std::cout << "INVENTORY : " << _sock->getLastMsg() << '\n';
+  /*if (has_any_digits(_sock->getLastMsg()) == true &&
+      (_sock->getLastMsg() != "ko\n" ||
+      _sock->getLastMsg() != "ok\n"))*/
+    parseInventory(_sock->getLastMsg());
 }
 
 void EventHandler::BroadcastText()
@@ -382,4 +391,9 @@ std::vector<std::string> EventHandler::explode(const std::string& str, const cha
     if (!next.empty())
         result.push_back(next);
     return (result);
+}
+
+bool EventHandler::has_any_digits(const std::string& s)
+{
+    return std::any_of(s.begin(), s.end(), ::isdigit);
 }

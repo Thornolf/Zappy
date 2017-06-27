@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Tue Jun 27 08:49:35 2017 Thomas Fossaert
+** Last update Tue Jun 27 10:21:55 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -71,6 +71,7 @@ public:
 
     void epur(std::string &s);
     std::vector<std::string> explode(const std::string&, const char&);
+    bool has_any_digits(const std::string& s);
 };
 
 #endif
