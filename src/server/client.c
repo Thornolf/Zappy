@@ -25,7 +25,7 @@ t_client	*init_client(t_server *server)
     return (NULL);
   client->fct_read = client_read;
   client->fct_write = client_write;
-  client->type = AI;
+  client->type = UNDEFINED;
   if (!(client->buffer = malloc(sizeof(char) * BUFFER_CLIENT_SIZE)))
     return (NULL);
   return (client);
@@ -82,4 +82,9 @@ void	delete_client(void *_client)
   close(client->fd);
   free(client->buffer);
   free(client);
+}
+
+void	set_client_type(t_client *client, t_client_type type)
+{
+  client->type = type;
 }

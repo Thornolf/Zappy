@@ -17,6 +17,7 @@
 # include "server/stuff.h"
 # include "server/player.h"
 # include "server/list.h"
+# include "server/info.h"
 
 typedef			void(*fct_server)(void *);
 
@@ -24,30 +25,19 @@ typedef struct		s_server
 {
   int			fd;
   struct sockaddr_in	*sin;
-  t_list		*clients;
   fct_server		server_read;
   fct_server		server_write;
   t_map			*map;
+  t_list		*clients;
   t_list		*cmds;
+  t_list		*teams;
 }			t_server;
-
-typedef struct	s_info
-{
-  char		*cmds;
-  int		port;
-  unsigned int	width;
-  unsigned int	height;
-  int		clientsNb;
-  int		freq;
-  char		**clients;
-}		t_info;
 
 bool	init_zappy_server(t_info *);
 bool	handle_io(fd_set *, fd_set *, t_server *);
 bool	handle_isset_sockets(t_server *, fd_set *, t_list *, int);
 int	get_fd_max(t_server *);
-void look(t_map *map, t_player *player);
-
-void init_elems_cmds(t_info *info);
+void	look(t_map *map, t_player *player);
+void	init_elems_cmds(t_info *info);
 
 #endif		/* !_SERVER__H_! */

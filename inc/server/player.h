@@ -13,9 +13,9 @@
 
 # include "server/map.h"
 # include "server/list.h"
-# include "server/look.h"
 # include "server/stuff.h"
-# include	<unistd.h>
+# include "server/team.h"
+# include <unistd.h>
 # include <stdio.h>
 # include <time.h>
 
@@ -38,6 +38,7 @@ typedef struct	s_player
   int		lv;
   t_stuff	*stuff;
   t_direction	direction;
+  t_team	*team;
 }		t_player;
 
 t_player	*create_player(int fd, int y, int x);
