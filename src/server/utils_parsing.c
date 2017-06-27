@@ -63,21 +63,17 @@ int	long_command(t_info *info, int i, char **av)
 
   if (!av[i + 1] || av[i + 1][0] == '-')
     return (0);
-  info->clients = NULL;
   i++;
   len = i;
-  while (av[len] && av[len][0] != '-'){
+  while (av[len] && av[len][0] != '-')
     len++;
-  }
   if ((info->clients = malloc(sizeof(char *) * ((len - i) + 1))) == NULL)
     return (-1);
   y = 0;
   while (i < len)
   {
-    if ((info->clients[y] = strdup(av[i])) == NULL)
+    if ((info->clients[y++] = strdup(av[i++])) == NULL)
       return (-1);
-    i++;
-    y++;
   }
   info->clients[y] = NULL;
   if ((check_twice(info, 1, 3)) == 0)

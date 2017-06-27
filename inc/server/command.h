@@ -10,7 +10,6 @@
 
 #ifndef		_COMMAND__H_
 # define	_COMMAND__H_
-# define	CTRL_F "\r\n"
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -23,13 +22,13 @@ typedef struct	s_command
 {
   char		*cmd_name;
   cmd_func	fn;
-
+  t_client_type	type;
 }		t_command;
 
 /**
  * Initialisation command list
  */
-t_command	*create_command_node(const char *, cmd_func);
+t_command	*create_command_node(const char *, cmd_func, t_client_type type);
 t_list		*init_cmd_callback(void);
 bool		execute_command(t_server *, t_client *);
 void		delete_command(void *);
@@ -38,8 +37,11 @@ void		delete_command(void *);
  * Commands functions
  */
 void	command_graphic(t_server *, t_client *);
+bool	command_ia(t_server *server, t_client *client, char *);
+
 void	command_msz(t_server *, t_client *);
 void	command_bct(t_server *, t_client *);
 void	command_mct(t_server *, t_client *);
+void	command_tna(t_server *, t_client *);
 
 #endif		/* !_COMMAND__H_! */

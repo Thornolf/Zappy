@@ -13,7 +13,8 @@
 
 # include "server/list.h"
 # include "server/stuff.h"
-# include	<unistd.h>
+# include "server/team.h"
+# include <unistd.h>
 # include <stdio.h>
 # include <time.h>
 
@@ -35,11 +36,11 @@ typedef struct	s_player
   int		lv;
   t_stuff	*stuff;
   t_direction	direction;
+  t_team	*team;
 }		t_player;
 
 t_player	*create_player(int y, int x);
 void		add_player(t_list *head, int y, int x);
-void		print_players(t_list *head);
 t_list		*init_players_list(int y, int x);
 int		my_rand(int min, int max);
 

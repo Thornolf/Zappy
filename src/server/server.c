@@ -19,18 +19,18 @@ void	server_read(void *_server)
 {
   t_server	*server;
   t_client	*client;
-  t_list	*clientnode;
-  int x;
-  int y;
+  t_list	*client_node;
+  int		x;
+  int		y;
 
   server = _server;
   client = init_client(server);
-  if (!(clientnode = create_node(client, server->clients)))
+  if (!(client_node = create_node(client, server->clients)))
   {
     fprintf(stderr, "ERROR: A client try to connect but something went wrong...\n");
     return;
   }
-  server->clients = clientnode;
+  server->clients = client_node;
   x = my_rand(0, server->map->width - 1);
   y = my_rand(0, server->map->height - 1);
   if (server->map->data[y][x].player_list == NULL)
@@ -57,6 +57,8 @@ bool	init_zappy_server(t_info *info)
   fill_up_map_randomly(s_conf.map);
   listen_socket(s_conf.fd);
   s_conf.clients = NULL;
+  if (!(s_conf.teams = init_team_list(info)))
+    return (NULL);
   if (!(s_conf.cmds = init_cmd_callback()))
     return (false);
   s_conf.server_read = server_read;

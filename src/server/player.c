@@ -33,32 +33,11 @@ t_player	*create_player(int y, int x)
   player->lv = 1;
   player->x = x;
   player->y = y;
+  player->team = NULL;
   player->stuff = init_stuff();
   player->direction = (t_direction)my_rand(DIRECTION_MIN, DIRECTION_MAX);
   printf("Player %d en [%d][%d], direction %d\n", player->id, y, x, player->direction);
   return (player);
-}
-
-void		print_players(t_list *head)
-{
-  t_list	*tmp;
-  t_player	*player;
-
-  tmp = head;
-  while (tmp)
-  {
-    player = tmp->data;
-    printf("Joueur %d, se dirige vers ", player->id);
-    if (player->direction == LEFT)
-      printf("la GAUCHE\n");
-    else if (player->direction == RIGHT)
-      printf("la DROITE\n");
-    else if (player->direction == BOTTOM)
-      printf("le BAS\n");
-    else if (player->direction == TOP)
-      printf("le HAUT\n");
-    tmp = tmp->next;
-  }
 }
 
 t_list		*init_players_list(int y, int x)

@@ -111,30 +111,314 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ia
+# Target rules for targets named PSU_2016_zappy
 
 # Build rule for target.
-ia: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ia
-.PHONY : ia
+PSU_2016_zappy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PSU_2016_zappy
+.PHONY : PSU_2016_zappy
 
 # fast build rule for target.
-ia/fast:
-	$(MAKE) -f CMakeFiles/ia.dir/build.make CMakeFiles/ia.dir/build
-.PHONY : ia/fast
+PSU_2016_zappy/fast:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/build
+.PHONY : PSU_2016_zappy/fast
 
-#=============================================================================
-# Target rules for targets named server
+src/ai/EventHandler.o: src/ai/EventHandler.cpp.o
 
-# Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 server
-.PHONY : server
+.PHONY : src/ai/EventHandler.o
 
-# fast build rule for target.
-server/fast:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-.PHONY : server/fast
+# target to build an object file
+src/ai/EventHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/EventHandler.cpp.o
+.PHONY : src/ai/EventHandler.cpp.o
+
+src/ai/EventHandler.i: src/ai/EventHandler.cpp.i
+
+.PHONY : src/ai/EventHandler.i
+
+# target to preprocess a source file
+src/ai/EventHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/EventHandler.cpp.i
+.PHONY : src/ai/EventHandler.cpp.i
+
+src/ai/EventHandler.s: src/ai/EventHandler.cpp.s
+
+.PHONY : src/ai/EventHandler.s
+
+# target to generate assembly for a file
+src/ai/EventHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/EventHandler.cpp.s
+.PHONY : src/ai/EventHandler.cpp.s
+
+src/ai/Socket.o: src/ai/Socket.cpp.o
+
+.PHONY : src/ai/Socket.o
+
+# target to build an object file
+src/ai/Socket.cpp.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/Socket.cpp.o
+.PHONY : src/ai/Socket.cpp.o
+
+src/ai/Socket.i: src/ai/Socket.cpp.i
+
+.PHONY : src/ai/Socket.i
+
+# target to preprocess a source file
+src/ai/Socket.cpp.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/Socket.cpp.i
+.PHONY : src/ai/Socket.cpp.i
+
+src/ai/Socket.s: src/ai/Socket.cpp.s
+
+.PHONY : src/ai/Socket.s
+
+# target to generate assembly for a file
+src/ai/Socket.cpp.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/Socket.cpp.s
+.PHONY : src/ai/Socket.cpp.s
+
+src/ai/ZappException.o: src/ai/ZappException.cpp.o
+
+.PHONY : src/ai/ZappException.o
+
+# target to build an object file
+src/ai/ZappException.cpp.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/ZappException.cpp.o
+.PHONY : src/ai/ZappException.cpp.o
+
+src/ai/ZappException.i: src/ai/ZappException.cpp.i
+
+.PHONY : src/ai/ZappException.i
+
+# target to preprocess a source file
+src/ai/ZappException.cpp.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/ZappException.cpp.i
+.PHONY : src/ai/ZappException.cpp.i
+
+src/ai/ZappException.s: src/ai/ZappException.cpp.s
+
+.PHONY : src/ai/ZappException.s
+
+# target to generate assembly for a file
+src/ai/ZappException.cpp.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/ZappException.cpp.s
+.PHONY : src/ai/ZappException.cpp.s
+
+src/ai/main.o: src/ai/main.cpp.o
+
+.PHONY : src/ai/main.o
+
+# target to build an object file
+src/ai/main.cpp.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/main.cpp.o
+.PHONY : src/ai/main.cpp.o
+
+src/ai/main.i: src/ai/main.cpp.i
+
+.PHONY : src/ai/main.i
+
+# target to preprocess a source file
+src/ai/main.cpp.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/main.cpp.i
+.PHONY : src/ai/main.cpp.i
+
+src/ai/main.s: src/ai/main.cpp.s
+
+.PHONY : src/ai/main.s
+
+# target to generate assembly for a file
+src/ai/main.cpp.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/main.cpp.s
+.PHONY : src/ai/main.cpp.s
+
+src/ai/zappy.o: src/ai/zappy.cpp.o
+
+.PHONY : src/ai/zappy.o
+
+# target to build an object file
+src/ai/zappy.cpp.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/zappy.cpp.o
+.PHONY : src/ai/zappy.cpp.o
+
+src/ai/zappy.i: src/ai/zappy.cpp.i
+
+.PHONY : src/ai/zappy.i
+
+# target to preprocess a source file
+src/ai/zappy.cpp.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/zappy.cpp.i
+.PHONY : src/ai/zappy.cpp.i
+
+src/ai/zappy.s: src/ai/zappy.cpp.s
+
+.PHONY : src/ai/zappy.s
+
+# target to generate assembly for a file
+src/ai/zappy.cpp.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/ai/zappy.cpp.s
+.PHONY : src/ai/zappy.cpp.s
+
+src/server/client.o: src/server/client.c.o
+
+.PHONY : src/server/client.o
+
+# target to build an object file
+src/server/client.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/client.c.o
+.PHONY : src/server/client.c.o
+
+src/server/client.i: src/server/client.c.i
+
+.PHONY : src/server/client.i
+
+# target to preprocess a source file
+src/server/client.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/client.c.i
+.PHONY : src/server/client.c.i
+
+src/server/client.s: src/server/client.c.s
+
+.PHONY : src/server/client.s
+
+# target to generate assembly for a file
+src/server/client.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/client.c.s
+.PHONY : src/server/client.c.s
+
+src/server/command.o: src/server/command.c.o
+
+.PHONY : src/server/command.o
+
+# target to build an object file
+src/server/command.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command.c.o
+.PHONY : src/server/command.c.o
+
+src/server/command.i: src/server/command.c.i
+
+.PHONY : src/server/command.i
+
+# target to preprocess a source file
+src/server/command.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command.c.i
+.PHONY : src/server/command.c.i
+
+src/server/command.s: src/server/command.c.s
+
+.PHONY : src/server/command.s
+
+# target to generate assembly for a file
+src/server/command.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command.c.s
+.PHONY : src/server/command.c.s
+
+src/server/command_client.o: src/server/command_client.c.o
+
+.PHONY : src/server/command_client.o
+
+# target to build an object file
+src/server/command_client.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_client.c.o
+.PHONY : src/server/command_client.c.o
+
+src/server/command_client.i: src/server/command_client.c.i
+
+.PHONY : src/server/command_client.i
+
+# target to preprocess a source file
+src/server/command_client.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_client.c.i
+.PHONY : src/server/command_client.c.i
+
+src/server/command_client.s: src/server/command_client.c.s
+
+.PHONY : src/server/command_client.s
+
+# target to generate assembly for a file
+src/server/command_client.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_client.c.s
+.PHONY : src/server/command_client.c.s
+
+src/server/command_map.o: src/server/command_map.c.o
+
+.PHONY : src/server/command_map.o
+
+# target to build an object file
+src/server/command_map.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_map.c.o
+.PHONY : src/server/command_map.c.o
+
+src/server/command_map.i: src/server/command_map.c.i
+
+.PHONY : src/server/command_map.i
+
+# target to preprocess a source file
+src/server/command_map.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_map.c.i
+.PHONY : src/server/command_map.c.i
+
+src/server/command_map.s: src/server/command_map.c.s
+
+.PHONY : src/server/command_map.s
+
+# target to generate assembly for a file
+src/server/command_map.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_map.c.s
+.PHONY : src/server/command_map.c.s
+
+src/server/command_team.o: src/server/command_team.c.o
+
+.PHONY : src/server/command_team.o
+
+# target to build an object file
+src/server/command_team.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_team.c.o
+.PHONY : src/server/command_team.c.o
+
+src/server/command_team.i: src/server/command_team.c.i
+
+.PHONY : src/server/command_team.i
+
+# target to preprocess a source file
+src/server/command_team.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_team.c.i
+.PHONY : src/server/command_team.c.i
+
+src/server/command_team.s: src/server/command_team.c.s
+
+.PHONY : src/server/command_team.s
+
+# target to generate assembly for a file
+src/server/command_team.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/command_team.c.s
+.PHONY : src/server/command_team.c.s
+
+src/server/handle_parsing.o: src/server/handle_parsing.c.o
+
+.PHONY : src/server/handle_parsing.o
+
+# target to build an object file
+src/server/handle_parsing.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/handle_parsing.c.o
+.PHONY : src/server/handle_parsing.c.o
+
+src/server/handle_parsing.i: src/server/handle_parsing.c.i
+
+.PHONY : src/server/handle_parsing.i
+
+# target to preprocess a source file
+src/server/handle_parsing.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/handle_parsing.c.i
+.PHONY : src/server/handle_parsing.c.i
+
+src/server/handle_parsing.s: src/server/handle_parsing.c.s
+
+.PHONY : src/server/handle_parsing.s
+
+# target to generate assembly for a file
+src/server/handle_parsing.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/handle_parsing.c.s
+.PHONY : src/server/handle_parsing.c.s
 
 src/server/lib/list.o: src/server/lib/list.c.o
 
@@ -142,7 +426,7 @@ src/server/lib/list.o: src/server/lib/list.c.o
 
 # target to build an object file
 src/server/lib/list.c.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/lib/list.c.o
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/list.c.o
 .PHONY : src/server/lib/list.c.o
 
 src/server/lib/list.i: src/server/lib/list.c.i
@@ -151,7 +435,7 @@ src/server/lib/list.i: src/server/lib/list.c.i
 
 # target to preprocess a source file
 src/server/lib/list.c.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/lib/list.c.i
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/list.c.i
 .PHONY : src/server/lib/list.c.i
 
 src/server/lib/list.s: src/server/lib/list.c.s
@@ -160,8 +444,116 @@ src/server/lib/list.s: src/server/lib/list.c.s
 
 # target to generate assembly for a file
 src/server/lib/list.c.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/lib/list.c.s
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/list.c.s
 .PHONY : src/server/lib/list.c.s
+
+src/server/lib/send.o: src/server/lib/send.c.o
+
+.PHONY : src/server/lib/send.o
+
+# target to build an object file
+src/server/lib/send.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/send.c.o
+.PHONY : src/server/lib/send.c.o
+
+src/server/lib/send.i: src/server/lib/send.c.i
+
+.PHONY : src/server/lib/send.i
+
+# target to preprocess a source file
+src/server/lib/send.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/send.c.i
+.PHONY : src/server/lib/send.c.i
+
+src/server/lib/send.s: src/server/lib/send.c.s
+
+.PHONY : src/server/lib/send.s
+
+# target to generate assembly for a file
+src/server/lib/send.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/send.c.s
+.PHONY : src/server/lib/send.c.s
+
+src/server/lib/string.o: src/server/lib/string.c.o
+
+.PHONY : src/server/lib/string.o
+
+# target to build an object file
+src/server/lib/string.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/string.c.o
+.PHONY : src/server/lib/string.c.o
+
+src/server/lib/string.i: src/server/lib/string.c.i
+
+.PHONY : src/server/lib/string.i
+
+# target to preprocess a source file
+src/server/lib/string.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/string.c.i
+.PHONY : src/server/lib/string.c.i
+
+src/server/lib/string.s: src/server/lib/string.c.s
+
+.PHONY : src/server/lib/string.s
+
+# target to generate assembly for a file
+src/server/lib/string.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/lib/string.c.s
+.PHONY : src/server/lib/string.c.s
+
+src/server/look.o: src/server/look.c.o
+
+.PHONY : src/server/look.o
+
+# target to build an object file
+src/server/look.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/look.c.o
+.PHONY : src/server/look.c.o
+
+src/server/look.i: src/server/look.c.i
+
+.PHONY : src/server/look.i
+
+# target to preprocess a source file
+src/server/look.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/look.c.i
+.PHONY : src/server/look.c.i
+
+src/server/look.s: src/server/look.c.s
+
+.PHONY : src/server/look.s
+
+# target to generate assembly for a file
+src/server/look.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/look.c.s
+.PHONY : src/server/look.c.s
+
+src/server/look_utils.o: src/server/look_utils.c.o
+
+.PHONY : src/server/look_utils.o
+
+# target to build an object file
+src/server/look_utils.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/look_utils.c.o
+.PHONY : src/server/look_utils.c.o
+
+src/server/look_utils.i: src/server/look_utils.c.i
+
+.PHONY : src/server/look_utils.i
+
+# target to preprocess a source file
+src/server/look_utils.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/look_utils.c.i
+.PHONY : src/server/look_utils.c.i
+
+src/server/look_utils.s: src/server/look_utils.c.s
+
+.PHONY : src/server/look_utils.s
+
+# target to generate assembly for a file
+src/server/look_utils.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/look_utils.c.s
+.PHONY : src/server/look_utils.c.s
 
 src/server/main.o: src/server/main.c.o
 
@@ -169,7 +561,7 @@ src/server/main.o: src/server/main.c.o
 
 # target to build an object file
 src/server/main.c.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/main.c.o
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/main.c.o
 .PHONY : src/server/main.c.o
 
 src/server/main.i: src/server/main.c.i
@@ -178,7 +570,7 @@ src/server/main.i: src/server/main.c.i
 
 # target to preprocess a source file
 src/server/main.c.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/main.c.i
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/main.c.i
 .PHONY : src/server/main.c.i
 
 src/server/main.s: src/server/main.c.s
@@ -187,7 +579,7 @@ src/server/main.s: src/server/main.c.s
 
 # target to generate assembly for a file
 src/server/main.c.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/main.c.s
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/main.c.s
 .PHONY : src/server/main.c.s
 
 src/server/map.o: src/server/map.c.o
@@ -196,7 +588,7 @@ src/server/map.o: src/server/map.c.o
 
 # target to build an object file
 src/server/map.c.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/map.c.o
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/map.c.o
 .PHONY : src/server/map.c.o
 
 src/server/map.i: src/server/map.c.i
@@ -205,7 +597,7 @@ src/server/map.i: src/server/map.c.i
 
 # target to preprocess a source file
 src/server/map.c.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/map.c.i
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/map.c.i
 .PHONY : src/server/map.c.i
 
 src/server/map.s: src/server/map.c.s
@@ -214,7 +606,7 @@ src/server/map.s: src/server/map.c.s
 
 # target to generate assembly for a file
 src/server/map.c.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/map.c.s
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/map.c.s
 .PHONY : src/server/map.c.s
 
 src/server/player.o: src/server/player.c.o
@@ -223,7 +615,7 @@ src/server/player.o: src/server/player.c.o
 
 # target to build an object file
 src/server/player.c.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/player.c.o
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/player.c.o
 .PHONY : src/server/player.c.o
 
 src/server/player.i: src/server/player.c.i
@@ -232,7 +624,7 @@ src/server/player.i: src/server/player.c.i
 
 # target to preprocess a source file
 src/server/player.c.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/player.c.i
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/player.c.i
 .PHONY : src/server/player.c.i
 
 src/server/player.s: src/server/player.c.s
@@ -241,8 +633,116 @@ src/server/player.s: src/server/player.c.s
 
 # target to generate assembly for a file
 src/server/player.c.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/player.c.s
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/player.c.s
 .PHONY : src/server/player.c.s
+
+src/server/print_vision_a.o: src/server/print_vision_a.c.o
+
+.PHONY : src/server/print_vision_a.o
+
+# target to build an object file
+src/server/print_vision_a.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/print_vision_a.c.o
+.PHONY : src/server/print_vision_a.c.o
+
+src/server/print_vision_a.i: src/server/print_vision_a.c.i
+
+.PHONY : src/server/print_vision_a.i
+
+# target to preprocess a source file
+src/server/print_vision_a.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/print_vision_a.c.i
+.PHONY : src/server/print_vision_a.c.i
+
+src/server/print_vision_a.s: src/server/print_vision_a.c.s
+
+.PHONY : src/server/print_vision_a.s
+
+# target to generate assembly for a file
+src/server/print_vision_a.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/print_vision_a.c.s
+.PHONY : src/server/print_vision_a.c.s
+
+src/server/print_vision_b.o: src/server/print_vision_b.c.o
+
+.PHONY : src/server/print_vision_b.o
+
+# target to build an object file
+src/server/print_vision_b.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/print_vision_b.c.o
+.PHONY : src/server/print_vision_b.c.o
+
+src/server/print_vision_b.i: src/server/print_vision_b.c.i
+
+.PHONY : src/server/print_vision_b.i
+
+# target to preprocess a source file
+src/server/print_vision_b.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/print_vision_b.c.i
+.PHONY : src/server/print_vision_b.c.i
+
+src/server/print_vision_b.s: src/server/print_vision_b.c.s
+
+.PHONY : src/server/print_vision_b.s
+
+# target to generate assembly for a file
+src/server/print_vision_b.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/print_vision_b.c.s
+.PHONY : src/server/print_vision_b.c.s
+
+src/server/server.o: src/server/server.c.o
+
+.PHONY : src/server/server.o
+
+# target to build an object file
+src/server/server.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/server.c.o
+.PHONY : src/server/server.c.o
+
+src/server/server.i: src/server/server.c.i
+
+.PHONY : src/server/server.i
+
+# target to preprocess a source file
+src/server/server.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/server.c.i
+.PHONY : src/server/server.c.i
+
+src/server/server.s: src/server/server.c.s
+
+.PHONY : src/server/server.s
+
+# target to generate assembly for a file
+src/server/server.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/server.c.s
+.PHONY : src/server/server.c.s
+
+src/server/socket.o: src/server/socket.c.o
+
+.PHONY : src/server/socket.o
+
+# target to build an object file
+src/server/socket.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/socket.c.o
+.PHONY : src/server/socket.c.o
+
+src/server/socket.i: src/server/socket.c.i
+
+.PHONY : src/server/socket.i
+
+# target to preprocess a source file
+src/server/socket.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/socket.c.i
+.PHONY : src/server/socket.c.i
+
+src/server/socket.s: src/server/socket.c.s
+
+.PHONY : src/server/socket.s
+
+# target to generate assembly for a file
+src/server/socket.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/socket.c.s
+.PHONY : src/server/socket.c.s
 
 src/server/stuff.o: src/server/stuff.c.o
 
@@ -250,7 +750,7 @@ src/server/stuff.o: src/server/stuff.c.o
 
 # target to build an object file
 src/server/stuff.c.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/stuff.c.o
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/stuff.c.o
 .PHONY : src/server/stuff.c.o
 
 src/server/stuff.i: src/server/stuff.c.i
@@ -259,7 +759,7 @@ src/server/stuff.i: src/server/stuff.c.i
 
 # target to preprocess a source file
 src/server/stuff.c.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/stuff.c.i
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/stuff.c.i
 .PHONY : src/server/stuff.c.i
 
 src/server/stuff.s: src/server/stuff.c.s
@@ -268,8 +768,35 @@ src/server/stuff.s: src/server/stuff.c.s
 
 # target to generate assembly for a file
 src/server/stuff.c.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/stuff.c.s
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/stuff.c.s
 .PHONY : src/server/stuff.c.s
+
+src/server/utils_parsing.o: src/server/utils_parsing.c.o
+
+.PHONY : src/server/utils_parsing.o
+
+# target to build an object file
+src/server/utils_parsing.c.o:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/utils_parsing.c.o
+.PHONY : src/server/utils_parsing.c.o
+
+src/server/utils_parsing.i: src/server/utils_parsing.c.i
+
+.PHONY : src/server/utils_parsing.i
+
+# target to preprocess a source file
+src/server/utils_parsing.c.i:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/utils_parsing.c.i
+.PHONY : src/server/utils_parsing.c.i
+
+src/server/utils_parsing.s: src/server/utils_parsing.c.s
+
+.PHONY : src/server/utils_parsing.s
+
+# target to generate assembly for a file
+src/server/utils_parsing.c.s:
+	$(MAKE) -f CMakeFiles/PSU_2016_zappy.dir/build.make CMakeFiles/PSU_2016_zappy.dir/src/server/utils_parsing.c.s
+.PHONY : src/server/utils_parsing.c.s
 
 # Help Target
 help:
@@ -279,11 +806,55 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... ia"
-	@echo "... server"
+	@echo "... PSU_2016_zappy"
+	@echo "... src/ai/EventHandler.o"
+	@echo "... src/ai/EventHandler.i"
+	@echo "... src/ai/EventHandler.s"
+	@echo "... src/ai/Socket.o"
+	@echo "... src/ai/Socket.i"
+	@echo "... src/ai/Socket.s"
+	@echo "... src/ai/ZappException.o"
+	@echo "... src/ai/ZappException.i"
+	@echo "... src/ai/ZappException.s"
+	@echo "... src/ai/main.o"
+	@echo "... src/ai/main.i"
+	@echo "... src/ai/main.s"
+	@echo "... src/ai/zappy.o"
+	@echo "... src/ai/zappy.i"
+	@echo "... src/ai/zappy.s"
+	@echo "... src/server/client.o"
+	@echo "... src/server/client.i"
+	@echo "... src/server/client.s"
+	@echo "... src/server/command.o"
+	@echo "... src/server/command.i"
+	@echo "... src/server/command.s"
+	@echo "... src/server/command_client.o"
+	@echo "... src/server/command_client.i"
+	@echo "... src/server/command_client.s"
+	@echo "... src/server/command_map.o"
+	@echo "... src/server/command_map.i"
+	@echo "... src/server/command_map.s"
+	@echo "... src/server/command_team.o"
+	@echo "... src/server/command_team.i"
+	@echo "... src/server/command_team.s"
+	@echo "... src/server/handle_parsing.o"
+	@echo "... src/server/handle_parsing.i"
+	@echo "... src/server/handle_parsing.s"
 	@echo "... src/server/lib/list.o"
 	@echo "... src/server/lib/list.i"
 	@echo "... src/server/lib/list.s"
+	@echo "... src/server/lib/send.o"
+	@echo "... src/server/lib/send.i"
+	@echo "... src/server/lib/send.s"
+	@echo "... src/server/lib/string.o"
+	@echo "... src/server/lib/string.i"
+	@echo "... src/server/lib/string.s"
+	@echo "... src/server/look.o"
+	@echo "... src/server/look.i"
+	@echo "... src/server/look.s"
+	@echo "... src/server/look_utils.o"
+	@echo "... src/server/look_utils.i"
+	@echo "... src/server/look_utils.s"
 	@echo "... src/server/main.o"
 	@echo "... src/server/main.i"
 	@echo "... src/server/main.s"
@@ -293,9 +864,24 @@ help:
 	@echo "... src/server/player.o"
 	@echo "... src/server/player.i"
 	@echo "... src/server/player.s"
+	@echo "... src/server/print_vision_a.o"
+	@echo "... src/server/print_vision_a.i"
+	@echo "... src/server/print_vision_a.s"
+	@echo "... src/server/print_vision_b.o"
+	@echo "... src/server/print_vision_b.i"
+	@echo "... src/server/print_vision_b.s"
+	@echo "... src/server/server.o"
+	@echo "... src/server/server.i"
+	@echo "... src/server/server.s"
+	@echo "... src/server/socket.o"
+	@echo "... src/server/socket.i"
+	@echo "... src/server/socket.s"
 	@echo "... src/server/stuff.o"
 	@echo "... src/server/stuff.i"
 	@echo "... src/server/stuff.s"
+	@echo "... src/server/utils_parsing.o"
+	@echo "... src/server/utils_parsing.i"
+	@echo "... src/server/utils_parsing.s"
 .PHONY : help
 
 
