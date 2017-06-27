@@ -5,11 +5,10 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Sat Jun 24 12:52:44 2017 Pierre
+** Last update Tue Jun 27 15:11:55 2017 Pierre
 */
 
-#include "server/server.h"
-#include "server/look.h"
+#include "server/command.h"
 
 t_vision *look_top(t_vision *vision, t_map *map, t_player *player)
 {
@@ -135,19 +134,26 @@ void      print_vision(t_vision *head)
   }
 }
 
-void	look(t_list *list_player, t_map *map, t_player *player)
+void	command_look(t_server *server, t_client *client)
 {
   t_vision *vision;
+  t_player *player;
 
   vision = NULL;
+  player = find_player(server->players, client->fd);
+  if (player == NULL)
+  {
+    printf("error : player not found\n");
+    return ;
+  }
   if (player->direction == TOP)
-    vision = look_top(vision, map, player);
+    vision = look_top(vision, server->map, player);
   else if (player->direction == BOTTOM)
-    vision = look_bottom(vision, map, player);
+    vision = look_bottom(vision, server->map, player);
   else if (player->direction == RIGHT)
-    vision = look_right(vision, map, player);
+    vision = look_right(vision, server->map, player);
   else if (player->direction == LEFT)
-    vision = look_left(vision, map, player);
+    vision = look_left(vision, server->map, player);
   print_vision(vision);
-  print_objects(list_player, vision);
+  print_objects(server->players, vision);
 }

@@ -41,13 +41,13 @@ typedef struct	s_player
   t_team	*team;
 }		t_player;
 
-t_player  *find_player(t_list *list, int fd);
 t_player	*create_player(int fd, int y, int x);
 void		add_player(t_list *head, int fd, int y, int x);
 void		print_players(t_list *head);
 t_list		*init_players_list(int fd, int y, int x);
 bool		assign_player_to_team(t_server *server, t_player *player, char *team_name);
 int		my_rand(int min, int max);
+t_player	*get_player(t_list *, int);
 int		check_x(int, int);
 int		check_y(int, int);
 
