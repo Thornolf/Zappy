@@ -25,26 +25,27 @@ void print_thystame(void)
   printf("thystame");
 }
 
-void init_print_cmds()
+void init_print_cmds(void (*print_stuff_cmds[7])(void))
 {
-  print_stuff_cmds[0] = print_food;
-  print_stuff_cmds[1] = print_linemate;
-  print_stuff_cmds[2] = print_deraumere;
-  print_stuff_cmds[3] = print_sibur;
-  print_stuff_cmds[4] = print_mendiane;
-  print_stuff_cmds[5] = print_phiras;
-  print_stuff_cmds[6] = print_thystame;
+  print_stuff_cmds[FOOD]	= print_food;
+  print_stuff_cmds[LINEMATE]	= print_linemate;
+  print_stuff_cmds[DERAUMERE]	= print_deraumere;
+  print_stuff_cmds[SIBUR]	= print_sibur;
+  print_stuff_cmds[MENDIANE]	= print_mendiane;
+  print_stuff_cmds[PHIRAS]	= print_phiras;
+  print_stuff_cmds[THYSTAME]	= print_thystame;
 }
 
 void print_objects(t_map *map, t_vision *vision)
 {
-  t_vision *tmp;
-  t_stuff *cell;
-  t_list *players;
+  t_vision	*tmp;
+  t_list	*players;
+  int		index;
+  void (*print_stuff_cmds[7])(void);
 
-  init_print_cmds();
+  init_print_cmds(print_stuff_cmds);
   tmp = vision;
-  cell = NULL;
+  index = 0;
   printf("[player");
   while (tmp)
   {
@@ -54,12 +55,12 @@ void print_objects(t_map *map, t_vision *vision)
       printf(" player");
       players = players->next;
     }
-    cell = map->data[tmp->y][tmp->x].stuff_list;
-    while (cell)
+    index = 0;
+    while (index <= STUFF_MAX)
     {
       printf(" ");
-      (*print_stuff_cmds[cell->stuff])();
-      cell = cell->next;
+      (*print_stuff_cmds[index])();
+      index++;
     }
     if (tmp->next)
       printf(",");

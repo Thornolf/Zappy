@@ -21,17 +21,17 @@ t_list		*create_node(void *data, t_list *next)
   return (node);
 }
 
-void		remove_node(t_list *list, t_list *node, void(*fn_delete_node)(void *))
+void		remove_node(t_list **list, t_list *node, void(*fn_delete_node)(void *))
 {
   t_list	*prev;
   t_list	*cur;
 
   if (!list || !node)
     return;
-  prev = list;
+  prev = *list;
   if (prev == node)
   {
-    list = prev->next;
+    *list = prev->next;
     fn_delete_node(prev->data);
   }
   cur = prev->next;

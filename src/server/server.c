@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 18:43:04 2017 Pierre
+** Last update Sun Jun 25 15:39:01 2017 Pierre
 */
 
 #include "server/server.h"
@@ -30,15 +30,13 @@ void	server_read(void *_server)
     fprintf(stderr, "ERROR: A client try to connect but something went wrong...\n");
     return;
   }
-  send_socket(client->fd, "WELCOME\n");
-  command_msz(server, client);
   server->clients = clientnode;
   x = my_rand(0, server->map->width - 1);
   y = my_rand(0, server->map->height - 1);
   if (server->map->data[y][x].player_list == NULL)
-    server->map->data[y][x].player_list = init_players_list(y, x);
+    server->map->data[y][x].player_list = init_players_list(client->fd, y, x);
   else
-    add_player(server->map->data[y][x].player_list, y, x);
+    add_player(server->map->data[y][x].player_list, client->fd, y, x);
 }
 
 void	server_write(void *_server)
@@ -56,7 +54,6 @@ bool	init_zappy_server(t_info *info)
     return (false);
   if (!(s_conf.map = create_empty_map(info->width, info->height)))
     return (false);
-  init_elems_cmds(info);
   fill_up_map_randomly(s_conf.map);
   listen_socket(s_conf.fd);
   s_conf.clients = NULL;
@@ -98,13 +95,14 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
     go_on = (select(fd_max + 1, fd_read, fd_write, NULL, &tv) != 0);
     if (FD_ISSET(server->fd, fd_read))
       server->server_read(server);
-    cur_client_node= server->clients;
+    cur_client_node = server->clients;
     while (cur_client_node)
     {
       client = cur_client_node->data;
       if (FD_ISSET(client->fd, fd_read))
-	       client->fct_read(server, cur_client_node);
-      cur_client_node = cur_client_node->next;
+	cur_client_node = client->fct_read(server, cur_client_node);
+      else
+	cur_client_node = cur_client_node->next;
     }
   }
   return (true);
