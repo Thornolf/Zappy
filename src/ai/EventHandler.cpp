@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Tue Jun 27 14:42:01 2017 Thomas Fossaert
+** Last update Tue Jun 27 16:55:45 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -127,15 +127,16 @@ void EventHandler::launchScript()
 
   while (42)
     {
+      LookAround();
       if (_currentState == State::INCANTATION)
         {
-          Incantation();
+          //Incantation();
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
             {
               this->_level += 1;
               UpdateRequirement(this->_level);
-              Inventory();
               _currentState = State::NORMAL;
+              LookAround();
             }
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
@@ -163,7 +164,6 @@ void EventHandler::launchScript()
         else if (_currentState == State::NORMAL)
           {
             Inventory();
-            LookAround();
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
@@ -175,21 +175,16 @@ void EventHandler::launchScript()
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
             TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             TakeObject("food");
-            BroadcastText("HURRY UP");
+            //BroadcastText("HURRY UP");
+            //std::cout << "LAST SOCK MESSAGE" << _sock->getLastMsg() << '\n';
             if (isAbleToIncant() == true)
               _currentState = State::READYFORINC;
             Inventory();
           }
         std::cout << "LEVEL = " << _level << "\n";
         std::cout << "FOOD: " << _inventory["food"] << '\n';
-        std::cout << "Linemate: " << _inventory["linemate"] << '\n';
-        std::cout << "deraumere: " << _inventory["deraumere"] << '\n';
-        std::cout << "sibur: " << _inventory["sibur"] << '\n';
-        std::cout << "phiras: " << _inventory["phiras"] << '\n';
-
-        /*std::cout << _need["linemate"] << '\n';
-        std::cout << _need["deraumere"] << '\n';
-        std::cout << _need["sibur"] << '\n';*/
+        std::cout << "Player required : " << _need["player"] << '\n';
+        std::cout << "Player on tile : " << countPlayerOnTile() << '\n';
     }
 }
 
@@ -256,6 +251,7 @@ void EventHandler::TakeRequirement(const std::string &objName, int inv, int requ
 
 void EventHandler::parseTiles(const std::string & tiles)
 {
+  std::cout << "PASSIIIIIIIIIIIINNNNNNNNNNNNNNNNNN : " << tiles << '\n';
   std::string tmp = tiles;
   std::vector<std::string> tmpVec;
   int i = 0;
