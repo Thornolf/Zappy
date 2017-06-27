@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:16:37 2017 Pierre
-** Last update Thu Jun 22 14:49:00 2017 Pierre
+** Last update Tue Jun 27 15:17:51 2017 Pierre
 */
 
 #ifndef		_STUFF__H_
@@ -33,7 +33,6 @@ typedef struct	s_stuff
 }		t_stuff;
 
 void		add_quantity(t_stuff *, t_stuff_type);
-void		print_stuff(t_stuff *);
 t_stuff		*init_stuff(void);
 
 #endif		/* !_STUFF__H_! */

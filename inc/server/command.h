@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 14:28:42 2017 Pierre
+** Last update Tue Jun 27 15:18:57 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -16,6 +16,7 @@
 # include "server/client.h"
 # include "server/player.h"
 # include "server/server.h"
+# include "server/look.h"
 
 typedef void(*cmd_func)(t_server *, t_client *);
 
@@ -44,6 +45,11 @@ bool	connection_ia(t_server *server, t_client *client, char *);
 void command_turn_right(t_server *, t_client *);
 void command_turn_left(t_server *, t_client *);
 void command_move_player(t_server *, t_client *);
+
+void	command_look(t_server *server, t_client *client);
+void	print_objects(t_list *, t_vision *);
+
+void command_inventory(t_server *server, t_client *client);
 
 void	command_msz(t_server *, t_client *);
 void	command_bct(t_server *, t_client *);

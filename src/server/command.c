@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 14:17:32 2017 Pierre
+** Last update Tue Jun 27 15:21:38 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -52,12 +52,36 @@ t_list		*init_cmd_callback(void)
   if (!(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
-  /*father = son;
-  if (!(cmd = create_command_node("Forward", -1, &command_tna, GRAPHIC)))
+  father = son;
+  if (!(cmd = create_command_node("Forward", 7, &command_turn_left, AI)))
     return (NULL);
   if (!(son = create_node(cmd, NULL)))
     return (NULL);
-  father->next = son;*/
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("Right", 7, &command_turn_right, AI)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("Left", 7, &command_move_player, AI)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("Look", 7, &command_look, AI)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("Inventory", 1, &command_look, AI)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 
