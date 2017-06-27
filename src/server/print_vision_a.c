@@ -25,7 +25,7 @@ void print_thystame(void)
   printf("thystame");
 }
 
-void init_print_cmds(void (*print_stuff_cmds[7])(void))
+void	init_print_cmds(void (*print_stuff_cmds[7])(void))
 {
   print_stuff_cmds[FOOD]	= print_food;
   print_stuff_cmds[LINEMATE]	= print_linemate;
@@ -36,12 +36,12 @@ void init_print_cmds(void (*print_stuff_cmds[7])(void))
   print_stuff_cmds[THYSTAME]	= print_thystame;
 }
 
-void print_objects(t_map *map, t_vision *vision)
+void	print_objects(t_list *list_player, t_vision *vision)
 {
   t_vision	*tmp;
   t_list	*players;
   int		index;
-  void (*print_stuff_cmds[7])(void);
+  void		(*print_stuff_cmds[7])(void);
 
   init_print_cmds(print_stuff_cmds);
   tmp = vision;
@@ -49,7 +49,7 @@ void print_objects(t_map *map, t_vision *vision)
   printf("[player");
   while (tmp)
   {
-    players = map->data[tmp->y][tmp->x].player_list;
+    players = list_player;
     while (players)
     {
       printf(" player");

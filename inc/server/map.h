@@ -16,9 +16,7 @@
 
 typedef struct	s_plot
 {
-  t_list	*player_list;
   t_stuff	*stuff;
-  
 }		t_plot;
 
 typedef t_plot**	t_map_data;

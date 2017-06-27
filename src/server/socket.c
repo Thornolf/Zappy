@@ -25,12 +25,6 @@ int	open_socket(int port)
   return (s);
 }
 
-void	set_time_out(struct timeval *tv)
-{
-  tv->tv_usec = 0;
-  tv->tv_sec = 8;
-}
-
 bool	listen_socket(int socket)
 {
   if (listen(socket, MAX_NB_CONNECTION) == -1)

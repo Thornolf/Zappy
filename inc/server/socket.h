@@ -17,7 +17,6 @@
 
 int	open_socket(int);
 bool	listen_socket(int socket);
-void	set_time_out(struct timeval *);
 void	send_socket(int , char *);
 
 
