@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Tue Jun 27 12:32:43 2017 Thomas Fossaert
+** Last update Tue Jun 27 14:17:32 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
@@ -139,7 +139,6 @@ void EventHandler::launchScript()
             }
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
-
         }
         else if (_currentState == State::READYFORINC)
           {
@@ -169,8 +168,10 @@ void EventHandler::launchScript()
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
             TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             TakeObject("food");
+            BroadcastText("HURRY UP");
             if (isAbleToIncant() == true)
               _currentState = State::READYFORINC;
+            Inventory();
           }
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Linemate: " << _inventory["linemate"] << '\n';
@@ -325,9 +326,11 @@ void EventHandler::Inventory()
     parseInventory(_sock->getLastMsg());
 }
 
-void EventHandler::BroadcastText()
+void EventHandler::BroadcastText(const std::string & text)
 {
-  _sock->sendMsg("Broadcast\n");
+  (void)text;
+  std::cout << "I'm here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << '\n';
+  _sock->sendMsg(/*(text + "\n").c_str()*/"Broadcast YOOOOOOOOOOOOOOOOOOOOOOOOLOOOOOOOOOOOO\n");
   _sock->recvMsg();
 }
 

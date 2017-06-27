@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Tue Jun 27 12:02:01 2017 Thomas Fossaert
+** Last update Tue Jun 27 13:13:51 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -67,7 +67,7 @@ public:
     void TurnLeft();
     void LookAround();
     void Inventory();
-    void BroadcastText();
+    void BroadcastText(const std::string &);
     void Fork();
     void Eject();
     void TakeObject(const std::string &);
