@@ -13,7 +13,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "map.h"
+#include "server/map.h"
+#include "server/player.h"
 
 typedef struct	s_vision
 {
@@ -23,20 +24,21 @@ typedef struct	s_vision
   struct s_vision	*next;
 }		t_vision;
 
-void print_objects(t_map *map, t_vision *vision);
+void	look_function(t_map *, t_player *, int);
+void	print_objects(t_map *map, t_vision *vision);
 
-void print_food(void);
-void print_linemate(void);
-void print_deraumere(void);
-void print_sibur(void);
-void print_mendiane(void);
-void print_phiras(void);
-void print_thystame(void);
+void	print_food(void);
+void	print_linemate(void);
+void	print_deraumere(void);
+void	print_sibur(void);
+void	print_mendiane(void);
+void	print_phiras(void);
+void	print_thystame(void);
 
-t_vision   *init_vision(int y, int x);
-void      add_case_vision(t_vision *head, int y, int x);
-int check_x(int width, int x);
-int check_y(int height, int y);
+t_vision	*init_vision(int y, int x);
+void		add_case_vision(t_vision *head, int y, int x);
+int		check_x(int width, int x);
+int		check_y(int height, int y);
 
 typedef struct s_it
 {

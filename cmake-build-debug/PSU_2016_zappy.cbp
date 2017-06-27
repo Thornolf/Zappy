@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ia">
-				<Option output="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/ia" prefix_auto="0" extension_auto="0"/>
+			<Target title="PSU_2016_zappy">
+				<Option output="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/PSU_2016_zappy" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -54,14 +54,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 ia"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 PSU_2016_zappy"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ia/fast">
-				<Option output="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/ia" prefix_auto="0" extension_auto="0"/>
+			<Target title="PSU_2016_zappy/fast">
+				<Option output="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/PSU_2016_zappy" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -77,73 +77,138 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 ia/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="server">
-				<Option output="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1/x86_64-pc-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 server"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="server/fast">
-				<Option output="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1/x86_64-pc-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 server/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 PSU_2016_zappy/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/client.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/command.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/funcs.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/functions.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/list.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/look.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/map.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/player.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/server.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/socket.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/string.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/stuff.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/team.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/EventHandler.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/Socket.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/ZappException.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/EventHandler.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/Socket.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/ZappException.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/zappy.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/main.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/zappy.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/client.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_client.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_map.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_team.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/handle_parsing.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c">
-			<Option target="server"/>
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/send.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/string.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/look.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/look_utils.c">
+			<Option target="PSU_2016_zappy"/>
 		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c">
-			<Option target="server"/>
+			<Option target="PSU_2016_zappy"/>
 		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c">
-			<Option target="server"/>
+			<Option target="PSU_2016_zappy"/>
 		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c">
-			<Option target="server"/>
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/print_vision_a.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/print_vision_b.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/socket.c">
+			<Option target="PSU_2016_zappy"/>
 		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/stuff.c">
-			<Option target="server"/>
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/utils_parsing.c">
+			<Option target="PSU_2016_zappy"/>
 		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
