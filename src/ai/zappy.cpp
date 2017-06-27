@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:19:57 2017 Thomas Fossaert
-** Last update Fri Jun 23 14:37:55 2017 Thomas Fossaert
+** Last update Tue Jun 27 08:48:14 2017 Thomas Fossaert
 */
 
 #include "zappy.hpp"
@@ -53,13 +53,4 @@ void Zappy::init(void)
   _sock->recvMsg();
   _event = new EventHandler(_sock);
   _event->launchScript();
-  /*while (42)
-    {
-      _sock->sendMsg("Forward\n");
-      _sock->recvMsg();
-      _sock->sendMsg("Look\n");
-      _sock->recvMsg();
-      _sock->sendMsg("Take food\n");
-      _sock->recvMsg();
-    }*/
 }

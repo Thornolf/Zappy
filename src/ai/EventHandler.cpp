@@ -5,10 +5,11 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Mon Jun 26 16:49:28 2017 Thomas Fossaert
+** Last update Tue Jun 27 10:49:36 2017 Thomas Fossaert
 */
 
 #include "EventHandler.hpp"
+#include <ctime>
 
 EventHandler::EventHandler(Socket *sock)
 {
@@ -76,14 +77,14 @@ void EventHandler::UpdateRequirement(int newLvl)
         /*this->_need.insert( std::pair<std::string, int>("player", 2));
         this->_need.insert( std::pair<std::string, int>("deraumere", 1));
         this->_need.insert( std::pair<std::string, int>("sibur", 1));*/
-        _need["deraumere"] = 1;
-        _need["sibur"] = 1;
+      _need["deraumere"] = 1;
+      _need["sibur"] = 1;
     }
     else if (newLvl == 3)
     {
-        this->_need.insert( std::pair<std::string, int>("linemate", 2));
-        this->_need.insert( std::pair<std::string, int>("deraumere", 0));
-        this->_need.insert( std::pair<std::string, int>("phiras", 2));
+      _need["linemate"] = 2;
+      _need["deraumere"] = 0;
+      _need["phiras"] = 2;
     }
     else if (newLvl == 4)
     {
@@ -120,9 +121,9 @@ void EventHandler::UpdateRequirement(int newLvl)
 
 void EventHandler::launchScript()
 {
-  /*std::srand(std::time(0));
+  std::srand(std::time(0));
   int random_variable;
-*/
+
   while (42)
     {
       if (_sock->getLastMsg() == "Elevation underway\n")
@@ -132,6 +133,7 @@ void EventHandler::launchScript()
             {
               this->_level += 1;
               UpdateRequirement(this->_level);
+              Inventory();
             }
         }
       else
@@ -154,9 +156,9 @@ void EventHandler::launchScript()
           {
             LookAround();
             MoveUp();
-            /*random_variable = std::rand();
+            random_variable = std::rand();
             if (random_variable % 5 == 0)
-              TurnRight();*/
+              TurnRight();
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
@@ -166,9 +168,15 @@ void EventHandler::launchScript()
             TakeObject("food");
           }
         }
-        std::cout << _need["linemate"] << '\n';
+        std::cout << "FOOD: " << _inventory["food"] << '\n';
+        std::cout << "Linemate: " << _inventory["linemate"] << '\n';
+        std::cout << "deraumere: " << _inventory["deraumere"] << '\n';
+        std::cout << "sibur: " << _inventory["sibur"] << '\n';
+        std::cout << "phiras: " << _inventory["phiras"] << '\n';
+
+        /*std::cout << _need["linemate"] << '\n';
         std::cout << _need["deraumere"] << '\n';
-        std::cout << _need["sibur"] << '\n';
+        std::cout << _need["sibur"] << '\n';*/
     }
 }
 
@@ -177,32 +185,31 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string tmp = inventory;
   tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
   tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
-  tmp.erase(std::remove(tmp.begin(), tmp.end(), ','), tmp.end());
   tmp.erase(0, 1);
   tmp.erase(tmp.size() - 1);
+  std::vector<std::string> my_vec;
+  std::string delimiter = " ";
   size_t pos = 0;
   std::string 	token;
   std::string   nb;
-  std::string delimiter = " ";
 
-  std::cout << "INVENTOY " << tmp << '\n';
-  _inventory.erase(_inventory.begin(), _inventory.end());
-  if (tmp.find("dead") !=  std::string::npos)
-    return;
-  while ((pos = tmp.find(delimiter)) != std::string::npos)
+  my_vec = explode(tmp, ',');
+  for(std::vector<std::string>::iterator it = my_vec.begin(); it != my_vec.end(); ++it)
     {
-        token = tmp.substr(0, pos);
-        epur(token);
-        tmp.erase(0, pos + delimiter.length());
-        if ((pos = tmp.find(delimiter)) != std::string::npos)
+        epur(*it);
+        token = *it;
+        if ((pos = token.find(delimiter)) != std::string::npos)
         {
-            nb = tmp.substr(0, pos);
-            epur(nb);
+            token = tmp.substr(0, pos);
             tmp.erase(0, pos + delimiter.length());
+            if ((pos = tmp.find(delimiter)) != std::string::npos)
+            {
+                nb = tmp.substr(0, pos);
+                tmp.erase(0, pos + delimiter.length());
+            }
+            if (has_any_digits(nb) == true)
+              _inventory[token] = stoi(nb);
         }
-        // if (nb.find("dead") ==  std::string::npos)
-        //if (stoi(nb))
-        _inventory.insert( std::pair<std::string, int>(token, stoi(nb)));
     }
 }
 
@@ -307,7 +314,11 @@ void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  parseInventory(_sock->getLastMsg());
+  std::cout << "INVENTORY : " << _sock->getLastMsg() << '\n';
+  /*if (has_any_digits(_sock->getLastMsg()) == true &&
+      (_sock->getLastMsg() != "ko\n" ||
+      _sock->getLastMsg() != "ok\n"))*/
+    parseInventory(_sock->getLastMsg());
 }
 
 void EventHandler::BroadcastText()
@@ -380,4 +391,9 @@ std::vector<std::string> EventHandler::explode(const std::string& str, const cha
     if (!next.empty())
         result.push_back(next);
     return (result);
+}
+
+bool EventHandler::has_any_digits(const std::string& s)
+{
+    return std::any_of(s.begin(), s.end(), ::isdigit);
 }

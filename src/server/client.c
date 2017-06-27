@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 18:08:49 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 21 18:08:49 2017 Guillaume CAUCHOIS
+** Last update Sat Jun 24 15:44:52 2017 Pierre
 */
 
 #include "server/client.h"
@@ -38,7 +38,6 @@ void	*client_read(void *_server, void *_client_node)
   t_client	*client;
   t_list	*next;
 
-  (void)_server;
   server = _server;
   client_node = _client_node;
   client = client_node->data;

@@ -13,8 +13,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "map.h"
-#include "player.h"
+#include "server/map.h"
+#include "server/player.h"
 
 typedef struct	s_vision
 {
