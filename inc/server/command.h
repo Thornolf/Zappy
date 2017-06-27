@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
+** Last update Tue Jun 27 13:20:12 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -21,6 +21,7 @@ typedef void(*cmd_func)(t_server *, t_client *);
 typedef struct	s_command
 {
   char		*cmd_name;
+  int action_time;
   cmd_func	fn;
   t_client_type	type;
 }		t_command;
