@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 10:15:39 2017 Pierre
-** Last update Sat Jun 24 12:52:31 2017 Pierre
+** Last update Tue Jun 27 14:27:20 2017 Pierre
 */
 
 #ifndef LOOK_H_
@@ -24,8 +24,7 @@ typedef struct	s_vision
   struct s_vision	*next;
 }		t_vision;
 
-void	look_function(t_map *, t_player *, int);
-void	print_objects(t_map *map, t_vision *vision);
+void	print_objects(t_list *, t_vision *);
 
 void	print_food(void);
 void	print_linemate(void);
@@ -35,10 +34,10 @@ void	print_mendiane(void);
 void	print_phiras(void);
 void	print_thystame(void);
 
-t_vision	*init_vision(int y, int x);
-void		add_case_vision(t_vision *head, int y, int x);
-int		check_x(int width, int x);
-int		check_y(int height, int y);
+t_vision	*init_vision(int, int);
+void		add_case_vision(t_vision *, int, int);
+
+void		look(t_list *, t_map *, t_player *);
 
 typedef struct s_it
 {

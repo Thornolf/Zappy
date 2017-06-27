@@ -12,6 +12,7 @@
 # define	_TEAM__H_
 # include "server/info.h"
 # include "server/list.h"
+# include "server/server.h"
 
 typedef struct	s_team
 {
@@ -19,5 +20,7 @@ typedef struct	s_team
 }		t_team;
 
 t_list		*init_team_list(t_info *info);
+t_team		*get_team_by_name(t_list *, char *);
+int		nb_player_in_team(t_server *, char *);
 
 #endif		/* !_TEAM__H_! */
