@@ -32,11 +32,16 @@ void	command_msz(t_server *server, t_client *client)
   free(str);
 }
 
-void	command_bct_at_position(t_server *server, t_client *client, unsigned int x, unsigned int y)
+void		command_bct_at_position(t_server *server, t_client *client, unsigned int x, unsigned int y)
 {
-  char	*str;
+  char		*str;
   t_stuff_type	type = STUFF_MIN;
 
+  if (x >= server->map->width || y >= server->map->height)
+  {
+    send_socket(client->fd, "sbp\n");
+    return;
+  }
   if (!(str = malloc(sizeof(char) * 400)))
     return;
   snprintf(str, 400, "bct %d %d", x, y);

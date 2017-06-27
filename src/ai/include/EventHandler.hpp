@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Tue Jun 27 12:02:01 2017 Thomas Fossaert
+** Last update Tue Jun 27 14:43:22 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -67,7 +67,7 @@ public:
     void TurnLeft();
     void LookAround();
     void Inventory();
-    void BroadcastText();
+    void BroadcastText(const std::string &);
     void Fork();
     void Eject();
     void TakeObject(const std::string &);
@@ -76,6 +76,8 @@ public:
     void PutRock(const std::string &, int, int);
     void TakeRequirement(const std::string &, int, int);
     void UpdateRequirement(int);
+    int CaseRequirement(const std::string &, int);
+    void PutRequirementRock(const std::string &);
 
     void epur(std::string &s);
     std::vector<std::string> explode(const std::string&, const char&);

@@ -20,8 +20,6 @@ void	server_read(void *_server)
   t_server	*server;
   t_client	*client;
   t_list	*client_node;
-  int		x;
-  int		y;
 
   server = _server;
   client = init_client(server);
@@ -31,12 +29,6 @@ void	server_read(void *_server)
     return;
   }
   server->clients = client_node;
-  x = my_rand(0, server->map->width - 1);
-  y = my_rand(0, server->map->height - 1);
-  if (server->players == NULL)
-    server->players = init_players_list(client->fd, y, x);
-  else
-    add_player(server->players, client->fd, y, x);
 }
 
 void	server_write(void *_server)

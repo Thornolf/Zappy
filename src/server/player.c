@@ -23,22 +23,6 @@ int		my_rand(int min, int max)
   return (rand() % (max - min) + min);
 }
 
-t_player  *find_player(t_list *list, int fd)
-{
-  t_player *player;
-  t_list *tmp;
-
-  tmp = list;
-  while (tmp)
-  {
-    player = tmp->data;
-    if (player->fd == fd)
-      return (player);
-    tmp = tmp->next;
-  }
-  return (NULL);
-}
-
 t_player	*create_player(int fd, int y, int x)
 {
   t_player	*player;
@@ -84,6 +68,23 @@ void		add_player(t_list *head, int fd, int y, int x)
     return ;
   current->next->data = create_player(fd, y, x);
   current->next->next = NULL;
+}
+
+t_player	*get_player(t_list *player_list, int fd)
+{
+  t_list	*cur;
+  t_player	*player;
+
+  player = NULL;
+  cur = player_list;
+  while (cur)
+  {
+    player = cur->data;
+    if (player->fd == fd)
+      return (player);
+    cur = cur->next;
+  }
+  return (NULL);
 }
 
 bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
