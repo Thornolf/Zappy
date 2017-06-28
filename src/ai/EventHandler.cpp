@@ -128,53 +128,46 @@ void EventHandler::launchScript()
   while (42)
     {
       LookAround();
+      if (isAbleToIncant() == true)
+        _currentState = State::READYFORINC;
       if (_currentState == State::INCANTATION)
         {
-          //Incantation();
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
             {
               this->_level += 1;
               UpdateRequirement(this->_level);
               _currentState = State::NORMAL;
-              LookAround();
             }
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
         }
         else if (_currentState == State::READYFORINC)
           {
-            LookAround();
-            //TakeEverything();
+            TakeEverything();
             PutRequirementRock("linemate");
             PutRequirementRock("deraumere");
             PutRequirementRock("sibur");
             PutRequirementRock("mendiane");
             PutRequirementRock("phiras");
             PutRequirementRock("thystame");
+            Inventory();
             Incantation();
-            if (_sock->getLastMsg() != "ko\n")
-              _currentState = State::INCANTATION;
-            else
-            _currentState = State::NORMAL;
+            (_sock->getLastMsg() != "ko\n") ? _currentState = State::INCANTATION : _currentState = State::NORMAL;
           }
         else if (_currentState == State::NORMAL)
           {
-            Inventory();
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
               TurnRight();
+            TakeObject("food");
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
             TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
             TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
-            TakeObject("food");
             Inventory();
-            LookAround();
-            if (isAbleToIncant() == true)
-              _currentState = State::READYFORINC;
           }
         std::cout << "LEVEL = " << _level << "\n";
         std::cout << "FOOD: " << _inventory["food"] << '\n';
@@ -388,16 +381,16 @@ void EventHandler::TakeObject(const std::string & item)
 {
     _sock->sendMsg(("Take " + item + "\n").c_str());
     _sock->recvMsg();
-    if (_sock->getLastMsg() == "ok")
-      Inventory();
+    /*if (_sock->getLastMsg() == "ok")
+      Inventory();*/
 }
 
 void EventHandler::SetObject(const std::string & item)
 {
   _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
-  if (_sock->getLastMsg() == "ok")
-    Inventory();
+  /*if (_sock->getLastMsg() == "ok")
+    Inventory();*/
 }
 
 void EventHandler::Incantation()
