@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 18:08:49 2017 Guillaume CAUCHOIS
-** Last update Sat Jun 24 15:44:52 2017 Pierre
+** Last update Wed Jun 28 12:51:58 2017 Pierre
 */
 
 #include "server/client.h"
@@ -31,6 +31,22 @@ t_client	*init_client(t_server *server)
   return (client);
 }
 
+t_list *get_player_node(t_list *player_list, int fd)
+{
+  t_list	*cur;
+  t_player *player;
+
+  cur = player_list;
+  while (cur)
+  {
+    player = cur->data;
+    if (player->fd == fd)
+      return (cur);
+    cur = cur->next;
+  }
+  return (NULL);
+}
+
 void	*client_read(void *_server, void *_client_node)
 {
   t_server	*server;
@@ -48,6 +64,7 @@ void	*client_read(void *_server, void *_client_node)
   if (client->buffer[0] == 0)
   {
     remove_node(&server->clients, client_node, &delete_client);
+    remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
     return (next);
   }
   else

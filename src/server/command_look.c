@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Tue Jun 27 15:11:55 2017 Pierre
+** Last update Wed Jun 28 13:22:15 2017 Pierre
 */
 
 #include "server/command.h"
@@ -156,5 +156,5 @@ void	command_look(t_server *server, t_client *client)
   else if (player->direction == LEFT)
     vision = look_left(vision, server->map, player);
   print_vision(vision);
-  print_objects(server->players, vision);
+  print_objects(client->fd, server->players, vision);
 }

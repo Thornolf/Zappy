@@ -5,66 +5,66 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Tue Jun 27 14:58:50 2017 Pierre
+** Last update Wed Jun 28 13:24:04 2017 Pierre
 */
 
 #include "server/command.h"
 
-void print_mendiane(void)
+void print_mendiane(int fd)
 {
-  printf("mendiane");
+  send_socket(fd, "mendiane");
 }
 
-void print_phiras(void)
+void print_phiras(int fd)
 {
-  printf("phiras");
+  send_socket(fd, "phiras");
 }
 
-void print_thystame(void)
+void print_thystame(int fd)
 {
-  printf("thystame");
+  send_socket(fd, "thystame");
 }
 
-void	init_print_cmds(void (*print_stuff_cmds[7])(void))
+void	init_print_cmds(void (*print_stuff_cmds[7])(int fd))
 {
-  print_stuff_cmds[FOOD]	= print_food;
-  print_stuff_cmds[LINEMATE]	= print_linemate;
-  print_stuff_cmds[DERAUMERE]	= print_deraumere;
-  print_stuff_cmds[SIBUR]	= print_sibur;
-  print_stuff_cmds[MENDIANE]	= print_mendiane;
-  print_stuff_cmds[PHIRAS]	= print_phiras;
-  print_stuff_cmds[THYSTAME]	= print_thystame;
+  print_stuff_cmds[FOOD]	= &print_food;
+  print_stuff_cmds[LINEMATE]	= &print_linemate;
+  print_stuff_cmds[DERAUMERE]	= &print_deraumere;
+  print_stuff_cmds[SIBUR]	= &print_sibur;
+  print_stuff_cmds[MENDIANE]	= &print_mendiane;
+  print_stuff_cmds[PHIRAS]	= &print_phiras;
+  print_stuff_cmds[THYSTAME]	= &print_thystame;
 }
 
-void	print_objects(t_list *list_player, t_vision *vision)
+void	print_objects(int player_fd, t_list *list_player, t_vision *vision)
 {
   t_vision	*tmp;
   t_list	*players;
   int		index;
-  void		(*print_stuff_cmds[7])(void);
+  void		(*print_stuff_cmds[7])(int fd);
 
   init_print_cmds(print_stuff_cmds);
   tmp = vision;
   index = 0;
-  printf("[player");
+  send_socket(player_fd, "[player");
   while (tmp)
   {
     players = list_player;
     while (players)
     {
-      printf(" player");
+      send_socket(player_fd, " player");
       players = players->next;
     }
     index = 0;
     while (index <= STUFF_MAX)
     {
-      printf(" ");
-      (*print_stuff_cmds[index])();
+      send_socket(player_fd, " ");
+      (*print_stuff_cmds[index])(player_fd);
       index++;
     }
     if (tmp->next)
-      printf(",");
+      send_socket(player_fd, ",");
     tmp = tmp->next;
   }
-  printf("]\n");
+  send_socket(player_fd, "]\n");
 }
