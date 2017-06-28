@@ -48,6 +48,11 @@ t_list		*init_cmd_callback_graphic(void)
       !(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("ppo", -1, &command_ppo, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 

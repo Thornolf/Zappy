@@ -86,7 +86,7 @@ t_player	*get_player(t_list *player_list, int fd)
   return (NULL);
 }
 
-void	delete_player(void *_player)
+void		delete_player(void *_player)
 {
   t_player	*player;
 
@@ -102,4 +102,20 @@ bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
     return (false);
   player->team = team;
   return (true);
+}
+
+t_player	*get_player_by_id(t_list *list_player, int id)
+{
+  t_list	*cur;
+  t_player	*player;
+
+  cur = list_player;
+  while (cur)
+  {
+    player = cur->data;
+    if (player->id == id)
+      return (player);
+    cur = cur->next;
+  }
+  return (NULL);
 }

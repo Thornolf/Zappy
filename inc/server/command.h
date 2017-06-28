@@ -37,26 +37,30 @@ bool		execute_command(t_server *, t_client *);
 void		delete_command(void *);
 
 /**
- * Commands functions
+ * Commandes UNDEFINED
  */
 void	connection_graphic(t_server *, t_client *);
 bool	connection_ia(t_server *server, t_client *client, char *);
 void	command_pnw(t_server *, t_player *);
 
+/**
+ * Commandes IA
+ */
 void	command_turn_right(t_server *, t_client *);
 void	command_turn_left(t_server *, t_client *);
 void	command_move_player(t_server *, t_client *);
+void	command_look(t_server *, t_client *);
+void	print_objects(int, t_list *, t_vision *);
+void	command_inventory(t_server *, t_client *);
+void	command_broadcast(t_server *, t_client *);
 
-void	command_look(t_server *server, t_client *client);
-void	print_objects(int player_fd, t_list *list_player, t_vision *vision);
-
-void command_inventory(t_server *server, t_client *client);
-
-void command_broadcast(t_server *server, t_client *client);
-
+/**
+ * Commandes GRAPHIC
+ */
 void	command_msz(t_server *, t_client *);
 void	command_bct(t_server *, t_client *);
 void	command_mct(t_server *, t_client *);
 void	command_tna(t_server *, t_client *);
+void	command_ppo(t_server *, t_client *);
 
 #endif		/* !_COMMAND__H_! */
