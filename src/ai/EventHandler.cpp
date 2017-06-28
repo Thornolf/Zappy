@@ -272,6 +272,8 @@ void EventHandler::PutRequirementRock(const std::string &item)
     nb = CaseRequirement(item, 0);
     if (this->_need[item] > 0)
         nb_to_put = this->_need[item] - nb;
+    if (nb_to_put < 0)
+        nb_to_put = 0;
     std::cout << "NOMBRE DE " << item << " A POSER = " << nb_to_put << '\n';
     PutRock(item, this->_inventory[item], nb_to_put);
 }
