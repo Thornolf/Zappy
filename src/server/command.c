@@ -23,36 +23,42 @@ t_command	*create_command_node(const char *name, time_t action_time, cmd_func fu
   return (cmd);
 }
 
-t_list		*init_cmd_callback(void)
+t_list		*init_cmd_callback_graphic(void)
 {
-  t_list	*head;
-  t_list	*son;
-  t_list	*father;
   t_command	*cmd;
+  t_list	*head;
+  t_list	*father;
+  t_list	*son;
 
-  if (!(cmd = create_command_node("msz", -1, &command_msz, GRAPHIC)))
-    return (NULL);
-  if (!(head = create_node(cmd, NULL)))
+  if (!(cmd = create_command_node("msz", -1, &command_msz, GRAPHIC)) ||
+      !(head = create_node(cmd, NULL)))
     return (NULL);
   father = head;
-  if (!(cmd = create_command_node("bct", -1, &command_bct, GRAPHIC)))
-    return (NULL);
-  if (!(son = create_node(cmd, NULL)))
-    return (NULL);
-  father->next = son;
-  father = son;
-  if (!(cmd = create_command_node("mct", -1, &command_mct, GRAPHIC)))
-    return (NULL);
-  if (!(son = create_node(cmd, NULL)))
+  if (!(cmd = create_command_node("bct", -1, &command_bct, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
   father = son;
-  if (!(cmd = create_command_node("tna", -1, &command_tna, GRAPHIC)))
-    return (NULL);
-  if (!(son = create_node(cmd, NULL)))
+  if (!(cmd = create_command_node("mct", -1, &command_mct, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
   father = son;
+  if (!(cmd = create_command_node("tna", -1, &command_tna, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  return (head);
+}
+
+t_list		*init_cmd_callback_ai(t_list *head)
+{
+  t_list	*father;
+  t_list	*son;
+  t_command	*cmd;
+
+  if (!(father = get_last_node(head)))
+    return (NULL);
   if (!(cmd = create_command_node("Forward", 7, &command_turn_left, AI)))
     return (NULL);
   if (!(son = create_node(cmd, NULL)))
@@ -82,6 +88,17 @@ t_list		*init_cmd_callback(void)
   if (!(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
+  return (head);
+}
+
+t_list		*init_cmd_callback(void)
+{
+  t_list	*head;
+
+  if (!(head = init_cmd_callback_graphic()))
+    return (NULL);
+  if (!(head = init_cmd_callback_ai(head)))
+    return (NULL);
   return (head);
 }
 

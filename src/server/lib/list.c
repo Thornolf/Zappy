@@ -62,3 +62,15 @@ void		remove_list(t_list *list, void(*remove_node)(void *))
     cur = next;
   }
 }
+
+t_list		*get_last_node(t_list *head)
+{
+  t_list	*last;
+
+  if (head == NULL)
+    return (NULL);
+  last = head;
+  while (last->next)
+    last = last->next;
+  return (last);
+}

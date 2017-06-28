@@ -22,5 +22,6 @@ typedef struct	s_list
 t_list		*create_node(void *, t_list *);
 void		remove_node(t_list **, t_list *, void(*)(void *));
 void		remove_list(t_list *, void(*)(void *));
+t_list		*get_last_node(t_list *);
 
 #endif		/* !_STUFF__H_! */
