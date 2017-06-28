@@ -33,6 +33,7 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)command_inventory.c	\
 			$(SRC_SERVER_DIR)command_move_player.c	\
 			$(SRC_SERVER_DIR)command_player.c	\
+			$(SRC_SERVER_DIR)command_pin.c		\
 			$(SRC_SERVER_DIR)team.c			\
 			$(SRC_SERVER_DIR)communication.c	\
 			$(SRC_SERVER_DIR)lib/list.c		\

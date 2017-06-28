@@ -74,7 +74,6 @@ t_player	*get_player(t_list *player_list, int fd)
   t_list	*cur;
   t_player	*player;
 
-  player = NULL;
   cur = player_list;
   while (cur)
   {

@@ -58,6 +58,11 @@ t_list		*init_cmd_callback_graphic(void)
       !(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("pin", -1, &command_pin, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 
