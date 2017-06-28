@@ -5,12 +5,12 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 15:21:38 2017 Pierre
+** Last update Wed Jun 28 13:15:14 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
 
-t_command	*create_command_node(const char *name, int action_time, cmd_func fun, t_client_type type)
+t_command	*create_command_node(const char *name, time_t action_time, cmd_func fun, t_client_type type)
 {
   t_command	*cmd;
 
@@ -102,6 +102,17 @@ t_list		*init_cmd_callback(void)
   return (head);
 }
 
+void wait_action_time(time_t action_time)
+{
+  time_t endwait;
+
+  endwait = time(NULL) + action_time;
+  while (time(NULL) < endwait)
+  {
+
+  }
+}
+
 bool		execute_command(t_server *server, t_client *client)
 {
   t_list	*cur;
@@ -127,8 +138,8 @@ bool		execute_command(t_server *server, t_client *client)
     cmd = cur->data;
     if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
     {
-      //if (client->type == AI)
-      //wait_action_time();
+      if (client->type == AI)
+        wait_action_time(cmd->action_time);
       cmd->fn(server, client);
       return (true);
     }

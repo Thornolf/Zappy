@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:35:50 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 14:28:08 2017 Pierre
+** Last update Wed Jun 28 12:45:25 2017 Pierre
 */
 
 #ifndef		_PLAYER__H_
@@ -42,6 +42,7 @@ typedef struct	s_player
 }		t_player;
 
 t_player	*create_player(int fd, int y, int x);
+void	delete_player(void *_player);
 void		add_player(t_list *head, int fd, int y, int x);
 void		print_players(t_list *head);
 t_list		*init_players_list(int fd, int y, int x);

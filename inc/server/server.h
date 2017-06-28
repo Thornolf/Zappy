@@ -5,12 +5,13 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 14:54:54 2017 Pierre
+** Last update Tue Jun 27 18:16:15 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
 # define	_SERVER__H_
 # include <stdbool.h>
+# include <time.h>
 # include "server/stuff.h"
 # include "server/map.h"
 # include "server/socket.h"
