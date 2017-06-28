@@ -148,9 +148,9 @@ void EventHandler::launchScript()
             PutRequirementRock("linemate");
             PutRequirementRock("deraumere");
             PutRequirementRock("sibur");
-            /*PutRequirementRock("mendiane");
+            PutRequirementRock("mendiane");
             PutRequirementRock("phiras");
-            PutRequirementRock("thystame");*/
+            PutRequirementRock("thystame");
             Incantation();
             if (_sock->getLastMsg() != "ko\n")
               _currentState = State::INCANTATION;
@@ -167,9 +167,9 @@ void EventHandler::launchScript()
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
-            /*TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
-            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);*/
+            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             TakeObject("food");
             Inventory();
             LookAround();
@@ -180,6 +180,11 @@ void EventHandler::launchScript()
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Player required : " << _need["player"] << '\n';
         std::cout << "Player on tile : " << countPlayerOnTile() << '\n';
+        std::cout << "Need linemate =" << _need["linemate"] << '\n';
+        std::cout << "Need deraumere =" << _need["deraumere"] << '\n';
+        std::cout << "Need mendiane =" << _need["mendiane"] << '\n';
+        std::cout << "Need phiras =" << _need["phiras"] << '\n';
+        std::cout << "Need thystame =" << _need["thystame"] << '\n';
     }
 }
 
@@ -350,11 +355,13 @@ void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  std::cout << " ---- INVENTORY : " << _sock->getLastMsg() << '\n';
+  this->_test = _sock->getLastMsg();
+  std::cout << " ---- INVENTORY : " << this->_test << '\n';
   /*if (has_any_digits(_sock->getLastMsg()) == true &&
       (_sock->getLastMsg() != "ko\n" ||
       _sock->getLastMsg() != "ok\n"))*/
-    parseInventory(_sock->getLastMsg());
+    //parseInventory(_sock->getLastMsg());
+    parseInventory(this->_test);
 }
 
 void EventHandler::BroadcastText(const std::string & text)
