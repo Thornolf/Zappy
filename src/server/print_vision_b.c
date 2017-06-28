@@ -5,27 +5,27 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:22 2017 Pierre
-** Last update Tue Jun 27 14:58:58 2017 Pierre
+** Last update Wed Jun 28 13:23:06 2017 Pierre
 */
 
 #include "server/command.h"
 
-void print_food(void)
+void print_food(int fd)
 {
-  printf("food");
+  send_socket(fd, "food");
 }
 
-void print_linemate(void)
+void print_linemate(int fd)
 {
-  printf("linemate");
+  send_socket(fd, "linemate");
 }
 
-void print_deraumere(void)
+void print_deraumere(int fd)
 {
-  printf("deraumere");
+  send_socket(fd, "deraumere");
 }
 
-void print_sibur(void)
+void print_sibur(int fd)
 {
-  printf("sibur");
+  send_socket(fd, "sibur");
 }

@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 10:15:39 2017 Pierre
-** Last update Tue Jun 27 14:59:10 2017 Pierre
+** Last update Wed Jun 28 13:19:19 2017 Pierre
 */
 
 #ifndef LOOK_H_
@@ -22,13 +22,13 @@ typedef struct	s_vision
   struct s_vision	*next;
 }		t_vision;
 
-void	print_food(void);
-void	print_linemate(void);
-void	print_deraumere(void);
-void	print_sibur(void);
-void	print_mendiane(void);
-void	print_phiras(void);
-void	print_thystame(void);
+void	print_food(int fd);
+void	print_linemate(int fd);
+void	print_deraumere(int fd);
+void	print_sibur(int fd);
+void	print_mendiane(int fd);
+void	print_phiras(int fd);
+void	print_thystame(int fd);
 
 t_vision	*init_vision(int, int);
 void		add_case_vision(t_vision *, int, int);

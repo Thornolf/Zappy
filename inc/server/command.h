@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 18:47:56 2017 Pierre
+** Last update Wed Jun 28 13:22:07 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -48,7 +48,7 @@ void	command_turn_left(t_server *, t_client *);
 void	command_move_player(t_server *, t_client *);
 
 void	command_look(t_server *server, t_client *client);
-void	print_objects(t_list *, t_vision *);
+void	print_objects(int player_fd, t_list *list_player, t_vision *vision);
 
 void command_inventory(t_server *server, t_client *client);
 
