@@ -40,10 +40,11 @@ void		delete_command(void *);
  */
 void	connection_graphic(t_server *, t_client *);
 bool	connection_ia(t_server *server, t_client *client, char *);
+void	command_pnw(t_server *, t_player *);
 
-void command_turn_right(t_server *, t_client *);
-void command_turn_left(t_server *, t_client *);
-void command_move_player(t_server *, t_client *);
+void	command_turn_right(t_server *, t_client *);
+void	command_turn_left(t_server *, t_client *);
+void	command_move_player(t_server *, t_client *);
 
 void	command_msz(t_server *, t_client *);
 void	command_bct(t_server *, t_client *);

@@ -25,3 +25,28 @@ bool	string_is_number(char *str)
   }
   return (true);
 }
+
+char		*itos(int nb)
+{
+  int		nb_save;
+  size_t	len;
+  char		*buf;
+
+  nb_save = nb;
+  len = 0;
+  while (nb > 0)
+  {
+    nb = nb / 10;
+    len++;
+  }
+  if (!(buf = malloc(sizeof(char) * (len + 2))))
+    return (NULL);
+  if (nb_save == 0)
+  {
+    buf[0] = '0';
+    buf[1] = 0;
+  }
+  else
+    snprintf(buf, len + 1, "%d", nb_save);
+  return (buf);
+}

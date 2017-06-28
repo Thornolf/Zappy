@@ -15,16 +15,26 @@ void		command_tna(t_server *server, t_client *client)
 {
   t_list	*cur_node;
   t_team	*team;
+  char		*buf;
 
+  if (!(buf = strdup("tna")))
+    return;
   cur_node = server->teams;
-  (void)server;
-  send_socket(client->fd, "tna");
   while (cur_node)
   {
     team = cur_node->data;
-    send_socket(client->fd, " ");
-    send_socket(client->fd, team->name);
+    if (!(buf = realloc(buf, sizeof(char) * (strlen(buf) + strlen(team->name) + 2))))
+      return;
+    if (!(buf = strcat(buf, " ")))
+      return;
+    if (!(buf = strcat(buf, team->name)))
+      return;
     cur_node = cur_node->next;
   }
-  send_socket(client->fd, "\n");
+  if (!(buf = realloc(buf, sizeof(char) * (strlen(buf) + strlen(team->name) + 2))))
+    return;
+  if (!(buf = strcat(buf, "\n")))
+    return;
+  send_socket(client->fd, buf);
+  free(buf);
 }

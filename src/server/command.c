@@ -69,7 +69,6 @@ bool		execute_command(t_server *server, t_client *client)
 
   if (!(command_name = strtok(client->buffer, " \t\n")))
     return (false);
-  cur = server->cmds;
   if (client->type == UNDEFINED)
   {
     if (strcmp(command_name, "GRAPHIC") == 0)
@@ -77,20 +76,18 @@ bool		execute_command(t_server *server, t_client *client)
       connection_graphic(server, client);
       return (true);
     }
-    else
-    {
-      if (connection_ia(server, client, command_name))
-	     return (true);
-    }
+    else if (connection_ia(server, client, command_name))
+      return (true);
     return (false);
   }
+  cur = server->cmds;
   while (cur)
   {
     cmd = cur->data;
     if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
     {
       //if (client->type == AI)
-        //wait_action_time();
+      //wait_action_time();
       cmd->fn(server, client);
       return (true);
     }

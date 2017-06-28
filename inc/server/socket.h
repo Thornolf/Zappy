@@ -17,7 +17,6 @@
 
 int	open_socket(int);
 bool	listen_socket(int socket);
-void	send_socket(int , char *);
-
+bool	send_socket(int , char *);
 
 #endif		/* !_SOCKET__H_! */

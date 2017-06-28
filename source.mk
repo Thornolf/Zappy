@@ -30,8 +30,9 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)command_map.c		\
 			$(SRC_SERVER_DIR)connection_client.c	\
 			$(SRC_SERVER_DIR)command_team.c		\
-			$(SRC_SERVER_DIR)command_move_player.c		\
+			$(SRC_SERVER_DIR)command_move_player.c	\
 			$(SRC_SERVER_DIR)team.c			\
+			$(SRC_SERVER_DIR)communication.c	\
 			$(SRC_SERVER_DIR)lib/list.c		\
 			$(SRC_SERVER_DIR)lib/send.c		\
 			$(SRC_SERVER_DIR)lib/string.c
