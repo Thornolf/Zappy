@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Tue Jun 27 16:55:45 2017 Thomas Fossaert
+// Last update Tue Jun 27 18:06:50 2017 Adrien Warin
 */
 
 #include "EventHandler.hpp"
@@ -383,14 +383,16 @@ void EventHandler::TakeObject(const std::string & item)
 {
     _sock->sendMsg(("Take " + item + "\n").c_str());
     _sock->recvMsg();
-    Inventory();
+    if (_sock->getLastMsg() == "ok")
+      Inventory();
 }
 
 void EventHandler::SetObject(const std::string & item)
 {
   _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
-  Inventory();
+  if (_sock->getLastMsg() == "ok")
+    Inventory();
 }
 
 void EventHandler::Incantation()
