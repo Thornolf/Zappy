@@ -53,6 +53,11 @@ t_list		*init_cmd_callback_graphic(void)
       !(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("plv", -1, &command_plv, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 

@@ -62,5 +62,6 @@ void	command_bct(t_server *, t_client *);
 void	command_mct(t_server *, t_client *);
 void	command_tna(t_server *, t_client *);
 void	command_ppo(t_server *, t_client *);
+void	command_plv(t_server *, t_client *);
 
 #endif		/* !_COMMAND__H_! */
