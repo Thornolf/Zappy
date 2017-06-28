@@ -18,6 +18,7 @@ void	connection_graphic(t_server *server, t_client *client)
   set_client_type(client, GRAPHIC);
   command_msz(server, client);
   command_mct(server, client);
+  command_tna(server, client);
 }
 
 bool	connection_ia(t_server *server, t_client *client, char *team_name)
@@ -26,6 +27,7 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
   char		*buf;
   int		x;
   int		y;
+  int		mod;
 
   if (!(buf = malloc(sizeof(char) * 400)))
     return (false);
@@ -45,7 +47,8 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
   if (!(assign_player_to_team(server, player, team_name)))
     return (false);
   set_client_type(client, AI);
-  sprintf(buf, "%d\n%d %d\n", server->team_size - nb_player_in_team(server, team_name), server->map->width, server->map->height);
+  mod = server->team_size - nb_player_in_team(server, team_name);
+  sprintf(buf, "%d\n%d %d\n", mod, server->map->width, server->map->height);
   send_socket(client->fd, buf);
   command_pnw(server, player);
   return (true);
@@ -56,13 +59,39 @@ void	command_pnw(t_server *server, t_player *player)
   char	*buf;
   char	*n;
 
-  if (!(buf = strdup("pnw #")))
-    return;
-  if (!(n = itos(player->id)))
+  if (!(buf = strdup("pnw ")) || !(n = itos(player->id)))
     return;
   if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
     return;
-  if (!(buf = strcat(buf, n)))
+  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
+    return;
+  if (!(n = itos(player->x)))
+    return;
+  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
+    return;
+  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
+    return;
+  if (!(n = itos(player->y)))
+    return;
+  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
+    return;
+  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
+    return;
+  if (!(n = itos((int)player->direction)))
+    return;
+  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
+    return;
+  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
+    return;
+  if (!(n = itos(player->lv)))
+    return;
+  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
+    return;
+  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
+    return;
+  if (!(buf = realloc(buf, strlen(buf) + strlen(player->team->name) + 3)))
+    return;
+  if (!(buf = strcat(buf, player->team->name)))
     return;
   if (!(buf = strcat(buf, "\n")))
     return;

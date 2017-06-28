@@ -21,7 +21,7 @@
 
 typedef enum	e_direction
 {
-  DIRECTION_MIN = 0,
+  DIRECTION_MIN = 1,
   TOP = DIRECTION_MIN,
   RIGHT,
   BOTTOM,

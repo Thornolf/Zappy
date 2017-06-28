@@ -39,7 +39,6 @@ t_player	*create_player(int fd, int y, int x)
   if (!(player->stuff = init_stuff()))
     return (NULL);
   player->direction = (t_direction)my_rand(DIRECTION_MIN, DIRECTION_MAX);
-  printf("Player %d en [%d][%d], direction %d\n", player->id, y, x, player->direction);
   return (player);
 }
 

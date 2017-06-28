@@ -26,7 +26,7 @@ void	command_msz(t_server *server, t_client *client)
 
   if (!(str = malloc(sizeof(char) * 400)))
     return;
-  if (!(sprintf(str, "msz %d %d\r\n", server->map->width, server->map->height)))
+  if (!(sprintf(str, "msz %d %d\n", server->map->width, server->map->height)))
     return ;
   send_socket(client->fd, str);
   free(str);
