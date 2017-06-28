@@ -11,7 +11,11 @@
 #ifndef		_STRING__H_
 # define	_STRING__H_
 # include <stdbool.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 
 bool	string_is_number(char *);
+char	*itos(int);
 
 #endif		/* !_STRING__H_! */

@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Tue Jun 27 15:11:55 2017 Pierre
+** Last update Wed Jun 28 13:14:55 2017 Pierre
 */
 
 #include "server/command.h"
@@ -140,7 +140,8 @@ void	command_look(t_server *server, t_client *client)
   t_player *player;
 
   vision = NULL;
-  player = get_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   if (player == NULL)
   {
     printf("error : player not found\n");

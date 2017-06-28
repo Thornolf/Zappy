@@ -20,15 +20,25 @@ void	server_read(void *_server)
   t_server	*server;
   t_client	*client;
   t_list	*client_node;
+  int		i;
+  t_list	*cur;
 
   server = _server;
-  client = init_client(server);
+  if (!(client = init_client(server)))
+    return;
   if (!(client_node = create_node(client, server->clients)))
   {
     fprintf(stderr, "ERROR: A client try to connect but something went wrong...\n");
     return;
   }
   server->clients = client_node;
+  cur = server->clients;
+  i = 0;
+  while (cur)
+  {
+    i++;
+    cur = cur->next;
+  }
 }
 
 void	server_write(void *_server)

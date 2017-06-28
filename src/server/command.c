@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 18:25:20 2017 Pierre
+** Last update Wed Jun 28 13:15:14 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -104,7 +104,6 @@ bool		execute_command(t_server *server, t_client *client)
 
   if (!(command_name = strtok(client->buffer, " \t\n")))
     return (false);
-  cur = server->cmds;
   if (client->type == UNDEFINED)
   {
     if (strcmp(command_name, "GRAPHIC") == 0)
@@ -112,13 +111,11 @@ bool		execute_command(t_server *server, t_client *client)
       connection_graphic(server, client);
       return (true);
     }
-    else
-    {
-      if (connection_ia(server, client, command_name))
-	     return (true);
-    }
+    else if (connection_ia(server, client, command_name))
+      return (true);
     return (false);
   }
+  cur = server->cmds;
   while (cur)
   {
     cmd = cur->data;

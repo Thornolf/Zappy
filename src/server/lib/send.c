@@ -11,7 +11,7 @@
 #include "server/client.h"
 #include "server/socket.h"
 
-void	send_socket(int fd, char *msg)
+bool	send_socket(int fd, char *msg)
 {
-  send(fd, msg, strlen(msg), 0);
+  return ((send(fd, msg, strlen(msg), 0)) < 0);
 }

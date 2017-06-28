@@ -32,35 +32,50 @@ void	command_msz(t_server *server, t_client *client)
   free(str);
 }
 
-void		command_bct_at_position(t_server *server, t_client *client, unsigned int x, unsigned int y)
+void		concat_quantities_bct(t_server *server, char *buf, unsigned int x, unsigned int y)
 {
-  char		*str;
-  t_stuff_type	type = STUFF_MIN;
+  char		*n;
+  t_stuff_type	type;
+
+  type = STUFF_MIN;
+  while (type != STUFF_MAX)
+  {
+    if (!(buf = strcat(buf, " ")) ||
+	!(n = itos(server->map->data[y][x].stuff->quantities[type++])) ||
+	!(buf = strcat(buf, n)))
+      return;
+    free(n);
+  }
+}
+
+void		command_bct_at_position(t_server *server, t_client *client,
+					    unsigned int x, unsigned int y)
+{
+  char		*buf;
+  char		*n;
 
   if (x >= server->map->width || y >= server->map->height)
   {
     send_socket(client->fd, "sbp\n");
     return;
   }
-  if (!(str = malloc(sizeof(char) * 400)))
+  if (!(buf = strdup("bct ")) || !(buf = realloc(buf, (strlen(buf) + 40))) ||
+      !(n = itos(x)) || !(buf = strcat(buf, n)))
     return;
-  snprintf(str, 400, "bct %d %d", x, y);
-  send_socket(client->fd, str);
-  while (type != STUFF_MAX)
-  {
-    snprintf(str, 400, " %d", server->map->data[y][x].stuff->quantities[type]);
-    send_socket(client->fd, str);
-    type += 1;
-  }
-  send_socket(client->fd, "\n");
-  free(str);
+  free(n);
+  if (!(buf = strcat(buf, " ")) || !(n = itos(y)) || !(buf = strcat(buf, n)))
+    return;
+  concat_quantities_bct(server, buf, x, y);
+  if (!(buf = strcat(buf, "\n")) || !send_socket(client->fd, buf))
+    return;
+  free(buf);
 }
 
 void	command_bct(t_server *server, t_client *client)
 {
-  int	x;
-  int	y;
-  char	*buf;
+  unsigned int	x;
+  unsigned int	y;
+  char		*buf;
 
   (void)server;
   if (!(buf = strtok(NULL, " \t\n")) || !string_is_number(buf))
@@ -68,13 +83,13 @@ void	command_bct(t_server *server, t_client *client)
     send_socket(client->fd, "sbp\n");
     return;
   }
-  x = atoi(buf);
+  x = (unsigned int)atoi(buf);
   if (!(buf = strtok(NULL, " \t\n")) || !string_is_number(buf))
   {
     send_socket(client->fd, "sbp\n");
     return;
   }
-  y = atoi(buf);
+  y = (unsigned int)atoi(buf);
   command_bct_at_position(server, client, x, y);
 }
 
