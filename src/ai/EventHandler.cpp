@@ -128,58 +128,56 @@ void EventHandler::launchScript()
   while (42)
     {
       LookAround();
+      if (isAbleToIncant() == true)
+        _currentState = State::READYFORINC;
       if (_currentState == State::INCANTATION)
         {
-          //Incantation();
           if (_sock->getLastMsg().find("Current level") != std::string::npos)
             {
               this->_level += 1;
               UpdateRequirement(this->_level);
               _currentState = State::NORMAL;
-              LookAround();
             }
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
         }
         else if (_currentState == State::READYFORINC)
           {
-            LookAround();
-            //TakeEverything();
+            TakeEverything();
             PutRequirementRock("linemate");
             PutRequirementRock("deraumere");
             PutRequirementRock("sibur");
-            /*PutRequirementRock("mendiane");
+            PutRequirementRock("mendiane");
             PutRequirementRock("phiras");
-            PutRequirementRock("thystame");*/
+            PutRequirementRock("thystame");
+            Inventory();
             Incantation();
-            if (_sock->getLastMsg() != "ko\n")
-              _currentState = State::INCANTATION;
-            else
-            _currentState = State::NORMAL;
+            (_sock->getLastMsg() != "ko\n") ? _currentState = State::INCANTATION : _currentState = State::NORMAL;
           }
         else if (_currentState == State::NORMAL)
           {
-            Inventory();
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
               TurnRight();
+            TakeObject("food");
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
             TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
-            /*TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
-            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);*/
-            TakeObject("food");
+            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             Inventory();
-            LookAround();
-            if (isAbleToIncant() == true)
-              _currentState = State::READYFORINC;
           }
         std::cout << "LEVEL = " << _level << "\n";
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Player required : " << _need["player"] << '\n';
         std::cout << "Player on tile : " << countPlayerOnTile() << '\n';
+        std::cout << "Need linemate =" << _need["linemate"] << '\n';
+        std::cout << "Need deraumere =" << _need["deraumere"] << '\n';
+        std::cout << "Need mendiane =" << _need["mendiane"] << '\n';
+        std::cout << "Need phiras =" << _need["phiras"] << '\n';
+        std::cout << "Need thystame =" << _need["thystame"] << '\n';
     }
 }
 
@@ -350,11 +348,13 @@ void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  std::cout << " ---- INVENTORY : " << _sock->getLastMsg() << '\n';
+  this->_test = _sock->getLastMsg();
+  std::cout << " ---- INVENTORY : " << this->_test << '\n';
   /*if (has_any_digits(_sock->getLastMsg()) == true &&
       (_sock->getLastMsg() != "ko\n" ||
       _sock->getLastMsg() != "ok\n"))*/
-    parseInventory(_sock->getLastMsg());
+    //parseInventory(_sock->getLastMsg());
+    parseInventory(this->_test);
 }
 
 void EventHandler::BroadcastText(const std::string & text)
@@ -381,16 +381,16 @@ void EventHandler::TakeObject(const std::string & item)
 {
     _sock->sendMsg(("Take " + item + "\n").c_str());
     _sock->recvMsg();
-    if (_sock->getLastMsg() == "ok")
-      Inventory();
+    /*if (_sock->getLastMsg() == "ok")
+      Inventory();*/
 }
 
 void EventHandler::SetObject(const std::string & item)
 {
   _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
-  if (_sock->getLastMsg() == "ok")
-    Inventory();
+  /*if (_sock->getLastMsg() == "ok")
+    Inventory();*/
 }
 
 void EventHandler::Incantation()
