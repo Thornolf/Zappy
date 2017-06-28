@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 10:15:39 2017 Pierre
-** Last update Tue Jun 27 14:27:20 2017 Pierre
+** Last update Tue Jun 27 14:59:10 2017 Pierre
 */
 
 #ifndef LOOK_H_
@@ -13,8 +13,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "server/map.h"
-#include "server/player.h"
 
 typedef struct	s_vision
 {
@@ -23,8 +21,6 @@ typedef struct	s_vision
   int x;
   struct s_vision	*next;
 }		t_vision;
-
-void	print_objects(t_list *, t_vision *);
 
 void	print_food(void);
 void	print_linemate(void);
@@ -36,8 +32,6 @@ void	print_thystame(void);
 
 t_vision	*init_vision(int, int);
 void		add_case_vision(t_vision *, int, int);
-
-void		look(t_list *, t_map *, t_player *);
 
 typedef struct s_it
 {

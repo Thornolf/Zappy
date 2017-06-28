@@ -5,10 +5,10 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:22 2017 Pierre
-** Last update Sat Jun 24 12:52:46 2017 Pierre
+** Last update Tue Jun 27 14:58:58 2017 Pierre
 */
 
-#include "server/look.h"
+#include "server/command.h"
 
 void print_food(void)
 {

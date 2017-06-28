@@ -18,11 +18,10 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)handle_parsing.c	\
 			$(SRC_SERVER_DIR)map.c			\
 			$(SRC_SERVER_DIR)player.c		\
-			$(SRC_SERVER_DIR)look.c			\
+			$(SRC_SERVER_DIR)command_look.c			\
 			$(SRC_SERVER_DIR)look_utils.c		\
 			$(SRC_SERVER_DIR)print_vision_a.c	\
 			$(SRC_SERVER_DIR)print_vision_b.c	\
-			$(SRC_SERVER_DIR)stuff.c		\
 			$(SRC_SERVER_DIR)socket.c		\
 			$(SRC_SERVER_DIR)server.c		\
 			$(SRC_SERVER_DIR)client.c		\
@@ -30,7 +29,8 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)command_map.c		\
 			$(SRC_SERVER_DIR)connection_client.c	\
 			$(SRC_SERVER_DIR)command_team.c		\
-			$(SRC_SERVER_DIR)command_move_player.c	\
+			$(SRC_SERVER_DIR)command_inventory.c		\
+			$(SRC_SERVER_DIR)command_move_player.c		\
 			$(SRC_SERVER_DIR)team.c			\
 			$(SRC_SERVER_DIR)communication.c	\
 			$(SRC_SERVER_DIR)lib/list.c		\

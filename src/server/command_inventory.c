@@ -5,11 +5,11 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Thu Jun 22 19:03:17 2017 Pierre
+** Last update Tue Jun 27 15:18:47 2017 Pierre
 */
 
 #include <string.h>
-#include "server/stuff.h"
+#include "server/command.h"
 
 void		add_quantity(t_stuff *stuff, t_stuff_type type)
 {
@@ -37,4 +37,18 @@ void		print_stuff(t_stuff *stuff)
   printf("mendiane %d, ", stuff->quantities[MENDIANE]);
   printf("phiras %d, ", stuff->quantities[PHIRAS]);
   printf("thystame %d]\n", stuff->quantities[THYSTAME]);
+}
+
+void command_inventory(t_server *server, t_client *client)
+{
+  t_player *player;
+
+  if (!(player = get_player(server->players, client->fd)))
+    return;
+  if (player == NULL)
+  {
+    printf("error : player not found\n");
+    return ;
+  }
+  print_stuff(player->stuff);
 }

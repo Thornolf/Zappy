@@ -5,10 +5,10 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Sat Jun 24 12:52:23 2017 Pierre
+** Last update Tue Jun 27 14:58:50 2017 Pierre
 */
 
-#include "server/look.h"
+#include "server/command.h"
 
 void print_mendiane(void)
 {
