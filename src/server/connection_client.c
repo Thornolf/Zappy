@@ -10,6 +10,8 @@
 
 #include "server/command.h"
 #include "server/player.h"
+#include "server/string.h"
+#include "server/communication.h"
 
 void	connection_graphic(t_server *server, t_client *client)
 {
@@ -29,7 +31,7 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
     return (false);
   if (nb_player_in_team(server, team_name) + 1 > server->team_size)
   {
-    send_socket(client->fd, "ko");
+    send_socket(client->fd, "ko\n");
     return (false);
   }
   x = my_rand(0, server->map->width);
@@ -45,5 +47,24 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
   set_client_type(client, AI);
   sprintf(buf, "%d\n%d %d\n", server->team_size - nb_player_in_team(server, team_name), server->map->width, server->map->height);
   send_socket(client->fd, buf);
+  command_pnw(server, player);
   return (true);
+}
+
+void	command_pnw(t_server *server, t_player *player)
+{
+  char	*buf;
+  char	*n;
+
+  if (!(buf = strdup("pnw #")))
+    return;
+  if (!(n = itos(player->id)))
+    return;
+  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
+    return;
+  if (!(buf = strcat(buf, n)))
+    return;
+  if (!(buf = strcat(buf, "\n")))
+    return;
+  send_all_graphics(server, buf);
 }

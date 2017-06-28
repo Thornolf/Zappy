@@ -140,7 +140,8 @@ void	command_look(t_server *server, t_client *client)
   t_player *player;
 
   vision = NULL;
-  player = find_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   if (player == NULL)
   {
     printf("error : player not found\n");

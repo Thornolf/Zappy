@@ -41,10 +41,11 @@ void		delete_command(void *);
  */
 void	connection_graphic(t_server *, t_client *);
 bool	connection_ia(t_server *server, t_client *client, char *);
+void	command_pnw(t_server *, t_player *);
 
-void command_turn_right(t_server *, t_client *);
-void command_turn_left(t_server *, t_client *);
-void command_move_player(t_server *, t_client *);
+void	command_turn_right(t_server *, t_client *);
+void	command_turn_left(t_server *, t_client *);
+void	command_move_player(t_server *, t_client *);
 
 void	command_look(t_server *server, t_client *client);
 void	print_objects(t_list *, t_vision *);
