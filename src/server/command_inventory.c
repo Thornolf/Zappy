@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Tue Jun 27 15:18:47 2017 Pierre
+** Last update Tue Jun 27 18:21:28 2017 Pierre
 */
 
 #include <string.h>
@@ -43,7 +43,7 @@ void command_inventory(t_server *server, t_client *client)
 {
   t_player *player;
 
-  player = find_player(server->players, client->fd);
+  player = get_player(server->players, client->fd);
   if (player == NULL)
   {
     printf("error : player not found\n");

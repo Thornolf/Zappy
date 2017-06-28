@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 14:24:41 2017 Pierre
+** Last update Wed Jun 28 12:45:19 2017 Pierre
 */
 
 #include "server/player.h"
@@ -85,6 +85,14 @@ t_player	*get_player(t_list *player_list, int fd)
     cur = cur->next;
   }
   return (NULL);
+}
+
+void	delete_player(void *_player)
+{
+  t_player	*player;
+
+  player = _player;
+  free(player);
 }
 
 bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
