@@ -74,3 +74,13 @@ t_list		*get_last_node(t_list *head)
     last = last->next;
   return (last);
 }
+
+bool		append_data(t_list **head, void *data)
+{
+  t_list	*node;
+
+  if (!(node = create_node(data, *head)))
+    return (false);
+  *head = node;
+  return (true);
+}

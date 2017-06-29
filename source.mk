@@ -26,7 +26,9 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)server.c		\
 			$(SRC_SERVER_DIR)client.c		\
 			$(SRC_SERVER_DIR)waiting_cmds.c		\
+			$(SRC_SERVER_DIR)execute_command.c	\
 			$(SRC_SERVER_DIR)command.c		\
+			$(SRC_SERVER_DIR)command_b.c		\
 			$(SRC_SERVER_DIR)command_map.c		\
 			$(SRC_SERVER_DIR)connection_client.c	\
 			$(SRC_SERVER_DIR)command_team.c		\

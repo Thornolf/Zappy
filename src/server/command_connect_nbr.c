@@ -9,6 +9,7 @@
 */
 
 #include "server/command.h"
+#include "server/string.h"
 
 void command_connect_nbr(t_server *server, t_client *client)
 {
@@ -28,6 +29,6 @@ void command_connect_nbr(t_server *server, t_client *client)
 	nb++;
       list = list->next;
     }
-  send_socket(client->fd, int_to_string(server->team_size - nb));
+  send_socket(client->fd, itos(server->team_size - nb));
   send_socket(client->fd, "\n");
 }

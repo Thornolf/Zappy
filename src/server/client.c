@@ -31,10 +31,10 @@ t_client	*init_client(t_server *server)
   return (client);
 }
 
-t_list *get_player_node(t_list *player_list, int fd)
+t_list		*get_player_node(t_list *player_list, int fd)
 {
   t_list	*cur;
-  t_player *player;
+  t_player	*player;
 
   cur = player_list;
   while (cur)
@@ -100,9 +100,4 @@ void	delete_client(void *_client)
   close(client->fd);
   free(client->buffer);
   free(client);
-}
-
-void	set_client_type(t_client *client, t_client_type type)
-{
-  client->type = type;
 }

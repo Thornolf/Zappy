@@ -9,6 +9,7 @@
 */
 
 #include <string.h>
+#include "server/string.h"
 #include "server/command.h"
 
 void		add_quantity(t_stuff *stuff, t_stuff_type type)
@@ -31,32 +32,22 @@ t_stuff		*init_stuff(void)
   return (stuff);
 }
 
-char		*int_to_string(int nb)
-{
-  char *str;
-
-  if ((str = malloc(sizeof(char) * 4)) == NULL)
-    return (NULL);
-  sprintf(str, "%d", nb);
-  return (str);
-}
-
 void		print_stuff(int fd, t_stuff *stuff)
 {
   send_socket(fd, "[food ");
-  send_socket(fd, int_to_string(stuff->quantities[FOOD]));
+  send_socket(fd, itos(stuff->quantities[FOOD]));
   send_socket(fd, ", linemate ");
-  send_socket(fd, int_to_string(stuff->quantities[LINEMATE]));
+  send_socket(fd, itos(stuff->quantities[LINEMATE]));
   send_socket(fd, ", deraumere ");
-  send_socket(fd, int_to_string(stuff->quantities[DERAUMERE]));
+  send_socket(fd, itos(stuff->quantities[DERAUMERE]));
   send_socket(fd, ", sibur ");
-  send_socket(fd, int_to_string(stuff->quantities[SIBUR]));
+  send_socket(fd, itos(stuff->quantities[SIBUR]));
   send_socket(fd, ", mendiane ");
-  send_socket(fd, int_to_string(stuff->quantities[MENDIANE]));
+  send_socket(fd, itos(stuff->quantities[MENDIANE]));
   send_socket(fd, ", phiras ");
-  send_socket(fd, int_to_string(stuff->quantities[PHIRAS]));
+  send_socket(fd, itos(stuff->quantities[PHIRAS]));
   send_socket(fd, ", thystame ");
-  send_socket(fd, int_to_string(stuff->quantities[THYSTAME]));
+  send_socket(fd, itos(stuff->quantities[THYSTAME]));
   send_socket(fd, "]\n");
 }
 

@@ -11,6 +11,7 @@
 #ifndef		_LIST__H_
 # define	_LIST__H_
 # include	<stdlib.h>
+# include	<stdbool.h>
 # include	<unistd.h>
 
 typedef struct	s_list
@@ -23,5 +24,6 @@ t_list		*create_node(void *, t_list *);
 void		remove_node(t_list **, t_list *, void(*)(void *));
 void		remove_list(t_list *, void(*)(void *));
 t_list		*get_last_node(t_list *);
+bool		append_data(t_list **, void *);
 
 #endif		/* !_STUFF__H_! */
