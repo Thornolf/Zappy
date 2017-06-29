@@ -47,5 +47,6 @@ typedef struct		s_server
 bool	init_zappy_server(t_info *);
 bool	handle_io(fd_set *, fd_set *, t_server *);
 int	get_fd_max(t_server *);
+void	check_waiting_cmds(t_server *);
 
 #endif		/* !_SERVER__H_! */

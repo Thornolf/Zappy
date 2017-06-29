@@ -24,6 +24,7 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)print_vision_b.c	\
 			$(SRC_SERVER_DIR)socket.c		\
 			$(SRC_SERVER_DIR)server.c		\
+			$(SRC_SERVER_DIR)handle_io.c		\
 			$(SRC_SERVER_DIR)client.c		\
 			$(SRC_SERVER_DIR)waiting_cmds.c		\
 			$(SRC_SERVER_DIR)execute_command.c	\
