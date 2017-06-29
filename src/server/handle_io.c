@@ -12,7 +12,7 @@
 #include "server/list.h"
 #include "server/command.h"
 
-bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
+bool		handle_io(fd_set *fd_read, t_server *server)
 {
   int		fd_max;
   t_list	*cur_client_node;
@@ -33,7 +33,7 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
 	  cur_client_node = cur_client_node->next;
 	}
       check_waiting_cmds(server);
-      go_on = (select(fd_max + 1, fd_read, fd_write, NULL, &server->timeout) >= 0);
+      go_on = (select(fd_max + 1, fd_read, NULL, NULL, &server->timeout) >= 0);
       if (FD_ISSET(server->fd, fd_read))
 	server->server_read(server);
       cur_client_node = server->clients;

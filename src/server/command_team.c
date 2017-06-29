@@ -23,7 +23,7 @@ void		command_tna(t_server *server, t_client *client)
       if (!(buf = strdup("tna ")))
 	return;
       team = cur_node->data;
-      if (!(buf = realloc(buf, sizeof(char) * (strlen(buf) + strlen(team->name) + 2))))
+      if (!(buf = realloc(buf, (strlen(buf) + strlen(team->name) + 2))))
 	return;
       if (!(buf = strcat(buf, team->name)))
 	return;
