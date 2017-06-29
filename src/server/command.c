@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 11:07:47 2017 Pierre
+** Last update Thu Jun 29 14:36:05 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -98,7 +98,13 @@ t_list		*init_cmd_callback_ai(t_list *head)
     return (NULL);
   father->next = son;
   father = son;
-  if (!(cmd = create_command_node("Inventory", 1, &command_look, AI)))
+  if (!(cmd = create_command_node("Inventory", 1, &command_inventory, AI)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("Take", 7, &command_take_object, AI)))
     return (NULL);
   if (!(son = create_node(cmd, NULL)))
     return (NULL);
