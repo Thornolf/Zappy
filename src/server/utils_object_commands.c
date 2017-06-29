@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 15:44:07 2017 Pierre
-** Last update Thu Jun 29 15:45:44 2017 Pierre
+** Last update Thu Jun 29 15:58:40 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -43,11 +43,11 @@ int check_arg(char *arg)
     return (-1);
   i = 0;
   while (objects[i])
-  {
-    if (strcmp(objects[i], arg) == 0)
-      return (i);
-    i++;
-  }
+    {
+      if (strcmp(objects[i], arg) == 0)
+	return (i);
+      i++;
+    }
   return (-1);
 }
 
