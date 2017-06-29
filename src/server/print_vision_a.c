@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Wed Jun 28 13:24:04 2017 Pierre
+** Last update Thu Jun 29 14:39:47 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -48,23 +48,23 @@ void	print_objects(int player_fd, t_list *list_player, t_vision *vision)
   index = 0;
   send_socket(player_fd, "[player");
   while (tmp)
-  {
-    players = list_player;
-    while (players)
     {
-      send_socket(player_fd, " player");
-      players = players->next;
+      players = list_player;
+      while (players)
+	{
+	  send_socket(player_fd, " player");
+	  players = players->next;
+	}
+      index = 0;
+      while (index <= STUFF_MAX)
+	{
+	  send_socket(player_fd, " ");
+	  (*print_stuff_cmds[index])(player_fd);
+	  index++;
+	}
+      if (tmp->next)
+	send_socket(player_fd, ",");
+      tmp = tmp->next;
     }
-    index = 0;
-    while (index <= STUFF_MAX)
-    {
-      send_socket(player_fd, " ");
-      (*print_stuff_cmds[index])(player_fd);
-      index++;
-    }
-    if (tmp->next)
-      send_socket(player_fd, ",");
-    tmp = tmp->next;
-  }
   send_socket(player_fd, "]\n");
 }

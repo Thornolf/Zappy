@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 18:08:49 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 28 12:51:58 2017 Pierre
+** Last update Thu Jun 29 14:35:33 2017 Guillaume CAUCHOIS
 */
 
 #include "server/client.h"
@@ -38,12 +38,12 @@ t_list *get_player_node(t_list *player_list, int fd)
 
   cur = player_list;
   while (cur)
-  {
-    player = cur->data;
-    if (player->fd == fd)
-      return (cur);
-    cur = cur->next;
-  }
+    {
+      player = cur->data;
+      if (player->fd == fd)
+	return (cur);
+      cur = cur->next;
+    }
   return (NULL);
 }
 
@@ -63,21 +63,21 @@ void	*client_read(void *_server, void *_client_node)
     return (client_node->next);
   next = client_node->next;
   if (client->buffer[0] == 0)
-  {
-    if (!(player = get_player_node(server->players, client->fd)))
-      return (next);
-    remove_node(&server->players, player, &delete_player);
-    remove_node(&server->clients, client_node, &delete_client);
-    return (next);
-  }
-  else
-  {
-    if (!(execute_command(server, client)))
     {
-      send(client->fd, "suc\n", 4, 0);
+      if (!(player = get_player_node(server->players, client->fd)))
+	return (next);
+      remove_node(&server->players, player, &delete_player);
+      remove_node(&server->clients, client_node, &delete_client);
       return (next);
     }
-  }
+  else
+    {
+      if (!(execute_command(server, client)))
+	{
+	  send(client->fd, "suc\n", 4, 0);
+	  return (next);
+	}
+    }
   return (client_node->next);
 }
 

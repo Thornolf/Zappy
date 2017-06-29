@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 27 08:10:12 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 08:10:12 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:40:53 2017 Guillaume CAUCHOIS
 */
 
 #include <stdlib.h>
@@ -50,15 +50,15 @@ t_list		*init_team_list(t_info *info)
   idx_team = 1;
   father = head;
   while (info->clients[idx_team])
-  {
-    if (!(team = create_team(info->clients[idx_team])))
-      return (NULL);
-    if (!(son = create_node(team, NULL)))
-      return (NULL);
-    father->next = son;
-    father = son;
-    idx_team++;
-  }
+    {
+      if (!(team = create_team(info->clients[idx_team])))
+	return (NULL);
+      if (!(son = create_node(team, NULL)))
+	return (NULL);
+      father->next = son;
+      father = son;
+      idx_team++;
+    }
   return (head);
 }
 
@@ -69,12 +69,12 @@ t_team		*get_team_by_name(t_list *team_list, char *name)
 
   cur_team = team_list;
   while (cur_team)
-  {
-    team = cur_team->data;
-    if (strcmp(team->name, name) == 0)
-      return (team);
-    cur_team = cur_team->next;
-  }
+    {
+      team = cur_team->data;
+      if (strcmp(team->name, name) == 0)
+	return (team);
+      cur_team = cur_team->next;
+    }
   return (NULL);
 }
 
@@ -90,11 +90,11 @@ int		nb_player_in_team(t_server *server, char *team_name)
   cur_player_node = server->players;
   i = 0;
   while (cur_player_node)
-  {
-    player = cur_player_node->data;
-    if (player->team == team)
-      i++;
-    cur_player_node = cur_player_node->next;
-  }
+    {
+      player = cur_player_node->data;
+      if (player->team == team)
+	i++;
+      cur_player_node = cur_player_node->next;
+    }
   return (i);
 }

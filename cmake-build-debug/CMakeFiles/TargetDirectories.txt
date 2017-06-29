@@ -1,3 +1,0 @@
-/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/guillobits/workspace/epitech/PSU_2016_zappy/cmake-build-debug/CMakeFiles/PSU_2016_zappy.dir

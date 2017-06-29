@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Mon Jun 26 15:38:05 2017 Guillaume CAUCHOIS
-** Last update Mon Jun 26 15:38:05 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:38:18 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -17,6 +17,7 @@ void	connection_graphic(t_server *server, t_client *client)
 {
   set_client_type(client, GRAPHIC);
   command_msz(server, client);
+  command_sgt(server, client);
   command_mct(server, client);
   command_tna(server, client);
 }
@@ -32,10 +33,10 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
   if (!(buf = malloc(sizeof(char) * 400)))
     return (false);
   if (nb_player_in_team(server, team_name) + 1 > server->team_size)
-  {
-    send_socket(client->fd, "ko\n");
-    return (false);
-  }
+    {
+      send_socket(client->fd, "ko\n");
+      return (false);
+    }
   x = my_rand(0, server->map->width);
   y = my_rand(0, server->map->height);
   if (server->players == NULL)
