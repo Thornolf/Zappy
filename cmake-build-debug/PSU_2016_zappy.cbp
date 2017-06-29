@@ -84,6 +84,147 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/client.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/command.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/communication.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/funcs.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/info.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/list.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/look.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/map.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/player.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/server.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/socket.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/string.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/stuff.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/inc/server/team.h">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/EventHandler.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/Socket.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/ZappException.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/EventHandler.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/Socket.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/ZappException.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/include/zappy.hpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/main.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/zappy.cpp">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/client.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_broadcast.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_inventory.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_look.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_map.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_move_player.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_team.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/communication.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/connection_client.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/handle_parsing.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/send.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/string.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/look_utils.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/print_vision_a.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/print_vision_b.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/socket.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/team.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
+		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/utils_parsing.c">
+			<Option target="PSU_2016_zappy"/>
+		</Unit>
 		<Unit filename="/home/guillobits/workspace/epitech/PSU_2016_zappy/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -3,11 +3,16 @@ project(PSU_2016_zappy)
 
 set(CMAKE_CXX_STANDARD 11)
 
+include_directories(inc)
+
+set(CFLAGS "-W -Wall -Wextra")
+
 set(SOURCE_FILES
         inc/server/client.h
         inc/server/command.h
+        inc/server/communication.h
         inc/server/funcs.h
-        inc/server/functions.h
+        inc/server/info.h
         inc/server/list.h
         inc/server/look.h
         inc/server/map.h
@@ -31,11 +36,15 @@ set(SOURCE_FILES
         src/server/lib/string.c
         src/server/client.c
         src/server/command.c
-        src/server/connection_client.c
+        src/server/command_broadcast.c
+        src/server/command_inventory.c
+        src/server/command_look.c
         src/server/command_map.c
+        src/server/command_move_player.c
         src/server/command_team.c
+        src/server/communication.c
+        src/server/connection_client.c
         src/server/handle_parsing.c
-        src/server/look.c
         src/server/look_utils.c
         src/server/main.c
         src/server/map.c
@@ -44,11 +53,7 @@ set(SOURCE_FILES
         src/server/print_vision_b.c
         src/server/server.c
         src/server/socket.c
-        src/server/stuff.c
+        src/server/team.c
         src/server/utils_parsing.c)
-
-include_directories(inc)
-
-set(CFLAGS "-W -Wall -Wextra -Werror")
 
 add_executable(PSU_2016_zappy ${SOURCE_FILES})

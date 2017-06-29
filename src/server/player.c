@@ -39,7 +39,6 @@ t_player	*create_player(int fd, int y, int x)
   if (!(player->stuff = init_stuff()))
     return (NULL);
   player->direction = (t_direction)my_rand(DIRECTION_MIN, DIRECTION_MAX);
-  printf("Player %d en [%d][%d], direction %d\n", player->id, y, x, player->direction);
   return (player);
 }
 
@@ -75,7 +74,6 @@ t_player	*get_player(t_list *player_list, int fd)
   t_list	*cur;
   t_player	*player;
 
-  player = NULL;
   cur = player_list;
   while (cur)
   {
@@ -87,7 +85,7 @@ t_player	*get_player(t_list *player_list, int fd)
   return (NULL);
 }
 
-void	delete_player(void *_player)
+void		delete_player(void *_player)
 {
   t_player	*player;
 
@@ -103,4 +101,20 @@ bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
     return (false);
   player->team = team;
   return (true);
+}
+
+t_player	*get_player_by_id(t_list *list_player, int id)
+{
+  t_list	*cur;
+  t_player	*player;
+
+  cur = list_player;
+  while (cur)
+  {
+    player = cur->data;
+    if (player->id == id)
+      return (player);
+    cur = cur->next;
+  }
+  return (NULL);
 }

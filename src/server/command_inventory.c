@@ -19,16 +19,19 @@ void		add_quantity(t_stuff *stuff, t_stuff_type type)
 t_stuff		*init_stuff(void)
 {
   t_stuff	*stuff;
+  int		i;
 
   if (!(stuff = malloc(sizeof(t_stuff))))
     return (NULL);
-  if (!(stuff->quantities = malloc(sizeof(int) * (STUFF_MAX))))
+  if (!(stuff->quantities = malloc(sizeof(int) * (STUFF_MAX + 1))))
     return (NULL);
-  memset(stuff->quantities, 0, sizeof(int) * (STUFF_MAX));
+  i = 0;
+  while (i != STUFF_MAX + 1)
+    stuff->quantities[i++] = 0;
   return (stuff);
 }
 
-char *int_to_string(int nb)
+char		*int_to_string(int nb)
 {
   char *str;
 
@@ -62,11 +65,9 @@ void command_inventory(t_server *server, t_client *client)
   t_player *player;
 
   if (!(player = get_player(server->players, client->fd)))
-    return;
-  if (player == NULL)
   {
-    printf("error : player not found\n");
-    return ;
+    send_socket(client->fd, "ko\n");
+    return;
   }
   print_stuff(player->fd, player->stuff);
 }

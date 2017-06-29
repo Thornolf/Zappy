@@ -53,6 +53,7 @@ void	*client_read(void *_server, void *_client_node)
   t_list	*client_node;
   t_client	*client;
   t_list	*next;
+  t_list	*player;
 
   server = _server;
   client_node = _client_node;
@@ -63,8 +64,10 @@ void	*client_read(void *_server, void *_client_node)
   next = client_node->next;
   if (client->buffer[0] == 0)
   {
+    if (!(player = get_player_node(server->players, client->fd)))
+      return (next);
+    remove_node(&server->players, player, &delete_player);
     remove_node(&server->clients, client_node, &delete_client);
-    remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
     return (next);
   }
   else
@@ -82,11 +85,9 @@ void	*client_write(void *_server, void *_client_node)
 {
   t_server	*server;
   t_list	*client_node;
-  t_client	*client;
 
   server = _server;
   (void)server;
-  (void)client;
   client_node = _client_node;
   return (client_node->next);
 }

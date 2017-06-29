@@ -21,7 +21,7 @@
 
 typedef enum	e_direction
 {
-  DIRECTION_MIN = 0,
+  DIRECTION_MIN = 1,
   TOP = DIRECTION_MIN,
   RIGHT,
   BOTTOM,
@@ -32,7 +32,7 @@ typedef enum	e_direction
 typedef struct	s_player
 {
   int		id;
-  int   fd;
+  int		fd;
   int		x;
   int		y;
   int		lv;
@@ -51,5 +51,6 @@ int		my_rand(int min, int max);
 t_player	*get_player(t_list *, int);
 int		check_x(int, int);
 int		check_y(int, int);
+t_player	*get_player_by_id(t_list *, int);
 
 #endif		/* _PLAYER__H_ */

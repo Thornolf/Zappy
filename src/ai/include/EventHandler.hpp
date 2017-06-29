@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Tue Jun 27 15:48:28 2017 Thomas Fossaert
+** Last update Wed Jun 28 13:14:37 2017 Adrien Warin
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -44,7 +44,8 @@ private:
     Direction _orientation;
     Socket *_sock;
     State _currentState;
-
+    std::string _test;
+    
     int _level;
 
 public:
