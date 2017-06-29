@@ -8,12 +8,15 @@
 ** Last update Sun Jun 25 15:39:01 2017 Pierre
 */
 
+#include <signal.h>
 #include "server/server.h"
 #include "server/funcs.h"
 #include "server/socket.h"
 #include "server/player.h"
 #include "server/client.h"
 #include "server/command.h"
+
+bool	go_on = true;
 
 void	server_read(void *_server)
 {
@@ -75,16 +78,22 @@ bool	init_zappy_server(t_info *info)
   return (true);
 }
 
+void		stop_server(int uu)
+{
+  (void)uu;
+  go_on = false;
+}
+
 bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
 {
-  bool			go_on;
   int			fd_max;
   t_list		*cur_client_node;
   t_client		*client;
 
-  go_on = true;
+  signal(SIGINT, stop_server);
   while (go_on)
   {
+    printf("GO_ON = %d\n", go_on);
     fd_max = get_fd_max(server);
     FD_ZERO(fd_read);
     FD_ZERO(fd_write);
