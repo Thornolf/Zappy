@@ -10,7 +10,7 @@
 
 CXX		=	g++
 
-NAME		=	zappy_ia
+NAME		=	zappy_ai
 
 RM		=	rm -f
 
@@ -18,11 +18,12 @@ CXXFLAGS	+=	-std=c++11
 CXXFLAGS	+=	-Werror -Wall -Wextra
 CXXFLAGS	+=	-Iinclude/
 
-SRCS		=	main.cpp \
-			ZappException.cpp \
-			EventHandler.cpp \
-			Socket.cpp \
-			zappy.cpp
+SRCS		=	src/main.cpp \
+			src/ZappException.cpp \
+			src/EventHandler.cpp \
+			src/Socket.cpp \
+			src/Utils.cpp \
+			src/zappy.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

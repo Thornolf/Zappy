@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:41:59 2017 Thomas Fossaert
-** Last update Fri Jun 23 14:31:43 2017 Thomas Fossaert
+** Last update Thu Jun 29 15:09:10 2017 Thomas Fossaert
 */
 
 #ifndef   _SOCKET_HPP_
@@ -26,6 +26,7 @@
 class Socket
 {
   public:
+
     Socket(const std::string&, const std::string&);
     Socket(Socket const & other);
     ~Socket();
@@ -33,17 +34,21 @@ class Socket
 
     void sendMsg(const char *);
     void recvMsg();
+
     const std::string getLastMsg() const;
+    const std::string getIp() const;
+    const std::string getPort() const;
 
   private:
-    struct protoent	*pe;
+    struct protoent	    *pe;
     struct sockaddr_in	s_in;
 
-    int         _port;
-    std::string _ip;
-    int         _fd;
-    char _buffer[4096];
-    std::string _lastMsg;
+    std::string         _ip;
+    std::string         _lastMsg;
+
+    int                  _port;
+    int                  _fd;
+    char                 _buffer[4096];
 };
 
 #endif

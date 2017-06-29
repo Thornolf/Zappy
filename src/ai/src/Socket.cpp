@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Tue Jun 27 11:21:04 2017 Thomas Fossaert
+** Last update Thu Jun 29 15:07:41 2017 Thomas Fossaert
 */
 
 #include "Socket.hpp"
@@ -68,7 +68,15 @@ void Socket::recvMsg()
 
 const std::string Socket::getLastMsg() const
 {
-  return (std::string(_lastMsg));
+  return (std::string(this->_lastMsg));
 }
-//ssize_t send(int socket, const void *buffer, size_t length, int flags);
-//recv(int socket, void *buffer, size_t length, int flags);
+
+const std::string Socket::getIp() const
+{
+  return (std::string(this->_ip));
+}
+
+const std::string Socket::getPort() const
+{
+  return (std::to_string(this->_port));
+}
