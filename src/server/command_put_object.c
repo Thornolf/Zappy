@@ -1,16 +1,16 @@
 /*
-** command_take_object.c for PSU_2016_zappy in /home/pierre/PSU_2016_zappy/src/server
+** command_put_object.c for PSU_2016_zappy in /home/pierre/PSU_2016_zappy/src/server
 **
 ** Made by Pierre
 ** Login   <pierre@epitech.net>
 **
-** Started on  Thu Jun 29 12:59:50 2017 Pierre
-** Last update Thu Jun 29 15:43:55 2017 Pierre
+** Started on  Thu Jun 29 15:36:57 2017 Pierre
+** Last update Thu Jun 29 15:49:51 2017 Pierre
 */
 
 #include "server/command.h"
 
-void	command_take_object(t_server *server, t_client *client)
+void	command_put_object(t_server *server, t_client *client)
 {
   t_player *player;
   t_stuff *stuff;
@@ -22,11 +22,11 @@ void	command_take_object(t_server *server, t_client *client)
       return ;
     }
   player = get_player(server->players, client->fd);
-  stuff = server->map->data[player->y][player->x].stuff;
+  stuff = player->stuff;
   if (check_object(object_id, stuff) == 1)
   {
-    server->map->data[player->y][player->x].stuff->quantities[object_id]--;
-    player->stuff->quantities[object_id]++;
+    server->map->data[player->y][player->x].stuff->quantities[object_id]++;
+    player->stuff->quantities[object_id]--;
     send_socket(client->fd, "ok\n");
   }
   else

@@ -33,7 +33,9 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)command_sgt.c		\
 			$(SRC_SERVER_DIR)command_broadcast.c	\
 			$(SRC_SERVER_DIR)command_inventory.c	\
+			$(SRC_SERVER_DIR)utils_object_commands.c	\
 			$(SRC_SERVER_DIR)command_take_object.c	\
+			$(SRC_SERVER_DIR)command_put_object.c	\
 			$(SRC_SERVER_DIR)command_move_player.c	\
 			$(SRC_SERVER_DIR)command_connect_nbr.c	\
 			$(SRC_SERVER_DIR)command_player.c	\

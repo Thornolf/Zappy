@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:47:27 2017 Pierre
+** Last update Thu Jun 29 15:46:16 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -53,7 +53,11 @@ void		print_stuff(int fd, t_stuff *stuff);
 /**
  * Commandes IA
  */
+void	command_put_object(t_server *server, t_client *client);
 void	command_take_object(t_server *server, t_client *client);
+char **init_check(char **objects);
+int check_arg(char *arg);
+int check_object(int object_id, t_stuff *tile);
 void	command_turn_right(t_server *, t_client *);
 void	command_turn_left(t_server *, t_client *);
 void	command_move_player(t_server *, t_client *);
