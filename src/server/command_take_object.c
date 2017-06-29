@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 12:59:50 2017 Pierre
-** Last update Thu Jun 29 15:26:38 2017 Pierre
+** Last update Thu Jun 29 15:44:00 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -43,11 +43,11 @@ int check_arg(char *arg)
     return (-1);
   i = 0;
   while (objects[i])
-  {
-    if (strcmp(objects[i], arg) == 0)
-      return (i);
-    i++;
-  }
+    {
+      if (strcmp(objects[i], arg) == 0)
+	return (i);
+      i++;
+    }
   return (-1);
 }
 
@@ -73,11 +73,11 @@ void	command_take_object(t_server *server, t_client *client)
   player = get_player(server->players, client->fd);
   stuff = server->map->data[player->y][player->x].stuff;
   if (check_object(object_id, stuff) == 1)
-  {
-    server->map->data[player->y][player->x].stuff->quantities[object_id]--;
-    player->stuff->quantities[object_id]++;
-    send_socket(client->fd, "ok\n");
-  }
+    {
+      server->map->data[player->y][player->x].stuff->quantities[object_id]--;
+      player->stuff->quantities[object_id]++;
+      send_socket(client->fd, "ok\n");
+    }
   else
     send_socket(client->fd, "ko\n");
 }
