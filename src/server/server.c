@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sun Jun 25 15:39:01 2017 Pierre
+** Last update Thu Jun 29 11:14:04 2017 Pierre
 */
 
 #include "server/server.h"
@@ -64,6 +64,11 @@ bool	init_zappy_server(t_info *info)
   if (!(s_conf.cmds = init_cmd_callback()))
     return (false);
   s_conf.players = NULL;
+  s_conf.waiting_cmds = NULL;
+  s_conf.endwait = -1;
+  s_conf.timeout.tv_sec = 0;
+  s_conf.timeout.tv_usec = 20;
+  s_conf.freq = info->freq;
   s_conf.server_read = server_read;
   s_conf.server_write = server_write;
   s_conf.team_size = info->clientsNb;
@@ -73,6 +78,31 @@ bool	init_zappy_server(t_info *info)
   remove_list(s_conf.clients, &delete_client);
   delete_map(s_conf.map);
   return (true);
+}
+
+void check_waiting_cmds(t_server *server)
+{
+  t_command *cmd;
+  t_client *client;
+
+  cmd = NULL;
+  if (server->waiting_cmds != NULL)
+  {
+    if (server->endwait == -1)
+    {
+      cmd = server->waiting_cmds->cmd;
+      server->endwait = time(NULL) + (cmd->action_time / server->freq);
+    }
+    else if (server->endwait != -1 && time(NULL) > server->endwait)
+    {
+      cmd = server->waiting_cmds->cmd;
+      client = server->waiting_cmds->client;
+      cmd->fn(server, client);
+      printf("on a lancé la commande %s\n", cmd->cmd_name);
+      server->endwait = -1;
+      server->waiting_cmds = server->waiting_cmds->next;
+    }
+  }
 }
 
 bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
@@ -96,7 +126,8 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
       FD_SET(client->fd, fd_read);
       cur_client_node = cur_client_node->next;
     }
-    go_on = (select(fd_max + 1, fd_read, fd_write, NULL, NULL) != 0);
+    check_waiting_cmds(server);
+    go_on = (select(fd_max + 1, fd_read, fd_write, NULL, &server->timeout) >= 0);
     if (FD_ISSET(server->fd, fd_read))
       server->server_read(server);
     cur_client_node = server->clients;
@@ -104,10 +135,11 @@ bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
     {
       client = cur_client_node->data;
       if (FD_ISSET(client->fd, fd_read))
-	cur_client_node = client->fct_read(server, cur_client_node);
+	     cur_client_node = client->fct_read(server, cur_client_node);
       else
-	cur_client_node = cur_client_node->next;
+        cur_client_node = cur_client_node->next;
     }
+    check_waiting_cmds(server);
   }
   return (true);
 }

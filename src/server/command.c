@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 28 13:15:14 2017 Pierre
+** Last update Thu Jun 29 11:07:47 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -88,6 +88,12 @@ t_list		*init_cmd_callback_ai(t_list *head)
   if (!(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("Connect_nbr", 0, &command_connect_nbr, AI)))
+    return (NULL);
+  if (!(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
   return (head);
 }
 
@@ -100,17 +106,6 @@ t_list		*init_cmd_callback(void)
   if (!(head = init_cmd_callback_ai(head)))
     return (NULL);
   return (head);
-}
-
-void wait_action_time(time_t action_time)
-{
-  time_t endwait;
-
-  endwait = time(NULL) + action_time;
-  while (time(NULL) < endwait)
-  {
-
-  }
 }
 
 bool		execute_command(t_server *server, t_client *client)
@@ -139,8 +134,9 @@ bool		execute_command(t_server *server, t_client *client)
     if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
     {
       if (client->type == AI)
-        wait_action_time(cmd->action_time);
-      cmd->fn(server, client);
+        add_waiting_cmd(server, cmd, client);
+      else if (client->type == GRAPHIC)
+        cmd->fn(server, client);
       return (true);
     }
     cur = cur->next;

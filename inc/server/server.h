@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 27 18:16:15 2017 Pierre
+** Last update Thu Jun 29 10:55:48 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
@@ -21,10 +21,20 @@
 
 typedef			void(*fct_server)(void *);
 
+typedef struct s_waiting_cmds
+{
+  void *cmd;
+  void *client;
+  struct s_waiting_cmds *next;
+} t_waiting_cmds;
+
 typedef struct		s_server
 {
   int			fd;
   int			team_size;
+  int     freq;
+  time_t endwait;
+  struct timeval timeout;
   struct sockaddr_in	*sin;
   fct_server		server_read;
   fct_server		server_write;
@@ -32,6 +42,7 @@ typedef struct		s_server
   t_list		*clients;
   t_list		*players;
   t_list		*cmds;
+  t_waiting_cmds    *waiting_cmds;
   t_list		*teams;
 }			t_server;
 

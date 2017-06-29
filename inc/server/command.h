@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 28 13:22:07 2017 Pierre
+** Last update Thu Jun 29 11:05:19 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -39,9 +39,16 @@ void		delete_command(void *);
 /**
  * Commands functions
  */
+
+void add_waiting_cmd(t_server *server, t_command *cmd, t_client *client);
+
+char *int_to_string(int nb);
+
 void	connection_graphic(t_server *, t_client *);
 bool	connection_ia(t_server *server, t_client *client, char *);
 void	command_pnw(t_server *, t_player *);
+
+void command_connect_nbr(t_server *server, t_client *client);
 
 void	command_turn_right(t_server *, t_client *);
 void	command_turn_left(t_server *, t_client *);

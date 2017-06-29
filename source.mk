@@ -25,12 +25,14 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c			\
 			$(SRC_SERVER_DIR)socket.c		\
 			$(SRC_SERVER_DIR)server.c		\
 			$(SRC_SERVER_DIR)client.c		\
+			$(SRC_SERVER_DIR)waiting_cmds.c		\
 			$(SRC_SERVER_DIR)command.c		\
 			$(SRC_SERVER_DIR)command_map.c		\
 			$(SRC_SERVER_DIR)connection_client.c	\
 			$(SRC_SERVER_DIR)command_team.c		\
 			$(SRC_SERVER_DIR)command_broadcast.c		\
 			$(SRC_SERVER_DIR)command_inventory.c		\
+			$(SRC_SERVER_DIR)command_connect_nbr.c		\
 			$(SRC_SERVER_DIR)command_move_player.c		\
 			$(SRC_SERVER_DIR)team.c			\
 			$(SRC_SERVER_DIR)communication.c	\
