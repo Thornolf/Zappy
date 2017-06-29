@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Thu Jun 29 15:27:39 2017 Pierre
+** Last update Thu Jun 29 15:44:37 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -40,12 +40,12 @@ void print_tile_players(int player_fd, int y, int x, t_list *list_player)
 
   tmp = list_player;
   while (tmp)
-  {
-    player = tmp->data;
-    if (player->x == x && player->y == y)
-      send_socket(player_fd, "player ");
-    tmp = tmp->next;
-  }
+    {
+      player = tmp->data;
+      if (player->x == x && player->y == y)
+	send_socket(player_fd, "player ");
+      tmp = tmp->next;
+    }
 }
 
 void	print_objects(int player_fd, t_list *list_player, t_vision *tmp, t_map *map)
@@ -56,22 +56,22 @@ void	print_objects(int player_fd, t_list *list_player, t_vision *tmp, t_map *map
 
   init_print_cmds(print_stuff_cmds);
   while (tmp)
-  {
-    print_tile_players(player_fd, tmp->y, tmp->x, list_player);
-    index = 0;
-    while (index <= 6)
     {
-      i = 1;
-      while (i <= map->data[tmp->y][tmp->x].stuff->quantities[index])
-      {
-        (*print_stuff_cmds[index])(player_fd);
-        send_socket(player_fd, " ");
-        i++;
-      }
-      index++;
+      print_tile_players(player_fd, tmp->y, tmp->x, list_player);
+      index = 0;
+      while (index <= 6)
+	{
+	  i = 1;
+	  while (i <= map->data[tmp->y][tmp->x].stuff->quantities[index])
+	    {
+	      (*print_stuff_cmds[index])(player_fd);
+	      send_socket(player_fd, " ");
+	      i++;
+	    }
+	  index++;
+	}
+      if (tmp->next)
+	send_socket(player_fd, ", ");
+      tmp = tmp->next;
     }
-    if (tmp->next)
-      send_socket(player_fd, ", ");
-    tmp = tmp->next;
-  }
 }

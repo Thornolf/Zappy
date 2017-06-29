@@ -11,13 +11,13 @@
 #ifndef		_PLAYER__H_
 # define	_PLAYER__H_
 
+# include <unistd.h>
+# include <stdio.h>
+# include <time.h>
 # include "server/map.h"
 # include "server/list.h"
 # include "server/stuff.h"
 # include "server/team.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <time.h>
 
 typedef enum	e_direction
 {
@@ -41,16 +41,15 @@ typedef struct	s_player
   t_team	*team;
 }		t_player;
 
-t_player	*create_player(int fd, int y, int x);
-void	delete_player(void *_player);
-void		add_player(t_list *head, int fd, int y, int x);
-void		print_players(t_list *head);
-t_list		*init_players_list(int fd, int y, int x);
-bool		assign_player_to_team(t_server *server, t_player *player, char *team_name);
+void		delete_player(void *);
+void		add_player(t_list *, int, int, int);
 int		my_rand(int min, int max);
-t_player	*get_player(t_list *, int);
 int		check_x(int, int);
 int		check_y(int, int);
+bool		assign_player_to_team(t_server *, t_player *, char *);
+t_list		*init_players_list(int fd, int y, int x);
+t_player	*create_player(int, int, int);
+t_player	*get_player(t_list *, int);
 t_player	*get_player_by_id(t_list *, int);
 
 #endif		/* _PLAYER__H_ */

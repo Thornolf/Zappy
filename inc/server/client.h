@@ -42,6 +42,5 @@ t_client	*init_client(t_server *);
 void		*client_read(void *, void *);
 void		*client_write(void *, void *);
 void		delete_client(void *);
-void		set_client_type(t_client *, t_client_type);
 
 #endif		/* !_CLIENT_H_! */

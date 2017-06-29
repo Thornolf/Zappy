@@ -5,11 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-<<<<<<< HEAD
-** Last update Thu Jun 29 15:22:37 2017 Pierre
-=======
 ** Last update Thu Jun 29 14:53:10 2017 Guillaume CAUCHOIS
->>>>>>> 55f5c8e08d84b4251778034945b1e53a140eb0d0
 */
 
 #include "server/command.h"

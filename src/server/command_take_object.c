@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 12:59:50 2017 Pierre
-** Last update Thu Jun 29 15:43:55 2017 Pierre
+** Last update Thu Jun 29 15:52:57 2017 Pierre
 */
 
 #include "server/command.h"
@@ -24,11 +24,11 @@ void	command_take_object(t_server *server, t_client *client)
   player = get_player(server->players, client->fd);
   stuff = server->map->data[player->y][player->x].stuff;
   if (check_object(object_id, stuff) == 1)
-  {
-    server->map->data[player->y][player->x].stuff->quantities[object_id]--;
-    player->stuff->quantities[object_id]++;
-    send_socket(client->fd, "ok\n");
-  }
+    {
+      server->map->data[player->y][player->x].stuff->quantities[object_id]--;
+      player->stuff->quantities[object_id]++;
+      send_socket(client->fd, "ok\n");
+    }
   else
     send_socket(client->fd, "ko\n");
 }
