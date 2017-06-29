@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 15:28:30 2017 Pierre
+** Last update Thu Jun 29 15:54:55 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -68,8 +68,10 @@ t_list		*init_cmd_callback_ai(t_list *head)
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Inventory", 1, &command_look, AI)) ||
       !(append_data(&head, cmd)) ||
-      !(cmd = create_command_node("Connect_nbr", 0, &command_connect_nbr, AI))
-      || !(append_data(&head, cmd)))
+      !(cmd = create_command_node("Connect_nbr", 0, &command_connect_nbr, AI)) ||
+      !(append_data(&head, cmd)) ||
+      !(cmd = create_command_node("Set", 7, &command_put_object, AI)) ||
+      !(append_data(&head, cmd)))
     return (NULL);
   return (head);
 }

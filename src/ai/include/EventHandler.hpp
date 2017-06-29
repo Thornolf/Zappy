@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:01:18 2017 Adrien Warin
-** Last update Wed Jun 28 13:14:37 2017 Adrien Warin
+** Last update Thu Jun 29 15:37:04 2017 Thomas Fossaert
 */
 
 #ifndef     _EVENTHANDLER_HPP_
@@ -17,6 +17,7 @@
 # include <unordered_map>
 # include	<functional>
 # include <vector>
+# include "Utils.hpp"
 # include "Socket.hpp"
 
 enum class Direction : int
@@ -37,16 +38,21 @@ enum class State : int
 class EventHandler
 {
 private:
-    std::map<std::string, std::function<void(void)> >	_event;
-    std::map<int,std::vector<std::string>> _tiles;
-    std::unordered_map<std::string,int> _inventory;
-    std::unordered_map<std::string,int> _need;
-    Direction _orientation;
-    Socket *_sock;
-    State _currentState;
-    std::string _test;
-    
-    int _level;
+
+    std::string                                         _test;
+    int                                                 _level;
+
+
+    Utils                                               _utils;
+    State                                               _currentState;
+    Socket *                                            _sock;
+    Direction                                           _orientation;
+
+    std::map<int,std::vector<std::string>>              _tiles;
+    std::map<std::string, std::function<void(void)> >	  _event;
+
+    std::unordered_map<std::string,int>                 _inventory;
+    std::unordered_map<std::string,int>                 _need;
 
 public:
     EventHandler (Socket *);
@@ -79,10 +85,6 @@ public:
     void UpdateRequirement(int);
     int CaseRequirement(const std::string &, int);
     void PutRequirementRock(const std::string &);
-
-    void epur(std::string &s);
-    std::vector<std::string> explode(const std::string&, const char&);
-    bool has_any_digits(const std::string& s);
 };
 
 #endif
