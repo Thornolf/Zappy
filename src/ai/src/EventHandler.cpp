@@ -184,10 +184,11 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string 	token;
   std::string   nb;
 
+  std::cout << tmp << '\n';
   my_vec = _utils.explode(tmp, ',');
   for(std::vector<std::string>::iterator it = my_vec.begin(); it != my_vec.end(); ++it)
     {
-        (*it);
+        _utils.epur(*it);
         token = *it;
         if ((pos = token.find(delimiter)) != std::string::npos)
         {
@@ -199,7 +200,10 @@ void EventHandler::parseInventory(const std::string & inventory)
                 tmp.erase(0, pos + delimiter.length());
             }
             if (_utils.has_any_digits(nb) == true)
+            {
+                std::cout << "AJOUT DE " << nb << " DE " << token << '\n';
               _inventory[token] = stoi(nb);
+            }
         }
     }
 }
