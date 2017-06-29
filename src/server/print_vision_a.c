@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Thu Jun 29 14:39:47 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 15:27:39 2017 Pierre
 */
 
 #include "server/command.h"
@@ -20,13 +20,10 @@ void print_phiras(int fd)
   send_socket(fd, "phiras");
 }
 
-void print_thystame(int fd)
-{
-  send_socket(fd, "thystame");
-}
-
 void	init_print_cmds(void (*print_stuff_cmds[7])(int fd))
 {
+  if (print_stuff_cmds[FOOD])
+    return ;
   print_stuff_cmds[FOOD]	= &print_food;
   print_stuff_cmds[LINEMATE]	= &print_linemate;
   print_stuff_cmds[DERAUMERE]	= &print_deraumere;
@@ -36,35 +33,45 @@ void	init_print_cmds(void (*print_stuff_cmds[7])(int fd))
   print_stuff_cmds[THYSTAME]	= &print_thystame;
 }
 
-void	print_objects(int player_fd, t_list *list_player, t_vision *vision)
+void print_tile_players(int player_fd, int y, int x, t_list *list_player)
 {
-  t_vision	*tmp;
-  t_list	*players;
-  int		index;
-  void		(*print_stuff_cmds[7])(int fd);
+  t_list	*tmp;
+  t_player *player;
+
+  tmp = list_player;
+  while (tmp)
+  {
+    player = tmp->data;
+    if (player->x == x && player->y == y)
+      send_socket(player_fd, "player ");
+    tmp = tmp->next;
+  }
+}
+
+void	print_objects(int player_fd, t_list *list_player, t_vision *tmp, t_map *map)
+{
+  int index;
+  int i;
+  static void	(*print_stuff_cmds[7])(int fd);
 
   init_print_cmds(print_stuff_cmds);
-  tmp = vision;
-  index = 0;
-  send_socket(player_fd, "[player");
   while (tmp)
+  {
+    print_tile_players(player_fd, tmp->y, tmp->x, list_player);
+    index = 0;
+    while (index <= 6)
     {
-      players = list_player;
-      while (players)
-	{
-	  send_socket(player_fd, " player");
-	  players = players->next;
-	}
-      index = 0;
-      while (index <= STUFF_MAX)
-	{
-	  send_socket(player_fd, " ");
-	  (*print_stuff_cmds[index])(player_fd);
-	  index++;
-	}
-      if (tmp->next)
-	send_socket(player_fd, ",");
-      tmp = tmp->next;
+      i = 1;
+      while (i <= map->data[tmp->y][tmp->x].stuff->quantities[index])
+      {
+        (*print_stuff_cmds[index])(player_fd);
+        send_socket(player_fd, " ");
+        i++;
+      }
+      index++;
     }
-  send_socket(player_fd, "]\n");
+    if (tmp->next)
+      send_socket(player_fd, ", ");
+    tmp = tmp->next;
+  }
 }

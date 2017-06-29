@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 11:31:24 2017 Pierre
+** Last update Thu Jun 29 14:47:27 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -46,15 +46,18 @@ void	connection_graphic(t_server *, t_client *);
 bool	connection_ia(t_server *, t_client *client, char *);
 void	command_pnw(t_server *, t_player *);
 
+void		print_stuff(int fd, t_stuff *stuff);
+
 /**
  * Commandes IA
  */
+void	command_take_object(t_server *server, t_client *client);
 void	command_turn_right(t_server *, t_client *);
 void	command_turn_left(t_server *, t_client *);
 void	command_move_player(t_server *, t_client *);
 void	command_look(t_server *, t_client *);
-void	print_objects(int, t_list *, t_vision *);
-void	command_connect_nbr(t_server *server, t_client *client);
+void	print_objects(int, t_list *, t_vision *, t_map *);
+void command_connect_nbr(t_server *server, t_client *client);
 
 /**
  * Commandes GRAPHIC

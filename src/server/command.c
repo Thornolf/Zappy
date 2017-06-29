@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:53:50 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 15:28:30 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -63,6 +63,8 @@ t_list		*init_cmd_callback_ai(t_list *head)
       !(cmd = create_command_node("Left", 7, &command_move_player, AI)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Look", 7, &command_look, AI)) ||
+      !(append_data(&head, cmd)) ||
+      !(cmd = create_command_node("Take", 7, &command_take_object, AI)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Inventory", 1, &command_look, AI)) ||
       !(append_data(&head, cmd)) ||
