@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:30:48 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 22 19:41:26 2017 Pierre
+** Last update Thu Jun 29 14:39:10 2017 Guillaume CAUCHOIS
 */
 
 #include "server/map.h"
@@ -24,18 +24,18 @@ t_map		*create_empty_map(unsigned int x, unsigned int y)
     return (NULL);
   i = 0;
   while (i < y)
-  {
-    if (!(map->data[i] = malloc(sizeof(t_plot) * (x + 1))))
-      return (NULL);
-    j = 0;
-    while (j < x)
     {
-      if (!(map->data[i][j].stuff = init_stuff()))
+      if (!(map->data[i] = malloc(sizeof(t_plot) * (x + 1))))
 	return (NULL);
-      j++;
+      j = 0;
+      while (j < x)
+	{
+	  if (!(map->data[i][j].stuff = init_stuff()))
+	    return (NULL);
+	  j++;
+	}
+      i++;
     }
-    i++;
-  }
   map->data[i] = NULL;
   return (map);
 }
@@ -44,7 +44,7 @@ t_stuff_type	generate_stuff_type_randomly(void)
 {
   int		id;
 
-  while ((id = rand() % STUFF_MAX) < STUFF_MIN);
+  while ((id = rand() % STUFF_MAX + 1) < STUFF_MIN);
   return ((t_stuff_type)id);
 }
 
@@ -67,21 +67,21 @@ void		fill_up_map_randomly(t_map *map)
 
   y = 0;
   while (y != map->height)
-  {
-    x = 0;
-    while (x != map->width)
     {
-      i = 0;
-      nb_entities = rand() % (STUFF_MAX - STUFF_MIN);
-      while (i < nb_entities)
-      {
-	put_stuff_in_map(map, x, y);
-	i++;
-      }
-      x++;
+      x = 0;
+      while (x != map->width)
+	{
+	  i = 0;
+	  nb_entities = rand() % (STUFF_MAX - STUFF_MIN);
+	  while (i < nb_entities)
+	    {
+	      put_stuff_in_map(map, x, y);
+	      i++;
+	    }
+	  x++;
+	}
+      y++;
     }
-    y++;
-  }
 }
 
 void	delete_map(t_map *map)

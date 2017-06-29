@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:36:05 2017 Pierre
+** Last update Thu Jun 29 15:28:30 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -60,6 +60,11 @@ t_list		*init_cmd_callback_graphic(void)
   father->next = son;
   father = son;
   if (!(cmd = create_command_node("pin", -1, &command_pin, GRAPHIC)) ||
+      !(son = create_node(cmd, NULL)))
+    return (NULL);
+  father->next = son;
+  father = son;
+  if (!(cmd = create_command_node("sgt", -1, &command_sgt, GRAPHIC)) ||
       !(son = create_node(cmd, NULL)))
     return (NULL);
   father->next = son;
@@ -138,30 +143,30 @@ bool		execute_command(t_server *server, t_client *client)
   if (!(command_name = strtok(client->buffer, " \t\n")))
     return (false);
   if (client->type == UNDEFINED)
-  {
-    if (strcmp(command_name, "GRAPHIC") == 0)
     {
-      connection_graphic(server, client);
-      return (true);
+      if (strcmp(command_name, "GRAPHIC") == 0)
+	{
+	  connection_graphic(server, client);
+	  return (true);
+	}
+      else if (connection_ia(server, client, command_name))
+	return (true);
+      return (false);
     }
-    else if (connection_ia(server, client, command_name))
-      return (true);
-    return (false);
-  }
   cur = server->cmds;
   while (cur)
-  {
-    cmd = cur->data;
-    if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
     {
-      if (client->type == AI)
-        add_waiting_cmd(server, cmd, client);
-      else if (client->type == GRAPHIC)
-        cmd->fn(server, client);
-      return (true);
+      cmd = cur->data;
+      if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
+	{
+	  if (client->type == AI)
+	    add_waiting_cmd(server, cmd, client);
+	  else if (client->type == GRAPHIC)
+	    cmd->fn(server, client);
+	  return (true);
+	}
+      cur = cur->next;
     }
-    cur = cur->next;
-  }
   return (false);
 }
 

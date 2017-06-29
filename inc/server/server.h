@@ -21,35 +21,31 @@
 
 typedef			void(*fct_server)(void *);
 
-typedef struct s_waiting_cmds
+typedef struct		s_waiting_cmds
 {
-  void *cmd;
-  void *client;
-  struct s_waiting_cmds *next;
-} t_waiting_cmds;
+  void			*cmd;
+  void			*client;
+  struct s_waiting_cmds	*next;
+}			t_waiting_cmds;
 
 typedef struct		s_server
 {
   int			fd;
   int			team_size;
-  int     freq;
-  time_t endwait;
-  struct timeval timeout;
-  struct sockaddr_in	*sin;
+  int			freq;
+  time_t		endwait;
+  struct timeval	timeout;
   fct_server		server_read;
-  fct_server		server_write;
   t_map			*map;
   t_list		*clients;
   t_list		*players;
   t_list		*cmds;
-  t_waiting_cmds    *waiting_cmds;
+  t_waiting_cmds	*waiting_cmds;
   t_list		*teams;
 }			t_server;
 
 bool	init_zappy_server(t_info *);
 bool	handle_io(fd_set *, fd_set *, t_server *);
-bool	handle_isset_sockets(t_server *, fd_set *, t_list *, int);
 int	get_fd_max(t_server *);
-void	init_elems_cmds(t_info *info);
 
 #endif		/* !_SERVER__H_! */

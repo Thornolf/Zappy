@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 10:52:23 2017 Pierre
-** Last update Thu Jun 29 11:05:12 2017 Pierre
+** Last update Thu Jun 29 14:35:46 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -22,12 +22,12 @@ void command_connect_nbr(t_server *server, t_client *client)
   tmp = get_player(server->players, client->fd);
   team_name = strdup(tmp->team->name);
   while (list)
-  {
-    tmp = list->data;
-    if (strcmp(tmp->team->name, team_name) == 0)
-      nb++;
-    list = list->next;
-  }
+    {
+      tmp = list->data;
+      if (strcmp(tmp->team->name, team_name) == 0)
+	nb++;
+      list = list->next;
+    }
   send_socket(client->fd, int_to_string(server->team_size - nb));
   send_socket(client->fd, "\n");
 }

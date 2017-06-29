@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Thu Jun 29 11:03:14 2017 Pierre
+** Last update Thu Jun 29 14:36:01 2017 Guillaume CAUCHOIS
 */
 
 #include <string.h>
@@ -65,9 +65,9 @@ void command_inventory(t_server *server, t_client *client)
   t_player *player;
 
   if (!(player = get_player(server->players, client->fd)))
-  {
-    send_socket(client->fd, "ko\n");
-    return;
-  }
+    {
+      send_socket(client->fd, "ko\n");
+      return;
+    }
   print_stuff(player->fd, player->stuff);
 }

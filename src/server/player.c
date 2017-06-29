@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 28 12:45:19 2017 Pierre
+** Last update Thu Jun 29 14:39:35 2017 Guillaume CAUCHOIS
 */
 
 #include "server/player.h"
@@ -76,12 +76,12 @@ t_player	*get_player(t_list *player_list, int fd)
 
   cur = player_list;
   while (cur)
-  {
-    player = cur->data;
-    if (player->fd == fd)
-      return (player);
-    cur = cur->next;
-  }
+    {
+      player = cur->data;
+      if (player->fd == fd)
+	return (player);
+      cur = cur->next;
+    }
   return (NULL);
 }
 
@@ -110,11 +110,11 @@ t_player	*get_player_by_id(t_list *list_player, int id)
 
   cur = list_player;
   while (cur)
-  {
-    player = cur->data;
-    if (player->id == id)
-      return (player);
-    cur = cur->next;
-  }
+    {
+      player = cur->data;
+      if (player->id == id)
+	return (player);
+      cur = cur->next;
+    }
   return (NULL);
 }

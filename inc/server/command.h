@@ -73,5 +73,6 @@ void	command_tna(t_server *, t_client *);
 void	command_ppo(t_server *, t_client *);
 void	command_plv(t_server *, t_client *);
 void	command_pin(t_server *, t_client *);
+void	command_sgt(t_server *, t_client *);
 
 #endif		/* !_COMMAND__H_! */

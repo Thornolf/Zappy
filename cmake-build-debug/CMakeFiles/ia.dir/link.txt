@@ -1,1 +1,0 @@
-/usr/bin/cc  -g   CMakeFiles/ia.dir/src/ia/main.c.o  -o ia 

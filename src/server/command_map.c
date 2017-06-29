@@ -5,16 +5,16 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 13:00:06 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 23 18:44:47 2017 Pierre
+** Last update Thu Jun 29 14:51:47 2017 Guillaume CAUCHOIS
 */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "server/map.h"
 #include "server/server.h"
 #include "server/client.h"
 #include "server/string.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
  * Permit to send to the client the size of the map
@@ -32,43 +32,43 @@ void	command_msz(t_server *server, t_client *client)
   free(str);
 }
 
-void		concat_quantities_bct(t_server *server, char *buf, unsigned int x, unsigned int y)
+char		*quantities_to_string(int *quantities)
 {
-  char		*n;
+  char		*string;
+  int		len_write;
   t_stuff_type	type;
+  size_t	limit;
 
+  len_write  = 0;
   type = STUFF_MIN;
-  while (type != STUFF_MAX)
-  {
-    if (!(buf = strcat(buf, " ")) ||
-	!(n = itos(server->map->data[y][x].stuff->quantities[type++])) ||
-	!(buf = strcat(buf, n)))
-      return;
-    free(n);
-  }
+  if (!(string = malloc(sizeof(char) * 400)))
+    return (NULL);
+  bzero(string, sizeof(char) * 400);
+  while (type < STUFF_MAX)
+    {
+      limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
+      len_write += snprintf(string + len_write, limit, " %d", quantities[type++]);
+    }
+  return (string);
 }
 
 void		command_bct_at_position(t_server *server, t_client *client,
-					    unsigned int x, unsigned int y)
+					unsigned int x, unsigned int y)
 {
   char		*buf;
-  char		*n;
+  char		*qts;
 
   if (x >= server->map->width || y >= server->map->height)
-  {
-    send_socket(client->fd, "sbp\n");
+    {
+      send_socket(client->fd, "sbp\n");
+      return;
+    }
+  if (!(buf = malloc(sizeof(char) * 400)))
     return;
-  }
-  if (!(buf = strdup("bct ")) || !(buf = realloc(buf, (strlen(buf) + 40))) ||
-      !(n = itos(x)) || !(buf = strcat(buf, n)))
+  if (!(qts = quantities_to_string(server->map->data[y][x].stuff->quantities)))
     return;
-  free(n);
-  if (!(buf = strcat(buf, " ")) || !(n = itos(y)) || !(buf = strcat(buf, n)))
-    return;
-  concat_quantities_bct(server, buf, x, y);
-  if (!(buf = strcat(buf, "\n")) || !send_socket(client->fd, buf))
-    return;
-  free(buf);
+  snprintf(buf, 400, "bct %d %d%s\n", x, y, qts);
+  send_socket(client->fd, buf);
 }
 
 void	command_bct(t_server *server, t_client *client)
@@ -79,16 +79,16 @@ void	command_bct(t_server *server, t_client *client)
 
   (void)server;
   if (!(buf = strtok(NULL, " \t\n")) || !string_is_number(buf))
-  {
-    send_socket(client->fd, "sbp\n");
-    return;
-  }
+    {
+      send_socket(client->fd, "sbp\n");
+      return;
+    }
   x = (unsigned int)atoi(buf);
   if (!(buf = strtok(NULL, " \t\n")) || !string_is_number(buf))
-  {
-    send_socket(client->fd, "sbp\n");
-    return;
-  }
+    {
+      send_socket(client->fd, "sbp\n");
+      return;
+    }
   y = (unsigned int)atoi(buf);
   command_bct_at_position(server, client, x, y);
 }
@@ -100,13 +100,13 @@ void		command_mct(t_server *server, t_client *client)
 
   x = 0;
   while (x != server->map->width)
-  {
-    y = 0;
-    while (y != server->map->height)
     {
-      command_bct_at_position(server, client, x, y);
-      y++;
+      y = 0;
+      while (y != server->map->height)
+	{
+	  command_bct_at_position(server, client, x, y);
+	  y++;
+	}
+      x++;
     }
-    x++;
-  }
 }

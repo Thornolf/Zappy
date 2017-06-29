@@ -5,13 +5,13 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 28 19:09:18 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 28 19:09:18 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:48:31 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
 #include "server/string.h"
 
-void	command_pin(t_server *server, t_client *client)
+void		command_pin(t_server *server, t_client *client)
 {
   t_player	*player;
   char		*param;
@@ -20,16 +20,16 @@ void	command_pin(t_server *server, t_client *client)
   int		*qts;
 
   if (!(param = strtok(NULL, " \t\n")) || !string_is_number(param))
-  {
-    send_socket(client->fd, "sbp\n");
-    return;
-  }
+    {
+      send_socket(client->fd, "sbp\n");
+      return;
+    }
   player_id = atoi(param);
   if (!(player = get_player_by_id(server->players, player_id)))
-  {
-    send_socket(client->fd, "sbp\n");
-    return;
-  }
+    {
+      send_socket(client->fd, "sbp\n");
+      return;
+    }
   if (!(buffer = malloc(sizeof(char) * 450)))
     return;
   if (!(qts = player->stuff->quantities))

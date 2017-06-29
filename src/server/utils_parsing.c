@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 17:11:51 2017 Pierre
-** Last update Wed Jun 21 15:20:18 2017 Pierre
+** Last update Thu Jun 29 14:41:09 2017 Guillaume CAUCHOIS
 */
 
 #include "server/funcs.h"
@@ -71,10 +71,10 @@ int	long_command(t_info *info, int i, char **av)
     return (-1);
   y = 0;
   while (i < len)
-  {
-    if ((info->clients[y++] = strdup(av[i++])) == NULL)
-      return (-1);
-  }
+    {
+      if ((info->clients[y++] = strdup(av[i++])) == NULL)
+	return (-1);
+    }
   info->clients[y] = NULL;
   if ((check_twice(info, 1, 3)) == 0)
     return (0);
