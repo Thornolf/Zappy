@@ -5,13 +5,13 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 28 19:09:18 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:37:07 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:48:31 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
 #include "server/string.h"
 
-void	command_pin(t_server *server, t_client *client)
+void		command_pin(t_server *server, t_client *client)
 {
   t_player	*player;
   char		*param;

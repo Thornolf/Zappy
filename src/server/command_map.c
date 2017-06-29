@@ -5,16 +5,16 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 13:00:06 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:36:46 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:51:47 2017 Guillaume CAUCHOIS
 */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "server/map.h"
 #include "server/server.h"
 #include "server/client.h"
 #include "server/string.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
  * Permit to send to the client the size of the map

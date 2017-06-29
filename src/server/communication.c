@@ -33,7 +33,6 @@ bool		send_all_ai(t_server *server, char *msg)
   t_list	*cur_client_node;
   t_client	*client;
 
-
   cur_client_node = server->clients;
   while (cur_client_node)
     {

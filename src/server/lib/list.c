@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:40:51 2017 Guillaume CAUCHOIS
-** Last update Tue Jun 20 09:40:51 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:47:40 2017 Guillaume CAUCHOIS
 */
 
 #include "server/list.h"
@@ -30,22 +30,22 @@ void		remove_node(t_list **list, t_list *node, void(*fn_delete_node)(void *))
     return;
   prev = *list;
   if (prev == node)
-  {
-    *list = prev->next;
-    fn_delete_node(prev->data);
-  }
+    {
+      *list = prev->next;
+      fn_delete_node(prev->data);
+    }
   cur = prev->next;
   while (cur)
-  {
-    if (cur == node)
     {
-      prev->next = cur->next;
-      fn_delete_node(cur->data);
-      return;
+      if (cur == node)
+	{
+	  prev->next = cur->next;
+	  fn_delete_node(cur->data);
+	  return;
+	}
+      prev = cur;
+      cur = cur->next;
     }
-    prev = cur;
-    cur = cur->next;
-  }
 }
 
 void		remove_list(t_list *list, void(*remove_node)(void *))
@@ -55,12 +55,12 @@ void		remove_list(t_list *list, void(*remove_node)(void *))
 
   cur = list;
   while (cur)
-  {
-    next = cur->next;
-    remove_node(cur->data);
-    free(cur);
-    cur = next;
-  }
+    {
+      next = cur->next;
+      remove_node(cur->data);
+      free(cur);
+      cur = next;
+    }
 }
 
 t_list		*get_last_node(t_list *head)

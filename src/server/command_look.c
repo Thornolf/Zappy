@@ -5,14 +5,14 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Thu Jun 29 14:36:24 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:53:10 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
 
-t_vision *look_top(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_top(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -38,9 +38,9 @@ t_vision *look_top(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-t_vision *look_bottom(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_bottom(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -66,9 +66,9 @@ t_vision *look_bottom(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-t_vision *look_right(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_right(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -94,9 +94,9 @@ t_vision *look_right(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-t_vision *look_left(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_left(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -122,9 +122,9 @@ t_vision *look_left(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-void      print_vision(t_vision *head)
+void		print_vision(t_vision *head)
 {
-  t_vision *tmp;
+  t_vision	*tmp;
 
   tmp = head;
   while (tmp)
@@ -134,10 +134,10 @@ void      print_vision(t_vision *head)
     }
 }
 
-void	command_look(t_server *server, t_client *client)
+void		command_look(t_server *server, t_client *client)
 {
-  t_vision *vision;
-  t_player *player;
+  t_vision	*vision;
+  t_player	*player;
 
   vision = NULL;
   if (!(player = get_player(server->players, client->fd)))
