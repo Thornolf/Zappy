@@ -15,13 +15,16 @@
 
 void	print_usage(void)
 {
-  printf("USAGE: ./zappy_server -p port -x width -y height -n name1 name2 ...  -c clientsNb -f freq\n");
-  printf("\tport\t   is the port number\n");
-  printf("\twidth\t   is the width of the world\n");
-  printf("\theight\t   is the height of the world\n");
-  printf("\tnameX\t   is the name of the team X\n");
-  printf("\tclientsNb  is the number of authorized clients per team\n");
-  printf("\tfreq\t   is the reciproal of time unit for execution of actions\n");
+  printf("USAGE: ./zappy_server -p port -x width -y height ");
+  printf("-n name1 name2 ... -c clientsNb -f freq\n");
+  printf("\tport\t\tis the port number\n");
+  printf("\twidth\t\tis the width of the world\n");
+  printf("\theight\t\tis the height of the world\n");
+  printf("\tnameX\t\tis the name of the team X\n");
+  printf("\tclientsNb\tis the number of authorized clients per team\n");
+  printf("\tfreq\t\tis the reciprocal of time unit for execution ");
+  printf("of actions\n");
+  exit(84);
 }
 
 int		main(int ac, char **av)
@@ -30,8 +33,6 @@ int		main(int ac, char **av)
   int		check;
 
   srand((unsigned int)time(NULL));
-  info.cmds = NULL;
-  info.clients = NULL;
   if (ac == 2 && strcmp(av[1], "-help") == 0)
     print_usage();
   else if (ac < 13)

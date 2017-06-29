@@ -108,3 +108,5 @@ dkms.conf
 ### CLION Template
 .idea/*
 cmake-build-debug/
+zappy_server
+zappy_ai

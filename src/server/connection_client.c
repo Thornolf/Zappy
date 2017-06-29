@@ -37,8 +37,8 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
       send_socket(client->fd, "ko\n");
       return (false);
     }
-  x = my_rand(0, server->map->width);
-  y = my_rand(0, server->map->height);
+  x = rand() % server->map->width;
+  y = rand() % server->map->height;
   if (server->players == NULL)
     server->players = init_players_list(client->fd, y, x);
   else

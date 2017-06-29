@@ -21,12 +21,12 @@
 
 typedef enum	e_direction
 {
-  DIRECTION_MIN = 1,
-  TOP = DIRECTION_MIN,
+  DIR_MIN = 1,
+  TOP = DIR_MIN,
   RIGHT,
   BOTTOM,
   LEFT,
-  DIRECTION_MAX = LEFT
+  DIR_MAX = LEFT
 }		t_direction;
 
 typedef struct	s_player

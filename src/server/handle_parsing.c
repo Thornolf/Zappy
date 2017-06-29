@@ -11,9 +11,9 @@
 #include <string.h>
 #include "server/funcs.h"
 
-void free_server_informations(t_info *info)
+void	free_server_informations(t_info *info)
 {
-  int i;
+  int	i;
 
   free(info->cmds);
   i = 0;
@@ -25,10 +25,12 @@ void free_server_informations(t_info *info)
     }
 }
 
-int handle_parsing(t_info *info, int ac, char **av)
+int	handle_parsing(t_info *info, int ac, char **av)
 {
-  int i;
+  int	i;
 
+  info->cmds = NULL;
+  info->clients = NULL;
   if (av[1][0] != '-')
     return (0);
   i = 1;
