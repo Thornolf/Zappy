@@ -15,7 +15,7 @@
 
 void	connection_graphic(t_server *server, t_client *client)
 {
-  set_client_type(client, GRAPHIC);
+  client->type = GRAPHIC;
   command_msz(server, client);
   command_sgt(server, client);
   command_mct(server, client);
@@ -47,7 +47,7 @@ bool	connection_ia(t_server *server, t_client *client, char *team_name)
     return (false);
   if (!(assign_player_to_team(server, player, team_name)))
     return (false);
-  set_client_type(client, AI);
+  client->type = AI;
   mod = server->team_size - nb_player_in_team(server, team_name);
   sprintf(buf, "%d\n%d %d\n", mod, server->map->width, server->map->height);
   send_socket(client->fd, buf);

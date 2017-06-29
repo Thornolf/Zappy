@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:22 2017 Pierre
-** Last update Thu Jun 29 14:39:56 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 15:27:50 2017 Pierre
 */
 
 #include "server/command.h"
@@ -28,4 +28,9 @@ void print_deraumere(int fd)
 void print_sibur(int fd)
 {
   send_socket(fd, "sibur");
+}
+
+void print_thystame(int fd)
+{
+  send_socket(fd, "thystame");
 }

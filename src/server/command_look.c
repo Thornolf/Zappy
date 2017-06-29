@@ -5,14 +5,14 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Thu Jun 29 14:36:24 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 14:53:10 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
 
-t_vision *look_top(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_top(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -38,9 +38,9 @@ t_vision *look_top(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-t_vision *look_bottom(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_bottom(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -66,9 +66,9 @@ t_vision *look_bottom(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-t_vision *look_right(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_right(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -94,9 +94,9 @@ t_vision *look_right(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-t_vision *look_left(t_vision *vision, t_map *map, t_player *player)
+t_vision	*look_left(t_vision *vision, t_map *map, t_player *player)
 {
-  t_it it;
+  t_it		it;
 
   it.line_end = player->lv + 1;
   it.line = 1;
@@ -122,22 +122,10 @@ t_vision *look_left(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-void      print_vision(t_vision *head)
-{
-  t_vision *tmp;
-
-  tmp = head;
-  while (tmp)
-    {
-      printf("Case %d à [%d][%d]\n", tmp->case_nb, tmp->y, tmp->x);
-      tmp = tmp->next;
-    }
-}
-
 void	command_look(t_server *server, t_client *client)
 {
-  t_vision *vision;
-  t_player *player;
+  t_vision	*vision;
+  t_player	*player;
 
   vision = NULL;
   if (!(player = get_player(server->players, client->fd)))
@@ -155,6 +143,7 @@ void	command_look(t_server *server, t_client *client)
     vision = look_right(vision, server->map, player);
   else if (player->direction == LEFT)
     vision = look_left(vision, server->map, player);
-  print_vision(vision);
-  print_objects(client->fd, server->players, vision);
+  send_socket(client->fd, "[");
+  print_objects(client->fd, server->players, vision, server->map);
+  send_socket(client->fd, "]\n");
 }

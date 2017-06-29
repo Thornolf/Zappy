@@ -23,11 +23,10 @@ t_vision	*create_case_vision(int y, int x)
   return (vision);
 }
 
-t_vision   *init_vision(int y, int x)
+t_vision	*init_vision(int y, int x)
 {
-  t_vision *head;
+  t_vision	*head;
 
-  head = NULL;
   if ((head = malloc(sizeof(t_vision))) == NULL)
     return (NULL);
   head = create_case_vision(y, x);
@@ -35,7 +34,7 @@ t_vision   *init_vision(int y, int x)
   return (head);
 }
 
-void      add_case_vision(t_vision *head, int y, int x)
+void		add_case_vision(t_vision *head, int y, int x)
 {
   t_vision *current;
 
