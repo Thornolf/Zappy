@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 13:52:59 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 15:56:25 2017 Guillaume CAUCHOIS
+** Last update Fri Jun 30 14:09:26 2017 Guillaume CAUCHOIS
 */
 
 #include "server/server.h"
@@ -20,11 +20,11 @@ void		set_all_fd(fd_set *fd_read, t_server *server)
   FD_SET(server->fd, fd_read);
   cur_client_node = server->clients;
   while (cur_client_node)
-  {
-    client = cur_client_node->data;
-    FD_SET(client->fd, fd_read);
-    cur_client_node = cur_client_node->next;
-  }
+    {
+      client = cur_client_node->data;
+      FD_SET(client->fd, fd_read);
+      cur_client_node = cur_client_node->next;
+    }
 }
 
 void		isset_all_fd(fd_set *fd_read, t_server *server)
@@ -36,13 +36,13 @@ void		isset_all_fd(fd_set *fd_read, t_server *server)
     server->server_read(server);
   cur_client_node = server->clients;
   while (cur_client_node)
-  {
-    client = cur_client_node->data;
-    if (FD_ISSET(client->fd, fd_read))
-      cur_client_node = client->fct_read(server, cur_client_node);
-    else
-      cur_client_node = cur_client_node->next;
-  }
+    {
+      client = cur_client_node->data;
+      if (FD_ISSET(client->fd, fd_read))
+	cur_client_node = client->fct_read(server, cur_client_node);
+      else
+	cur_client_node = cur_client_node->next;
+    }
 }
 
 bool		handle_io(fd_set *fd_read, t_server *server)
