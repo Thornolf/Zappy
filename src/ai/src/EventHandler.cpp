@@ -90,7 +90,6 @@ void EventHandler::UpdateRequirement(int newLvl)
         this->_need.insert( std::pair<std::string, int>("sibur", 1));
         this->_need.insert( std::pair<std::string, int>("mendiane", 3));
         this->_need.insert( std::pair<std::string, int>("phiras", 0));
-
     }
     else if (newLvl == 6)
     {
@@ -116,8 +115,7 @@ void EventHandler::launchScript()
 
   while (42)
     {
-      LookAround();
-      if (isAbleToIncant() == true)
+      if (isAbleToIncant() == true && _currentState == State::NORMAL)
         _currentState = State::READYFORINC;
       if (_currentState == State::INCANTATION)
         {
@@ -129,33 +127,37 @@ void EventHandler::launchScript()
             }
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
+          else
+            Incantation();
         }
         else if (_currentState == State::READYFORINC)
           {
             TakeEverything();
             PutRequirementRock("linemate");
-            PutRequirementRock("deraumere");
+            /*PutRequirementRock("deraumere");
             PutRequirementRock("sibur");
             PutRequirementRock("mendiane");
             PutRequirementRock("phiras");
-            PutRequirementRock("thystame");
-            Inventory();
-            Incantation();
-            (_sock->getLastMsg() != "ko\n") ? _currentState = State::INCANTATION : _currentState = State::NORMAL;
+            PutRequirementRock("thystame");*/
+            //Incantation();
+            //(_sock->getLastMsg() == "\n") ? _currentState = State::INCANTATION : _currentState = State::NORMAL;
+            _currentState = State::INCANTATION;
           }
         else if (_currentState == State::NORMAL)
           {
+            //LookAround();
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
               TurnRight();
             TakeObject("food");
             TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
-            TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
+            /*TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
             TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
             TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
             TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
-            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
+            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);*/
+            LookAround();
             Inventory();
           }
         std::cout << "LEVEL = " << _level << "\n";
@@ -230,7 +232,7 @@ void EventHandler::TakeRequirement(const std::string &objName, int inv, int requ
 
 void EventHandler::parseTiles(const std::string & tiles)
 {
-  std::cout << "PASSIIIIIIIIIIIINNNNNNNNNNNNNNNNNN : " << tiles << '\n';
+  std::cout << "PASSIIIIIIIIIIIINNNNNNNNNNNNNNNNNN : " << tiles << "---->ENNNNDD" << '\n';
   std::string tmp = tiles;
   std::vector<std::string> tmpVec;
   int i = 0;
@@ -337,6 +339,12 @@ void EventHandler::Inventory()
   this->_test = _sock->getLastMsg();
   std::cout << " ---- INVENTORY : " << this->_test << '\n';
   parseInventory(this->_test);
+}
+
+void EventHandler::Connect_nbr()
+{
+  _sock->sendMsg("Connect_nbr\n");
+  _sock->recvMsg();
 }
 
 void EventHandler::BroadcastText(const std::string & text)
