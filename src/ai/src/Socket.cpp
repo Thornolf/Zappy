@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Thu Jun 29 15:07:41 2017 Thomas Fossaert
+** Last update Fri Jun 30 16:49:30 2017 Thomas Fossaert
 */
 
 #include "Socket.hpp"
@@ -58,7 +58,12 @@ void Socket::recvMsg()
 
   recv(this->_fd, _buffer, 4096, 0);
   std::cout << std::string(_buffer);
-  _lastMsg = std::string(_buffer);
+  if (std::string(_buffer).find("[ player") != std::string::npos)
+    _lastTile = _buffer;
+  else if (std::string(_buffer).find("[ food") != std::string::npos)
+    _lastInventory= _buffer;
+  else
+    _lastMsg = std::string(_buffer);
   while (_buffer[i])
     {
       _buffer[i] = '\0';
@@ -69,6 +74,16 @@ void Socket::recvMsg()
 const std::string Socket::getLastMsg() const
 {
   return (std::string(this->_lastMsg));
+}
+
+const std::string Socket::getLastTile() const
+{
+  return (std::string(this->_lastTile));
+}
+
+const std::string Socket::getLastInventory() const
+{
+  return (std::string(this->_lastInventory));
 }
 
 const std::string Socket::getIp() const
