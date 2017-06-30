@@ -9,12 +9,14 @@
 */
 
 #include "server/command.h"
+#include "server/communication.h"
 
 void	command_take_object(t_server *server, t_client *client)
 {
-  t_player *player;
-  t_stuff *stuff;
-  int object_id;
+  t_player	*player;
+  t_stuff	*stuff;
+  int		object_id;
+  char		*buf;
 
   if ((object_id = check_arg(strtok(NULL, " \t\n"))) == -1)
     {
@@ -28,6 +30,10 @@ void	command_take_object(t_server *server, t_client *client)
       server->map->data[player->y][player->x].stuff->quantities[object_id]--;
       player->stuff->quantities[object_id]++;
       send_socket(client->fd, "ok\n");
+      if (!(buf = malloc(sizeof(char) * 500)))
+	return;
+      snprintf(buf, 500, "pgt %d %d\n", player->id, object_id);
+      send_all_graphics(server, buf);
     }
   else
     send_socket(client->fd, "ko\n");

@@ -21,7 +21,8 @@ void	command_put_object(t_server *server, t_client *client)
       send_socket(client->fd, "ko\n");
       return ;
     }
-  player = get_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   stuff = player->stuff;
   if (check_object(object_id, stuff) == 1)
     {
