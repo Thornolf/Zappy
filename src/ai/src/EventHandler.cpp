@@ -115,7 +115,8 @@ void EventHandler::launchScript()
 
   while (42)
     {
-      if (isAbleToIncant() == true && _currentState == State::NORMAL)
+      LookAround();
+      /*if (isAbleToIncant() == true && _currentState == State::NORMAL)
         _currentState = State::READYFORINC;
       if (_currentState == State::INCANTATION)
         {
@@ -134,27 +135,20 @@ void EventHandler::launchScript()
           {
             TakeEverything();
             PutRequirementRock();
-            // PutRequirementRock("linemate");
             _currentState = State::INCANTATION;
           }
         else if (_currentState == State::NORMAL)
-          {
-            //LookAround();
+          {*/
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
               TurnRight();
             TakeObject("food");
             TakeRequirement();
-            // TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
-            // TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
-            // TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
-            // TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
-            // TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
-            // TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
-            LookAround();
             Inventory();
-          }
+            parseTiles(_sock->getLastTile());
+            parseInventory(_sock->getLastInventory());
+          //}
         std::cout << "LEVEL = " << _level << "\n";
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Player required : " << _need["player"] << '\n';
@@ -337,17 +331,17 @@ void EventHandler::LookAround()
 {
   _sock->sendMsg("Look\n");
   _sock->recvMsg();
-  if (_sock->getLastMsg() != "ko")
-    parseTiles(_sock->getLastMsg());
+  /*if (_sock->getLastMsg() != "ko")
+    parseTiles(_sock->getLastMsg());*/
 }
 
 void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  this->_test = _sock->getLastMsg();
+  /*this->_test = _sock->getLastMsg();
   std::cout << " ---- INVENTORY : " << this->_test << '\n';
-  parseInventory(this->_test);
+  parseInventory(this->_test);*/
 }
 
 void EventHandler::Connect_nbr()

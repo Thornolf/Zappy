@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:41:59 2017 Thomas Fossaert
-** Last update Thu Jun 29 15:09:10 2017 Thomas Fossaert
+** Last update Fri Jun 30 16:50:34 2017 Thomas Fossaert
 */
 
 #ifndef   _SOCKET_HPP_
@@ -36,6 +36,9 @@ class Socket
     void recvMsg();
 
     const std::string getLastMsg() const;
+    const std::string getLastTile() const;
+    const std::string getLastInventory() const;
+
     const std::string getIp() const;
     const std::string getPort() const;
 
@@ -45,6 +48,8 @@ class Socket
 
     std::string         _ip;
     std::string         _lastMsg;
+    std::string         _lastTile;
+    std::string         _lastInventory;
 
     int                  _port;
     int                  _fd;
