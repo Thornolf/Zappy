@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:32:00 2017 Pierre
-** Last update Thu Jun 29 14:38:27 2017 Guillaume CAUCHOIS
+** Last update Fri Jun 30 12:06:52 2017 Guillaume CAUCHOIS
 */
 
 #include <string.h>
@@ -25,17 +25,24 @@ void	free_server_informations(t_info *info)
     }
 }
 
+int	init_info_struct(t_info *info, char **av)
+{
+  info->cmds = NULL;
+  info->clients = NULL;
+  if ((info->cmds = strdup("pxyncf")) == NULL)
+    return (-1);
+  if (av[1][0] != '-')
+    return (0);
+  return (1);
+}
+
 int	handle_parsing(t_info *info, int ac, char **av)
 {
   int	i;
 
-  info->cmds = NULL;
-  info->clients = NULL;
-  if (av[1][0] != '-')
-    return (0);
+  if ((i = init_info_struct(info, av) != 1))
+    return (i);
   i = 1;
-  if ((info->cmds = strdup("pxyncf")) == NULL)
-    return (-1);
   while (i < ac)
     {
       if (av[i][0] == '-')
@@ -53,7 +60,7 @@ int	handle_parsing(t_info *info, int ac, char **av)
 	    return (0);
 	}
       else
-        return (0);
+	return (0);
     }
   return (1);
 }
