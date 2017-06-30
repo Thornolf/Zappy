@@ -133,14 +133,8 @@ void EventHandler::launchScript()
         else if (_currentState == State::READYFORINC)
           {
             TakeEverything();
-            PutRequirementRock("linemate");
-            /*PutRequirementRock("deraumere");
-            PutRequirementRock("sibur");
-            PutRequirementRock("mendiane");
-            PutRequirementRock("phiras");
-            PutRequirementRock("thystame");*/
-            //Incantation();
-            //(_sock->getLastMsg() == "\n") ? _currentState = State::INCANTATION : _currentState = State::NORMAL;
+            PutRequirementRock();
+            // PutRequirementRock("linemate");
             _currentState = State::INCANTATION;
           }
         else if (_currentState == State::NORMAL)
@@ -151,12 +145,13 @@ void EventHandler::launchScript()
             if (random_variable % 5 == 0)
               TurnRight();
             TakeObject("food");
-            TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
-            /*TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
-            TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
-            TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
-            TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
-            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);*/
+            TakeRequirement();
+            // TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
+            // TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
+            // TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
+            // TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
+            // TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
+            // TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
             LookAround();
             Inventory();
           }
@@ -224,10 +219,13 @@ void EventHandler::PutRock(const std::string &objName, int inv, int requirement)
     }
 }
 
-void EventHandler::TakeRequirement(const std::string &objName, int inv, int requirement)
+void EventHandler::TakeRequirement()
 {
-    if (inv < requirement)
-        TakeObject(objName);
+    for (auto it : _tiles[0])
+    {
+        if (_inventory[it] < _need[it] && it != "player")
+            TakeObject(it);
+    }
 }
 
 void EventHandler::parseTiles(const std::string & tiles)
@@ -250,18 +248,29 @@ void EventHandler::parseTiles(const std::string & tiles)
     }
 }
 
-void EventHandler::PutRequirementRock(const std::string &item)
+void EventHandler::PutRequirementRock()
 {
     int nb = 0;
     int nb_to_put = 0;
 
-    nb = CaseRequirement(item, 0);
-    if (this->_need[item] > 0)
-      nb_to_put = this->_need[item] - nb;
-    if (nb_to_put < 0)
-      nb_to_put = 0;
-    std::cout << "NOMBRE DE " << item << " A POSER = " << nb_to_put << '\n';
-    PutRock(item, this->_inventory[item], nb_to_put);
+    for (auto &it : _inventory)
+    {
+        nb = CaseRequirement(it.first, 0);
+        if (this->_need[it.first] > 0)
+            nb_to_put = this->_need[it.first] - nb;
+        if (nb_to_put > 0)
+        {
+            std::cout << "NOMBRE DE " << it.first << " A POSER = " << nb_to_put << '\n';
+            PutRock(it.first, this->_inventory[it.first], nb_to_put);
+        }
+    }
+    // nb = CaseRequirement(item, 0);
+    // if (this->_need[item] > 0)
+    //   nb_to_put = this->_need[item] - nb;
+    // if (nb_to_put < 0)
+    //   nb_to_put = 0;
+    // std::cout << "NOMBRE DE " << item << " A POSER = " << nb_to_put << '\n';
+    // PutRock(item, this->_inventory[item], nb_to_put);
 }
 
 int EventHandler::CaseRequirement(const std::string & item, int tileNbr)
