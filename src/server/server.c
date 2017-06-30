@@ -54,7 +54,6 @@ bool	init_zappy_server(t_info *info)
 {
   t_server		s_conf;
   fd_set		fd_read;
-  fd_set		fd_write;
 
   if ((s_conf.fd = open_socket(info->port)) == -1)
     return (false);
@@ -71,7 +70,7 @@ bool	init_zappy_server(t_info *info)
   s_conf.server_read = server_read;
   s_conf.team_size = info->clientsNb;
   listen_socket(s_conf.fd);
-  if (!handle_io(&fd_read, &fd_write, &s_conf))
+  if (!handle_io(&fd_read, &s_conf))
     return (false);
   remove_list(s_conf.cmds, &delete_command);
   remove_list(s_conf.clients, &delete_client);

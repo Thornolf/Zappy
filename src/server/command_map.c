@@ -32,7 +32,7 @@ void	command_msz(t_server *server, t_client *client)
   free(str);
 }
 
-char		*quantities_to_string(int *quantities)
+char		*quantities_to_string(int *qts)
 {
   char		*string;
   int		len_write;
@@ -47,16 +47,16 @@ char		*quantities_to_string(int *quantities)
   while (type < STUFF_MAX)
     {
       limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
-      len_write += snprintf(string + len_write, limit, " %d", quantities[type++]);
+      len_write += snprintf(string + len_write, limit, " %d", qts[type++]);
     }
   return (string);
 }
 
-void		command_bct_at_position(t_server *server, t_client *client,
+void	command_bct_at_position(t_server *server, t_client *client,
 					unsigned int x, unsigned int y)
 {
-  char		*buf;
-  char		*qts;
+  char	*buf;
+  char	*qts;
 
   if (x >= server->map->width || y >= server->map->height)
     {

@@ -12,23 +12,23 @@
 #include "server/server.h"
 #include "server/command.h"
 
-t_client	*init_client(t_server *server)
+t_client	*init_client(t_server *s)
 {
-  t_client		*client;
-  struct sockaddr_in	client_sin;
-  socklen_t 		client_sin_len;
+  t_client		*c;
+  struct sockaddr_in	c_sin;
+  socklen_t 		c_sin_len;
 
-  client_sin_len = sizeof(client_sin);
-  if (!(client = malloc(sizeof(t_client))))
-    return (client);
-  if (!(client->fd = accept(server->fd, (struct sockaddr *)&client_sin, &client_sin_len)))
+  c_sin_len = sizeof(c_sin);
+  if (!(c = malloc(sizeof(t_client))))
+    return (c);
+  if (!(c->fd = accept(s->fd, (struct sockaddr *)&c_sin, &c_sin_len)))
     return (NULL);
-  client->fct_read = client_read;
-  client->fct_write = client_write;
-  client->type = UNDEFINED;
-  if (!(client->buffer = malloc(sizeof(char) * BUFFER_CLIENT_SIZE)))
+  c->fct_read = client_read;
+  c->fct_write = client_write;
+  c->type = UNDEFINED;
+  if (!(c->buffer = malloc(sizeof(char) * BUFFER_CLIENT_SIZE)))
     return (NULL);
-  return (client);
+  return (c);
 }
 
 t_list		*get_player_node(t_list *player_list, int fd)
