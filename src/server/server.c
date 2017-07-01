@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 15:11:37 2017 Pierre
+** Last update Sat Jul 01 23:41:22 2017 Pierre
 */
 
 #include <signal.h>
@@ -68,6 +68,7 @@ bool	init_zappy_server(t_info *info)
   s_conf.freq = info->freq;
   s_conf.server_read = server_read;
   s_conf.team_size = info->clientsNb;
+  init_level_cmds(&s_conf);
   listen_socket(s_conf.fd);
   if (!handle_io(&fd_read, &s_conf))
     return (false);
@@ -114,24 +115,26 @@ void check_waiting_cmds(t_server *server)
   t_waiting_cmds *tmp;
 
   tmp = server->waiting_cmds;
-  while (tmp)
-  {
+  while (tmp) {
     cmd = tmp->cmd;
-    if (tmp->endwait == -1)
-    {
-      if (strcmp(cmd->cmd_name, "Incantation") == 0)
-	start_incantation(server, tmp->client);
+    if (tmp->endwait == -1) {
+      client = tmp->client;
+      if (strcmp(cmd->cmd_name, "Incantation") == 0 && !client->incant)
+      {
+	printf("on veut lancer l'incant\n");
+	start_incantation(server, client);
+      }
       tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
     }
-    if (tmp->endwait != -1 && time(NULL) >= tmp->endwait)
-    {
+    if (tmp->endwait != -1 && time(NULL) >= tmp->endwait) {
       client = tmp->client;
-      if (strcmp(cmd->cmd_name, "Take") == 0 || strcmp(cmd->cmd_name, "Set") == 0)
+      if (strcmp(cmd->cmd_name, "Take") == 0 ||
+	  strcmp(cmd->cmd_name, "Set") == 0)
 	client->object_id = check_arg(tmp->arg);
       cmd->fn(server, client, tmp->arg);
       remove_waiting(&server->waiting_cmds, tmp);
       if (!server->waiting_cmds)
-	return ;
+	return;
     }
     if (tmp->next)
       tmp = tmp->next;

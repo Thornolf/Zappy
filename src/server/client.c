@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 18:08:49 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 10:51:46 2017 Pierre
+** Last update Sat Jul 01 21:45:10 2017 Pierre
 */
 
 #include "server/client.h"
@@ -25,6 +25,8 @@ t_client	*init_client(t_server *s)
     return (NULL);
   c->fct_read = (void*(*)(void*, void *))(client_read);
   c->type = UNDEFINED;
+  c->incant = false;
+  c->object_id = -1;
   if (!(c->buffer = malloc(sizeof(char) * BUFFER_CLIENT_SIZE)))
     return (NULL);
   return (c);
@@ -51,11 +53,13 @@ void	*client_read(t_server *server, t_list *client_node)
   t_client	*client;
   t_list	*next;
   t_list	*player;
+  ssize_t lol;
 
   client = client_node->data;
   memset(client->buffer, 0, BUFFER_CLIENT_SIZE);
-  if (recv(client->fd, client->buffer, BUFFER_CLIENT_SIZE, 0) < 0)
+  if ((lol = recv(client->fd, client->buffer, BUFFER_CLIENT_SIZE, 0)) < 0)
     return (client_node->next);
+  client->buffer[4095] = 0;
   next = client_node->next;
   if (client->buffer[0] == 0)
     {

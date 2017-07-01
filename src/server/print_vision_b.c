@@ -5,32 +5,32 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:22 2017 Pierre
-** Last update Thu Jun 29 15:27:50 2017 Pierre
+** Last update Sat Jul 01 23:40:53 2017 Pierre
 */
 
 #include "server/command.h"
 
-void print_food(int fd)
+void print_food(char *str)
 {
-  send_socket(fd, "food");
+  str = strcat(str, "food");
 }
 
-void print_linemate(int fd)
+void print_linemate(char *str)
 {
-  send_socket(fd, "linemate");
+  str = strcat(str, "linemate");
 }
 
-void print_deraumere(int fd)
+void print_deraumere(char *str)
 {
-  send_socket(fd, "deraumere");
+  str = strcat(str, "deraumere");
 }
 
-void print_sibur(int fd)
+void print_sibur(char *str)
 {
-  send_socket(fd, "sibur");
+  str = strcat(str, "sibur");
 }
 
-void print_thystame(int fd)
+void print_thystame(char *str)
 {
-  send_socket(fd, "thystame");
+  str = strcat(str, "thystame");
 }
