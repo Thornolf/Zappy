@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Tue Jun 27 11:21:04 2017 Thomas Fossaert
+** Last update Thu Jun 29 16:56:39 2017 Pierre
 */
 
 #include "Socket.hpp"
@@ -49,6 +49,7 @@ Socket& Socket::operator=(Socket const & other)
 
 void Socket::sendMsg(const char *msg)
 {
+  std::cout << "\ncommande : " << msg << '\n';
   send(this->_fd, msg, strlen(msg), 0);
 }
 

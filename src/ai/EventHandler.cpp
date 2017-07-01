@@ -127,6 +127,7 @@ void EventHandler::launchScript()
 
   while (42)
     {
+      //Inventory();
       LookAround();
       if (isAbleToIncant() == true)
         _currentState = State::READYFORINC;
@@ -187,7 +188,7 @@ void EventHandler::parseInventory(const std::string & inventory)
   tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
   tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
   tmp.erase(0, 1);
-  tmp.erase(tmp.size() - 1);
+  //tmp.erase(tmp.size() - 1);
   std::vector<std::string> my_vec;
   std::string delimiter = " ";
   size_t pos = 0;

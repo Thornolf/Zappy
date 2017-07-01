@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Thu Jun 29 14:53:10 2017 Guillaume CAUCHOIS
+** Last update Thu Jun 29 18:10:57 2017 Pierre
 */
 
 #include "server/command.h"

@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 15:44:07 2017 Pierre
-** Last update Thu Jun 29 15:45:44 2017 Pierre
+** Last update Fri Jun 30 20:55:53 2017 Pierre
 */
 
 #include "server/command.h"
@@ -39,6 +39,7 @@ int check_arg(char *arg)
   int i;
   static char **objects;
 
+  printf("%s\n", arg);
   if ((objects = init_check(objects)) == NULL)
     return (-1);
   i = 0;
