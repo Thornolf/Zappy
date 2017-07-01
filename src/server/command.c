@@ -68,9 +68,11 @@ t_list		*init_cmd_callback_ai(t_list *head)
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Connect_nbr", 0, &command_connect_nbr, AI))
       || !(append_data(&head, cmd)) ||
-			!(cmd = create_command_node("Set", 7, &command_put_object, AI)) ||
+      !(cmd = create_command_node("Set", 7, &command_put_object, AI)) ||
       !(append_data(&head, cmd)) ||
-			!(cmd = create_command_node("Incantation", 300, &command_incantation, AI)) ||
+      !(cmd = create_command_node("Incantation", 300, &command_incantation, AI)) ||
+      !(append_data(&head, cmd)) ||
+      !(cmd = create_command_node("Broadcast", 7, &command_broadcast, AI)) ||
       !(append_data(&head, cmd)))
     return (NULL);
   return (head);

@@ -26,7 +26,7 @@ typedef struct		s_waiting_cmds
 {
   void			*cmd;
   void			*client;
-  char *arg;
+  char			*arg;
   time_t		endwait;
   struct s_waiting_cmds	*next;
 }			t_waiting_cmds;
@@ -36,8 +36,7 @@ typedef struct		s_server
   int			fd;
   int			team_size;
   int			freq;
-  int object_id;
-  check_level_t check_level_cmds[7];
+  check_level_t		check_level_cmds[7];
   struct timeval	timeout;
   fct_server		server_read;
   t_map			*map;

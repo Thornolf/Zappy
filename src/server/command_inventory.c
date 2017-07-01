@@ -51,10 +51,11 @@ void		print_stuff(int fd, t_stuff *stuff)
   send_socket(fd, "]\n");
 }
 
-void command_inventory(t_server *server, t_client *client)
+void		command_inventory(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
 
+  (void)arg;
   if (!(player = get_player(server->players, client->fd)))
     {
       send_socket(client->fd, "ko\n");

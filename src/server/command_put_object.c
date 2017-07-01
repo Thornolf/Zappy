@@ -10,17 +10,19 @@
 
 #include "server/command.h"
 
-void	command_put_object(t_server *server, t_client *client)
+void	command_put_object(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
   t_stuff *stuff;
 
-  player = get_player(server->players, client->fd);
+  (void)arg;
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   stuff = player->stuff;
-  if (check_object(server->object_id, stuff) == 1)
+  if (check_object(client->object_id, stuff) == 1)
   {
-    server->map->data[player->y][player->x].stuff->quantities[server->object_id]++;
-    player->stuff->quantities[server->object_id]--;
+    server->map->data[player->y][player->x].stuff->quantities[client->object_id]++;
+    player->stuff->quantities[client->object_id]--;
     send_socket(client->fd, "ok\n");
   }
   else

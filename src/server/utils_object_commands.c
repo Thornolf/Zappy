@@ -10,7 +10,7 @@
 
 #include "server/command.h"
 
-char **init_check(char **objects)
+char		**init_check(char **objects)
 {
   if (objects)
     return (objects);
@@ -34,10 +34,10 @@ char **init_check(char **objects)
   return (objects);
 }
 
-int check_arg(char *arg)
+int		check_arg(char *arg)
 {
-  int i;
-  static char **objects;
+  int		i;
+  static char	**objects;
 
   if ((objects = init_check(objects)) == NULL)
     return (-1);
@@ -51,7 +51,7 @@ int check_arg(char *arg)
   return (-1);
 }
 
-int check_object(int object_id, t_stuff *tile)
+int		check_object(int object_id, t_stuff *tile)
 {
   if (tile->quantities[object_id] > 0)
     return (1);

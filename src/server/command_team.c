@@ -11,12 +11,13 @@
 #include "server/command.h"
 #include "server/socket.h"
 
-void		command_tna(t_server *server, t_client *client)
+void		command_tna(t_server *server, t_client *client, char *arg)
 {
   t_list	*cur_node;
   t_team	*team;
   char		*buf;
 
+  (void)arg;
   cur_node = server->teams;
   while (cur_node)
     {

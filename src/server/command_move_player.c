@@ -11,11 +11,12 @@
 #include "server/server.h"
 #include "server/command.h"
 
-void		command_turn_left(t_server *server, t_client *client)
+void		command_turn_left(t_server *server, t_client *client, char *arg)
 {
   int		new_dir;
   t_player	*player;
 
+  (void)arg;
   if (!(player = get_player(server->players, client->fd)))
     return;
   new_dir = player->direction;
@@ -26,11 +27,12 @@ void		command_turn_left(t_server *server, t_client *client)
   send_socket(client->fd, "ok\n");
 }
 
-void command_turn_right(t_server *server, t_client *client)
+void command_turn_right(t_server *server, t_client *client, char *arg)
 {
-  t_player *player;
-  int new_dir;
+  t_player	*player;
+  int		new_dir;
 
+  (void)arg;
   if (!(player = get_player(server->players, client->fd)))
     return;
   new_dir = player->direction;
@@ -41,10 +43,11 @@ void command_turn_right(t_server *server, t_client *client)
   send_socket(client->fd, "ok\n");
 }
 
-void command_move_player(t_server *server, t_client *client)
+void command_move_player(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
 
+  (void)arg;
   if (!(player = get_player(server->players, client->fd)))
     return;
   if (player->direction == TOP)

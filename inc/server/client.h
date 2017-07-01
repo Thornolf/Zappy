@@ -34,6 +34,7 @@ typedef struct	s_client
   char		*buffer;
   fct_client	fct_read;
   fct_client	fct_write;
+  int		object_id;
 }		t_client;
 
 typedef struct s_server t_server;

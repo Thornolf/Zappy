@@ -67,7 +67,7 @@ void	*client_read(t_server *server, t_list *client_node)
     }
   else if (!(execute_command(server, client)))
     {
-      send(client->fd, "suc\n", 4, 0);
+      send_socket(client->fd, "suc\n");
       return (next);
     }
   return (client_node->next);

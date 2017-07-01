@@ -20,10 +20,11 @@
  * Permit to send to the client the size of the map
  * @param server
  */
-void	command_msz(t_server *server, t_client *client)
+void	command_msz(t_server *server, t_client *client, char *arg)
 {
   char	*str;
 
+  (void)arg;
   if (!(str = malloc(sizeof(char) * 400)))
     return;
   if (!(sprintf(str, "msz %d %d\n", server->map->width, server->map->height)))
@@ -71,13 +72,14 @@ void	command_bct_at_position(t_server *server, t_client *client,
   send_socket(client->fd, buf);
 }
 
-void	command_bct(t_server *server, t_client *client)
+void	command_bct(t_server *server, t_client *client, char *arg)
 {
   unsigned int	x;
   unsigned int	y;
   char		*buf;
 
   (void)server;
+  (void)arg;
   if (!(buf = strtok(NULL, " \t\n")) || !string_is_number(buf))
     {
       send_socket(client->fd, "sbp\n");
@@ -93,11 +95,12 @@ void	command_bct(t_server *server, t_client *client)
   command_bct_at_position(server, client, x, y);
 }
 
-void		command_mct(t_server *server, t_client *client)
+void		command_mct(t_server *server, t_client *client, char *arg)
 {
   unsigned int	x;
   unsigned int	y;
 
+  (void)arg;
   x = 0;
   while (x != server->map->width)
     {

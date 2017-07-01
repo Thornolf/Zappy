@@ -9,9 +9,24 @@
 */
 
 #include "server/command.h"
+#include "server/communication.h"
 
-void	command_broadcast(t_server *server, t_client *client)
+void	command_broadcast(t_server *server, t_client *client, char *arg)
 {
-  (void) server;
-  (void) client;
+  command_pbc(server, client, arg);
+}
+
+void	command_pbc(t_server *server, t_client *client, char *msg)
+{
+  char		*buf;
+  t_player	*player;
+
+  if (!msg)
+    return;
+  if (!(buf = malloc(sizeof(char) * 400)))
+    return;
+  if (!(player = get_player(server->players, client->fd)))
+    return;
+  snprintf(buf, 400, "pbc %d %s\n", player->id, msg);
+  send_all_graphics(server, buf);
 }
