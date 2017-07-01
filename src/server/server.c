@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:40:27 2017 Guillaume CAUCHOIS
+** Last update Sat Jul 01 10:52:58 2017 Pierre
 */
 
 #include <signal.h>
@@ -45,9 +45,8 @@ void	init_server_config(t_server *s_conf)
 {
   s_conf->players = NULL;
   s_conf->waiting_cmds = NULL;
-  s_conf->endwait = -1;
-  s_conf->timeout.tv_sec = 1;
-  s_conf->timeout.tv_usec = 0;
+  s_conf->timeout.tv_sec = 0;
+  s_conf->timeout.tv_usec = 1;
 }
 
 bool	init_zappy_server(t_info *info)
@@ -78,27 +77,67 @@ bool	init_zappy_server(t_info *info)
   return (true);
 }
 
+void		remove_waiting(t_waiting_cmds **list, t_waiting_cmds *node)
+{
+  t_waiting_cmds	*prev;
+  t_waiting_cmds	*cur;
+
+  if (!list || !node)
+    return;
+  prev = *list;
+  if (prev == node)
+    {
+      *list = prev->next;
+      free(prev);
+      return ;
+      //fn_delete_node(prev->data);
+    }
+  cur = prev->next;
+  while (cur)
+    {
+      if (cur == node)
+	{
+	  prev->next = cur->next;
+    free(cur);
+	  //fn_delete_node(cur->data);
+	  return;
+	}
+      prev = cur;
+      cur = cur->next;
+    }
+}
+
 void check_waiting_cmds(t_server *server)
 {
   t_command *cmd;
   t_client *client;
+  t_waiting_cmds *tmp;
 
-  if (server->waiting_cmds != NULL)
+  tmp = server->waiting_cmds;
+  while (tmp)
     {
-      if (server->endwait == -1)
-	{
-	  cmd = server->waiting_cmds->cmd;
-	  server->endwait = time(NULL) + (cmd->action_time / server->freq);
-	}
-      else if (server->endwait != -1 && time(NULL) > server->endwait)
-	{
-	  cmd = server->waiting_cmds->cmd;
-	  client = server->waiting_cmds->client;
-	  cmd->fn(server, client);
-	  printf("on a lancé la commande %s\n", cmd->cmd_name);
-	  server->endwait = -1;
-	  server->waiting_cmds = server->waiting_cmds->next;
-	}
+      cmd = tmp->cmd;
+      if (tmp->endwait == -1)
+	      tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
+      if (tmp->endwait != -1 && time(NULL) >= tmp->endwait)
+      {
+        client = tmp->client;
+        //printf("on veut lancer la commande %s\n", cmd->cmd_name);
+        if (strcmp(cmd->cmd_name, "Take") == 0 || strcmp(cmd->cmd_name, "Set") == 0)
+          server->object_id = check_arg(tmp->arg);
+        cmd->fn(server, client);
+        //printf("on a lancé la commande %s\n", cmd->cmd_name);
+        remove_waiting(&server->waiting_cmds, tmp);
+        if (!server->waiting_cmds)
+        {
+          //printf("liste vide\n");
+          return ;
+        }
+        //check_waiting_cmds(server);
+        //tmp = tmp->next;
+      }
+      if (tmp->next)
+        tmp = tmp->next;
     }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:11 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 15:54:55 2017 Pierre
+** Last update Fri Jun 30 16:19:31 2017 Pierre
 */
 #include "server/list.h"
 #include "server/command.h"
@@ -54,19 +54,17 @@ t_list		*init_cmd_callback_ai(t_list *head)
 {
   t_command	*cmd;
 
-  if (!(cmd = create_command_node("Forward", 7, &command_turn_left, AI)) ||
+  if (!(cmd = create_command_node("Forward", 7, &command_move_player, AI)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Right", 7, &command_turn_right, AI)) ||
       !(append_data(&head, cmd)) ||
-      !(cmd = create_command_node("Right", 7, &command_turn_right, AI)) ||
-      !(append_data(&head, cmd)) ||
-      !(cmd = create_command_node("Left", 7, &command_move_player, AI)) ||
+      !(cmd = create_command_node("Left", 7, &command_turn_left, AI)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Look", 7, &command_look, AI)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Take", 7, &command_take_object, AI)) ||
       !(append_data(&head, cmd)) ||
-      !(cmd = create_command_node("Inventory", 1, &command_look, AI)) ||
+      !(cmd = create_command_node("Inventory", 1, &command_inventory, AI)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("Connect_nbr", 0, &command_connect_nbr, AI))
       || !(append_data(&head, cmd)) ||

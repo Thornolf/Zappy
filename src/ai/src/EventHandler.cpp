@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jul 01 11:21:00 2017 Adrien Warin
+** Last update Sat Jul 01 11:30:55 2017 Adrien Warin
 */
 
 #include <ctime>
@@ -115,6 +115,7 @@ void EventHandler::launchScript()
 
   while (42)
     {
+      //Inventory();
       LookAround();
       /*if (isAbleToIncant() == true && _currentState == State::NORMAL)
         _currentState = State::READYFORINC;
