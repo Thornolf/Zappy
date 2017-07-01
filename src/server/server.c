@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 10:52:58 2017 Pierre
+** Last update Sat Jul 01 15:11:37 2017 Pierre
 */
 
 #include <signal.h>
@@ -118,7 +118,11 @@ void check_waiting_cmds(t_server *server)
     {
       cmd = tmp->cmd;
       if (tmp->endwait == -1)
-	      tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
+      {
+        if (strcmp(cmd->cmd_name, "Incantation") == 0)
+          start_incantation(server, tmp->client);
+        tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
+      }
       if (tmp->endwait != -1 && time(NULL) >= tmp->endwait)
       {
         client = tmp->client;
