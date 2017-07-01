@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-// Last update Tue Jun 27 18:06:50 2017 Adrien Warin
+** Last update Sat Jul 01 11:21:00 2017 Adrien Warin
 */
 
 #include <ctime>
@@ -140,6 +140,8 @@ void EventHandler::launchScript()
           }
         else if (_currentState == State::NORMAL)
           {*/
+            Connect_nbr();
+            Fork();
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
@@ -354,6 +356,7 @@ void EventHandler::Connect_nbr()
 {
   _sock->sendMsg("Connect_nbr\n");
   _sock->recvMsg();
+  std::cout << "NB = " << _sock->getLastMsg() << '\n';
 }
 
 void EventHandler::BroadcastText(const std::string & text)
@@ -363,7 +366,7 @@ void EventHandler::BroadcastText(const std::string & text)
 
 void EventHandler::Fork()
 {
-  _sock->sendMsg("Connect_nbr\n");
+  _sock->sendMsg("Fork\n");
   _sock->recvMsg();
 }
 
