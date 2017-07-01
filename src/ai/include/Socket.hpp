@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:41:59 2017 Thomas Fossaert
-** Last update Fri Jun 30 16:50:34 2017 Thomas Fossaert
+** Last update Sat Jul 01 14:06:21 2017 Thomas Fossaert
 */
 
 #ifndef   _SOCKET_HPP_
@@ -21,6 +21,7 @@
 # include	<unistd.h>
 # include	<string.h>
 # include	<stdio.h>
+# include <vector>
 # include "ZappException.hpp"
 
 class Socket
@@ -38,6 +39,11 @@ class Socket
     const std::string getLastMsg() const;
     const std::string getLastTile() const;
     const std::string getLastInventory() const;
+    const std::string getLevelUp() const;
+    const std::vector<std::string> getBroadCastText() const;
+
+    void resetLevelUp();
+    void resetBroacastText();
 
     const std::string getIp() const;
     const std::string getPort() const;
@@ -50,6 +56,8 @@ class Socket
     std::string         _lastMsg;
     std::string         _lastTile;
     std::string         _lastInventory;
+    std::string         _levelUp;
+    std::vector<std::string> _broadCastText;
 
     int                  _port;
     int                  _fd;

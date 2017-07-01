@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Sat Jul 01 10:52:13 2017 Pierre
+** Last update Sat Jul 01 14:15:40 2017 Thomas Fossaert
 */
 
 #include "Socket.hpp"
@@ -49,7 +49,6 @@ Socket& Socket::operator=(Socket const & other)
 
 void Socket::sendMsg(const char *msg)
 {
-  std::cout << "\ncommande : " << msg << '\n';
   send(this->_fd, msg, strlen(msg), 0);
 }
 
@@ -62,7 +61,11 @@ void Socket::recvMsg()
   if (std::string(_buffer).find("[ player") != std::string::npos)
     _lastTile = _buffer;
   else if (std::string(_buffer).find("[ food") != std::string::npos)
-    _lastInventory= _buffer;
+    _lastInventory = _buffer;
+  else if (std::string(_buffer).find("message") != std::string::npos)
+    _broadCastText.push_back(std::string(_buffer));
+  else if (std::string(_buffer).find("Current level") != std::string::npos)
+    _levelUp = _buffer;
   else
     _lastMsg = std::string(_buffer);
   while (_buffer[i])
@@ -85,6 +88,21 @@ const std::string Socket::getLastTile() const
 const std::string Socket::getLastInventory() const
 {
   return (std::string(this->_lastInventory));
+}
+
+const std::string Socket::getLevelUp() const
+{
+  return (std::string(this->_levelUp));
+}
+
+void Socket::resetBroacastText()
+{
+  _broadCastText.clear();
+}
+
+void Socket::resetLevelUp()
+{
+  _levelUp = "reset";
 }
 
 const std::string Socket::getIp() const

@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jul 01 11:30:55 2017 Adrien Warin
+** Last update Sat Jul 01 15:33:47 2017 Thomas Fossaert
 */
 
 #include <ctime>
@@ -63,9 +63,6 @@ void EventHandler::UpdateRequirement(int newLvl)
 {
     if (newLvl == 2)
     {
-        /*this->_need.insert( std::pair<std::string, int>("player", 2));
-        this->_need.insert( std::pair<std::string, int>("deraumere", 1));
-        this->_need.insert( std::pair<std::string, int>("sibur", 1));*/
       _need["player"] = 2;
       _need["deraumere"] = 1;
       _need["sibur"] = 1;
@@ -78,51 +75,56 @@ void EventHandler::UpdateRequirement(int newLvl)
     }
     else if (newLvl == 4)
     {
-        this->_need.insert( std::pair<std::string, int>("player", 4));
-        this->_need.insert( std::pair<std::string, int>("linemate", 1));
-        this->_need.insert( std::pair<std::string, int>("deraumere", 1));
-        this->_need.insert( std::pair<std::string, int>("sibur", 2));
-        this->_need.insert( std::pair<std::string, int>("phiras", 1));
+      _need["player"] = 4;
+      _need["linemate"] = 1;
+      _need["deraumere"] = 1;
+      _need["sibur"] = 2;
+      _need["phiras"] = 1;
     }
     else if (newLvl == 5)
     {
-        this->_need.insert( std::pair<std::string, int>("deraumere", 2));
-        this->_need.insert( std::pair<std::string, int>("sibur", 1));
-        this->_need.insert( std::pair<std::string, int>("mendiane", 3));
-        this->_need.insert( std::pair<std::string, int>("phiras", 0));
+      _need["mendiane"] = 3;
+      _need["deraumere"] = 2;
+      _need["sibur"] = 1;
+      _need["phiras"] = 0;
     }
     else if (newLvl == 6)
     {
-        this->_need.insert( std::pair<std::string, int>("player", 6));
-        this->_need.insert( std::pair<std::string, int>("sibur", 3));
-        this->_need.insert( std::pair<std::string, int>("mendiane", 0));
-        this->_need.insert( std::pair<std::string, int>("phiras", 1));
+      _need["player"] = 6;
+      _need["sibur"] = 3;
+      _need["mendiane"] = 0;
+      _need["phiras"] = 1;
     }
     else if (newLvl == 7)
     {
-        this->_need.insert( std::pair<std::string, int>("linemate", 2));
-        this->_need.insert( std::pair<std::string, int>("sibur", 2));
-        this->_need.insert( std::pair<std::string, int>("mendiane", 2));
-        this->_need.insert( std::pair<std::string, int>("phiras", 2));
-        this->_need.insert( std::pair<std::string, int>("thystame", 1));
+      _need["linemate"] = 2;
+      _need["deraumere"] = 2;
+      _need["sibur"] = 2;
+      _need["phiras"] = 2;
+      _need["thystame"] = 1;
     }
 }
 
 void EventHandler::launchScript()
 {
   std::srand(std::time(0));
-  int random_variable;
 
   while (42)
     {
-      //Inventory();
+      Inventory();
       LookAround();
-      /*if (isAbleToIncant() == true && _currentState == State::NORMAL)
+      parseTiles(_sock->getLastTile());
+      parseInventory(_sock->getLastInventory());
+      _sock->resetBroacastText();
+      if (isAbleToIncant() == true && _currentState == State::NORMAL)
         _currentState = State::READYFORINC;
+      else if (hasEnoughRock() == true && _currentState == State::NORMAL)
+        BroadcastText("Need ppl for level " + std::to_string(_level + 1));
       if (_currentState == State::INCANTATION)
         {
-          if (_sock->getLastMsg().find("Current level") != std::string::npos)
+          if (_sock->getLevelUp().find("Current level") != std::string::npos)
             {
+              _sock->resetLevelUp();
               this->_level += 1;
               UpdateRequirement(this->_level);
               _currentState = State::NORMAL;
@@ -135,30 +137,25 @@ void EventHandler::launchScript()
         else if (_currentState == State::READYFORINC)
           {
             TakeEverything();
-            std::cout << "PHILLIPE JE SAIS OU TU TE CAAAAAAAAAAACHE" << '\n';
             PutRequirementRock();
             _currentState = State::INCANTATION;
           }
         else if (_currentState == State::NORMAL)
-          {*/
-            Connect_nbr();
-            Fork();
-            MoveUp();
-            random_variable = std::rand();
-            if (random_variable % 5 == 0)
-              TurnRight();
+          {
+            /*Connect_nbr();
+            Fork();*/
+            Move();
+
             TakeObject("food");
             TakeRequirement();
-            Inventory();
-            parseTiles(_sock->getLastTile());
-            parseInventory(_sock->getLastInventory());
-          //}
+          }
         std::cout << "LEVEL = " << _level << "\n";
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Player required : " << _need["player"] << '\n';
         std::cout << "Player on tile : " << countPlayerOnTile() << '\n';
         std::cout << "Need linemate =" << _need["linemate"] << '\n';
         std::cout << "Need deraumere =" << _need["deraumere"] << '\n';
+        std::cout << "Need sibur =" << _need["sibur"] << '\n';
         std::cout << "Need mendiane =" << _need["mendiane"] << '\n';
         std::cout << "Need phiras =" << _need["phiras"] << '\n';
         std::cout << "Need thystame =" << _need["thystame"] << '\n';
@@ -306,6 +303,18 @@ bool EventHandler::isAbleToIncant()
   return (false);
 }
 
+bool EventHandler::hasEnoughRock()
+{
+  if (_inventory["linemate"] >= _need["linemate"] &&
+      _inventory["deraumere"] >= _need["deraumere"] &&
+      _inventory["sibur"] >= _need["sibur"] &&
+      _inventory["mendiane"] >= _need["mendiane"] &&
+      _inventory["phiras"] >= _need["phiras"] &&
+      _inventory["thystame"] >= _need["thystame"])
+    return (true);
+  return (false);
+}
+
 int EventHandler::countPlayerOnTile()
 {
   int i = 0;
@@ -318,8 +327,41 @@ int EventHandler::countPlayerOnTile()
   return (i);
 }
 
-void EventHandler::MoveUp()
+int EventHandler::getBroadCastDirection()
 {
+  int dir;
+  std::vector<std::string> tmpVec;
+
+  for (auto it : tmpVec)
+    {
+      if (it.find("Need ppl for level " + std::to_string(_level + 1)) != std::string::npos)
+        {
+          dir = std::stoi(it);
+          return (dir);
+        }
+          //return ((dir = stoi(it[8])));
+    }
+  return (0);
+}
+
+void EventHandler::Move()
+{
+  int dir = 0;
+  int random_variable;
+  
+  random_variable = std::rand();
+  dir = getBroadCastDirection();
+  if (dir == 3 || dir == 4)
+    TurnLeft();
+  else if (dir == 5 || dir == 6)
+    {
+      TurnLeft();
+      TurnLeft();
+    }
+  else if (dir == 7 || dir == 8)
+    TurnRight();
+  else if (random_variable % 5 == 0)
+      TurnRight();
   _sock->sendMsg("Forward\n");
   _sock->recvMsg();
 }
@@ -362,7 +404,8 @@ void EventHandler::Connect_nbr()
 
 void EventHandler::BroadcastText(const std::string & text)
 {
-  (void)text;
+  _sock->sendMsg(("Broadcast " + text + "\n").c_str());
+  _sock->recvMsg();
 }
 
 void EventHandler::Fork()

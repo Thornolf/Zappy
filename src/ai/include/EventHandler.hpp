@@ -70,10 +70,12 @@ public:
     void parseInventory(const std::string &);
     void parseTiles(const std::string &);
     bool isAbleToIncant();
+    bool hasEnoughRock();
     void changeNeed(int);
     int  countPlayerOnTile();
+    int getBroadCastDirection();
 
-    void MoveUp();
+    void Move();
     void TurnRight();
     void TurnLeft();
     void LookAround();
