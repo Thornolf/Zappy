@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 10:52:20 2017 Pierre
+** Last update Sat Jul 01 15:08:17 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
@@ -18,6 +18,7 @@
 # include "server/stuff.h"
 # include "server/list.h"
 # include "server/info.h"
+# include "server/incantation.h"
 
 typedef			void(*fct_server)(void *);
 
@@ -36,6 +37,7 @@ typedef struct		s_server
   int			team_size;
   int			freq;
   int object_id;
+  check_level_t check_level_cmds[7];
   struct timeval	timeout;
   fct_server		server_read;
   t_map			*map;
