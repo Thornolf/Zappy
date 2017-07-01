@@ -5,22 +5,22 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Thu Jun 29 15:44:37 2017 Guillaume CAUCHOIS
+** Last update Sat Jul 01 23:40:45 2017 Pierre
 */
 
 #include "server/command.h"
 
-void print_mendiane(int fd)
+void print_mendiane(char *str)
 {
-  send_socket(fd, "mendiane");
+  str = strcat(str, "mendiane");
 }
 
-void print_phiras(int fd)
+void print_phiras(char *str)
 {
-  send_socket(fd, "phiras");
+  str = strcat(str, "phiras");
 }
 
-void	init_print_cmds(void (*print_stuff_cmds[7])(int fd))
+void	init_print_cmds(void (*print_stuff_cmds[7])(char *str))
 {
   if (print_stuff_cmds[FOOD])
     return ;
@@ -33,7 +33,7 @@ void	init_print_cmds(void (*print_stuff_cmds[7])(int fd))
   print_stuff_cmds[THYSTAME]	= &print_thystame;
 }
 
-void print_tile_players(int player_fd, int y, int x, t_list *list_player)
+void print_tile_players(char *str, int y, int x, t_list *list_player)
 {
   t_list	*tmp;
   t_player *player;
@@ -43,7 +43,7 @@ void print_tile_players(int player_fd, int y, int x, t_list *list_player)
     {
       player = tmp->data;
       if (player->x == x && player->y == y)
-	send_socket(player_fd, "player ");
+        str = strcat(str, "player ");
       tmp = tmp->next;
     }
 }
@@ -53,26 +53,33 @@ void	print_objects(int player_fd, t_list *list_player,
 {
   int index;
   int i;
-  static void	(*print_stuff_cmds[7])(int fd);
+  char *str;
+  static void	(*print_stuff_cmds[7])(char *str);
 
+  if (!(str = malloc(sizeof(char) * 4096)))
+    return ;
+  str[0] = 0;
+  str = strcat(str, "[ ");
   init_print_cmds(print_stuff_cmds);
   while (tmp)
     {
-      print_tile_players(player_fd, tmp->y, tmp->x, list_player);
+      print_tile_players(str, tmp->y, tmp->x, list_player);
       index = 0;
       while (index <= 6)
-	{
-	  i = 1;
-	  while (i <= map->data[tmp->y][tmp->x].stuff->quantities[index])
 	    {
-	      (*print_stuff_cmds[index])(player_fd);
-	      send_socket(player_fd, " ");
-	      i++;
+	      i = 1;
+	      while (i <= map->data[tmp->y][tmp->x].stuff->quantities[index])
+	       {
+	         (*print_stuff_cmds[index])(str);
+            str = strcat(str, " ");
+	         i++;
+	       }
+	     index++;
 	    }
-	  index++;
-	}
       if (tmp->next)
-	send_socket(player_fd, ", ");
+        str = strcat(str, ", ");
       tmp = tmp->next;
     }
+  str = strcat(str, "] \n");
+  send_socket(player_fd, str);
 }

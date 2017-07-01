@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:30:48 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:39:10 2017 Guillaume CAUCHOIS
+** Last update Sat Jul 01 22:31:18 2017 Pierre
 */
 
 #include "server/map.h"
@@ -43,7 +43,7 @@ t_stuff_type	generate_stuff_type_randomly(void)
 {
   int		id;
 
-  while ((id = rand() % STUFF_MAX + 1) < STUFF_MIN);
+  while ((id = rand() % (STUFF_MAX + 1)) < STUFF_MIN);
   return ((t_stuff_type)id);
 }
 

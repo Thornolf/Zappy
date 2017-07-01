@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jul 01 15:08:22 2017 Pierre
-** Last update Sat Jul 01 15:08:46 2017 Pierre
+** Last update Sat Jul 01 16:57:23 2017 Pierre
 */
 
 #ifndef INCANTATION_H_

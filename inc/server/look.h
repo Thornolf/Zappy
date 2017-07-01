@@ -22,13 +22,13 @@ typedef struct	s_vision
   struct s_vision	*next;
 }		t_vision;
 
-void	print_food(int fd);
-void	print_linemate(int fd);
-void	print_deraumere(int fd);
-void	print_sibur(int fd);
-void	print_mendiane(int fd);
-void	print_phiras(int fd);
-void	print_thystame(int fd);
+void	print_food(char *str);
+void	print_linemate(char *str);
+void	print_deraumere(char *str);
+void	print_sibur(char *str);
+void	print_mendiane(char *str);
+void	print_phiras(char *str);
+void	print_thystame(char *str);
 
 t_vision	*init_vision(int, int);
 void		add_case_vision(t_vision *, int, int);

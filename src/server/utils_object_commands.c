@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 15:44:07 2017 Pierre
-** Last update Sat Jul 01 13:07:24 2017 Pierre
+** Last update Sat Jul 01 23:41:33 2017 Pierre
 */
 
 #include "server/command.h"
@@ -39,6 +39,8 @@ int check_arg(char *arg)
   int i;
   static char **objects;
 
+  if (arg == NULL)
+    return (-1);
   if ((objects = init_check(objects)) == NULL)
     return (-1);
   i = 0;
@@ -53,6 +55,8 @@ int check_arg(char *arg)
 
 int check_object(int object_id, t_stuff *tile)
 {
+  if (object_id == -1)
+    return (0);
   if (tile->quantities[object_id] > 0)
     return (1);
   else

@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jul 01 15:33:47 2017 Thomas Fossaert
+** Last update Sat Jul 01 17:47:24 2017 Pierre
 */
 
 #include <ctime>
@@ -132,7 +132,10 @@ void EventHandler::launchScript()
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
           else
+          {
+            std::cout << "\nIncantation" << '\n';
             Incantation();
+          }
         }
         else if (_currentState == State::READYFORINC)
           {
@@ -348,7 +351,7 @@ void EventHandler::Move()
 {
   int dir = 0;
   int random_variable;
-  
+
   random_variable = std::rand();
   dir = getBroadCastDirection();
   if (dir == 3 || dir == 4)

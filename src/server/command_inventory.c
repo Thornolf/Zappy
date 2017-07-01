@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Sat Jul 01 10:47:34 2017 Pierre
+** Last update Sat Jul 01 22:24:51 2017 Pierre
 */
 
 #include <string.h>
@@ -34,21 +34,13 @@ t_stuff		*init_stuff(void)
 
 void		print_stuff(int fd, t_stuff *stuff)
 {
-  send_socket(fd, "[food ");
-  send_socket(fd, itos(stuff->quantities[FOOD]));
-  send_socket(fd, ", linemate ");
-  send_socket(fd, itos(stuff->quantities[LINEMATE]));
-  send_socket(fd, ", deraumere ");
-  send_socket(fd, itos(stuff->quantities[DERAUMERE]));
-  send_socket(fd, ", sibur ");
-  send_socket(fd, itos(stuff->quantities[SIBUR]));
-  send_socket(fd, ", mendiane ");
-  send_socket(fd, itos(stuff->quantities[MENDIANE]));
-  send_socket(fd, ", phiras ");
-  send_socket(fd, itos(stuff->quantities[PHIRAS]));
-  send_socket(fd, ", thystame ");
-  send_socket(fd, itos(stuff->quantities[THYSTAME]));
-  send_socket(fd, "]\n");
+  char *str;
+
+  if (!(str = malloc(sizeof(char) * 100)))
+    return ;
+  if (!(snprintf(str, 100, "[ food %d, linemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d ]\n", stuff->quantities[FOOD], stuff->quantities[LINEMATE], stuff->quantities[DERAUMERE], stuff->quantities[SIBUR], stuff->quantities[MENDIANE], stuff->quantities[PHIRAS], stuff->quantities[THYSTAME])))
+    return ;
+  send_socket(fd, str);
 }
 
 void command_inventory(t_server *server, t_client *client)
