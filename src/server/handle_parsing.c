@@ -5,15 +5,15 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:32:00 2017 Pierre
-** Last update Thu Jun 29 14:38:27 2017 Guillaume CAUCHOIS
+** Last update Fri Jun 30 12:06:52 2017 Guillaume CAUCHOIS
 */
 
 #include <string.h>
 #include "server/funcs.h"
 
-void free_server_informations(t_info *info)
+void	free_server_informations(t_info *info)
 {
-  int i;
+  int	i;
 
   free(info->cmds);
   i = 0;
@@ -25,15 +25,24 @@ void free_server_informations(t_info *info)
     }
 }
 
-int handle_parsing(t_info *info, int ac, char **av)
+int	init_info_struct(t_info *info, char **av)
 {
-  int i;
-
-  if (av[1][0] != '-')
-    return (0);
-  i = 1;
+  info->cmds = NULL;
+  info->clients = NULL;
   if ((info->cmds = strdup("pxyncf")) == NULL)
     return (-1);
+  if (av[1][0] != '-')
+    return (0);
+  return (1);
+}
+
+int	handle_parsing(t_info *info, int ac, char **av)
+{
+  int	i;
+
+  if ((i = init_info_struct(info, av) != 1))
+    return (i);
+  i = 1;
   while (i < ac)
     {
       if (av[i][0] == '-')
@@ -51,7 +60,7 @@ int handle_parsing(t_info *info, int ac, char **av)
 	    return (0);
 	}
       else
-        return (0);
+	return (0);
     }
   return (1);
 }

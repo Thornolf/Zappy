@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.7)
 project(PSU_2016_zappy)
 
-set(CMAKE_CXX_STANDARD 11)
-
 include_directories(inc)
 
-set(CFLAGS "-W -Wall -Wextra")
+set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
         inc/server/client.h
@@ -24,36 +22,50 @@ set(SOURCE_FILES
         inc/server/team.h
         src/ai/include/EventHandler.hpp
         src/ai/include/Socket.hpp
+        src/ai/include/Utils.hpp
         src/ai/include/ZappException.hpp
         src/ai/include/zappy.hpp
-        src/ai/EventHandler.cpp
-        src/ai/main.cpp
-        src/ai/Socket.cpp
-        src/ai/ZappException.cpp
-        src/ai/zappy.cpp
+        src/ai/src/EventHandler.cpp
+        src/ai/src/main.cpp
+        src/ai/src/Socket.cpp
+        src/ai/src/Utils.cpp
+        src/ai/src/ZappException.cpp
+        src/ai/src/zappy.cpp
         src/server/lib/list.c
         src/server/lib/send.c
         src/server/lib/string.c
         src/server/client.c
         src/server/command.c
+        src/server/command_b.c
         src/server/command_broadcast.c
+        src/server/command_connect_nbr.c
         src/server/command_inventory.c
         src/server/command_look.c
         src/server/command_map.c
         src/server/command_move_player.c
+        src/server/command_pin.c
+        src/server/command_player.c
+        src/server/command_put_object.c
+        src/server/command_sgt.c
+        src/server/command_take_object.c
         src/server/command_team.c
         src/server/communication.c
         src/server/connection_client.c
+        src/server/execute_command.c
+        src/server/handle_io.c
         src/server/handle_parsing.c
         src/server/look_utils.c
         src/server/main.c
         src/server/map.c
         src/server/player.c
+        src/server/player_b.c
         src/server/print_vision_a.c
         src/server/print_vision_b.c
         src/server/server.c
         src/server/socket.c
         src/server/team.c
-        src/server/utils_parsing.c)
+        src/server/utils_object_commands.c
+        src/server/utils_parsing.c
+        src/server/waiting_cmds.c)
 
 add_executable(PSU_2016_zappy ${SOURCE_FILES})

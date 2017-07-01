@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Thu Jun 29 16:56:39 2017 Pierre
+** Last update Sat Jul 01 10:52:13 2017 Pierre
 */
 
 #include "Socket.hpp"
@@ -59,7 +59,12 @@ void Socket::recvMsg()
 
   recv(this->_fd, _buffer, 4096, 0);
   std::cout << std::string(_buffer);
-  _lastMsg = std::string(_buffer);
+  if (std::string(_buffer).find("[ player") != std::string::npos)
+    _lastTile = _buffer;
+  else if (std::string(_buffer).find("[ food") != std::string::npos)
+    _lastInventory= _buffer;
+  else
+    _lastMsg = std::string(_buffer);
   while (_buffer[i])
     {
       _buffer[i] = '\0';
@@ -69,7 +74,25 @@ void Socket::recvMsg()
 
 const std::string Socket::getLastMsg() const
 {
-  return (std::string(_lastMsg));
+  return (std::string(this->_lastMsg));
 }
-//ssize_t send(int socket, const void *buffer, size_t length, int flags);
-//recv(int socket, void *buffer, size_t length, int flags);
+
+const std::string Socket::getLastTile() const
+{
+  return (std::string(this->_lastTile));
+}
+
+const std::string Socket::getLastInventory() const
+{
+  return (std::string(this->_lastInventory));
+}
+
+const std::string Socket::getIp() const
+{
+  return (std::string(this->_ip));
+}
+
+const std::string Socket::getPort() const
+{
+  return (std::to_string(this->_port));
+}

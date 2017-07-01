@@ -8,23 +8,12 @@
 // Last update Tue Jun 27 18:06:50 2017 Adrien Warin
 */
 
-#include "EventHandler.hpp"
 #include <ctime>
+#include "EventHandler.hpp"
 
 EventHandler::EventHandler(Socket *sock)
 {
-    _sock = sock;
-    /*this->_event["Forward"] = std::bind(&EventHandler::MoveUp, this);
-    this->_event["Right"] = std::bind(&EventHandler::TurnRight, this);
-    this->_event["Left"] = std::bind(&EventHandler::TurnLeft, this);
-    this->_event["Look"] = std::bind(&EventHandler::LookAround, this);
-    this->_event["Inventory"] = std::bind(&EventHandler::Inventory, this);
-    this->_event["Broadcast Text"] = std::bind(&EventHandler::BroadcastText, this);
-    this->_event["Fork"] = std::bind(&EventHandler::Fork, this);
-    this->_event["Eject"] = std::bind(&EventHandler::Eject, this);
-    this->_event["Take object"] = std::bind(&EventHandler::TakeObject, this);
-    this->_event["Set object"] = std::bind(&EventHandler::SetObject, this);
-    this->_event["Incantation"] = std::bind(&EventHandler::Incantation, this);*/
+    this->_sock = sock;
 
     this->_need.insert( std::pair<std::string, int>("player", 1));
     this->_need.insert( std::pair<std::string, int>("linemate", 1));
@@ -34,7 +23,7 @@ EventHandler::EventHandler(Socket *sock)
     this->_need.insert( std::pair<std::string, int>("phiras", 0));
     this->_need.insert( std::pair<std::string, int>("thystame", 0));
     this->_level = 1;
-    _currentState = State::NORMAL;
+    this->_currentState = State::NORMAL;
 }
 
 EventHandler::~EventHandler()
@@ -101,7 +90,6 @@ void EventHandler::UpdateRequirement(int newLvl)
         this->_need.insert( std::pair<std::string, int>("sibur", 1));
         this->_need.insert( std::pair<std::string, int>("mendiane", 3));
         this->_need.insert( std::pair<std::string, int>("phiras", 0));
-
     }
     else if (newLvl == 6)
     {
@@ -129,7 +117,7 @@ void EventHandler::launchScript()
     {
       //Inventory();
       LookAround();
-      if (isAbleToIncant() == true)
+      /*if (isAbleToIncant() == true && _currentState == State::NORMAL)
         _currentState = State::READYFORINC;
       if (_currentState == State::INCANTATION)
         {
@@ -141,35 +129,27 @@ void EventHandler::launchScript()
             }
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
+          else
+            Incantation();
         }
         else if (_currentState == State::READYFORINC)
           {
             TakeEverything();
-            PutRequirementRock("linemate");
-            PutRequirementRock("deraumere");
-            PutRequirementRock("sibur");
-            PutRequirementRock("mendiane");
-            PutRequirementRock("phiras");
-            PutRequirementRock("thystame");
-            Inventory();
-            Incantation();
-            (_sock->getLastMsg() != "ko\n") ? _currentState = State::INCANTATION : _currentState = State::NORMAL;
+            PutRequirementRock();
+            _currentState = State::INCANTATION;
           }
         else if (_currentState == State::NORMAL)
-          {
+          {*/
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
               TurnRight();
             TakeObject("food");
-            TakeRequirement("linemate", this->_inventory["linemate"], this->_need["linemate"]);
-            TakeRequirement("deraumere", this->_inventory["deraumere"], this->_need["deraumere"]);
-            TakeRequirement("sibur", this->_inventory["sibur"], this->_need["sibur"]);
-            TakeRequirement("mendiane", this->_inventory["mendiane"], this->_need["mendiane"]);
-            TakeRequirement("phiras", this->_inventory["phiras"], this->_need["phiras"]);
-            TakeRequirement("thystame", this->_inventory["thystame"], this->_need["thystame"]);
+            TakeRequirement();
             Inventory();
-          }
+            parseTiles(_sock->getLastTile());
+            parseInventory(_sock->getLastInventory());
+          //}
         std::cout << "LEVEL = " << _level << "\n";
         std::cout << "FOOD: " << _inventory["food"] << '\n';
         std::cout << "Player required : " << _need["player"] << '\n';
@@ -179,6 +159,7 @@ void EventHandler::launchScript()
         std::cout << "Need mendiane =" << _need["mendiane"] << '\n';
         std::cout << "Need phiras =" << _need["phiras"] << '\n';
         std::cout << "Need thystame =" << _need["thystame"] << '\n';
+        std::cout << "LINEMATE DANS LINVENTAIRE : " << _inventory["linemate"] << '\n';
     }
 }
 
@@ -195,10 +176,11 @@ void EventHandler::parseInventory(const std::string & inventory)
   std::string 	token;
   std::string   nb;
 
-  my_vec = explode(tmp, ',');
+  std::cout << tmp << '\n';
+  my_vec = _utils.explode(tmp, ',');
   for(std::vector<std::string>::iterator it = my_vec.begin(); it != my_vec.end(); ++it)
     {
-        epur(*it);
+        _utils.epur(*it);
         token = *it;
         if ((pos = token.find(delimiter)) != std::string::npos)
         {
@@ -209,8 +191,11 @@ void EventHandler::parseInventory(const std::string & inventory)
                 nb = tmp.substr(0, pos);
                 tmp.erase(0, pos + delimiter.length());
             }
-            if (has_any_digits(nb) == true)
+            if (_utils.has_any_digits(nb) == true)
+            {
+                std::cout << "AJOUT DE " << nb << " DE " << token << '\n';
               _inventory[token] = stoi(nb);
+            }
         }
     }
 }
@@ -229,52 +214,58 @@ void EventHandler::PutRock(const std::string &objName, int inv, int requirement)
     }
 }
 
-void EventHandler::TakeRequirement(const std::string &objName, int inv, int requirement)
+void EventHandler::TakeRequirement()
 {
-    if (inv < requirement)
-        TakeObject(objName);
-    // for (auto it : _tiles[0])
-    //   {
-    //     if (it != "player")
-    //       {
-    //         if (_inventory[it] < _need[it])
-    //             TakeObject(it);
-    //       }
-    //   }
+    for (auto it : _tiles[0])
+    {
+        if (_inventory[it] < _need[it] && it != "player")
+            TakeObject(it);
+    }
 }
 
 void EventHandler::parseTiles(const std::string & tiles)
 {
-  std::cout << "PASSIIIIIIIIIIIINNNNNNNNNNNNNNNNNN : " << tiles << '\n';
+  std::cout << "PASSIIIIIIIIIIIINNNNNNNNNNNNNNNNNN : " << tiles << "---->ENNNNDD" << '\n';
   std::string tmp = tiles;
   std::vector<std::string> tmpVec;
   int i = 0;
 
   tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
   tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
-  epur(tmp);
+  _utils.epur(tmp);
 
-  tmpVec = explode(tmp, ',');
+  tmpVec = _utils.explode(tmp, ',');
   for (auto it : tmpVec)
     {
-      epur(it);
-      _tiles[i] = explode(it, ' ');
+      _utils.epur(it);
+      _tiles[i] = _utils.explode(it, ' ');
       i++;
     }
 }
 
-void EventHandler::PutRequirementRock(const std::string &item)
+void EventHandler::PutRequirementRock()
 {
     int nb = 0;
     int nb_to_put = 0;
 
-    nb = CaseRequirement(item, 0);
-    if (this->_need[item] > 0)
-        nb_to_put = this->_need[item] - nb;
-    if (nb_to_put < 0)
-        nb_to_put = 0;
-    std::cout << "NOMBRE DE " << item << " A POSER = " << nb_to_put << '\n';
-    PutRock(item, this->_inventory[item], nb_to_put);
+    for (auto &it : _inventory)
+    {
+        nb = CaseRequirement(it.first, 0);
+        if (this->_need[it.first] > 0)
+            nb_to_put = this->_need[it.first] - nb;
+        if (nb_to_put > 0)
+        {
+            std::cout << "NOMBRE DE " << it.first << " A POSER = " << nb_to_put << '\n';
+            PutRock(it.first, this->_inventory[it.first], nb_to_put);
+        }
+    }
+    // nb = CaseRequirement(item, 0);
+    // if (this->_need[item] > 0)
+    //   nb_to_put = this->_need[item] - nb;
+    // if (nb_to_put < 0)
+    //   nb_to_put = 0;
+    // std::cout << "NOMBRE DE " << item << " A POSER = " << nb_to_put << '\n';
+    // PutRock(item, this->_inventory[item], nb_to_put);
 }
 
 int EventHandler::CaseRequirement(const std::string & item, int tileNbr)
@@ -341,29 +332,28 @@ void EventHandler::LookAround()
 {
   _sock->sendMsg("Look\n");
   _sock->recvMsg();
-  if (_sock->getLastMsg() != "ko")
-    parseTiles(_sock->getLastMsg());
+  /*if (_sock->getLastMsg() != "ko")
+    parseTiles(_sock->getLastMsg());*/
 }
 
 void EventHandler::Inventory()
 {
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  this->_test = _sock->getLastMsg();
+  /*this->_test = _sock->getLastMsg();
   std::cout << " ---- INVENTORY : " << this->_test << '\n';
-  /*if (has_any_digits(_sock->getLastMsg()) == true &&
-      (_sock->getLastMsg() != "ko\n" ||
-      _sock->getLastMsg() != "ok\n"))*/
-    //parseInventory(_sock->getLastMsg());
-    parseInventory(this->_test);
+  parseInventory(this->_test);*/
+}
+
+void EventHandler::Connect_nbr()
+{
+  _sock->sendMsg("Connect_nbr\n");
+  _sock->recvMsg();
 }
 
 void EventHandler::BroadcastText(const std::string & text)
 {
   (void)text;
-  std::cout << "I'm here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << '\n';
-  _sock->sendMsg(/*(text + "\n").c_str()*/"Broadcast YOOOOOOOOOOOOOOOOOOOOOOOOLOOOOOOOOOOOO\n");
-  _sock->recvMsg();
 }
 
 void EventHandler::Fork()
@@ -382,59 +372,16 @@ void EventHandler::TakeObject(const std::string & item)
 {
     _sock->sendMsg(("Take " + item + "\n").c_str());
     _sock->recvMsg();
-    /*if (_sock->getLastMsg() == "ok")
-      Inventory();*/
 }
 
 void EventHandler::SetObject(const std::string & item)
 {
   _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
-  /*if (_sock->getLastMsg() == "ok")
-    Inventory();*/
 }
 
 void EventHandler::Incantation()
 {
   _sock->sendMsg("Incantation\n");
   _sock->recvMsg();
-}
-
-void EventHandler::epur(std::string &s)
-{
-  bool space = false;
-  auto p = s.begin();
-  for (auto ch : s)
-    if (std::isspace(ch)) {
-      space = p != s.begin();
-    } else {
-      if (space) *p++ = ' ';
-      *p++ = ch;
-      space = false; }
-  s.erase(p, s.end());
-}
-
-std::vector<std::string> EventHandler::explode(const std::string& str, const char& ch)
-{
-    std::string next;
-    std::vector<std::string> result;
-
-    for (auto it = str.begin(); it != str.end(); it++)
-      {
-        if (*it == ch)
-          {
-              result.push_back(next);
-              next.clear();
-          }
-        else
-          next += *it;
-    }
-    if (!next.empty())
-        result.push_back(next);
-    return (result);
-}
-
-bool EventHandler::has_any_digits(const std::string& s)
-{
-    return std::any_of(s.begin(), s.end(), ::isdigit);
 }

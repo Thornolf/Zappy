@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 10:22:54 2017 Pierre
+** Last update Sat Jul 01 10:52:58 2017 Pierre
 */
 
 #include <signal.h>
@@ -28,7 +28,7 @@ void	server_read(void *_server)
   send_socket(client->fd, "WELCOME\n");
   if (!(client_node = create_node(client, server->clients)))
     {
-      fprintf(stderr, "ERROR: A client try to connect but something went wrong...\n");
+      fprintf(stderr, "ERROR: Can't initialize server\n");
       return;
     }
   server->clients = client_node;
@@ -41,36 +41,35 @@ void	server_read(void *_server)
     }
 }
 
-void	server_write(void *_server)
+void	init_server_config(t_server *s_conf)
 {
-  (void)_server;
+  s_conf->players = NULL;
+  s_conf->waiting_cmds = NULL;
+  s_conf->timeout.tv_sec = 0;
+  s_conf->timeout.tv_usec = 1;
 }
 
 bool	init_zappy_server(t_info *info)
 {
   t_server		s_conf;
   fd_set		fd_read;
-  fd_set		fd_write;
 
   if ((s_conf.fd = open_socket(info->port)) == -1)
     return (false);
   if (!(s_conf.map = create_empty_map(info->width, info->height)))
     return (false);
   fill_up_map_randomly(s_conf.map);
-  listen_socket(s_conf.fd);
   s_conf.clients = NULL;
   if (!(s_conf.teams = init_team_list(info)))
     return (NULL);
   if (!(s_conf.cmds = init_cmd_callback()))
     return (false);
-  s_conf.players = NULL;
-  s_conf.waiting_cmds = NULL;
-  s_conf.timeout.tv_sec = 0;
-  s_conf.timeout.tv_usec = 1;
+  init_server_config(&s_conf);
   s_conf.freq = info->freq;
   s_conf.server_read = server_read;
   s_conf.team_size = info->clientsNb;
-  if (!handle_io(&fd_read, &fd_write, &s_conf))
+  listen_socket(s_conf.fd);
+  if (!handle_io(&fd_read, &s_conf))
     return (false);
   remove_list(s_conf.cmds, &delete_command);
   remove_list(s_conf.clients, &delete_client);
@@ -140,46 +139,6 @@ void check_waiting_cmds(t_server *server)
       if (tmp->next)
         tmp = tmp->next;
     }
-}
-
-bool		handle_io(fd_set *fd_read, fd_set *fd_write, t_server *server)
-{
-  int		fd_max;
-  t_list	*cur_client_node;
-  t_client	*client;
-  int lol = 0;
-  bool		go_on;
-
-  go_on = true;
-  signal(SIGPIPE, SIG_IGN);
-  while (go_on)
-  {
-    check_waiting_cmds(server);
-    fd_max = get_fd_max(server);
-    FD_ZERO(fd_read);
-    FD_SET(server->fd, fd_read);
-    cur_client_node= server->clients;
-    while (cur_client_node)
-	  {
-	    client = cur_client_node->data;
-	    FD_SET(client->fd, fd_read);
-	    cur_client_node = cur_client_node->next;
-	  }
-    go_on = ((lol = select(fd_max + 1, fd_read, fd_write, NULL, &server->timeout)) >= 0);
-    if (FD_ISSET(server->fd, fd_read))
-	    server->server_read(server);
-    cur_client_node = server->clients;
-    while (cur_client_node)
-	  {
-	    client = cur_client_node->data;
-	    if (FD_ISSET(client->fd, fd_read))
-	     cur_client_node = client->fct_read(server, cur_client_node);
-	    else
-	     cur_client_node = cur_client_node->next;
-	  }
-    //check_waiting_cmds(server);
-  }
-  return (true);
 }
 
 int		get_fd_max(t_server *server)

@@ -48,7 +48,8 @@ void print_tile_players(int player_fd, int y, int x, t_list *list_player)
     }
 }
 
-void	print_objects(int player_fd, t_list *list_player, t_vision *tmp, t_map *map)
+void	print_objects(int player_fd, t_list *list_player,
+			  t_vision *tmp, t_map *map)
 {
   int index;
   int i;

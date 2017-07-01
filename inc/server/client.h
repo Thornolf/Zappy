@@ -39,7 +39,7 @@ typedef struct	s_client
 typedef struct s_server t_server;
 
 t_client	*init_client(t_server *);
-void		*client_read(void *, void *);
+void		*client_read(t_server *, t_list *);
 void		*client_write(void *, void *);
 void		delete_client(void *);
 

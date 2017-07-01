@@ -22,79 +22,44 @@ void	connection_graphic(t_server *server, t_client *client)
   command_tna(server, client);
 }
 
-bool	connection_ia(t_server *server, t_client *client, char *team_name)
+bool	connection_ia(t_server *s, t_client *client, char *team_name)
 {
   t_player	*player;
   char		*buf;
-  int		x;
-  int		y;
   int		mod;
 
-  if (!(buf = malloc(sizeof(char) * 400)))
-    return (false);
-  if (nb_player_in_team(server, team_name) + 1 > server->team_size)
+  if (!(buf = malloc(sizeof(char) * 400)) ||
+      nb_player_in_team(s, team_name) + 1 > s->team_size)
     {
       send_socket(client->fd, "ko\n");
       return (false);
     }
-  x = my_rand(0, server->map->width);
-  y = my_rand(0, server->map->height);
-  if (server->players == NULL)
-    server->players = init_players_list(client->fd, y, x);
+  if (s->players == NULL)
+    s->players = init_players_list(client->fd, rand() % s->map->height,
+				   rand() % s->map->width);
   else
-    add_player(server->players, client->fd, y, x);
-  if (!(player = get_player(server->players, client->fd)))
-    return (false);
-  if (!(assign_player_to_team(server, player, team_name)))
+    add_player(s->players, client->fd, rand() % s->map->height,
+	       rand() % s->map->width);
+  if (!(player = get_player(s->players, client->fd)) ||
+      !(assign_player_to_team(s, player, team_name)))
     return (false);
   client->type = AI;
-  mod = server->team_size - nb_player_in_team(server, team_name);
-  sprintf(buf, "%d\n%d %d\n", mod, server->map->width, server->map->height);
+  mod = s->team_size - nb_player_in_team(s, team_name);
+  snprintf(buf, 400, "%d\n%d %d\n", mod, s->map->width, s->map->height);
   send_socket(client->fd, buf);
-  command_pnw(server, player);
+  command_pnw(s, player);
   return (true);
 }
 
 void	command_pnw(t_server *server, t_player *player)
 {
   char	*buf;
-  char	*n;
 
-  if (!(buf = strdup("pnw ")) || !(n = itos(player->id)))
+  if (!(buf = malloc(sizeof(char) * 1000)))
     return;
-  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
-    return;
-  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
-    return;
-  if (!(n = itos(player->x)))
-    return;
-  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
-    return;
-  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
-    return;
-  if (!(n = itos(player->y)))
-    return;
-  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
-    return;
-  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
-    return;
-  if (!(n = itos((int)player->direction)))
-    return;
-  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
-    return;
-  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
-    return;
-  if (!(n = itos(player->lv)))
-    return;
-  if (!(buf = realloc(buf, strlen(buf) + strlen(n) + 3)))
-    return;
-  if (!(buf = strcat(buf, n)) || !(buf = strcat(buf, " ")))
-    return;
-  if (!(buf = realloc(buf, strlen(buf) + strlen(player->team->name) + 3)))
-    return;
-  if (!(buf = strcat(buf, player->team->name)))
-    return;
-  if (!(buf = strcat(buf, "\n")))
-    return;
+  snprintf(buf, 1000, "pwn %d %d %d %d %d %s\n",
+	   player->id, player->x, player->y, player->direction, player->lv,
+	   player->team->name);
   send_all_graphics(server, buf);
+  free(buf);
 }

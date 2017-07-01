@@ -25,15 +25,13 @@ void		command_pin(t_server *server, t_client *client)
       return;
     }
   player_id = atoi(param);
-  if (!(player = get_player_by_id(server->players, player_id)))
+  if (!(player = get_player_by_id(server->players, player_id)) ||
+      !(buffer = malloc(sizeof(char) * 450)) ||
+      !(qts = player->stuff->quantities))
     {
       send_socket(client->fd, "sbp\n");
       return;
     }
-  if (!(buffer = malloc(sizeof(char) * 450)))
-    return;
-  if (!(qts = player->stuff->quantities))
-    return;
   snprintf(buffer, 450, "pin %d %d %d %d %d %d %d %d %d %d %d\n", player->id,
 	   player->x, player->y, qts[FOOD], qts[FOOD], qts[LINEMATE],
 	   qts[DERAUMERE], qts[SIBUR], qts[MENDIANE], qts[PHIRAS],

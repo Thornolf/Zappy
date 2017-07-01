@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 30 20:54:02 2017 Pierre
+** Last update Sat Jul 01 10:52:20 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
@@ -47,8 +47,8 @@ typedef struct		s_server
 }			t_server;
 
 bool	init_zappy_server(t_info *);
-bool	handle_io(fd_set *, fd_set *, t_server *);
+bool	handle_io(fd_set *, t_server *);
 int	get_fd_max(t_server *);
-void check_waiting_cmds(t_server *server);
+void	check_waiting_cmds(t_server *);
 
 #endif		/* !_SERVER__H_! */

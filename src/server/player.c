@@ -11,18 +11,6 @@
 #include "server/player.h"
 #include "server/server.h"
 
-int		my_rand(int min, int max)
-{
-  static int	first = 1;
-
-  if (first == 1)
-    {
-      srand(time(NULL));
-      first = 0;
-    }
-  return (rand() % (max - min) + min);
-}
-
 t_player	*create_player(int fd, int y, int x)
 {
   t_player	*player;
@@ -38,7 +26,7 @@ t_player	*create_player(int fd, int y, int x)
   player->team = NULL;
   if (!(player->stuff = init_stuff()))
     return (NULL);
-  player->direction = (t_direction)my_rand(DIRECTION_MIN, DIRECTION_MAX);
+  player->direction = (t_direction)(rand() % (DIR_MAX - DIR_MIN) + DIR_MIN);
   return (player);
 }
 
@@ -91,30 +79,4 @@ void		delete_player(void *_player)
 
   player = _player;
   free(player);
-}
-
-bool		assign_player_to_team(t_server *server, t_player *player, char *team_name)
-{
-  t_team	*team;
-
-  if (!(team = get_team_by_name(server->teams, team_name)))
-    return (false);
-  player->team = team;
-  return (true);
-}
-
-t_player	*get_player_by_id(t_list *list_player, int id)
-{
-  t_list	*cur;
-  t_player	*player;
-
-  cur = list_player;
-  while (cur)
-    {
-      player = cur->data;
-      if (player->id == id)
-	return (player);
-      cur = cur->next;
-    }
-  return (NULL);
 }
