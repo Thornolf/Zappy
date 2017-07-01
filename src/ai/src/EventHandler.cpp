@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-// Last update Tue Jun 27 18:06:50 2017 Adrien Warin
+** Last update Sat Jul 01 11:30:55 2017 Adrien Warin
 */
 
 #include <ctime>
@@ -135,11 +135,14 @@ void EventHandler::launchScript()
         else if (_currentState == State::READYFORINC)
           {
             TakeEverything();
+            std::cout << "PHILLIPE JE SAIS OU TU TE CAAAAAAAAAAACHE" << '\n';
             PutRequirementRock();
             _currentState = State::INCANTATION;
           }
         else if (_currentState == State::NORMAL)
           {*/
+            Connect_nbr();
+            Fork();
             MoveUp();
             random_variable = std::rand();
             if (random_variable % 5 == 0)
@@ -169,7 +172,7 @@ void EventHandler::parseInventory(const std::string & inventory)
   tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
   tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
   tmp.erase(0, 1);
-  //tmp.erase(tmp.size() - 1);
+//  tmp.erase(tmp.size() - 1);
   std::vector<std::string> my_vec;
   std::string delimiter = " ";
   size_t pos = 0;
@@ -193,6 +196,7 @@ void EventHandler::parseInventory(const std::string & inventory)
             }
             if (_utils.has_any_digits(nb) == true)
             {
+                nb.erase(std::remove(nb.begin(), nb.end(), ','), nb.end());
                 std::cout << "AJOUT DE " << nb << " DE " << token << '\n';
               _inventory[token] = stoi(nb);
             }
@@ -250,6 +254,10 @@ void EventHandler::PutRequirementRock()
 
     for (auto &it : _inventory)
     {
+        std::cout << "it.first = " << it.first << '\n';
+        std::cout << "need it.first = " << _need[it.first] << '\n';
+        std::cout << "inventory it.first = " << _inventory[it.first] << '\n';
+
         nb = CaseRequirement(it.first, 0);
         if (this->_need[it.first] > 0)
             nb_to_put = this->_need[it.first] - nb;
@@ -349,6 +357,7 @@ void EventHandler::Connect_nbr()
 {
   _sock->sendMsg("Connect_nbr\n");
   _sock->recvMsg();
+  std::cout << "NB = " << _sock->getLastMsg() << '\n';
 }
 
 void EventHandler::BroadcastText(const std::string & text)
@@ -358,7 +367,7 @@ void EventHandler::BroadcastText(const std::string & text)
 
 void EventHandler::Fork()
 {
-  _sock->sendMsg("Connect_nbr\n");
+  _sock->sendMsg("Fork\n");
   _sock->recvMsg();
 }
 
