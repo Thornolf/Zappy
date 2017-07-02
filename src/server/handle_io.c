@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 13:52:59 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 18:12:55 2017 Pierre
+** Last update Sun Jul 02 19:24:11 2017 Pierre
 */
 
 #include "server/server.h"
@@ -27,10 +27,10 @@ void		set_all_fd(fd_set *fd_read, t_server *server)
     }
 }
 
-void check_food(t_server *server, t_list *_client)
+void		check_food(t_server *server, t_list *_client)
 {
-  t_client *client;
-  t_player *player;
+  t_client	*client;
+  t_player	*player;
 
   client = _client->data;
   player = get_player(server->players, client->fd);
@@ -42,7 +42,7 @@ void check_food(t_server *server, t_list *_client)
       if (player->stuff->quantities[FOOD] < 0)
         {
           send_socket(client->fd, "dead\n");
-	  void		command_pdi(t_server *server, t_client *client, char *arg);
+	  command_pdi(server, client, NULL);
 	  remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
           remove_node(&server->clients, _client, &delete_client);
         }

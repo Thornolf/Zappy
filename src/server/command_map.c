@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 13:00:06 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 14:19:19 2017 Pierre
+** Last update Sun Jul 02 19:21:46 2017 Pierre
 */
 
 #include <stdio.h>
@@ -16,10 +16,6 @@
 #include "server/client.h"
 #include "server/string.h"
 
-/**
- * Permit to send to the client the size of the map
- * @param server
- */
 void	command_msz(t_server *server, t_client *client, char *arg)
 {
   char	*str;
@@ -54,7 +50,7 @@ char		*quantities_to_string(int *qts)
 }
 
 void	command_bct_at_position(t_server *server, t_client *client,
-					unsigned int x, unsigned int y)
+				unsigned int x, unsigned int y)
 {
   char	*buf;
   char	*qts;
@@ -74,7 +70,7 @@ void	command_bct_at_position(t_server *server, t_client *client,
   free(qts);
 }
 
-void	command_bct(t_server *server, t_client *client, char *arg)
+void		command_bct(t_server *server, t_client *client, char *arg)
 {
   unsigned int	x;
   unsigned int	y;
@@ -105,15 +101,15 @@ void		command_mct(t_server *server, t_client *client, char *arg)
   (void)arg;
   x = 0;
   while (x != server->map->width)
-  {
-    y = 0;
-    while (y != server->map->height)
     {
-      command_bct_at_position(server, client, x, y);
-      y++;
+      y = 0;
+      while (y != server->map->height)
+	{
+	  command_bct_at_position(server, client, x, y);
+	  y++;
+	}
+      x++;
     }
-    x++;
-  }
 }
 
 void		command_mct_all_graphics(t_server *server)
@@ -123,10 +119,10 @@ void		command_mct_all_graphics(t_server *server)
 
   cur_client_node = server->clients;
   while (cur_client_node)
-  {
-    client = cur_client_node->data;
-    if (client->type == GRAPHIC)
-      command_mct(server, client, NULL);
-    cur_client_node = cur_client_node->next;
-  }
+    {
+      client = cur_client_node->data;
+      if (client->type == GRAPHIC)
+	command_mct(server, client, NULL);
+      cur_client_node = cur_client_node->next;
+    }
 }

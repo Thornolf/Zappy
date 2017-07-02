@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 14:40:28 2017 Pierre
+** Last update Sun Jul 02 19:46:57 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
@@ -53,5 +53,6 @@ bool	handle_io(fd_set *, t_server *);
 int	get_fd_max(t_server *);
 void	check_waiting_cmds(t_server *);
 void init_level_cmds(t_server *server);
+void		remove_waiting(t_waiting_cmds **list, t_waiting_cmds *node);
 
 #endif		/* !_SERVER__H_! */

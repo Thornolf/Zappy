@@ -11,31 +11,31 @@
 #include "server/command.h"
 
 bool	execute_command_undefined(t_server *server, t_client *client,
-					      char *command_name)
+				  char *command_name)
 {
   if (strcmp(command_name, "GRAPHIC") == 0)
-  {
-    connection_graphic(server, client);
-    return (true);
-  }
+    {
+      connection_graphic(server, client);
+      return (true);
+    }
   else if (connection_ia(server, client, command_name))
     return (true);
   return (false);
 }
 
 bool	execute_command_defined(t_server *server,
-				    t_client *client, t_command *cmd)
+				t_client *client, t_command *cmd)
 {
   char	*arg;
 
   if (client->type == AI)
-  {
-    arg = strtok(NULL, " \t\n");
-    if (arg != NULL && !(arg = strdup(arg)))
-      return (false);
-    add_waiting_cmd(server, cmd, client, arg);
-    free(arg);
-  }
+    {
+      arg = strtok(NULL, " \t\n");
+      if (arg != NULL && !(arg = strdup(arg)))
+	return (false);
+      add_waiting_cmd(server, cmd, client, arg);
+      free(arg);
+    }
   else if (client->type == GRAPHIC)
     cmd->fn(server, client, NULL);
   return (true);
@@ -53,11 +53,11 @@ bool		execute_command(t_server *server, t_client *client)
     return (execute_command_undefined(server, client, command_name));
   cur = server->cmds;
   while (cur)
-  {
-    cmd = cur->data;
-    if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
-      return (execute_command_defined(server, client, cmd));
-    cur = cur->next;
-  }
+    {
+      cmd = cur->data;
+      if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
+	return (execute_command_defined(server, client, cmd));
+      cur = cur->next;
+    }
   return (true);
 }

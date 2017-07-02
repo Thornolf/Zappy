@@ -81,7 +81,7 @@ int	long_command(t_info *info, int i, char **av)
   return (i);
 }
 
-int existing_command(char *arg)
+int	existing_command(char *arg)
 {
   if (strlen(arg) != 2)
     return (0);

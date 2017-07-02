@@ -10,26 +10,26 @@
 
 #include "server/command.h"
 
-int	nb_players(t_list *players, int y, int x)
+int		nb_players(t_list *players, int y, int x)
 {
-  t_player *player;
-  int nb;
+  t_player	*player;
+  int		nb;
 
   nb = 0;
   while (players)
-  {
-    player = players->data;
-    if (player->y == y && player->x == x)
-      nb++;
-    players = players->next;
-  }
+    {
+      player = players->data;
+      if (player->y == y && player->x == x)
+	nb++;
+      players = players->next;
+    }
   return (nb);
 }
 
-int	check_level_2(void *_server, int y, int x)
+int		check_level_2(void *_server, int y, int x)
 {
-  t_stuff *tile;
-  t_server *server;
+  t_stuff	*tile;
+  t_server	*server;
 
   server = _server;
   tile = server->map->data[y][x].stuff;
@@ -43,10 +43,10 @@ int	check_level_2(void *_server, int y, int x)
   return (0);
 }
 
-int	check_level_3(void *_server, int y, int x)
+int		check_level_3(void *_server, int y, int x)
 {
-  t_stuff *tile;
-  t_server *server;
+  t_stuff	*tile;
+  t_server	*server;
 
   server = _server;
   if (nb_players(server->players, y, x) == 2)
@@ -62,10 +62,10 @@ int	check_level_3(void *_server, int y, int x)
   return (0);
 }
 
-int	check_level_4(void *_server, int y, int x)
+int		check_level_4(void *_server, int y, int x)
 {
-  t_stuff *tile;
-  t_server *server;
+  t_stuff	*tile;
+  t_server	*server;
 
   server = _server;
   if (nb_players(server->players, y, x) == 2)
@@ -81,10 +81,10 @@ int	check_level_4(void *_server, int y, int x)
   return (0);
 }
 
-int	check_level_5(void *_server, int y, int x)
+int		check_level_5(void *_server, int y, int x)
 {
-  t_stuff *tile;
-  t_server *server;
+  t_stuff	*tile;
+  t_server	*server;
 
   server = _server;
   if (nb_players(server->players, y, x) == 4)

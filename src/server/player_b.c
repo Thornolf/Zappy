@@ -5,13 +5,13 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 14:08:26 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 16:11:32 2017 Guillaume CAUCHOIS
+** Last update Sun Jul 02 19:26:09 2017 Pierre
 */
 
 #include "server/player.h"
 
 bool		assign_player_to_team(t_server *server,
-					  t_player *player, char *team_name)
+				      t_player *player, char *team_name)
 {
   t_team	*team;
 
@@ -35,4 +35,13 @@ t_player	*get_player_by_id(t_list *list_player, int id)
       cur = cur->next;
     }
   return (NULL);
+}
+
+void		delete_player(void *_player)
+{
+  t_player	*player;
+
+  player = _player;
+  delete_stuff(player->stuff);
+  free(player);
 }

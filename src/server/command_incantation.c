@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jul 01 13:23:04 2017 Pierre
-** Last update Sun Jul 02 13:21:43 2017 Pierre
+** Last update Sun Jul 02 19:19:58 2017 Pierre
 */
 
 #include "server/command.h"
@@ -19,41 +19,40 @@ bool		start_incantation(t_server *server, t_client *client)
 
   player = get_player(server->players, client->fd);
   if (player->lv == 8)
-  {
-    send_socket(client->fd, "ko\n");
-    return (false);
-  }
+    {
+      send_socket(client->fd, "ko\n");
+      return (false);
+    }
   if ((*server->check_level_cmds[player->lv - 1])(server, player->y, player->x) == 0)
-  {
-    send_socket(client->fd, "ko\n");
-    return (false);
-  }
+    {
+      send_socket(client->fd, "ko\n");
+      return (false);
+    }
   client->incant = true;
   send_socket(client->fd, "Elevation underway\n");
   command_pic(server, client, NULL);
   return (true);
 }
 
-void command_incantation(t_server *server, t_client *client, char *arg)
+void	failed_incantation(t_server *server, t_client *client)
 {
-  t_player *player;
-  char *str;
+  send_socket(client->fd, "ko\n");
+  command_pie(server, client, "0");
+  return ;
+}
+
+void		command_incantation(t_server *server, t_client *client, char *arg)
+{
+  t_player	*player;
+  char		*str;
 
   (void)arg;
   if (!(player = get_player(server->players, client->fd)))
     return;
   if (player->lv == 8)
-  {
-    send_socket(client->fd, "ko\n");
-    command_pie(server, client, "0");
-    return ;
-  }
+    return (failed_incantation(server, client));
   if ((*server->check_level_cmds[player->lv - 1])(server, player->y, player->x) == 0)
-  {
-    send_socket(client->fd, "ko\n");
-    command_pie(server, client, "0");
-    return ;
-  }
+    return (failed_incantation(server, client));
   player->lv++;
   client->incant = false;
   if (!(str = malloc(sizeof(char) * 18)))

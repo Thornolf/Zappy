@@ -11,12 +11,13 @@
 #include "server/command.h"
 #include "server/string.h"
 
-void command_connect_nbr(t_server *server, t_client *client, char *arg)
+void		command_connect_nbr(t_server *server,
+				    t_client *client, char *arg)
 {
   t_list	*list;
   t_player	*tmp;
   char		*team_name;
-  char *str;
+  char		*str;
   int		nb;
 
   (void)arg;
@@ -29,7 +30,7 @@ void command_connect_nbr(t_server *server, t_client *client, char *arg)
     {
       tmp = list->data;
       if (strcmp(tmp->team->name, team_name) == 0)
-	      nb++;
+	nb++;
       list = list->next;
     }
   free(team_name);

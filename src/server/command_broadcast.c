@@ -16,7 +16,7 @@ void	command_broadcast(t_server *server, t_client *client, char *arg)
   command_pbc(server, client, arg);
 }
 
-void	command_pbc(t_server *server, t_client *client, char *msg)
+void		command_pbc(t_server *server, t_client *client, char *msg)
 {
   char		*buf;
   t_player	*player;

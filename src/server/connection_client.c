@@ -22,7 +22,7 @@ void	connection_graphic(t_server *server, t_client *client)
   command_tna(server, client, NULL);
 }
 
-bool	connection_ia(t_server *s, t_client *client, char *team_name)
+bool		connection_ia(t_server *s, t_client *client, char *team_name)
 {
   t_player	*player;
   char		*buf;

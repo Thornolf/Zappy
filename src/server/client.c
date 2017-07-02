@@ -12,11 +12,11 @@
 #include "server/server.h"
 #include "server/command.h"
 
-t_client	*init_client(t_server *s)
+t_client		*init_client(t_server *s)
 {
-  t_client		*c;
   struct sockaddr_in	c_sin;
-  socklen_t 		c_sin_len;
+  t_client		*c;
+  socklen_t		c_sin_len;
 
   c_sin_len = sizeof(c_sin);
   if (!(c = malloc(sizeof(t_client))))
@@ -48,12 +48,12 @@ t_list		*get_player_node(t_list *player_list, int fd)
   return (NULL);
 }
 
-void	*client_read(t_server *server, t_list *client_node)
+void		*client_read(t_server *server, t_list *client_node)
 {
   t_client	*client;
   t_list	*next;
   t_list	*player;
-  ssize_t end;
+  ssize_t	end;
 
   client = client_node->data;
   memset(client->buffer, 0, BUFFER_CLIENT_SIZE);
@@ -77,7 +77,7 @@ void	*client_read(t_server *server, t_list *client_node)
   return (client_node->next);
 }
 
-void	delete_client(void *_client)
+void		delete_client(void *_client)
 {
   t_client	*client;
 

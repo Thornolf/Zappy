@@ -11,7 +11,7 @@
 #include "server/command.h"
 #include "server/string.h"
 
-void send_sbp(int fd)
+void	send_sbp(int fd)
 {
   send_socket(fd, "sbp\n");
   return ;

@@ -35,7 +35,7 @@ t_vision	*init_vision(int y, int x)
 
 void		add_case_vision(t_vision *head, int y, int x)
 {
-  t_vision *current;
+  t_vision	*current;
 
   current = head;
   if (!current)

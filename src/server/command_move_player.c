@@ -27,7 +27,7 @@ void		command_turn_left(t_server *server, t_client *client, char *arg)
   send_socket(client->fd, "ok\n");
 }
 
-void command_turn_right(t_server *server, t_client *client, char *arg)
+void		command_turn_right(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   int		new_dir;
@@ -43,9 +43,9 @@ void command_turn_right(t_server *server, t_client *client, char *arg)
   send_socket(client->fd, "ok\n");
 }
 
-void command_move_player(t_server *server, t_client *client, char *arg)
+void		command_move_player(t_server *server, t_client *client, char *arg)
 {
-  t_player *player;
+  t_player	*player;
 
   (void)arg;
   if (!(player = get_player(server->players, client->fd)))

@@ -11,7 +11,7 @@
 #include "server/command.h"
 
 t_command	*create_command_node(const char *name, time_t action_time,
-				      cmd_func fun, t_client_type type)
+				     cmd_func fun, t_client_type type)
 {
   t_command	*cmd;
 

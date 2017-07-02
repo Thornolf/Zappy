@@ -14,6 +14,7 @@ SRC_SERVER_DIR	=	$(SRC_DIR)server/
 SRC_AI_DIR	=	$(SRC_DIR)ai/
 
 SRC_SERVER	=	$(SRC_SERVER_DIR)main.c				\
+			$(SRC_SERVER_DIR)check_waiting_cmds.c		\
 			$(SRC_SERVER_DIR)utils_parsing.c		\
 			$(SRC_SERVER_DIR)handle_parsing.c		\
 			$(SRC_SERVER_DIR)map.c				\
@@ -23,6 +24,7 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c				\
 			$(SRC_SERVER_DIR)look_utils.c			\
 			$(SRC_SERVER_DIR)print_vision_a.c		\
 			$(SRC_SERVER_DIR)print_vision_b.c		\
+			$(SRC_SERVER_DIR)print_vision_c.c		\
 			$(SRC_SERVER_DIR)socket.c			\
 			$(SRC_SERVER_DIR)server.c			\
 			$(SRC_SERVER_DIR)handle_io.c			\

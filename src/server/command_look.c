@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Sun Jul 02 13:23:30 2017 Pierre
+** Last update Sun Jul 02 19:34:30 2017 Pierre
 */
 
 #include "server/command.h"
@@ -122,10 +122,11 @@ t_vision	*look_left(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-void	command_look(t_server *server, t_client *client, char *arg)
+void		command_look(t_server *server, t_client *client, char *arg)
 {
   t_vision	*vision;
   t_player	*player;
+  static void	(*print_stuff_cmds[7])(char *str);
 
   (void)arg;
   vision = NULL;
@@ -142,7 +143,8 @@ void	command_look(t_server *server, t_client *client, char *arg)
     vision = look_right(vision, server->map, player);
   else if (player->direction == LEFT)
     vision = look_left(vision, server->map, player);
-  print_objects(client->fd, server->players, vision, server->map);
+  init_print_cmds(print_stuff_cmds);
+  print_objects(client->fd, server, vision, print_stuff_cmds);
   delete_vision_list(vision);
 }
 

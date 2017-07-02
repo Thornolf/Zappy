@@ -10,7 +10,7 @@
 
 #include "server/command.h"
 
-void	delete_command(void *_command)
+void		delete_command(void *_command)
 {
   t_command	*command;
 

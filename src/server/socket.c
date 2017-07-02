@@ -10,10 +10,10 @@
 
 #include "server/socket.h"
 
-int	open_socket(int port)
+int			open_socket(int port)
 {
-  int			s;
   struct sockaddr_in	sin;
+  int			s;
 
   if ((s = socket(PF_INET, SOCK_STREAM, 0)) == -1)
     return (-1);

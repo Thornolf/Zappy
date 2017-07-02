@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 14:42:13 2017 Pierre
+** Last update Sun Jul 02 19:25:22 2017 Pierre
 */
 
 #include <string.h>
@@ -77,7 +77,7 @@ t_player	*get_player(t_list *player_list, int fd)
 }
 
 char		*player_ids_on_plot_to_string(t_list *list,
-						  int x, int y)
+					      int x, int y)
 {
   char		*string;
   t_list	*cur_node;
@@ -91,23 +91,14 @@ char		*player_ids_on_plot_to_string(t_list *list,
     return (NULL);
   bzero(string, sizeof(char) * 400);
   while (cur_node)
-  {
-    player = cur_node->data;
-    if (player->x == x && player->y == y)
     {
-      limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
-      len_write += snprintf(string + len_write, limit, " %d", player->id);
-      cur_node = cur_node->next;
+      player = cur_node->data;
+      if (player->x == x && player->y == y)
+	{
+	  limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
+	  len_write += snprintf(string + len_write, limit, " %d", player->id);
+	  cur_node = cur_node->next;
+	}
     }
-  }
   return (string);
-}
-
-void		delete_player(void *_player)
-{
-  t_player	*player;
-
-  player = _player;
-  delete_stuff(player->stuff);
-  free(player);
 }

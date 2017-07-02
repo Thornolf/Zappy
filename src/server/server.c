@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 15:21:51 2017 Pierre
+** Last update Sun Jul 02 19:45:57 2017 Pierre
 */
 
 #include <signal.h>
@@ -14,7 +14,7 @@
 #include "server/client.h"
 #include "server/command.h"
 
-void	server_read(void *_server)
+void		server_read(void *_server)
 {
   t_server	*server;
   t_client	*client;
@@ -27,18 +27,18 @@ void	server_read(void *_server)
     return;
   send_socket(client->fd, "WELCOME\n");
   if (!(client_node = create_node(client, server->clients)))
-  {
-    fprintf(stderr, "ERROR: Can't initialize server\n");
-    return;
-  }
+    {
+      fprintf(stderr, "ERROR: Can't initialize server\n");
+      return;
+    }
   server->clients = client_node;
   cur = server->clients;
   i = 0;
   while (cur)
-  {
-    i++;
-    cur = cur->next;
-  }
+    {
+      i++;
+      cur = cur->next;
+    }
 }
 
 void	init_server_config(t_server *s_conf)
@@ -50,10 +50,10 @@ void	init_server_config(t_server *s_conf)
   s_conf->food_time = 126 / s_conf->freq;
 }
 
-bool	init_zappy_server(t_info *info)
+bool		init_zappy_server(t_info *info)
 {
-  t_server		s_conf;
-  fd_set		fd_read;
+  t_server	s_conf;
+  fd_set	fd_read;
 
   if ((s_conf.fd = open_socket(info->port)) == -1)
     return (false);
@@ -79,80 +79,6 @@ bool	init_zappy_server(t_info *info)
   return (true);
 }
 
-void		remove_waiting(t_waiting_cmds **list, t_waiting_cmds *node)
-{
-  t_waiting_cmds	*prev;
-  t_waiting_cmds	*cur;
-
-  if (!list || !node)
-    return;
-  prev = *list;
-  if (prev == node)
-  {
-    *list = prev->next;
-    free(prev);
-    return ;
-    //fn_delete_node(prev->data);
-  }
-  cur = prev->next;
-  while (cur)
-  {
-    if (cur == node)
-    {
-      prev->next = cur->next;
-      free(cur);
-      //fn_delete_node(cur->data);
-      return;
-    }
-    prev = cur;
-    cur = cur->next;
-  }
-}
-
-void check_waiting_cmds(t_server *server)
-{
-  t_command *cmd;
-  t_client *client;
-  t_waiting_cmds *tmp;
-
-  tmp = server->waiting_cmds;
-  while (tmp)
-    {
-      cmd = tmp->cmd;
-      if (tmp->endwait == -1)
-      {
-        client = tmp->client;
-        if (strcmp(cmd->cmd_name, "Incantation") == 0 && !client->incant)
-        {
-          if (!(start_incantation(server, client)))
-          {
-            tmp->endwait = -1;
-            remove_waiting(&server->waiting_cmds, tmp);
-            if (!server->waiting_cmds)
-              return ;
-          }
-          else
-            tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
-        }
-        else
-          tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
-      }
-      if (tmp->endwait != -1 && time(NULL) >= tmp->endwait)
-{
-      client = tmp->client;
-      if (strcmp(cmd->cmd_name, "Take") == 0 ||
-	  strcmp(cmd->cmd_name, "Set") == 0)
-	client->object_id = check_arg(tmp->arg);
-      cmd->fn(server, client, tmp->arg);
-      remove_waiting(&server->waiting_cmds, tmp);
-      if (!server->waiting_cmds)
-	return;
-    }
-    if (tmp->next)
-      tmp = tmp->next;
-  }
-}
-
 int		get_fd_max(t_server *server)
 {
   t_list	*cur;
@@ -162,11 +88,11 @@ int		get_fd_max(t_server *server)
   fd_max = server->fd;
   cur = server->clients;
   while (cur)
-  {
-    client = cur->data;
-    if (client->fd > fd_max)
-      fd_max = client->fd;
-    cur = cur->next;
-  }
+    {
+      client = cur->data;
+      if (client->fd > fd_max)
+	fd_max = client->fd;
+      cur = cur->next;
+    }
   return (fd_max);
 }

@@ -67,7 +67,7 @@ int		check_level_8(void *_server, int y, int x)
   return (0);
 }
 
-void init_level_cmds(t_server *server)
+void	init_level_cmds(t_server *server)
 {
   server->check_level_cmds[0] = check_level_2;
   server->check_level_cmds[1] = check_level_3;

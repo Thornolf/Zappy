@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Sun Jul 02 14:31:43 2017 Pierre
+** Last update Sun Jul 02 19:20:34 2017 Pierre
 */
 
 #include <string.h>
@@ -38,7 +38,10 @@ void		print_stuff(int fd, t_stuff *stuff)
 
   if (!(str = malloc(sizeof(char) * 100)))
     return ;
-  if (!(snprintf(str, 100, "[ food %d, linemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d ]\n", stuff->quantities[FOOD], stuff->quantities[LINEMATE], stuff->quantities[DERAUMERE], stuff->quantities[SIBUR], stuff->quantities[MENDIANE], stuff->quantities[PHIRAS], stuff->quantities[THYSTAME])))
+  if (!(snprintf(str, 100, "[ food %d, linemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d ]\n",
+		 stuff->quantities[FOOD], stuff->quantities[LINEMATE], stuff->quantities[DERAUMERE],
+		 stuff->quantities[SIBUR], stuff->quantities[MENDIANE], stuff->quantities[PHIRAS],
+		 stuff->quantities[THYSTAME])))
     return ;
   send_socket(fd, str);
   free(str);
@@ -57,7 +60,7 @@ void		delete_stuff(void *_stuff)
 
 void		command_inventory(t_server *server, t_client *client, char *arg)
 {
-  t_player *player;
+  t_player	*player;
 
   (void)arg;
   if (!(player = get_player(server->players, client->fd)))

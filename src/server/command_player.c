@@ -12,7 +12,7 @@
 #include "server/string.h"
 #include "server/communication.h"
 
-void	command_ppo(t_server *server, t_client *client, char *arg)
+void		command_ppo(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   char		*param;
@@ -39,7 +39,7 @@ void	command_ppo(t_server *server, t_client *client, char *arg)
   free(buffer);
 }
 
-void	command_plv(t_server *server, t_client *client, char *arg)
+void		command_plv(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   char		*param;
@@ -65,7 +65,7 @@ void	command_plv(t_server *server, t_client *client, char *arg)
   free(buffer);
 }
 
-void	command_plv_for_plot(t_server *server, int x, int y)
+void		command_plv_for_plot(t_server *server, int x, int y)
 {
   t_list	*cur_node;
   t_client	*client;
@@ -73,17 +73,17 @@ void	command_plv_for_plot(t_server *server, int x, int y)
 
   cur_node = server->clients;
   while (cur_node)
-  {
-    client = cur_node->data;
-    if (client->type == AI)
     {
-      if (!(player = get_player_by_id(server->players, client->fd)))
-	return;
-      if (player->x == x && player->y == y)
-	command_plv(server, client, NULL);
+      client = cur_node->data;
+      if (client->type == AI)
+	{
+	  if (!(player = get_player_by_id(server->players, client->fd)))
+	    return;
+	  if (player->x == x && player->y == y)
+	    command_plv(server, client, NULL);
+	}
+      cur_node = cur_node->next;
     }
-    cur_node = cur_node->next;
-  }
 }
 
 void		command_pdi(t_server *server, t_client *client, char *arg)

@@ -32,10 +32,10 @@ void	command_sst(t_server *server, t_client *client, char *arg)
   if (!(new_freq_str = strtok(NULL, " \t\n")) ||
       !string_is_number(new_freq_str) ||
       (new_freq = atoi(new_freq_str)) < 1)
-  {
-    send_socket(client->fd, "sbp\n");
-    return;
-  }
+    {
+      send_socket(client->fd, "sbp\n");
+      return;
+    }
   server->freq = new_freq;
   server->food_time = 126 / server->freq;
   command_sgt(server, client, NULL);

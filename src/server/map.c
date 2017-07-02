@@ -83,7 +83,7 @@ void		fill_up_map_randomly(t_map *map)
     }
 }
 
-void	delete_map(t_map *map)
+void		delete_map(t_map *map)
 {
   unsigned int	y;
 
