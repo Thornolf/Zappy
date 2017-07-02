@@ -95,7 +95,6 @@ void	command_bct(t_server *server, t_client *client, char *arg)
     }
   y = (unsigned int)atoi(buf);
   command_bct_at_position(server, client, x, y);
-  free(buf);
 }
 
 void		command_mct(t_server *server, t_client *client, char *arg)

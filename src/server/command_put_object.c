@@ -14,13 +14,11 @@
 void	command_put_object(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
-  t_stuff *stuff;
 
   (void)arg;
   if (!(player = get_player(server->players, client->fd)))
     return;
-  stuff = player->stuff;
-  if (check_object(client->object_id, stuff) == 1)
+  if (check_object(client->object_id, player->stuff) == 1)
   {
     server->map->data[player->y][player->x].stuff->quantities[client->object_id]++;
     player->stuff->quantities[client->object_id]--;
