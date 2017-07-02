@@ -36,7 +36,7 @@ typedef struct		s_server
   int			fd;
   int			team_size;
   int			freq;
-  int     food_time;
+  int			food_time;
   check_level_t		check_level_cmds[7];
   struct timeval	timeout;
   fct_server		server_read;
@@ -52,7 +52,7 @@ bool	init_zappy_server(t_info *);
 bool	handle_io(fd_set *, t_server *);
 int	get_fd_max(t_server *);
 void	check_waiting_cmds(t_server *);
-void init_level_cmds(t_server *server);
-void		remove_waiting(t_waiting_cmds **list, t_waiting_cmds *node);
+void	init_level_cmds(t_server *server);
+void	remove_waiting(t_waiting_cmds **list, t_waiting_cmds *node);
 
 #endif		/* !_SERVER__H_! */

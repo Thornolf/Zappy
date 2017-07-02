@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sun Jul 02 17:28:43 2017 Thomas Fossaert
+** Last update Sun Jul 02 21:40:15 2017 Thomas Fossaert
 */
 
 #include <ctime>
@@ -146,7 +146,7 @@ void EventHandler::launchScript()
             TakeObject("food");
             TakeRequirement();
           }
-        std::cout << this->_level << '\n';
+        std::cout << "CURRENT LEVEL: " <<this->_level << '\n';
     }
 }
 
@@ -334,84 +334,74 @@ void EventHandler::Move()
     TurnRight();
   else if (random_variable % 5 == 0)
       TurnRight();
-  std::cout << "COMMAND: Move" << '\n';
   _sock->sendMsg("Forward\n");
   _sock->recvMsg();
 }
 
 void EventHandler::TurnRight()
 {
-     std::cout << "COMMAND: TurnRight" << '\n';
-  _sock->sendMsg("Right\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Right\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::TurnLeft()
 {
-     std::cout << "COMMAND: TurnLeft" << '\n';
-  _sock->sendMsg("Left\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Left\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::LookAround()
 {
-     std::cout << "COMMAND: LookAround" << '\n';
-  _sock->sendMsg("Look\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Look\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::Inventory()
 {
-     std::cout << "COMMAND: Inventory" << '\n';
-  _sock->sendMsg("Inventory\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Inventory\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::Connect_nbr()
 {
-     std::cout << "COMMAND: Connect_nbr" << '\n';
-  _sock->sendMsg("Connect_nbr\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Connect_nbr\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::BroadcastText(const std::string & text)
 {
-     std::cout << "COMMAND: BroadcastText" << '\n';
-  _sock->sendMsg(("Broadcast " + text + "\n").c_str());
-  _sock->recvMsg();
+    _sock->sendMsg(("Broadcast " + text + "\n").c_str());
+    _sock->recvMsg();
 }
 
 void EventHandler::Fork()
 {
-     std::cout << "COMMAND: Fork" << '\n';
-  _sock->sendMsg("Fork\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Fork\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::Eject()
 {
-     std::cout << "COMMAND: Eject" << '\n';
-  _sock->sendMsg("Eject\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Eject\n");
+    _sock->recvMsg();
 }
 
 void EventHandler::TakeObject(const std::string & item)
 {
-     std::cout << "COMMAND: Take" << '\n';
+    std::cout << "Player takes " << item << '\n';
     _sock->sendMsg(("Take " + item + "\n").c_str());
     _sock->recvMsg();
 }
 
 void EventHandler::SetObject(const std::string & item)
 {
-     std::cout << "COMMAND: SetObject" << '\n';
-  _sock->sendMsg(("Set " + item + "\n").c_str());
-  _sock->recvMsg();
+    std::cout << "Player puts " << item << '\n';
+    _sock->sendMsg(("Set " + item + "\n").c_str());
+    _sock->recvMsg();
 }
 
 void EventHandler::Incantation()
 {
-     std::cout << "COMMAND: Incantation" << '\n';
-  _sock->sendMsg("Incantation\n");
-  _sock->recvMsg();
+    _sock->sendMsg("Incantation\n");
+    _sock->recvMsg();
 }

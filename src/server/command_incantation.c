@@ -41,7 +41,7 @@ void	failed_incantation(t_server *server, t_client *client)
   return ;
 }
 
-void		command_incantation(t_server *server, t_client *client, char *arg)
+void		command_incant(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   char		*str;

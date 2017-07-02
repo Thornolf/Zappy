@@ -44,18 +44,18 @@ bool	execute_command_defined(t_server *server,
 bool		execute_command(t_server *server, t_client *client)
 {
   t_list	*cur;
-  char		*command_name;
+  char		*cmd_name;
   t_command	*cmd;
 
-  if (!(command_name = strtok(client->buffer, " \t\n")))
+  if (!(cmd_name = strtok(client->buffer, " \t\n")))
     return (false);
   if (client->type == UNDEFINED)
-    return (execute_command_undefined(server, client, command_name));
+    return (execute_command_undefined(server, client, cmd_name));
   cur = server->cmds;
   while (cur)
     {
       cmd = cur->data;
-      if (strcmp(cmd->cmd_name, command_name) == 0 && cmd->type == client->type)
+      if (strcmp(cmd->cmd_name, cmd_name) == 0 && cmd->type == client->type)
 	return (execute_command_defined(server, client, cmd));
       cur = cur->next;
     }

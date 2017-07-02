@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Sun Jul 02 19:38:05 2017 Pierre
+** Last update Sun Jul  2 20:48:31 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -33,7 +33,7 @@ void		print_tile_players(char *str, int y, int x, t_list *list_player)
     {
       player = tmp->data;
       if (player->x == x && player->y == y)
-        str = strcat(str, "player ");
+	str = strcat(str, "player ");
       tmp = tmp->next;
     }
 }
@@ -80,7 +80,7 @@ void	print_objects(int player_fd, t_server *server, t_vision *tmp,
 	  index++;
 	}
       if (tmp->next)
-        str = strcat(str, ", ");
+	str = strcat(str, ", ");
       tmp = tmp->next;
     }
   finish_vision(player_fd, str);
