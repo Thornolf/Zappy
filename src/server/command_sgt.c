@@ -37,5 +37,6 @@ void	command_sst(t_server *server, t_client *client, char *arg)
     return;
   }
   server->freq = new_freq;
+  server->food_time = 126 / server->freq;
   command_sgt(server, client, NULL);
 }

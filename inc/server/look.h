@@ -31,6 +31,7 @@ void	print_phiras(char *str);
 void	print_thystame(char *str);
 
 t_vision	*init_vision(int, int);
+void		delete_vision_list(t_vision *);
 void		add_case_vision(t_vision *, int, int);
 
 typedef struct s_it
