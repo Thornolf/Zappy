@@ -41,7 +41,7 @@ char		*quantities_to_string(int *qts)
   if (!(string = malloc(sizeof(char) * 400)))
     return (NULL);
   bzero(string, sizeof(char) * 400);
-  while (type < STUFF_MAX)
+  while (type <= STUFF_MAX)
     {
       limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
       len_write += snprintf(string + len_write, limit, " %d", qts[type++]);
