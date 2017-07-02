@@ -74,24 +74,30 @@ t_player	*get_player(t_list *player_list, int fd)
   return (NULL);
 }
 
-char		*player_ids_to_string(void)
+char		*player_ids_on_plot_to_string(t_list *list,
+						  int x, int y)
 {
   char		*string;
-  /*int		len_write;
-  t_stuff_type	type;
+  t_list	*cur_node;
+  t_player	*player;
+  int		len_write;
   size_t	limit;
 
   len_write  = 0;
-  type = STUFF_MIN;
+  cur_node = list;
   if (!(string = malloc(sizeof(char) * 400)))
     return (NULL);
   bzero(string, sizeof(char) * 400);
-  while (type < STUFF_MAX)
+  while (cur_node)
   {
-    limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
-    len_write += snprintf(string + len_write, limit, " %d", qts[type++]);
-  }*/
-  string = strdup("#n #n");
+    player = cur_node->data;
+    if (player->x == x && player->y == y)
+    {
+      limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
+      len_write += snprintf(string + len_write, limit, " %d", player->id);
+      cur_node = cur_node->next;
+    }
+  }
   return (string);
 }
 

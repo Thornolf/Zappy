@@ -13,9 +13,9 @@
 #include "server/player.h"
 #include "server/communication.h"
 
-bool start_incantation(t_server *server, t_client *client)
+bool		start_incantation(t_server *server, t_client *client)
 {
-  t_player *player;
+  t_player	*player;
 
   player = get_player(server->players, client->fd);
   if (player->lv == 8)
@@ -32,7 +32,6 @@ bool start_incantation(t_server *server, t_client *client)
   send_socket(client->fd, "Elevation underway\n");
   command_pic(server, client, NULL);
   return (true);
-  //start incantation graphique
 }
 
 void command_incantation(t_server *server, t_client *client, char *arg)
@@ -72,7 +71,8 @@ void		command_pic(t_server *server, t_client *client, char *arg)
     return;
   if (!(player = get_player(server->players, client->fd)))
     return;
-  if (!(buf_id_players = player_ids_to_string()))
+  if (!(buf_id_players = player_ids_on_plot_to_string(server->players,
+						      player->x, player->y)))
     return;
   snprintf(buf, 500, "pic %d %d %d%s\n", player->x, player->y,
 	   player->lv, buf_id_players);

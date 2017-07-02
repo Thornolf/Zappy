@@ -50,7 +50,6 @@ t_list		*init_players_list(int fd, int y, int x);
 t_player	*create_player(int, int, int);
 t_player	*get_player(t_list *, int);
 t_player	*get_player_by_id(t_list *, int);
-char		*player_ids_to_string(void);
-
+char		*player_ids_on_plot_to_string(t_list *, int, int);
 
 #endif		/* _PLAYER__H_ */
