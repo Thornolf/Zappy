@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:32:00 2017 Pierre
-** Last update Sun Jul 02 21:42:31 2017 Pierre
+** Last update Sun Jul  2 23:32:46 2017 Guillaume CAUCHOIS
 */
 
 #include <string.h>
@@ -94,7 +94,8 @@ int	handle_parsing(t_info *info, int ac, char **av)
 
   if ((check = fill_args(info, ac, av)) == 0)
     return (0);
-  if (info->width < 10 || info->width > 30 || info->height < 10 || info->height > 30)
+  if (info->width < 10 || info->width > 30 ||
+      info->height < 10 || info->height > 30)
     {
       printf("Map must be minimum 10x10 and maximum 30x30\n");
       return (0);
