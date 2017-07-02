@@ -27,6 +27,7 @@ void		command_put_object(t_server *server, t_client *client,
       player->stuff->quantities[client->object_id]--;
       send_socket(client->fd, "ok\n");
       command_pdr(server, client, NULL);
+      command_bct_at_pos_graphics(server, player->x, player->y);
     }
   else
     {

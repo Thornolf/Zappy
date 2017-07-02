@@ -29,6 +29,7 @@ void		command_take_object(t_server *server, t_client *client, char *arg)
       p->stuff->quantities[client->object_id]++;
       send_socket(client->fd, "ok\n");
       command_pgt(server, client, NULL);
+      command_bct_at_pos_graphics(server, p->x, p->y);
     }
   else
     send_socket(client->fd, "ko\n");

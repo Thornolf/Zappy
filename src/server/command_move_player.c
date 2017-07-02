@@ -25,6 +25,7 @@ void		command_turn_left(t_server *server, t_client *client, char *arg)
     new_dir = LEFT;
   player->direction = (t_direction)new_dir;
   send_socket(client->fd, "ok\n");
+  command_ppo(server, client, NULL);
 }
 
 void		command_turn_right(t_server *server, t_client *client, char *arg)
@@ -41,6 +42,7 @@ void		command_turn_right(t_server *server, t_client *client, char *arg)
     new_dir = TOP;
   player->direction = (t_direction)new_dir;
   send_socket(client->fd, "ok\n");
+  command_ppo(server, client, NULL);
 }
 
 void		command_move_player(t_server *server, t_client *client, char *arg)
@@ -59,4 +61,5 @@ void		command_move_player(t_server *server, t_client *client, char *arg)
   else if (player->direction == RIGHT)
     player->x = check_x(server->map->width, player->x + 1);
   send_socket(client->fd, "ok\n");
+  command_ppo(server, client, NULL);
 }

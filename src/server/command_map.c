@@ -50,16 +50,16 @@ char		*quantities_to_string(int *qts)
 }
 
 void	command_bct_at_position(t_server *server, t_client *client,
-				unsigned int x, unsigned int y)
+				    unsigned int x, unsigned int y)
 {
   char	*buf;
   char	*qts;
 
   if (x >= server->map->width || y >= server->map->height)
-    {
-      send_socket(client->fd, "sbp\n");
-      return;
-    }
+  {
+    send_socket(client->fd, "sbp\n");
+    return;
+  }
   if (!(buf = malloc(sizeof(char) * 400)))
     return;
   if (!(qts = quantities_to_string(server->map->data[y][x].stuff->quantities)))
@@ -68,6 +68,22 @@ void	command_bct_at_position(t_server *server, t_client *client,
   send_socket(client->fd, buf);
   free(buf);
   free(qts);
+}
+
+void	command_bct_at_pos_graphics(t_server *server,
+					unsigned int x, unsigned int y)
+{
+  t_list	*cur_node;
+  t_client	*client;
+
+  cur_node = server->clients;
+  while (cur_node)
+  {
+    client = cur_node->data;
+    if (client->type == GRAPHIC)
+      command_bct_at_position(server, client, x, y);
+    cur_node = cur_node->next;
+  }
 }
 
 void		command_bct(t_server *server, t_client *client, char *arg)
