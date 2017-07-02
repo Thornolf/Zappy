@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 13:52:59 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 15:03:40 2017 Pierre
+** Last update Sun Jul 02 15:21:56 2017 Pierre
 */
 
 #include "server/server.h"
@@ -39,7 +39,7 @@ void check_food(t_server *server, t_list *_client)
   if (time(NULL) >= player->start_time + server->food_time)
     {
       player->stuff->quantities[FOOD] -= 1;
-      if (player->stuff->quantities[FOOD] <= 0)
+      if (player->stuff->quantities[FOOD] < 0)
         {
           send_socket(client->fd, "dead\n");
           remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
