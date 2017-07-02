@@ -9,6 +9,7 @@
 */
 
 #include "server/command.h"
+#include "server/string.h"
 
 void	command_sgt(t_server *server, t_client *client, char *arg)
 {
@@ -20,4 +21,20 @@ void	command_sgt(t_server *server, t_client *client, char *arg)
   snprintf(buf, 100, "sgt %d\n", server->freq);
   send_socket(client->fd, buf);
   free(buf);
+}
+
+void	command_sst(t_server *server, t_client *client, char *arg)
+{
+  char	*new_freq_str;
+  int	new_freq;
+
+  (void)arg;
+  if (!(new_freq_str = strtok(NULL, " \t\n")) || !string_is_number(new_freq_str))
+  {
+    send_socket(client->fd, "sbp\n");
+    return;
+  }
+  new_freq = atoi(new_freq_str);
+  server->freq = new_freq;
+  command_sgt(server, client, NULL);
 }

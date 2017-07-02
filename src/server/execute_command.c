@@ -34,10 +34,10 @@ bool	execute_command_defined(t_server *server,
     if (arg != NULL && !(arg = strdup(arg)))
       return (false);
     add_waiting_cmd(server, cmd, client, arg);
+    free(arg);
   }
   else if (client->type == GRAPHIC)
     cmd->fn(server, client, NULL);
-	free(arg);
   return (true);
 }
 
