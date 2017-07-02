@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sat Jul 01 17:47:24 2017 Pierre
+** Last update Sun Jul 02 13:12:46 2017 Adrien Warin
 */
 
 #include <ctime>
@@ -132,10 +132,7 @@ void EventHandler::launchScript()
           else if (_sock->getLastMsg().find("ko") != std::string::npos)
             _currentState = State::NORMAL;
           else
-          {
-            std::cout << "\nIncantation" << '\n';
             Incantation();
-          }
         }
         else if (_currentState == State::READYFORINC)
           {
@@ -145,24 +142,10 @@ void EventHandler::launchScript()
           }
         else if (_currentState == State::NORMAL)
           {
-            /*Connect_nbr();
-            Fork();*/
             Move();
-
             TakeObject("food");
             TakeRequirement();
           }
-        std::cout << "LEVEL = " << _level << "\n";
-        std::cout << "FOOD: " << _inventory["food"] << '\n';
-        std::cout << "Player required : " << _need["player"] << '\n';
-        std::cout << "Player on tile : " << countPlayerOnTile() << '\n';
-        std::cout << "Need linemate =" << _need["linemate"] << '\n';
-        std::cout << "Need deraumere =" << _need["deraumere"] << '\n';
-        std::cout << "Need sibur =" << _need["sibur"] << '\n';
-        std::cout << "Need mendiane =" << _need["mendiane"] << '\n';
-        std::cout << "Need phiras =" << _need["phiras"] << '\n';
-        std::cout << "Need thystame =" << _need["thystame"] << '\n';
-        std::cout << "LINEMATE DANS LINVENTAIRE : " << _inventory["linemate"] << '\n';
     }
 }
 
@@ -172,7 +155,6 @@ void EventHandler::parseInventory(const std::string & inventory)
   tmp.erase(std::remove(tmp.begin(), tmp.end(), '['), tmp.end());
   tmp.erase(std::remove(tmp.begin(), tmp.end(), ']'), tmp.end());
   tmp.erase(0, 1);
-//  tmp.erase(tmp.size() - 1);
   std::vector<std::string> my_vec;
   std::string delimiter = " ";
   size_t pos = 0;
@@ -197,7 +179,6 @@ void EventHandler::parseInventory(const std::string & inventory)
             if (_utils.has_any_digits(nb) == true)
             {
                 nb.erase(std::remove(nb.begin(), nb.end(), ','), nb.end());
-                std::cout << "AJOUT DE " << nb << " DE " << token << '\n';
               _inventory[token] = stoi(nb);
             }
         }
@@ -229,7 +210,6 @@ void EventHandler::TakeRequirement()
 
 void EventHandler::parseTiles(const std::string & tiles)
 {
-  std::cout << "PASSIIIIIIIIIIIINNNNNNNNNNNNNNNNNN : " << tiles << "---->ENNNNDD" << '\n';
   std::string tmp = tiles;
   std::vector<std::string> tmpVec;
   int i = 0;
@@ -254,26 +234,12 @@ void EventHandler::PutRequirementRock()
 
     for (auto &it : _inventory)
     {
-        std::cout << "it.first = " << it.first << '\n';
-        std::cout << "need it.first = " << _need[it.first] << '\n';
-        std::cout << "inventory it.first = " << _inventory[it.first] << '\n';
-
         nb = CaseRequirement(it.first, 0);
         if (this->_need[it.first] > 0)
             nb_to_put = this->_need[it.first] - nb;
         if (nb_to_put > 0)
-        {
-            std::cout << "NOMBRE DE " << it.first << " A POSER = " << nb_to_put << '\n';
             PutRock(it.first, this->_inventory[it.first], nb_to_put);
-        }
     }
-    // nb = CaseRequirement(item, 0);
-    // if (this->_need[item] > 0)
-    //   nb_to_put = this->_need[item] - nb;
-    // if (nb_to_put < 0)
-    //   nb_to_put = 0;
-    // std::cout << "NOMBRE DE " << item << " A POSER = " << nb_to_put << '\n';
-    // PutRock(item, this->_inventory[item], nb_to_put);
 }
 
 int EventHandler::CaseRequirement(const std::string & item, int tileNbr)
@@ -342,7 +308,6 @@ int EventHandler::getBroadCastDirection()
           dir = std::stoi(it);
           return (dir);
         }
-          //return ((dir = stoi(it[8])));
     }
   return (0);
 }
@@ -365,78 +330,84 @@ void EventHandler::Move()
     TurnRight();
   else if (random_variable % 5 == 0)
       TurnRight();
+  std::cout << "COMMAND: Move" << '\n';
   _sock->sendMsg("Forward\n");
   _sock->recvMsg();
 }
 
 void EventHandler::TurnRight()
 {
+     std::cout << "COMMAND: TurnRight" << '\n';
   _sock->sendMsg("Right\n");
   _sock->recvMsg();
 }
 
 void EventHandler::TurnLeft()
 {
+     std::cout << "COMMAND: TurnLeft" << '\n';
   _sock->sendMsg("Left\n");
   _sock->recvMsg();
 }
 
 void EventHandler::LookAround()
 {
+     std::cout << "COMMAND: LookAround" << '\n';
   _sock->sendMsg("Look\n");
   _sock->recvMsg();
-  /*if (_sock->getLastMsg() != "ko")
-    parseTiles(_sock->getLastMsg());*/
 }
 
 void EventHandler::Inventory()
 {
+     std::cout << "COMMAND: Inventory" << '\n';
   _sock->sendMsg("Inventory\n");
   _sock->recvMsg();
-  /*this->_test = _sock->getLastMsg();
-  std::cout << " ---- INVENTORY : " << this->_test << '\n';
-  parseInventory(this->_test);*/
 }
 
 void EventHandler::Connect_nbr()
 {
+     std::cout << "COMMAND: Connect_nbr" << '\n';
   _sock->sendMsg("Connect_nbr\n");
   _sock->recvMsg();
-  std::cout << "NB = " << _sock->getLastMsg() << '\n';
 }
 
 void EventHandler::BroadcastText(const std::string & text)
 {
+     std::cout << "COMMAND: BroadcastText" << '\n';
   _sock->sendMsg(("Broadcast " + text + "\n").c_str());
   _sock->recvMsg();
 }
 
 void EventHandler::Fork()
 {
+     std::cout << "COMMAND: Fork" << '\n';
   _sock->sendMsg("Fork\n");
   _sock->recvMsg();
 }
 
 void EventHandler::Eject()
 {
+     std::cout << "COMMAND: Eject" << '\n';
   _sock->sendMsg("Eject\n");
   _sock->recvMsg();
 }
 
 void EventHandler::TakeObject(const std::string & item)
 {
+     std::cout << "COMMAND: Take" << '\n';
     _sock->sendMsg(("Take " + item + "\n").c_str());
     _sock->recvMsg();
 }
 
 void EventHandler::SetObject(const std::string & item)
 {
+     std::cout << "COMMAND: SetObject" << '\n';
   _sock->sendMsg(("Set " + item + "\n").c_str());
   _sock->recvMsg();
 }
 
 void EventHandler::Incantation()
 {
+     std::cout << "COMMAND: Incantation" << '\n';
   _sock->sendMsg("Incantation\n");
   _sock->recvMsg();
 }
