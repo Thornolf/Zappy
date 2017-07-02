@@ -81,5 +81,6 @@ void	command_pin(t_server *, t_client *, char *);
 void	command_sgt(t_server *, t_client *, char *);
 void	command_pbc(t_server *, t_client *, char *);
 void	command_pic(t_server *, t_client *, char *);
+void	command_pie(t_server *, t_client *, char *);
 
 #endif		/* !_COMMAND__H_! */
