@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 13:52:59 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 16:14:38 2017 Pierre
+** Last update Sun Jul 02 15:03:40 2017 Pierre
 */
 
 #include "server/server.h"
@@ -27,6 +27,29 @@ void		set_all_fd(fd_set *fd_read, t_server *server)
     }
 }
 
+void check_food(t_server *server, t_list *_client)
+{
+  t_client *client;
+  t_player *player;
+
+  client = _client->data;
+  player = get_player(server->players, client->fd);
+  if (!player)
+    return ;
+  if (time(NULL) >= player->start_time + server->food_time)
+    {
+      player->stuff->quantities[FOOD] -= 1;
+      if (player->stuff->quantities[FOOD] <= 0)
+        {
+          send_socket(client->fd, "dead\n");
+          remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
+          remove_node(&server->clients, _client, &delete_client);
+        }
+      else
+        player->start_time = time(NULL);
+    }
+}
+
 void		isset_all_fd(fd_set *fd_read, t_server *server)
 {
   t_list	*cur_client_node;
@@ -42,6 +65,12 @@ void		isset_all_fd(fd_set *fd_read, t_server *server)
 	cur_client_node = client->fct_read(server, cur_client_node);
       else
 	cur_client_node = cur_client_node->next;
+    }
+  cur_client_node = server->clients;
+  while (cur_client_node)
+    {
+      check_food(server, cur_client_node);
+      cur_client_node = cur_client_node->next;
     }
 }
 

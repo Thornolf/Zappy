@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:35:50 2017 Guillaume CAUCHOIS
-** Last update Wed Jun 28 12:45:25 2017 Pierre
+** Last update Sun Jul 02 14:48:00 2017 Pierre
 */
 
 #ifndef		_PLAYER__H_
@@ -36,6 +36,7 @@ typedef struct	s_player
   int		x;
   int		y;
   int		lv;
+  time_t start_time;
   t_stuff	*stuff;
   t_direction	direction;
   t_team	*team;

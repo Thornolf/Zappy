@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 13:13:17 2017 Pierre
+** Last update Sun Jul 02 14:41:13 2017 Pierre
 */
 
 #include <signal.h>
@@ -47,6 +47,7 @@ void	init_server_config(t_server *s_conf)
   s_conf->waiting_cmds = NULL;
   s_conf->timeout.tv_sec = 0;
   s_conf->timeout.tv_usec = 1;
+  s_conf->food_time = 126 / s_conf->freq;
 }
 
 bool	init_zappy_server(t_info *info)
@@ -64,8 +65,8 @@ bool	init_zappy_server(t_info *info)
     return (NULL);
   if (!(s_conf.cmds = init_cmd_callback()))
     return (false);
-  init_server_config(&s_conf);
   s_conf.freq = info->freq;
+  init_server_config(&s_conf);
   s_conf.server_read = server_read;
   s_conf.team_size = info->clientsNb;
   init_level_cmds(&s_conf);

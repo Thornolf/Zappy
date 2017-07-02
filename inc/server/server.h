@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:03:34 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 22:04:01 2017 Pierre
+** Last update Sun Jul 02 14:40:28 2017 Pierre
 */
 
 #ifndef		_SERVER__H_
@@ -36,6 +36,7 @@ typedef struct		s_server
   int			fd;
   int			team_size;
   int			freq;
+  int     food_time;
   check_level_t		check_level_cmds[7];
   struct timeval	timeout;
   fct_server		server_read;
