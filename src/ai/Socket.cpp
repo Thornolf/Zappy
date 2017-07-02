@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Sat Jul 01 14:15:40 2017 Thomas Fossaert
+** Last update Sun Jul 02 16:48:41 2017 Adrien Warin
 */
 
 #include "ai/Socket.hpp"
@@ -103,6 +103,11 @@ void Socket::resetBroacastText()
 void Socket::resetLevelUp()
 {
   _levelUp = "reset";
+}
+
+void Socket::closeSocket()
+{
+    close(this->_fd);
 }
 
 const std::string Socket::getIp() const

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:19:57 2017 Thomas Fossaert
-** Last update Thu Jun 29 16:12:16 2017 Pierre
+** Last update Sun Jul 02 16:49:43 2017 Adrien Warin
 */
 
 #include "ai/zappy.hpp"
@@ -30,6 +30,8 @@ Zappy::Zappy(char **av)
 
 Zappy::~Zappy()
 {
+    delete(_sock);
+    delete(_event);
 }
 
 Zappy::Zappy(Zappy const & other)
