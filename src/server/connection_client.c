@@ -58,7 +58,7 @@ void	command_pnw(t_server *server, t_player *player, char *arg)
   (void)arg;
   if (!(buf = malloc(sizeof(char) * 1000)))
     return;
-  snprintf(buf, 1000, "pwn %d %d %d %d %d %s\n",
+  snprintf(buf, 1000, "pnw %d %d %d %d %d %s\n",
 	   player->id, player->x, player->y, player->direction, player->lv,
 	   player->team->name);
   send_all_graphics(server, buf);
