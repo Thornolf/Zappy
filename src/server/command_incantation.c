@@ -5,37 +5,39 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jul 01 13:23:04 2017 Pierre
-** Last update Sat Jul 01 23:39:56 2017 Pierre
+** Last update Sun Jul 02 11:45:11 2017 Pierre
 */
 
 #include "server/command.h"
 #include "server/string.h"
+#include "server/player.h"
+#include "server/communication.h"
 
-void start_incantation(t_server *server, t_client *client)
+bool		start_incantation(t_server *server, t_client *client)
 {
-  t_player *player;
+  t_player	*player;
 
   player = get_player(server->players, client->fd);
   if (player->lv == 8)
   {
     send_socket(client->fd, "ko\n");
-    return ;
+    return (false);
   }
   if ((*server->check_level_cmds[player->lv - 1])(server, player->y, player->x) == 0)
   {
-    printf("pas bon\n");
     send_socket(client->fd, "ko\n");
-    return ;
+    return (false);
   }
   client->incant = true;
-  printf("on lance l'incant\n");
   send_socket(client->fd, "Elevation underway\n");
-  //start incantation graphique
+  command_pic(server, client, NULL);
+  return (true);
 }
 
 void command_incantation(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
+  char *str;
 
   (void)arg;
   player = get_player(server->players, client->fd);
@@ -51,9 +53,28 @@ void command_incantation(t_server *server, t_client *client, char *arg)
   }
   player->lv++;
   client->incant = false;
-  printf("incant finie\n");
-  send_socket(client->fd, "Current level: ");
-  send_socket(client->fd, itos(player->lv));
-  send_socket(client->fd, "\n");
+  if (!(str = malloc(sizeof(char) * 18)))
+    return ;
+  snprintf(str, 18, "Current level: %d\n", player->lv);
+  send_socket(client->fd, str);
   //stop incantation graphique
+}
+
+void		command_pic(t_server *server, t_client *client, char *arg)
+{
+  char		*buf;
+  char		*buf_id_players;
+  t_player	*player;
+
+  (void)arg;
+  if (!(buf = malloc(sizeof(char) * 500)))
+    return;
+  if (!(player = get_player(server->players, client->fd)))
+    return;
+  if (!(buf_id_players = player_ids_on_plot_to_string(server->players,
+						      player->x, player->y)))
+    return;
+  snprintf(buf, 500, "pic %d %d %d%s\n", player->x, player->y,
+	   player->lv, buf_id_players);
+  send_all_graphics(server, buf);
 }

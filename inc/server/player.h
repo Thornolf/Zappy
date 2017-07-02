@@ -43,7 +43,6 @@ typedef struct	s_player
 
 void		delete_player(void *);
 void		add_player(t_list *, int, int, int);
-int		my_rand(int min, int max);
 int		check_x(int, int);
 int		check_y(int, int);
 bool		assign_player_to_team(t_server *, t_player *, char *);
@@ -51,5 +50,6 @@ t_list		*init_players_list(int fd, int y, int x);
 t_player	*create_player(int, int, int);
 t_player	*get_player(t_list *, int);
 t_player	*get_player_by_id(t_list *, int);
+char		*player_ids_on_plot_to_string(t_list *, int, int);
 
 #endif		/* _PLAYER__H_ */

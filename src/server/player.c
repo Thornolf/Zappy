@@ -8,6 +8,7 @@
 ** Last update Thu Jun 29 14:39:35 2017 Guillaume CAUCHOIS
 */
 
+#include <string.h>
 #include "server/player.h"
 #include "server/server.h"
 
@@ -71,6 +72,33 @@ t_player	*get_player(t_list *player_list, int fd)
       cur = cur->next;
     }
   return (NULL);
+}
+
+char		*player_ids_on_plot_to_string(t_list *list,
+						  int x, int y)
+{
+  char		*string;
+  t_list	*cur_node;
+  t_player	*player;
+  int		len_write;
+  size_t	limit;
+
+  len_write  = 0;
+  cur_node = list;
+  if (!(string = malloc(sizeof(char) * 400)))
+    return (NULL);
+  bzero(string, sizeof(char) * 400);
+  while (cur_node)
+  {
+    player = cur_node->data;
+    if (player->x == x && player->y == y)
+    {
+      limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
+      len_write += snprintf(string + len_write, limit, " %d", player->id);
+      cur_node = cur_node->next;
+    }
+  }
+  return (string);
 }
 
 void		delete_player(void *_player)

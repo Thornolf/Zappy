@@ -23,7 +23,7 @@ void		command_turn_left(t_server *server, t_client *client, char *arg)
   new_dir--;
   if (new_dir < 0)
     new_dir = LEFT;
-  player->direction = new_dir;
+  player->direction = (t_direction)new_dir;
   send_socket(client->fd, "ok\n");
 }
 
@@ -39,7 +39,7 @@ void command_turn_right(t_server *server, t_client *client, char *arg)
   new_dir++;
   if (new_dir > 3)
     new_dir = TOP;
-  player->direction = new_dir;
+  player->direction = (t_direction)new_dir;
   send_socket(client->fd, "ok\n");
 }
 

@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,37 +6,49 @@
 
 #IncludeRegexTransform: 
 
-/home/pierre/PSU_2016_zappy/src/server/client.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/client.c
 server/client.h
-/home/pierre/PSU_2016_zappy/src/server/server/client.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/client.h
 server/server.h
-/home/pierre/PSU_2016_zappy/src/server/server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/command.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command.c
 server/list.h
-/home/pierre/PSU_2016_zappy/src/server/server/list.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/list.h
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/command_broadcast.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_b.c
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/command_inventory.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_broadcast.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+server/communication.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/communication.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_connect_nbr.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/string.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_inventory.c
 string.h
 -
 server/string.h
-/home/pierre/PSU_2016_zappy/src/server/server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/string.h
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/command_look.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_look.c
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/command_map.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_map.c
 stdio.h
 -
 stdlib.h
@@ -44,113 +56,157 @@ stdlib.h
 string.h
 -
 server/map.h
-/home/pierre/PSU_2016_zappy/src/server/server/map.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/map.h
 server/server.h
-/home/pierre/PSU_2016_zappy/src/server/server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
 server/client.h
-/home/pierre/PSU_2016_zappy/src/server/server/client.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/client.h
 server/string.h
-/home/pierre/PSU_2016_zappy/src/server/server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/string.h
 
-/home/pierre/PSU_2016_zappy/src/server/command_move_player.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_move_player.c
 server/server.h
-/home/pierre/PSU_2016_zappy/src/server/server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/command_team.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_pin.c
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
-server/socket.h
-/home/pierre/PSU_2016_zappy/src/server/server/socket.h
-
-/home/pierre/PSU_2016_zappy/src/server/communication.c
-server/socket.h
-/home/pierre/PSU_2016_zappy/src/server/server/socket.h
-server/server.h
-/home/pierre/PSU_2016_zappy/src/server/server/server.h
-server/client.h
-/home/pierre/PSU_2016_zappy/src/server/server/client.h
-
-/home/pierre/PSU_2016_zappy/src/server/connection_client.c
-server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
-server/player.h
-/home/pierre/PSU_2016_zappy/src/server/server/player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 server/string.h
-/home/pierre/PSU_2016_zappy/src/server/server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/string.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_player.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/string.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_put_object.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_sgt.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_take_object.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 server/communication.h
-/home/pierre/PSU_2016_zappy/src/server/server/communication.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/communication.h
 
-/home/pierre/PSU_2016_zappy/src/server/handle_parsing.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/command_team.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+server/socket.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/socket.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/communication.c
+server/socket.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/socket.h
+server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
+server/client.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/client.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/connection_client.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+server/player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/player.h
+server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/string.h
+server/communication.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/communication.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/execute_command.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/handle_io.c
+server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
+server/list.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/list.h
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/handle_parsing.c
 string.h
 -
 server/funcs.h
-/home/pierre/PSU_2016_zappy/src/server/server/funcs.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/funcs.h
 
-/home/pierre/PSU_2016_zappy/src/server/lib/list.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/list.c
 server/list.h
-/home/pierre/PSU_2016_zappy/src/server/lib/server/list.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/server/list.h
 
-/home/pierre/PSU_2016_zappy/src/server/lib/send.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/send.c
 server/client.h
-/home/pierre/PSU_2016_zappy/src/server/lib/server/client.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/server/client.h
 server/socket.h
-/home/pierre/PSU_2016_zappy/src/server/lib/server/socket.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/server/socket.h
 
-/home/pierre/PSU_2016_zappy/src/server/lib/string.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/string.c
 server/string.h
-/home/pierre/PSU_2016_zappy/src/server/lib/server/string.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/lib/server/string.h
 
-/home/pierre/PSU_2016_zappy/src/server/look_utils.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/look_utils.c
 server/look.h
-/home/pierre/PSU_2016_zappy/src/server/server/look.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/look.h
 
-/home/pierre/PSU_2016_zappy/src/server/main.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/main.c
 time.h
 -
 stdio.h
 -
 server/map.h
-/home/pierre/PSU_2016_zappy/src/server/server/map.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/map.h
 server/funcs.h
-/home/pierre/PSU_2016_zappy/src/server/server/funcs.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/funcs.h
 
-/home/pierre/PSU_2016_zappy/src/server/map.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/map.c
 server/map.h
-/home/pierre/PSU_2016_zappy/src/server/server/map.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/map.h
 
-/home/pierre/PSU_2016_zappy/src/server/player.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player.c
+string.h
+-
 server/player.h
-/home/pierre/PSU_2016_zappy/src/server/server/player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/player.h
 server/server.h
-/home/pierre/PSU_2016_zappy/src/server/server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
 
-/home/pierre/PSU_2016_zappy/src/server/print_vision_a.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/player_b.c
+server/player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/player.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/print_vision_a.c
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/print_vision_b.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/print_vision_b.c
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/server.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server.c
 signal.h
 -
 server/server.h
-/home/pierre/PSU_2016_zappy/src/server/server/server.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/server.h
 server/player.h
-/home/pierre/PSU_2016_zappy/src/server/server/player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/player.h
 server/client.h
-/home/pierre/PSU_2016_zappy/src/server/server/client.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/client.h
 server/command.h
-/home/pierre/PSU_2016_zappy/src/server/server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
-/home/pierre/PSU_2016_zappy/src/server/socket.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/socket.c
 server/socket.h
-/home/pierre/PSU_2016_zappy/src/server/server/socket.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/socket.h
 
-/home/pierre/PSU_2016_zappy/src/server/team.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/team.c
 stdlib.h
 -
 unistd.h
@@ -158,13 +214,21 @@ unistd.h
 string.h
 -
 server/team.h
-/home/pierre/PSU_2016_zappy/src/server/server/team.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/team.h
 server/player.h
-/home/pierre/PSU_2016_zappy/src/server/server/player.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/player.h
 
-/home/pierre/PSU_2016_zappy/src/server/utils_parsing.c
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/utils_object_commands.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/utils_parsing.c
 server/funcs.h
-/home/pierre/PSU_2016_zappy/src/server/server/funcs.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/funcs.h
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/waiting_cmds.c
+server/command.h
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/server/server/command.h
 
 inc/server/client.h
 sys/socket.h
@@ -210,7 +274,11 @@ inc/server/server/server.h
 server/stuff.h
 inc/server/server/stuff.h
 
+inc/server/incantation.h
+
 inc/server/info.h
+time.h
+-
 
 inc/server/list.h
 stdlib.h
@@ -267,6 +335,8 @@ server/list.h
 inc/server/server/list.h
 server/info.h
 inc/server/server/info.h
+server/incantation.h
+inc/server/server/incantation.h
 
 inc/server/socket.h
 stdbool.h
