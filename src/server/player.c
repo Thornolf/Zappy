@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Tue Jun 20 09:53:04 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:39:35 2017 Guillaume CAUCHOIS
+** Last update Sun Jul 02 14:42:13 2017 Pierre
 */
 
 #include <string.h>
@@ -24,9 +24,11 @@ t_player	*create_player(int fd, int y, int x)
   player->lv = 1;
   player->x = x;
   player->y = y;
+  player->start_time = time(NULL);
   player->team = NULL;
   if (!(player->stuff = init_stuff()))
     return (NULL);
+  player->stuff->quantities[FOOD] = 10;
   player->direction = (t_direction)(rand() % (DIR_MAX - DIR_MIN) + DIR_MIN);
   return (player);
 }

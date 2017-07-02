@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 18:06:03 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 21:23:02 2017 Pierre
+** Last update Sun Jul 02 14:51:20 2017 Pierre
 */
 
 #ifndef		_CLIENT__H_
@@ -44,5 +44,6 @@ t_client	*init_client(t_server *);
 void		*client_read(t_server *, t_list *);
 void		*client_write(void *, void *);
 void		delete_client(void *);
+t_list		*get_player_node(t_list *player_list, int fd);
 
 #endif		/* !_CLIENT_H_! */
