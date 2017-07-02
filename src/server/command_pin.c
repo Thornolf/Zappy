@@ -11,7 +11,7 @@
 #include "server/command.h"
 #include "server/string.h"
 
-void		command_pin(t_server *server, t_client *client)
+void		command_pin(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   char		*param;
@@ -19,6 +19,7 @@ void		command_pin(t_server *server, t_client *client)
   char		*buffer;
   int		*qts;
 
+  (void)arg;
   if (!(param = strtok(NULL, " \t\n")) || !string_is_number(param))
     {
       send_socket(client->fd, "sbp\n");

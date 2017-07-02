@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 11:40:36 2017 Pierre
+** Last update Sun Jul 02 11:51:14 2017 Pierre
 */
 
 #include <signal.h>
@@ -27,18 +27,18 @@ void	server_read(void *_server)
     return;
   send_socket(client->fd, "WELCOME\n");
   if (!(client_node = create_node(client, server->clients)))
-    {
-      fprintf(stderr, "ERROR: Can't initialize server\n");
-      return;
-    }
+  {
+    fprintf(stderr, "ERROR: Can't initialize server\n");
+    return;
+  }
   server->clients = client_node;
   cur = server->clients;
   i = 0;
   while (cur)
-    {
-      i++;
-      cur = cur->next;
-    }
+  {
+    i++;
+    cur = cur->next;
+  }
 }
 
 void	init_server_config(t_server *s_conf)
@@ -87,25 +87,25 @@ void		remove_waiting(t_waiting_cmds **list, t_waiting_cmds *node)
     return;
   prev = *list;
   if (prev == node)
-    {
-      *list = prev->next;
-      free(prev);
-      return ;
-      //fn_delete_node(prev->data);
-    }
+  {
+    *list = prev->next;
+    free(prev);
+    return ;
+    //fn_delete_node(prev->data);
+  }
   cur = prev->next;
   while (cur)
+  {
+    if (cur == node)
     {
-      if (cur == node)
-	{
-	  prev->next = cur->next;
-    free(cur);
-	  //fn_delete_node(cur->data);
-	  return;
-	}
-      prev = cur;
-      cur = cur->next;
+      prev->next = cur->next;
+      free(cur);
+      //fn_delete_node(cur->data);
+      return;
     }
+    prev = cur;
+    cur = cur->next;
+  }
 }
 
 void check_waiting_cmds(t_server *server)
@@ -138,18 +138,19 @@ void check_waiting_cmds(t_server *server)
           tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
       }
       if (tmp->endwait != -1 && time(NULL) >= tmp->endwait)
-      {
-        client = tmp->client;
-        if (strcmp(cmd->cmd_name, "Take") == 0 || strcmp(cmd->cmd_name, "Set") == 0)
-          client->object_id = check_arg(tmp->arg);
-        cmd->fn(server, client);
-        remove_waiting(&server->waiting_cmds, tmp);
-        if (!server->waiting_cmds)
-          return ;
-      }
-      if (tmp->next)
-        tmp = tmp->next;
+{
+      client = tmp->client;
+      if (strcmp(cmd->cmd_name, "Take") == 0 ||
+	  strcmp(cmd->cmd_name, "Set") == 0)
+	client->object_id = check_arg(tmp->arg);
+      cmd->fn(server, client, tmp->arg);
+      remove_waiting(&server->waiting_cmds, tmp);
+      if (!server->waiting_cmds)
+	return;
     }
+    if (tmp->next)
+      tmp = tmp->next;
+  }
 }
 
 int		get_fd_max(t_server *server)
@@ -161,11 +162,11 @@ int		get_fd_max(t_server *server)
   fd_max = server->fd;
   cur = server->clients;
   while (cur)
-    {
-      client = cur->data;
-      if (client->fd > fd_max)
-	fd_max = client->fd;
-      cur = cur->next;
-    }
+  {
+    client = cur->data;
+    if (client->fd > fd_max)
+      fd_max = client->fd;
+    cur = cur->next;
+  }
   return (fd_max);
 }

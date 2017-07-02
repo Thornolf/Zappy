@@ -26,6 +26,7 @@ t_client	*init_client(t_server *s)
   c->fct_read = (void*(*)(void*, void *))(client_read);
   c->type = UNDEFINED;
   c->incant = false;
+  c->object_id = -1;
   if (!(c->buffer = malloc(sizeof(char) * BUFFER_CLIENT_SIZE)))
     return (NULL);
   return (c);
@@ -70,7 +71,7 @@ void	*client_read(t_server *server, t_list *client_node)
     }
   else if (!(execute_command(server, client)))
     {
-      send(client->fd, "suc\n", 4, 0);
+      send_socket(client->fd, "suc\n");
       return (next);
     }
   return (client_node->next);

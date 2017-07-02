@@ -122,15 +122,14 @@ t_vision	*look_left(t_vision *vision, t_map *map, t_player *player)
   return (vision);
 }
 
-void	command_look(t_server *server, t_client *client)
+void	command_look(t_server *server, t_client *client, char *arg)
 {
   t_vision	*vision;
   t_player	*player;
 
+  (void)arg;
   vision = NULL;
   if (!(player = get_player(server->players, client->fd)))
-    return;
-  if (player == NULL)
     {
       printf("error : player not found\n");
       return ;

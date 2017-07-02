@@ -30,8 +30,8 @@ typedef enum	e_client_type
 typedef struct	s_client
 {
   int		fd;
-  bool incant;
-  int object_id;
+  bool		incant;
+  int		object_id;
   t_client_type	type;
   char		*buffer;
   fct_client	fct_read;

@@ -10,12 +10,14 @@
 
 #include "server/command.h"
 
-void	command_put_object(t_server *server, t_client *client)
+void	command_put_object(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
   t_stuff *stuff;
 
-  player = get_player(server->players, client->fd);
+  (void)arg;
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   stuff = player->stuff;
   if (check_object(client->object_id, stuff) == 1)
   {

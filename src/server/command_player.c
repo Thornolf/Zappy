@@ -11,13 +11,14 @@
 #include "server/command.h"
 #include "server/string.h"
 
-void	command_ppo(t_server *server, t_client *client)
+void	command_ppo(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   char		*param;
   int		player_id;
   char		*buffer;
 
+  (void)arg;
   if (!(param = strtok(NULL, " \t\n")) || !string_is_number(param))
     {
       send_socket(client->fd, "sbp\n");
@@ -37,13 +38,14 @@ void	command_ppo(t_server *server, t_client *client)
   free(buffer);
 }
 
-void	command_plv(t_server *server, t_client *client)
+void	command_plv(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   char		*param;
   int		player_id;
   char		*buffer;
 
+  (void)arg;
   if (!(param = strtok(NULL, " \t\n")) || !string_is_number(param))
     {
       send_socket(client->fd, "sbp\n");

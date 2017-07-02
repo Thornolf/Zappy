@@ -11,13 +11,15 @@
 #include "server/command.h"
 #include "server/communication.h"
 
-void	command_take_object(t_server *server, t_client *client)
+void	command_take_object(t_server *server, t_client *client, char *arg)
 {
   t_player	*player;
   t_stuff	*stuff;
   char		*buf;
 
-  player = get_player(server->players, client->fd);
+  (void)arg;
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   stuff = server->map->data[player->y][player->x].stuff;
   if (check_object(client->object_id, stuff) == 1)
     {

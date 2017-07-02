@@ -10,7 +10,7 @@
 
 #include "server/command.h"
 
-int nb_players(t_list *players, int y, int x)
+int	nb_players(t_list *players, int y, int x)
 {
   t_player *player;
   int nb;
@@ -26,7 +26,7 @@ int nb_players(t_list *players, int y, int x)
   return (nb);
 }
 
-int check_level_2(void *_server, int y, int x)
+int	check_level_2(void *_server, int y, int x)
 {
   t_stuff *tile;
   t_server *server;
@@ -43,7 +43,7 @@ int check_level_2(void *_server, int y, int x)
   return (0);
 }
 
-int check_level_3(void *_server, int y, int x)
+int	check_level_3(void *_server, int y, int x)
 {
   t_stuff *tile;
   t_server *server;
@@ -62,7 +62,7 @@ int check_level_3(void *_server, int y, int x)
   return (0);
 }
 
-int check_level_4(void *_server, int y, int x)
+int	check_level_4(void *_server, int y, int x)
 {
   t_stuff *tile;
   t_server *server;
@@ -81,7 +81,7 @@ int check_level_4(void *_server, int y, int x)
   return (0);
 }
 
-int check_level_5(void *_server, int y, int x)
+int	check_level_5(void *_server, int y, int x)
 {
   t_stuff *tile;
   t_server *server;

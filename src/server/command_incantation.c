@@ -34,11 +34,12 @@ bool start_incantation(t_server *server, t_client *client)
   //start incantation graphique
 }
 
-void command_incantation(t_server *server, t_client *client)
+void command_incantation(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
   char *str;
 
+  (void)arg;
   player = get_player(server->players, client->fd);
   if (player->lv == 8)
   {

@@ -11,13 +11,14 @@
 #include "server/command.h"
 #include "server/string.h"
 
-void command_connect_nbr(t_server *server, t_client *client)
+void command_connect_nbr(t_server *server, t_client *client, char *arg)
 {
-  t_list *list;
-  t_player *tmp;
-  char *team_name;
-  int nb;
+  t_list	*list;
+  t_player	*tmp;
+  char		*team_name;
+  int		nb;
 
+  (void)arg;
   list = server->players;
   nb = 0;
   tmp = get_player(server->players, client->fd);

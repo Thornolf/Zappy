@@ -16,10 +16,10 @@
 void	connection_graphic(t_server *server, t_client *client)
 {
   client->type = GRAPHIC;
-  command_msz(server, client);
-  command_sgt(server, client);
-  command_mct(server, client);
-  command_tna(server, client);
+  command_msz(server, client, NULL);
+  command_sgt(server, client, NULL);
+  command_mct(server, client, NULL);
+  command_tna(server, client, NULL);
 }
 
 bool	connection_ia(t_server *s, t_client *client, char *team_name)
@@ -47,14 +47,15 @@ bool	connection_ia(t_server *s, t_client *client, char *team_name)
   mod = s->team_size - nb_player_in_team(s, team_name);
   snprintf(buf, 400, "%d\n%d %d\n", mod, s->map->width, s->map->height);
   send_socket(client->fd, buf);
-  command_pnw(s, player);
+  command_pnw(s, player, NULL);
   return (true);
 }
 
-void	command_pnw(t_server *server, t_player *player)
+void	command_pnw(t_server *server, t_player *player, char *arg)
 {
   char	*buf;
 
+  (void)arg;
   if (!(buf = malloc(sizeof(char) * 1000)))
     return;
   snprintf(buf, 1000, "pwn %d %d %d %d %d %s\n",

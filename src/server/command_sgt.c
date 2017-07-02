@@ -10,10 +10,11 @@
 
 #include "server/command.h"
 
-void	command_sgt(t_server *server, t_client *client)
+void	command_sgt(t_server *server, t_client *client, char *arg)
 {
   char	*buf;
 
+  (void)arg;
   if (!(buf = malloc(sizeof(char) * 100)))
     return;
   snprintf(buf, 100, "sgt %d\n", server->freq);
