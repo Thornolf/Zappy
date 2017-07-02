@@ -132,7 +132,7 @@ void	command_look(t_server *server, t_client *client, char *arg)
   if (!(player = get_player(server->players, client->fd)))
     {
       printf("error : player not found\n");
-      return ;
+      return;
     }
   if (player->direction == TOP)
     vision = look_top(vision, server->map, player);
@@ -143,4 +143,19 @@ void	command_look(t_server *server, t_client *client, char *arg)
   else if (player->direction == LEFT)
     vision = look_left(vision, server->map, player);
   print_objects(client->fd, server->players, vision, server->map);
+  delete_vision_list(vision);
+}
+
+void	delete_vision_list(t_vision *head)
+{
+  t_vision	*cur;
+  t_vision	*next;
+
+  cur = head;
+  while (cur)
+  {
+    next = cur->next;
+    free(cur);
+    cur = next;
+  }
 }

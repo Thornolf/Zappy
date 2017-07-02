@@ -32,8 +32,10 @@ void command_connect_nbr(t_server *server, t_client *client, char *arg)
 	      nb++;
       list = list->next;
     }
-  if (!(str = malloc(sizeof(char) * 5)))
+  free(team_name);
+  if (!(str = malloc(sizeof(char) * 15)))
     return ;
-  snprintf(str, 5, "%d\n", server->team_size - nb);
+  snprintf(str, 15, "%d\n", server->team_size - nb);
   send_socket(client->fd, str);
+  free(str);
 }

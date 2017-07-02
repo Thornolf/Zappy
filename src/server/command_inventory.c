@@ -34,7 +34,7 @@ t_stuff		*init_stuff(void)
 
 void		print_stuff(int fd, t_stuff *stuff)
 {
-  char *str;
+  char		*str;
 
   if (!(str = malloc(sizeof(char) * 100)))
     return ;
@@ -42,6 +42,17 @@ void		print_stuff(int fd, t_stuff *stuff)
     return ;
   send_socket(fd, str);
   free(str);
+}
+
+void		delete_stuff(void *_stuff)
+{
+  t_stuff	*stuff;
+
+  stuff = _stuff;
+  if (!stuff)
+    return;
+  free(stuff->quantities);
+  free(stuff);
 }
 
 void		command_inventory(t_server *server, t_client *client, char *arg)

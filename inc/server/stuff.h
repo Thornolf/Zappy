@@ -33,6 +33,7 @@ typedef struct	s_stuff
 }		t_stuff;
 
 void		add_quantity(t_stuff *, t_stuff_type);
+void		delete_stuff(void *);
 t_stuff		*init_stuff(void);
 
 #endif		/* !_STUFF__H_! */
