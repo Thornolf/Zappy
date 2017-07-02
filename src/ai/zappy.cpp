@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:19:57 2017 Thomas Fossaert
-** Last update Sun Jul 02 16:49:43 2017 Adrien Warin
+** Last update Sun Jul 02 17:26:19 2017 Thomas Fossaert
 */
 
 #include "ai/zappy.hpp"
@@ -55,4 +55,5 @@ void Zappy::init(void)
   _sock->recvMsg();
   _event = new EventHandler(_sock);
   _event->launchScript();
+  _sock->closeSocket();
 }

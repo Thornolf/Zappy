@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Sun Jul 02 17:15:32 2017 Thomas Fossaert
+** Last update Sun Jul 02 17:23:18 2017 Thomas Fossaert
 */
 
 #include "ai/Socket.hpp"
@@ -112,7 +112,8 @@ void Socket::resetLevelUp()
 
 void Socket::closeSocket()
 {
-    close(this->_fd);
+  if (close(this->_fd) == -1)
+   throw ZappException("Error while closing socket");
 }
 
 const std::string Socket::getIp() const
