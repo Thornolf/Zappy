@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sun Jul 02 19:46:04 2017 Pierre
-** Last update Sun Jul 02 19:46:18 2017 Pierre
+** Last update Sun Jul  2 21:26:04 2017 Guillaume CAUCHOIS
 */
 
 #include "server/server.h"
@@ -68,10 +68,10 @@ void			check_waiting_cmds(t_server *server)
     {
       cmd = tmp->cmd;
       if (!(start_waiting(server, cmd, tmp)))
-        return ;
+	return;
       if (!(launch_waiting_cmd(server, cmd, tmp)))
-        return ;
+	return;
       if (tmp->next)
-        tmp = tmp->next;
+	tmp = tmp->next;
     }
 }

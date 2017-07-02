@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Mon Jun 26 15:38:05 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:38:18 2017 Guillaume CAUCHOIS
+** Last update Sun Jul  2 21:25:11 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"

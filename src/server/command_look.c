@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Sun Jul 02 19:34:30 2017 Pierre
+** Last update Sun Jul  2 21:21:47 2017 Guillaume CAUCHOIS
 */
 
 #include "server/command.h"
@@ -146,18 +146,4 @@ void		command_look(t_server *server, t_client *client, char *arg)
   init_print_cmds(print_stuff_cmds);
   print_objects(client->fd, server, vision, print_stuff_cmds);
   delete_vision_list(vision);
-}
-
-void	delete_vision_list(t_vision *head)
-{
-  t_vision	*cur;
-  t_vision	*next;
-
-  cur = head;
-  while (cur)
-  {
-    next = cur->next;
-    free(cur);
-    cur = next;
-  }
 }

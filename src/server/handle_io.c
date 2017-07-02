@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 13:52:59 2017 Guillaume CAUCHOIS
-** Last update Sun Jul 02 19:24:11 2017 Pierre
+** Last update Sun Jul  2 21:10:03 2017 Guillaume CAUCHOIS
 */
 
 #include "server/server.h"
@@ -31,6 +31,7 @@ void		check_food(t_server *server, t_list *_client)
 {
   t_client	*client;
   t_player	*player;
+  t_list	*player_node;
 
   client = _client->data;
   player = get_player(server->players, client->fd);
@@ -40,14 +41,16 @@ void		check_food(t_server *server, t_list *_client)
     {
       player->stuff->quantities[FOOD] -= 1;
       if (player->stuff->quantities[FOOD] < 0)
-        {
-          send_socket(client->fd, "dead\n");
+	{
+	  send_socket(client->fd, "dead\n");
 	  command_pdi(server, client, NULL);
-	  remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
-          remove_node(&server->clients, _client, &delete_client);
-        }
+	  if (!(player_node = get_player_node(server->players, client->fd)))
+	    return;
+	  remove_node(&server->players, player_node, &delete_player);
+	  remove_node(&server->clients, _client, &delete_client);
+	}
       else
-        player->start_time = time(NULL);
+	player->start_time = time(NULL);
     }
 }
 
