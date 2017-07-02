@@ -8,22 +8,22 @@
 ** Last update Thu Jun 29 16:12:16 2017 Pierre
 */
 
-#include "zappy.hpp"
+#include "ai/zappy.hpp"
 
 Zappy::Zappy(char **av)
 {
   int i = 1;
 
   while (av[i])
-    {
-      if (std::string(av[i -1]) == "-p")
-        this->_port = std::string(av[i]);
-      else if (std::string(av[i -1]) == "-n")
-        this->_teamName = std::string(av[i]);
-      else if (std::string(av[i -1]) == "-h")
-        this->_machineName = std::string(av[i]);
-      i++;
-    }
+  {
+    if (std::string(av[i -1]) == "-p")
+      this->_port = std::string(av[i]);
+    else if (std::string(av[i -1]) == "-n")
+      this->_teamName = std::string(av[i]);
+    else if (std::string(av[i -1]) == "-h")
+      this->_machineName = std::string(av[i]);
+    i++;
+  }
   if (_port.empty() || _teamName.empty() || _machineName.empty())
     throw ZappException("An argument was not defined");
 }

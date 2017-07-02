@@ -65,3 +65,24 @@ void	command_plv(t_server *server, t_client *client, char *arg)
   free(buffer);
   free(param);
 }
+
+void	command_plv_for_plot(t_server *server, int x, int y)
+{
+  t_list	*cur_node;
+  t_client	*client;
+  t_player	*player;
+
+  cur_node = server->clients;
+  while (cur_node)
+  {
+    client = cur_node->data;
+    if (client->type == AI)
+    {
+      if (!(player = get_player_by_id(server->players, client->fd)))
+	return;
+      if (player->x == x && player->y == y)
+	command_plv(server, client, NULL);
+    }
+    cur_node = cur_node->next;
+  }
+}

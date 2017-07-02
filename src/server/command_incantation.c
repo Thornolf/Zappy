@@ -40,15 +40,18 @@ void command_incantation(t_server *server, t_client *client, char *arg)
   char *str;
 
   (void)arg;
-  player = get_player(server->players, client->fd);
+  if (!(player = get_player(server->players, client->fd)))
+    return;
   if (player->lv == 8)
   {
     send_socket(client->fd, "ko\n");
+    command_pie(server, client, "0");
     return ;
   }
   if ((*server->check_level_cmds[player->lv - 1])(server, player->y, player->x) == 0)
   {
     send_socket(client->fd, "ko\n");
+    command_pie(server, client, "0");
     return ;
   }
   player->lv++;
@@ -58,7 +61,9 @@ void command_incantation(t_server *server, t_client *client, char *arg)
   snprintf(str, 18, "Current level: %d\n", player->lv);
   send_socket(client->fd, str);
   free(str);
-  //stop incantation graphique
+  command_pie(server, client, "1");
+  command_plv_for_plot(server, player->x, player->y);
+  command_mct_all_graphics(server);
 }
 
 void		command_pic(t_server *server, t_client *client, char *arg)
@@ -78,4 +83,22 @@ void		command_pic(t_server *server, t_client *client, char *arg)
   snprintf(buf, 500, "pic %d %d %d%s\n", player->x, player->y,
 	   player->lv, buf_id_players);
   send_all_graphics(server, buf);
+  free(buf);
+  free(buf_id_players);
+}
+
+void		command_pie(t_server *server, t_client *client, char *arg)
+{
+  char		*buffer;
+  t_player	*player;
+
+  if (!(player = get_player(server->players, client->fd)))
+    return;
+  if (!(buffer = malloc(sizeof(char) * 500)))
+    return;
+  if (!arg)
+    return;
+  snprintf(buffer, 500, "pie %d %d %s\n", player->x, player->y, arg);
+  send_all_graphics(server, buffer);
+  free(buffer);
 }

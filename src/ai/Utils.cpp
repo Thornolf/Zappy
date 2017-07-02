@@ -8,7 +8,7 @@
 ** Last update Thu Jun 29 15:23:17 2017 Thomas Fossaert
 */
 
-#include "Utils.hpp"
+#include "ai/Utils.hpp"
 
 Utils::Utils()
 {

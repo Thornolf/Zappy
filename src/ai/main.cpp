@@ -9,7 +9,7 @@
 */
 
 #include <iostream>
-#include "zappy.hpp"
+#include "ai/zappy.hpp"
 
 int main(int ac, char **av)
 {

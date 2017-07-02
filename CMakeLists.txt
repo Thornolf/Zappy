@@ -20,17 +20,17 @@ set(SOURCE_FILES
         inc/server/string.h
         inc/server/stuff.h
         inc/server/team.h
-        src/ai/include/EventHandler.hpp
-        src/ai/include/Socket.hpp
-        src/ai/include/Utils.hpp
-        src/ai/include/ZappException.hpp
-        src/ai/include/zappy.hpp
-        src/ai/src/EventHandler.cpp
-        src/ai/src/main.cpp
-        src/ai/src/Socket.cpp
-        src/ai/src/Utils.cpp
-        src/ai/src/ZappException.cpp
-        src/ai/src/zappy.cpp
+        inc/ai/EventHandler.hpp
+        inc/ai/Socket.hpp
+        inc/ai/Utils.hpp
+        inc/ai/ZappException.hpp
+        inc/ai/zappy.hpp
+        src/ai/EventHandler.cpp
+        src/ai/main.cpp
+        src/ai/Socket.cpp
+        src/ai/Utils.cpp
+        src/ai/ZappException.cpp
+        src/ai/zappy.cpp
         src/server/lib/list.c
         src/server/lib/send.c
         src/server/lib/string.c

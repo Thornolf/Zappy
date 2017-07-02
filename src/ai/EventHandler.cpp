@@ -9,7 +9,7 @@
 */
 
 #include <ctime>
-#include "EventHandler.hpp"
+#include "ai/EventHandler.hpp"
 
 EventHandler::EventHandler(Socket *sock)
 {

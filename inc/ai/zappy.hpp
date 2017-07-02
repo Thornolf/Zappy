@@ -12,9 +12,9 @@
 # define  ZAPPY_HPP_
 
 # include <iostream>
-# include "ZappException.hpp"
-# include "Socket.hpp"
-# include "EventHandler.hpp"
+# include "ai/ZappException.hpp"
+# include "ai/Socket.hpp"
+# include "ai/EventHandler.hpp"
 
 class Zappy
 {

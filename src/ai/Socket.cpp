@@ -8,7 +8,7 @@
 ** Last update Sat Jul 01 14:15:40 2017 Thomas Fossaert
 */
 
-#include "Socket.hpp"
+#include "ai/Socket.hpp"
 
 Socket::Socket(const std::string& ip, const std::string& port)
 {
