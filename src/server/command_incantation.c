@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jul 01 13:23:04 2017 Pierre
-** Last update Sat Jul 01 23:39:56 2017 Pierre
+** Last update Sun Jul 02 11:45:11 2017 Pierre
 */
 
 #include "server/command.h"
@@ -13,7 +13,7 @@
 #include "server/player.h"
 #include "server/communication.h"
 
-void start_incantation(t_server *server, t_client *client)
+bool start_incantation(t_server *server, t_client *client)
 {
   t_player *player;
 
@@ -21,21 +21,24 @@ void start_incantation(t_server *server, t_client *client)
   if (player->lv == 8)
   {
     send_socket(client->fd, "ko\n");
-    return ;
+    return (false);
   }
   if ((*server->check_level_cmds[player->lv - 1])(server, player->y, player->x) == 0)
   {
     send_socket(client->fd, "ko\n");
-    return ;
+    return (false);
   }
   client->incant = true;
   send_socket(client->fd, "Elevation underway\n");
   command_pic(server, client, NULL);
+  return (true);
+  //start incantation graphique
 }
 
 void command_incantation(t_server *server, t_client *client, char *arg)
 {
   t_player *player;
+  char *str;
 
   (void)arg;
   player = get_player(server->players, client->fd);
@@ -51,9 +54,10 @@ void command_incantation(t_server *server, t_client *client, char *arg)
   }
   player->lv++;
   client->incant = false;
-  send_socket(client->fd, "Current level: ");
-  send_socket(client->fd, itos(player->lv));
-  send_socket(client->fd, "\n");
+  if (!(str = malloc(sizeof(char) * 18)))
+    return ;
+  snprintf(str, 18, "Current level: %d\n", player->lv);
+  send_socket(client->fd, str);
   //stop incantation graphique
 }
 

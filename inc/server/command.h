@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 22:04:10 2017 Pierre
+** Last update Sun Jul 02 11:48:21 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -52,10 +52,8 @@ char	**init_check(char **objects);
 int	check_arg(char *arg);
 
 int	check_object(int object_id, t_stuff *tile);
-int	nb_players(t_list *players, int y, int x);
 void	print_stuff(int fd, t_stuff *stuff);
 void	print_objects(int, t_list *, t_vision *, t_map *);
-void	start_incantation(t_server *server, t_client *client);
 void	command_put_object(t_server *server, t_client *client, char *);
 void	command_take_object(t_server *server, t_client *client, char *);
 void	command_turn_right(t_server *, t_client *, char *);
@@ -66,6 +64,8 @@ void	command_inventory(t_server *, t_client *, char *);
 void	command_connect_nbr(t_server *server, t_client *client, char *);
 void	command_incantation(t_server *server, t_client *client, char *);
 void	command_broadcast(t_server *, t_client *, char *);
+bool start_incantation(t_server *server, t_client *client);
+int nb_players(t_list *players, int y, int x);
 
 /**
  * Commandes GRAPHIC
