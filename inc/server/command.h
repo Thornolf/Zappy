@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 12:49:35 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 22:04:10 2017 Pierre
+** Last update Sun Jul 02 11:35:40 2017 Pierre
 */
 
 #ifndef		_COMMAND__H_
@@ -64,7 +64,7 @@ void command_inventory(t_server *server, t_client *client);
 void	print_objects(int, t_list *, t_vision *, t_map *);
 void command_connect_nbr(t_server *server, t_client *client);
 void command_incantation(t_server *server, t_client *client);
-void start_incantation(t_server *server, t_client *client);
+bool start_incantation(t_server *server, t_client *client);
 int nb_players(t_list *players, int y, int x);
 
 /**

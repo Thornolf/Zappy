@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 16:06:13 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 23:41:22 2017 Pierre
+** Last update Sun Jul 02 11:40:36 2017 Pierre
 */
 
 #include <signal.h>
@@ -124,9 +124,18 @@ void check_waiting_cmds(t_server *server)
         if (strcmp(cmd->cmd_name, "Incantation") == 0 && !client->incant)
         {
           printf("on veut lancer l'incant\n");
-          start_incantation(server, client);
+          if (!(start_incantation(server, client)))
+          {
+            tmp->endwait = -1;
+            remove_waiting(&server->waiting_cmds, tmp);
+            if (!server->waiting_cmds)
+              return ;
+          }
+          else
+            tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
         }
-        tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
+        else
+          tmp->endwait = time(NULL) + (cmd->action_time / server->freq);
       }
       if (tmp->endwait != -1 && time(NULL) >= tmp->endwait)
       {

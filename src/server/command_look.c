@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Fri Jun 23 09:55:55 2017 Pierre
-** Last update Thu Jun 29 18:10:57 2017 Pierre
+** Last update Sun Jul 02 11:41:48 2017 Pierre
 */
 
 #include "server/command.h"
@@ -143,7 +143,5 @@ void	command_look(t_server *server, t_client *client)
     vision = look_right(vision, server->map, player);
   else if (player->direction == LEFT)
     vision = look_left(vision, server->map, player);
-  send_socket(client->fd, "[");
   print_objects(client->fd, server->players, vision, server->map);
-  send_socket(client->fd, "]\n");
 }
