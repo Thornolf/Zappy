@@ -39,5 +39,4 @@ void		command_pin(t_server *server, t_client *client, char *arg)
 	   qts[THYSTAME]);
   send_socket(client->fd, buffer);
   free(buffer);
-  free(param);
 }

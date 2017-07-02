@@ -37,7 +37,6 @@ void	command_ppo(t_server *server, t_client *client, char *arg)
 	   player->y, (int)player->direction);
   send_socket(client->fd, buffer);
   free(buffer);
-  free(param);
 }
 
 void	command_plv(t_server *server, t_client *client, char *arg)
@@ -64,7 +63,6 @@ void	command_plv(t_server *server, t_client *client, char *arg)
   snprintf(buffer, 40, "plv %d %d\n", player->id, player->lv);
   send_socket(client->fd, buffer);
   free(buffer);
-  free(param);
 }
 
 void	command_plv_for_plot(t_server *server, int x, int y)
