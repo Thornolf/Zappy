@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Tue Jun 20 10:41:59 2017 Thomas Fossaert
-** Last update Sat Jul 01 14:06:21 2017 Thomas Fossaert
+** Last update Sun Jul 02 16:48:30 2017 Adrien Warin
 */
 
 #ifndef   _SOCKET_HPP_
@@ -35,6 +35,7 @@ class Socket
 
     void sendMsg(const char *);
     void recvMsg();
+    void closeSocket();
 
     const std::string getLastMsg() const;
     const std::string getLastTile() const;

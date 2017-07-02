@@ -20,6 +20,7 @@ t_vision	*create_case_vision(int y, int x)
   vision->case_nb = case_nb++;
   vision->y = y;
   vision->x = x;
+  vision->next = NULL;
   return (vision);
 }
 
@@ -27,8 +28,6 @@ t_vision	*init_vision(int y, int x)
 {
   t_vision	*head;
 
-  if ((head = malloc(sizeof(t_vision))) == NULL)
-    return (NULL);
   head = create_case_vision(y, x);
   head->next = NULL;
   return (head);
@@ -39,15 +38,16 @@ void		add_case_vision(t_vision *head, int y, int x)
   t_vision *current;
 
   current = head;
+  if (!current)
+    return;
   while (current->next != NULL)
     current = current->next;
-  if ((current->next = malloc(sizeof(t_vision))) == NULL)
-    return ;
-  current->next = create_case_vision(y, x);
+  if (!(current->next = create_case_vision(y, x)))
+    return;
   current->next->next = NULL;
 }
 
-int check_x(int width, int x)
+int	check_x(int width, int x)
 {
   if (x > (width - 1))
     return (-1 + (x - (width - 1)));
@@ -57,7 +57,7 @@ int check_x(int width, int x)
     return (x);
 }
 
-int check_y(int height, int y)
+int	check_y(int height, int y)
 {
   if (y > (height - 1))
     return (-1 + (y - (height - 1)));

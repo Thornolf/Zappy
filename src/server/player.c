@@ -108,5 +108,6 @@ void		delete_player(void *_player)
   t_player	*player;
 
   player = _player;
+  delete_stuff(player->stuff);
   free(player);
 }
