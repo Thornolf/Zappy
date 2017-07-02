@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 15:32:00 2017 Pierre
-** Last update Fri Jun 30 12:06:52 2017 Guillaume CAUCHOIS
+** Last update Sun Jul 02 21:42:31 2017 Pierre
 */
 
 #include <string.h>
@@ -36,7 +36,7 @@ int	init_info_struct(t_info *info, char **av)
   return (1);
 }
 
-int	handle_parsing(t_info *info, int ac, char **av)
+int	fill_args(t_info *info, int ac, char **av)
 {
   int	i;
 
@@ -63,4 +63,41 @@ int	handle_parsing(t_info *info, int ac, char **av)
 	return (0);
     }
   return (1);
+}
+
+int	check_double_team(char **teams)
+{
+  int	i;
+  int	y;
+
+  i = 0;
+  while (teams[i])
+    {
+      y = 0;
+      while (teams[y])
+	{
+	  if (y != i && strcmp(teams[y], teams[i]) == 0)
+	    {
+	      printf("team name '%s' already defined\n", teams[y]);
+	      return (0);
+	    }
+	  y++;
+	}
+      i++;
+    }
+  return (1);
+}
+
+int	handle_parsing(t_info *info, int ac, char **av)
+{
+  int	check;
+
+  if ((check = fill_args(info, ac, av)) == 0)
+    return (0);
+  if (info->width < 10 || info->width > 30 || info->height < 10 || info->height > 30)
+    {
+      printf("Map must be minimum 10x10 and maximum 30x30\n");
+      return (0);
+    }
+  return (check_double_team(info->clients));
 }
