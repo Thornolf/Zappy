@@ -42,7 +42,8 @@ void check_food(t_server *server, t_list *_client)
       if (player->stuff->quantities[FOOD] < 0)
         {
           send_socket(client->fd, "dead\n");
-          remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
+	  command_pdi(server, client, NULL);
+	  remove_node(&server->players, get_player_node(server->players, client->fd), &delete_player);
           remove_node(&server->clients, _client, &delete_client);
         }
       else
