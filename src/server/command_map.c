@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Fri Jun 23 13:00:06 2017 Guillaume CAUCHOIS
-** Last update Thu Jun 29 14:51:47 2017 Guillaume CAUCHOIS
+** Last update Sun Jul 02 14:19:19 2017 Pierre
 */
 
 #include <stdio.h>
@@ -70,6 +70,8 @@ void	command_bct_at_position(t_server *server, t_client *client,
     return;
   snprintf(buf, 400, "bct %d %d%s\n", x, y, qts);
   send_socket(client->fd, buf);
+  free(buf);
+  free(qts);
 }
 
 void	command_bct(t_server *server, t_client *client, char *arg)
@@ -93,6 +95,7 @@ void	command_bct(t_server *server, t_client *client, char *arg)
     }
   y = (unsigned int)atoi(buf);
   command_bct_at_position(server, client, x, y);
+  free(buf);
 }
 
 void		command_mct(t_server *server, t_client *client, char *arg)

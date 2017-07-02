@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jul 01 13:23:04 2017 Pierre
-** Last update Sun Jul 02 11:45:11 2017 Pierre
+** Last update Sun Jul 02 13:21:43 2017 Pierre
 */
 
 #include "server/command.h"
@@ -60,6 +60,7 @@ void command_incantation(t_server *server, t_client *client, char *arg)
     return ;
   snprintf(str, 18, "Current level: %d\n", player->lv);
   send_socket(client->fd, str);
+  free(str);
   command_pie(server, client, "1");
   command_plv_for_plot(server, player->x, player->y);
   command_mct_all_graphics(server);

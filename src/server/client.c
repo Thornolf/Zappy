@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 21 18:08:49 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 21:45:10 2017 Pierre
+** Last update Sun Jul 02 13:16:28 2017 Pierre
 */
 
 #include "server/client.h"
@@ -53,13 +53,13 @@ void	*client_read(t_server *server, t_list *client_node)
   t_client	*client;
   t_list	*next;
   t_list	*player;
-  ssize_t lol;
+  ssize_t end;
 
   client = client_node->data;
   memset(client->buffer, 0, BUFFER_CLIENT_SIZE);
-  if ((lol = recv(client->fd, client->buffer, BUFFER_CLIENT_SIZE, 0)) < 0)
+  if ((end = recv(client->fd, client->buffer, BUFFER_CLIENT_SIZE, 0)) < 0)
     return (client_node->next);
-  client->buffer[4095] = 0;
+  client->buffer[end] = 0;
   next = client_node->next;
   if (client->buffer[0] == 0)
     {

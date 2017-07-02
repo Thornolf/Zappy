@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Thu Jun 29 13:16:06 2017 Guillaume CAUCHOIS
-** Last update Sat Jul 01 23:40:23 2017 Pierre
+** Last update Sun Jul 02 13:26:50 2017 Pierre
 */
 
 #include "server/command.h"
@@ -37,6 +37,7 @@ bool	execute_command_defined(t_server *server,
   }
   else if (client->type == GRAPHIC)
     cmd->fn(server, client, NULL);
+	free(arg);
   return (true);
 }
 

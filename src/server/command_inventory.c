@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 22 14:33:04 2017 Pierre
-** Last update Sat Jul 01 22:24:51 2017 Pierre
+** Last update Sun Jul 02 13:21:55 2017 Pierre
 */
 
 #include <string.h>
@@ -41,6 +41,7 @@ void		print_stuff(int fd, t_stuff *stuff)
   if (!(snprintf(str, 100, "[ food %d, linemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d ]\n", stuff->quantities[FOOD], stuff->quantities[LINEMATE], stuff->quantities[DERAUMERE], stuff->quantities[SIBUR], stuff->quantities[MENDIANE], stuff->quantities[PHIRAS], stuff->quantities[THYSTAME])))
     return ;
   send_socket(fd, str);
+  free(str);
 }
 
 void		command_inventory(t_server *server, t_client *client, char *arg)

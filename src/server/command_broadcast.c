@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 27 18:47:00 2017 Pierre
-** Last update Wed Jun 28 12:52:15 2017 Pierre
+** Last update Sun Jul 02 13:19:06 2017 Pierre
 */
 
 #include "server/command.h"
@@ -29,4 +29,5 @@ void	command_pbc(t_server *server, t_client *client, char *msg)
     return;
   snprintf(buf, 400, "pbc %d %s\n", player->id, msg);
   send_all_graphics(server, buf);
+  free(buf);
 }

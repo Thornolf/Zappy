@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Tue Jun 20 17:11:51 2017 Pierre
-** Last update Thu Jun 29 14:41:09 2017 Guillaume CAUCHOIS
+** Last update Sun Jul 02 13:30:11 2017 Pierre
 */
 
 #include "server/funcs.h"
