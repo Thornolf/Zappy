@@ -53,7 +53,12 @@ SRC_SERVER	=	$(SRC_SERVER_DIR)main.c				\
 			$(SRC_SERVER_DIR)lib/send.c			\
 			$(SRC_SERVER_DIR)lib/string.c
 
-SRC_AI		=	$(SRC_AI_DIR)main.c
+SRC_AI		=	$(SRC_AI_DIR)main.cpp				\
+			$(SRC_AI_DIR)ZappException.cpp			\
+			$(SRC_AI_DIR)EventHandler.cpp			\
+			$(SRC_AI_DIR)Socket.cpp				\
+			$(SRC_AI_DIR)Utils.cpp				\
+			$(SRC_AI_DIR)zappy.cpp
 
 OBJ_SERVER	=	$(SRC_SERVER:.c=.o)
-OBJ_AI		=	$(SRC_AI:.c=.o)
+OBJ_AI		=	$(SRC_AI:.cpp=.o)

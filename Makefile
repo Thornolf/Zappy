@@ -14,23 +14,28 @@ NAME_SERVER	=	zappy_server
 
 NAME_AI		=	zappy_ai
 
-CC		=	gcc
+CC_C		=	gcc
+
+CC_CC		=	g++
 
 RM		=	@rm -vf
 
-CFLAGS		=	-W -g -Wall -Wextra -I./inc/
+CFLAGS		=	-W -Wall -Wextra -I./inc/
+
+CXXFLAGS	=	-W -Wall -Wextra -I./inc/ -std=c++11
 
 ifeq			($(DEBUG), yes)
 CFLAGS		+=	-g -ggdb3
+CXXFLAGS	+=	-g -ggdb3
 endif			# !_DEBUG_
 
-all:			$(NAME_SERVER)
+all:			$(NAME_SERVER) $(NAME_AI)
 
 $(NAME_SERVER):		$(OBJ_SERVER)
-			$(CC) -o $(NAME_SERVER) $(OBJ_SERVER)
+			$(CC_C) -o $(NAME_SERVER) $(OBJ_SERVER)
 
 $(NAME_AI):		$(OBJ_AI)
-			$(CC) -o $(NAME_AI) $(OBJ_AI)
+			$(CC_CC) -o $(NAME_AI) $(OBJ_AI)
 
 clean:
 			$(RM) $(OBJ_SERVER)

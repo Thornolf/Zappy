@@ -8,11 +8,9 @@
 ** Last update Thu Jun 29 16:12:20 2017 Pierre
 */
 
-#include "ZappException.hpp"
+#include "ai/ZappException.hpp"
 
-ZappException::ZappException(std::string msg) throw() : _msg(msg)
-{
-}
+ZappException::ZappException(std::string msg) throw() : _msg(msg) {}
 
 const char *ZappException::what() const throw()
 {
