@@ -84,6 +84,7 @@ void	command_sst(t_server *, t_client *, char *);
 void	command_pbc(t_server *, t_client *, char *);
 void	command_pic(t_server *, t_client *, char *);
 void	command_pie(t_server *, t_client *, char *);
+void	command_pdr(t_server *, t_client *, char *);
 void	command_mct_all_graphics(t_server *);
 
 
