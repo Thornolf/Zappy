@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Thu Jun 29 10:52:23 2017 Pierre
-** Last update Thu Jun 29 17:09:21 2017 Pierre
+** Last update Sun Jul 02 13:21:23 2017 Pierre
 */
 
 #include "server/command.h"
@@ -16,13 +16,15 @@ void command_connect_nbr(t_server *server, t_client *client, char *arg)
   t_list	*list;
   t_player	*tmp;
   char		*team_name;
+  char *str;
   int		nb;
 
   (void)arg;
   list = server->players;
   nb = 0;
   tmp = get_player(server->players, client->fd);
-  team_name = strdup(tmp->team->name);
+  if (!(team_name = strdup(tmp->team->name)))
+    return ;
   while (list)
     {
       tmp = list->data;
@@ -30,6 +32,8 @@ void command_connect_nbr(t_server *server, t_client *client, char *arg)
 	      nb++;
       list = list->next;
     }
-  send_socket(client->fd, itos(server->team_size - nb));
-  send_socket(client->fd, "\n");
+  if (!(str = malloc(sizeof(char) * 5)))
+    return ;
+  snprintf(str, 5, "%d\n", server->team_size - nb);
+  send_socket(client->fd, str);
 }

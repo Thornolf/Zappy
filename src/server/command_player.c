@@ -5,7 +5,7 @@
 ** Login   <guillaume.cauchois@epitech.eu>
 **
 ** Started on  Wed Jun 28 18:21:24 2017 Guillaume CAUCHOIS
-** Last update Fri Jun 30 12:04:38 2017 Guillaume CAUCHOIS
+** Last update Sun Jul 02 13:25:51 2017 Pierre
 */
 
 #include "server/command.h"
@@ -36,6 +36,7 @@ void	command_ppo(t_server *server, t_client *client, char *arg)
 	   player->y, (int)player->direction);
   send_socket(client->fd, buffer);
   free(buffer);
+  free(param);
 }
 
 void	command_plv(t_server *server, t_client *client, char *arg)
@@ -62,4 +63,5 @@ void	command_plv(t_server *server, t_client *client, char *arg)
   snprintf(buffer, 40, "plv %d %d\n", player->id, player->lv);
   send_socket(client->fd, buffer);
   free(buffer);
+  free(param);
 }

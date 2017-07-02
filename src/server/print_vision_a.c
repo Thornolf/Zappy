@@ -5,7 +5,7 @@
 ** Login   <pierre@epitech.net>
 **
 ** Started on  Sat Jun 24 12:51:13 2017 Pierre
-** Last update Sat Jul 01 23:40:45 2017 Pierre
+** Last update Sun Jul 02 13:27:46 2017 Pierre
 */
 
 #include "server/command.h"
@@ -82,4 +82,5 @@ void	print_objects(int player_fd, t_list *list_player,
     }
   str = strcat(str, "] \n");
   send_socket(player_fd, str);
+  free(str);
 }
