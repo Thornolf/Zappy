@@ -64,8 +64,8 @@ void	command_inventory(t_server *, t_client *, char *);
 void	command_connect_nbr(t_server *server, t_client *client, char *);
 void	command_incantation(t_server *server, t_client *client, char *);
 void	command_broadcast(t_server *, t_client *, char *);
-bool start_incantation(t_server *server, t_client *client);
-int nb_players(t_list *players, int y, int x);
+bool	start_incantation(t_server *server, t_client *client);
+int	nb_players(t_list *players, int y, int x);
 
 /**
  * Commandes GRAPHIC
@@ -82,5 +82,6 @@ void	command_sgt(t_server *, t_client *, char *);
 void	command_pbc(t_server *, t_client *, char *);
 void	command_pic(t_server *, t_client *, char *);
 void	command_pie(t_server *, t_client *, char *);
+void	command_mct_all_graphics(t_server *);
 
 #endif		/* !_COMMAND__H_! */

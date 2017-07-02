@@ -62,7 +62,7 @@ void command_incantation(t_server *server, t_client *client, char *arg)
   send_socket(client->fd, str);
   command_pie(server, client, "1");
   command_plv_for_plot(server, player->x, player->y);
-  command_mct(server, client, NULL);
+  command_mct_all_graphics(server);
 }
 
 void		command_pic(t_server *server, t_client *client, char *arg)

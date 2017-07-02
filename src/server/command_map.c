@@ -103,13 +103,28 @@ void		command_mct(t_server *server, t_client *client, char *arg)
   (void)arg;
   x = 0;
   while (x != server->map->width)
+  {
+    y = 0;
+    while (y != server->map->height)
     {
-      y = 0;
-      while (y != server->map->height)
-	{
-	  command_bct_at_position(server, client, x, y);
-	  y++;
-	}
-      x++;
+      command_bct_at_position(server, client, x, y);
+      y++;
     }
+    x++;
+  }
+}
+
+void		command_mct_all_graphics(t_server *server)
+{
+  t_list	*cur_client_node;
+  t_client	*client;
+
+  cur_client_node = server->clients;
+  while (cur_client_node)
+  {
+    client = cur_client_node->data;
+    if (client->type == GRAPHIC)
+      command_mct(server, client, NULL);
+    cur_client_node = cur_client_node->next;
+  }
 }
