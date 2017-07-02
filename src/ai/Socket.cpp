@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:12:26 2017 Thomas Fossaert
-** Last update Sat Jul 01 14:15:40 2017 Thomas Fossaert
+** Last update Sun Jul 02 16:12:17 2017 Thomas Fossaert
 */
 
 #include "ai/Socket.hpp"
@@ -93,6 +93,11 @@ const std::string Socket::getLastInventory() const
 const std::string Socket::getLevelUp() const
 {
   return (std::string(this->_levelUp));
+}
+
+const std::vector<std::string> Socket::getBroadCastText() const
+{
+  return (this->_broadCastText);
 }
 
 void Socket::resetBroacastText()

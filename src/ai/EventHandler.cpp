@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sun Jul 02 13:12:46 2017 Adrien Warin
+** Last update Sun Jul 02 17:13:58 2017 Thomas Fossaert
 */
 
 #include <ctime>
@@ -146,6 +146,7 @@ void EventHandler::launchScript()
             TakeObject("food");
             TakeRequirement();
           }
+        std::cout << this->_level << '\n';
     }
 }
 
@@ -298,14 +299,17 @@ int EventHandler::countPlayerOnTile()
 
 int EventHandler::getBroadCastDirection()
 {
-  int dir;
+  int dir = 0;
+  std::size_t found;
   std::vector<std::string> tmpVec;
 
+  tmpVec = _sock->getBroadCastText();
   for (auto it : tmpVec)
     {
       if (it.find("Need ppl for level " + std::to_string(_level + 1)) != std::string::npos)
         {
-          dir = std::stoi(it);
+          found = it.find_first_of("012345678");
+          dir = static_cast<int>(it[found]);
           return (dir);
         }
     }
