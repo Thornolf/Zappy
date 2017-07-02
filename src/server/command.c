@@ -45,6 +45,8 @@ t_list		*init_cmd_callback_graphic(void)
       !(cmd = create_command_node("pin", -1, &command_pin, GRAPHIC)) ||
       !(append_data(&head, cmd)) ||
       !(cmd = create_command_node("sgt", -1, &command_sgt, GRAPHIC)) ||
+      !(append_data(&head, cmd)) ||
+      !(cmd = create_command_node("sst", -1, &command_sst, GRAPHIC)) ||
       !(append_data(&head, cmd)))
     return (NULL);
   return (head);
