@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,83 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/home/pierre/PSU_2016_zappy/src/ai/EventHandler.cpp
-include/EventHandler.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/EventHandler.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/EventHandler.cpp
 ctime
 -
-
-/home/pierre/PSU_2016_zappy/src/ai/Socket.cpp
-include/Socket.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/Socket.hpp
-
-/home/pierre/PSU_2016_zappy/src/ai/ZappException.cpp
-include/ZappException.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/ZappException.hpp
-
-/home/pierre/PSU_2016_zappy/src/ai/include/EventHandler.hpp
-map
--
-algorithm
--
-string
--
-unordered_map
--
-functional
--
-vector
--
-Socket.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/Socket.hpp
-
-/home/pierre/PSU_2016_zappy/src/ai/include/Socket.hpp
-iostream
--
-sys/types.h
--
-sys/socket.h
--
-netdb.h
--
-stdlib.h
--
-netinet/in.h
--
-arpa/inet.h
--
-unistd.h
--
-string.h
--
-stdio.h
--
-ZappException.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/ZappException.hpp
-
-/home/pierre/PSU_2016_zappy/src/ai/include/ZappException.hpp
-exception
--
-iostream
--
-
-/home/pierre/PSU_2016_zappy/src/ai/include/zappy.hpp
-iostream
--
-ZappException.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/ZappException.hpp
-Socket.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/Socket.hpp
 EventHandler.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/EventHandler.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/EventHandler.hpp
 
-/home/pierre/PSU_2016_zappy/src/ai/main.cpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/Socket.cpp
+Socket.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/Socket.hpp
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/Utils.cpp
+Utils.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/Utils.hpp
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/ZappException.cpp
+ZappException.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/ZappException.hpp
+
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/main.cpp
 iostream
 -
-include/zappy.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/zappy.hpp
+zappy.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/zappy.hpp
 
-/home/pierre/PSU_2016_zappy/src/ai/zappy.cpp
-include/zappy.hpp
-/home/pierre/PSU_2016_zappy/src/ai/include/zappy.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/zappy.cpp
+zappy.hpp
+/home/guillobits/workspace/epitech/PSU_2016_zappy/src/ai/src/zappy.hpp
 

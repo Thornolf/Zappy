@@ -8,6 +8,7 @@
 ** Last update Thu Jun 29 14:39:35 2017 Guillaume CAUCHOIS
 */
 
+#include <string.h>
 #include "server/player.h"
 #include "server/server.h"
 
@@ -71,6 +72,27 @@ t_player	*get_player(t_list *player_list, int fd)
       cur = cur->next;
     }
   return (NULL);
+}
+
+char		*player_ids_to_string(void)
+{
+  char		*string;
+  /*int		len_write;
+  t_stuff_type	type;
+  size_t	limit;
+
+  len_write  = 0;
+  type = STUFF_MIN;
+  if (!(string = malloc(sizeof(char) * 400)))
+    return (NULL);
+  bzero(string, sizeof(char) * 400);
+  while (type < STUFF_MAX)
+  {
+    limit = (400 - len_write >= 0) ? (size_t)(400 - len_write) : 0;
+    len_write += snprintf(string + len_write, limit, " %d", qts[type++]);
+  }*/
+  string = strdup("#n #n");
+  return (string);
 }
 
 void		delete_player(void *_player)
