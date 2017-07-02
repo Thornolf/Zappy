@@ -77,6 +77,7 @@ void	command_mct(t_server *, t_client *, char *);
 void	command_tna(t_server *, t_client *, char *);
 void	command_ppo(t_server *, t_client *, char *);
 void	command_plv(t_server *, t_client *, char *);
+void	command_pgt(t_server *, t_client *, char *);
 void	command_pin(t_server *, t_client *, char *);
 void	command_sgt(t_server *, t_client *, char *);
 void	command_sst(t_server *, t_client *, char *);
@@ -84,5 +85,6 @@ void	command_pbc(t_server *, t_client *, char *);
 void	command_pic(t_server *, t_client *, char *);
 void	command_pie(t_server *, t_client *, char *);
 void	command_mct_all_graphics(t_server *);
+
 
 #endif		/* !_COMMAND__H_! */
