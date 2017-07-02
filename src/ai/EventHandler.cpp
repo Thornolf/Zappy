@@ -5,7 +5,7 @@
 ** Login   <warin_a@epitech.net>
 **
 ** Started on  Tue Jun 20 15:00:59 2017 Adrien Warin
-** Last update Sun Jul 02 20:46:41 2017 Adrien Warin
+** Last update Sun Jul 02 21:40:15 2017 Thomas Fossaert
 */
 
 #include <ctime>
@@ -146,7 +146,7 @@ void EventHandler::launchScript()
             TakeObject("food");
             TakeRequirement();
           }
-        std::cout << this->_level << '\n';
+        std::cout << "CURRENT LEVEL: " <<this->_level << '\n';
     }
 }
 

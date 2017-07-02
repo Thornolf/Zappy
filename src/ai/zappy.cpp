@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Wed Jun 21 09:19:57 2017 Thomas Fossaert
-** Last update Sun Jul 02 17:26:19 2017 Thomas Fossaert
+** Last update Sun Jul 02 21:37:15 2017 Thomas Fossaert
 */
 
 #include "ai/zappy.hpp"
@@ -13,6 +13,7 @@
 Zappy::Zappy(char **av)
 {
   int i = 1;
+  this->_machineName = "127.0.0.1";
 
   while (av[i])
   {
